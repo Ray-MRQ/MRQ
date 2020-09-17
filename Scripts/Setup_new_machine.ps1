@@ -19,6 +19,27 @@ $lastupdatedby = echo "===============================Last Updated By MQ 15/09/2
 $WindowsVerison = (Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion").ReleaseId
 $LatestWindows = '2004' #Current Windows verison
 $OldWindows = '1909' #Anything under 1909 or equal to
+
+#Download links.
+
+$OfficeExe = 'https://onl-my.sharepoint.com/:u:/g/personal/mohammed_quashem_onlinesupport_co_uk/EciJa-2XO-RMgLu_fqqh7S8Bd-_Hnme7yc3_pkbZkKrL9w?e=4pZQLL&download=1'
+$OfficeXMLInstall = 'https://onl-my.sharepoint.com/:u:/g/personal/mohammed_quashem_onlinesupport_co_uk/EdFIkokmMpBNj4-TxW_ANdoBuBQGUb26BY25FdaWUlkgHQ?e=eqAKKw&download=1'
+$OfficeXMLUninstall = 'https://onl-my.sharepoint.com/:u:/g/personal/mohammed_quashem_onlinesupport_co_uk/ETZDcbbQRCpOofVstrO4W8MB3zzf3WOCkvTz4EgyJwZFxw?e=EdRflN&download=1'
+$OfficeUninstallTool = 'https://outlookdiagnostics.azureedge.net/sarasetup/SetupProd_OffScrub.exe'
+$SoftwareSilentInstallFile = 'https://onl-my.sharepoint.com/:u:/g/personal/mohammed_quashem_onlinesupport_co_uk/EeKZZvzYildFkgaO6UNLICgBkFgnf1MyPdVKwwRf8SfiCg?e=ylmJxn&download=1'
+$SoftwareInstallFile = 'https://onl-my.sharepoint.com/:u:/g/personal/mohammed_quashem_onlinesupport_co_uk/EciYRIQ6VpxBgEQEeOMfox8BnRPmsuuj-PzXt364ilHIiA?e=u1lHgE&download=1'
+$DefaultAppPre1909= 'https://onl-my.sharepoint.com/:u:/g/personal/mohammed_quashem_onlinesupport_co_uk/EbSSlQ8e7q1MqS_741Cn-pUBgUvDHFuxfq1oQ-BMSEEWyQ?e=aC08fW&download=1'
+$DefaultApp = 'https://onl-my.sharepoint.com/:u:/g/personal/mohammed_quashem_onlinesupport_co_uk/EccJivBPLflNunz9VtTCpWQBZmMydaOESBldl1nbDpannQ?e=slzI74&download=1'
+$MimecastInstall = 'https://onl-my.sharepoint.com/:u:/g/personal/mohammed_quashem_onlinesupport_co_uk/EarIZeb9QQxHsU_eMdOJXtABDNQFUBIOBwxS73Gr-sDhjQ?e=PcpQDx&download=1'
+$GlobalVPNInstall = 'https://onl-my.sharepoint.com/:u:/g/personal/mohammed_quashem_onlinesupport_co_uk/ERUDocBWpOVHoNwydbjYk84BZPm4t1uE4VBujGF63SUUNg?e=kp8RBP&download=1'
+$NeteXtenderInstall= 'https://onl-my.sharepoint.com/:u:/g/personal/mohammed_quashem_onlinesupport_co_uk/EdZ4uMDO5y1JjqKCOOqNC0kBkjOHeF3Pg0_vVNXHfyJjBw?e=rcydPz&download=1'
+$BloatwareRemoverWin10 = 'https://onl-my.sharepoint.com/:u:/g/personal/mohammed_quashem_onlinesupport_co_uk/EeOwf4fLG3ZMsGSuViirvSUBLBiRiDPt-OafyuxVaIdDXg?e=WisQiE&download=1'
+$HPBloatwareRemover = 'https://onl-my.sharepoint.com/:u:/g/personal/mohammed_quashem_onlinesupport_co_uk/EY1GPR6DEHVPsWqSZ7pRLjAB2GyjrAZtzQMkvY5SBOC9pg?e=CJWCvk&download=1'
+$PhotoviewerInstall = 'https://onl-my.sharepoint.com/:u:/g/personal/mohammed_quashem_onlinesupport_co_uk/ESAYxk0w24ZDssEcyxe7CQcBncnMBOFVrC6KncyDvZUB-w?e=gixpBi&download=1'
+$RunAsAdministratorPS = 'https://onl-my.sharepoint.com/:u:/g/personal/mohammed_quashem_onlinesupport_co_uk/EUdAD4ToqqtOqD8oI6EeEycBZvLTSuK96di0MsuxoCTkvw?e=bDhL5E&download=1'
+
+
+##############################################################################
 	
 function main-menu {
 ""
@@ -39,8 +60,8 @@ if ($myinput -eq 'y') {
 echo "Starting uninstall process..."
 
 ""
-Invoke-WebRequest "https://onl-my.sharepoint.com/:u:/g/personal/mohammed_quashem_onlinesupport_co_uk/EciJa-2XO-RMgLu_fqqh7S8Bd-_Hnme7yc3_pkbZkKrL9w?e=4pZQLL&download=1" -outfile c:\temp\scriptdownloads\office365setup.exe
-Invoke-WebRequest "https://onl-my.sharepoint.com/:u:/g/personal/mohammed_quashem_onlinesupport_co_uk/ETZDcbbQRCpOofVstrO4W8MB3zzf3WOCkvTz4EgyJwZFxw?e=EdRflN&download=1" -outfile c:\temp\scriptdownloads\office365uninstall.xml
+Invoke-WebRequest $OfficeExe -outfile c:\temp\scriptdownloads\office365setup.exe
+Invoke-WebRequest $OfficeXMLUninstall -outfile c:\temp\scriptdownloads\office365uninstall.xml
 c:\temp\scriptdownloads\office365setup.exe /configure c:\temp\scriptdownloads\office365uninstall.xml
 echo "Office365 ProPlus should be uninstalled."
 echo "If not, use option 12 and use the support tool to uninstall."
@@ -63,14 +84,14 @@ cl
 }
 
 function start-officeinstall {
-Invoke-WebRequest "https://onl-my.sharepoint.com/:u:/g/personal/mohammed_quashem_onlinesupport_co_uk/EciJa-2XO-RMgLu_fqqh7S8Bd-_Hnme7yc3_pkbZkKrL9w?e=4pZQLL&download=1" -outfile c:\temp\scriptdownloads\office365setup.exe
-Invoke-WebRequest "https://onl-my.sharepoint.com/:u:/g/personal/mohammed_quashem_onlinesupport_co_uk/EdFIkokmMpBNj4-TxW_ANdoBuBQGUb26BY25FdaWUlkgHQ?e=eqAKKw&download=1" -outfile c:\temp\scriptdownloads\configuration.xml
+Invoke-WebRequest $OfficeExe -outfile c:\temp\scriptdownloads\office365setup.exe
+Invoke-WebRequest $OfficeXMLInstall -outfile c:\temp\scriptdownloads\configuration.xml
 c:\temp\scriptdownloads\office365setup.exe /configure c:\temp\scriptdownloads\configuration.xml
 }
 
 function start-officeuninstalltool {
 echo "Office applications uninstall tool, with will open up an app."
-Invoke-WebRequest "https://outlookdiagnostics.azureedge.net/sarasetup/SetupProd_OffScrub.exe" -outfile C:\temp\scriptdownloads\officeuninstall.exe
+Invoke-WebRequest $OfficeUninstallTool -outfile C:\temp\scriptdownloads\officeuninstall.exe
 ""
 echo "Downloading Office uninstall tool..."
 ""
@@ -126,8 +147,8 @@ echo "Office 365 installed completed..."
 }
 ""
 echo "Starting download for applications.."
-Invoke-WebRequest "https://onl-my.sharepoint.com/:u:/g/personal/mohammed_quashem_onlinesupport_co_uk/EeKZZvzYildFkgaO6UNLICgBkFgnf1MyPdVKwwRf8SfiCg?e=ylmJxn&download=1" -outfile c:\temp\scriptdownloads\silentinstall.exe
-Invoke-WebRequest "https://onl-my.sharepoint.com/:u:/g/personal/mohammed_quashem_onlinesupport_co_uk/EciYRIQ6VpxBgEQEeOMfox8BnRPmsuuj-PzXt364ilHIiA?e=u1lHgE&download=1" -outfile c:\temp\scriptdownloads\ninite.exe
+Invoke-WebRequest $SoftwareSilentInstallFile -outfile c:\temp\scriptdownloads\silentinstall.exe
+Invoke-WebRequest $SoftwareInstallFile -outfile c:\temp\scriptdownloads\ninite.exe
 c:\temp\scriptdownloads\silentinstall.exe
 ""
 echo "Silent installing 7Zip, Chrome, Foxit and Zoom..."
@@ -148,10 +169,10 @@ echo "Change default apps manaully from settings or re-create profile."
 ""
 pause
 if ($WindowsVersion -le '1909') { 
-Invoke-WebRequest "https://onl-my.sharepoint.com/:u:/g/personal/mohammed_quashem_onlinesupport_co_uk/EbSSlQ8e7q1MqS_741Cn-pUBgUvDHFuxfq1oQ-BMSEEWyQ?e=aC08fW&download=1" -outfile c:\temp\scriptdownloads\MyDefaultAppAssociations.xml 
+Invoke-WebRequest $DefaultAppPre1909 -outfile c:\temp\scriptdownloads\MyDefaultAppAssociations.xml 
 dism /online /Import-DefaultAppAssociations:"c:\temp\scriptdownloads\MyDefaultAppAssociations.xml" }
 else {
-Invoke-WebRequest "https://onl-my.sharepoint.com/:u:/g/personal/mohammed_quashem_onlinesupport_co_uk/EccJivBPLflNunz9VtTCpWQBZmMydaOESBldl1nbDpannQ?e=slzI74&download=1" -outfile c:\temp\scriptdownloads\MyDefaultAppAssociations.xml
+Invoke-WebRequest $DefaultApp -outfile c:\temp\scriptdownloads\MyDefaultAppAssociations.xml
 dism /online /Import-DefaultAppAssociations:"c:\temp\scriptdownloads\MyDefaultAppAssociations.xml" }
 echo "Sending office shortcuts to desktop..."
 #Add any shortcuts needed for the above here. It just copies from Start menu to public desktop.
@@ -170,7 +191,7 @@ do { $myInput = (Read-Host 'Would you like to install Mimecast for Outlook 32Bit
 if ($myInput -eq 'y') {
 ""
 echo "Downloading & installing Mimecast for Outlook..."
-Invoke-WebRequest "https://onl-my.sharepoint.com/:u:/g/personal/mohammed_quashem_onlinesupport_co_uk/EarIZeb9QQxHsU_eMdOJXtABDNQFUBIOBwxS73Gr-sDhjQ?e=PcpQDx&download=1" -outfile c:\temp\scriptdownloads\mimecast32bit.msi
+Invoke-WebRequest $MimecastInstall -outfile c:\temp\scriptdownloads\mimecast32bit.msi
 msiexec /i "c:\temp\scriptdownloads\mimecast32bit.msi" /qn+ /norestart allusers=2
 ""
 echo "Wait for a dialogue box to appear then continue. (If Mimecast for Outlook is already installed it will not appear)."
@@ -193,7 +214,7 @@ do { $myInput = (Read-Host 'Would you like to install GlobalVPN or NeteXtender? 
 if ($myInput -eq 'global') {
 ""
 echo "Downloading & installing GlobalVPN..."
-Invoke-WebRequest "https://onl-my.sharepoint.com/:u:/g/personal/mohammed_quashem_onlinesupport_co_uk/ERUDocBWpOVHoNwydbjYk84BZPm4t1uE4VBujGF63SUUNg?e=kp8RBP&download=1" -outfile c:\temp\scriptdownloads\gvcinstall64.msi
+Invoke-WebRequest $GlobalVPNInstall -outfile c:\temp\scriptdownloads\gvcinstall64.msi
 msiexec.exe /i "C:\temp\scriptdownloads\gvcinstall64.msi" /qn+ /norestart allusers=2
 ""
 echo "Wait for a dialogue box to appear then continue."
@@ -208,7 +229,7 @@ Copy-Item "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Global VPN Clien
 if ($myinput -eq 'net') {
 ""
 echo "Downloading & installing NeteXtender..."
-Invoke-WebRequest "https://onl-my.sharepoint.com/:u:/g/personal/mohammed_quashem_onlinesupport_co_uk/EdZ4uMDO5y1JjqKCOOqNC0kBkjOHeF3Pg0_vVNXHfyJjBw?e=rcydPz&download=1" -outfile c:\temp\scriptdownloads\netextender.msi
+Invoke-WebRequest $NeteXtenderInstall -outfile c:\temp\scriptdownloads\netextender.msi
 msiexec /i "C:\temp\scriptdownloads\netextender.msi" /qn+ /norestart allusers=2
 ""
 echo "Wait for a dialogue box to appear then continue."
@@ -305,7 +326,7 @@ echo "------"
 cl
 }
 if ($myinput -eq 'user') {
-Invoke-WebRequest "https://onl-my.sharepoint.com/:u:/g/personal/mohammed_quashem_onlinesupport_co_uk/EeOwf4fLG3ZMsGSuViirvSUBLBiRiDPt-OafyuxVaIdDXg?e=WisQiE&download=1" -outfile "C:\temp\scriptdownloads\bloatwareremover.ps1"
+Invoke-WebRequest $BloatwareRemoverWin10 -outfile "C:\temp\scriptdownloads\bloatwareremover.ps1"
 start-remove-cortana-websearch
 ""
 echo "This is for removing bloatware in user context instead of administrator."
@@ -387,7 +408,7 @@ $HPJumpStartLaunch = Get-WmiObject -Class Win32_Product | Where-Object { $_.Name
 $HPJumpStartLaunchID = $HPJumpStartLaunch.properties["IdentifyingNumber"].value.toString()
 MsiExec.exe /norestart /q/x $HPJumpStartLaunchID REMOVE=ALL
 cl
-Invoke-WebRequest "https://onl-my.sharepoint.com/:u:/g/personal/mohammed_quashem_onlinesupport_co_uk/EY1GPR6DEHVPsWqSZ7pRLjAB2GyjrAZtzQMkvY5SBOC9pg?e=CJWCvk&download=1" -outfile c:\temp\scriptdownloads\hpbloatwareremoval.bat
+Invoke-WebRequest $HPBloatwareRemover -outfile c:\temp\scriptdownloads\hpbloatwareremoval.bat
 Invoke-Expression -Command "cmd.exe /c c:\temp\scriptdownloads\hpbloatwareremoval.bat"
 ""
 echo "HP Bloatware has been removed or at least attempted to remove most."
@@ -395,7 +416,7 @@ echo "You may need to double check in the control panel and uninstall anything l
 ""
 pause
 } else {
-'Not removing Bloatware for HP workstation/laptop...'
+echo 'Not removing Bloatware for HP workstation/laptop...'
 }
 cl
 }
@@ -493,7 +514,7 @@ cl
 do { $myInput = (Read-Host 'Would you like to install Photo Viewer? (Windows7 verision) (Y/N)').ToLower() } while ($myInput -notin @('y','n'))
 if ($myInput -eq 'y') {
 echo "Installing photo viewer...."
-Invoke-WebRequest "https://onl-my.sharepoint.com/:u:/g/personal/mohammed_quashem_onlinesupport_co_uk/ESAYxk0w24ZDssEcyxe7CQcBncnMBOFVrC6KncyDvZUB-w?e=gixpBi&download=1" -outfile c:\temp\scriptdownloads\Photoviewer.reg
+Invoke-WebRequest $PhotoviewerInstall -outfile c:\temp\scriptdownloads\Photoviewer.reg
 Invoke-Command {reg import C:\temp\scriptdownloads\Photoviewer.reg *>&1 | Out-Null}
 Remove-Item "c:\temp\scriptdownloads\photoviewer.reg"
 echo "Photoviewer installed..."
@@ -523,7 +544,7 @@ cl
 }}
 
 function start-addrunasps1 { 
-Invoke-WebRequest "https://onl-my.sharepoint.com/:u:/g/personal/mohammed_quashem_onlinesupport_co_uk/EUdAD4ToqqtOqD8oI6EeEycBZvLTSuK96di0MsuxoCTkvw?e=bDhL5E&download=1" -outfile c:\temp\RunAsAdminContextMenupowershell.reg
+Invoke-WebRequest $RunAsAdministratorPS -outfile c:\temp\RunAsAdminContextMenupowershell.reg
 Invoke-Command {reg import C:\temp\RunAsAdminContextMenupowershell.reg *>&1 | Out-Null}
 remove-item "C:\temp\RunAsAdminContextMenupowershell.reg"}
 
