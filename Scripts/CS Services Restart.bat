@@ -1,0 +1,4 @@
+NET STOP CAGSERVICE
+NET START CAGSERVICE
+NET STOP SplashtopRemoteService
+NET START SplashtopRemoteService
