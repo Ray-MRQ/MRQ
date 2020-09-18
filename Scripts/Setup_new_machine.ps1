@@ -52,57 +52,6 @@ if ($myinput -eq '1') {start-script}
 if ($myinput -eq '2') {manual-script}
 if ($myinput -eq '3') {end-script}}
 
-function start-officeuninstall {
-""
-do { $myInput = (Read-Host 'Would you like to uninstall Office365?(Y/N)').ToLower() } while ($myInput -notin @('y','n'))
-if ($myinput -eq 'y') {
-""
-echo "Starting uninstall process..."
-
-""
-Invoke-WebRequest $OfficeExe -outfile c:\temp\scriptdownloads\office365setup.exe
-Invoke-WebRequest $OfficeXMLUninstall -outfile c:\temp\scriptdownloads\office365uninstall.xml
-c:\temp\scriptdownloads\office365setup.exe /configure c:\temp\scriptdownloads\office365uninstall.xml
-echo "Office365 ProPlus should be uninstalled."
-echo "If not, use option 12 and use the support tool to uninstall."
-""
-pause
-""
-cl
-echo "Starting install for Office365..."
-""
-echo "Please wait..."
-""
-start-officeinstall
-echo "If you need the shortcuts use option 9."
-echo "Please continue."
-pause
-cl
-""
-cl
-}
-}
-
-function start-officeinstall {
-Invoke-WebRequest $OfficeExe -outfile c:\temp\scriptdownloads\office365setup.exe
-Invoke-WebRequest $OfficeXMLInstall -outfile c:\temp\scriptdownloads\configuration.xml
-c:\temp\scriptdownloads\office365setup.exe /configure c:\temp\scriptdownloads\configuration.xml
-}
-
-function start-officeuninstalltool {
-echo "Office applications uninstall tool, with will open up an app."
-Invoke-WebRequest $OfficeUninstallTool -outfile C:\temp\scriptdownloads\officeuninstall.exe
-""
-echo "Downloading Office uninstall tool..."
-""
-echo "Done, starting Office uninstall tool."
-C:\temp\scriptdownloads\officeuninstall.exe
-""
-echo "Go through the prompts then continue."
-pause
-cl
-}
-
 function start-softwareinstall {
 echo "Removing & creating directory in C:\temp\scriptdownloads..."
 mkdir c:\temp > $null 2>&1
@@ -155,6 +104,57 @@ echo "Silent installing 7Zip, Chrome, Foxit and Zoom..."
 ""
 Start-Sleep -seconds 30
 echo "Installed 7zip, Chrome, Zoom and Foxit reader silently."
+}
+
+function start-officeuninstall {
+""
+do { $myInput = (Read-Host 'Would you like to uninstall Office365?(Y/N)').ToLower() } while ($myInput -notin @('y','n'))
+if ($myinput -eq 'y') {
+""
+echo "Starting uninstall process..."
+
+""
+Invoke-WebRequest $OfficeExe -outfile c:\temp\scriptdownloads\office365setup.exe
+Invoke-WebRequest $OfficeXMLUninstall -outfile c:\temp\scriptdownloads\office365uninstall.xml
+c:\temp\scriptdownloads\office365setup.exe /configure c:\temp\scriptdownloads\office365uninstall.xml
+echo "Office365 ProPlus should be uninstalled."
+echo "If not, use option 12 and use the support tool to uninstall."
+""
+pause
+""
+cl
+echo "Starting install for Office365..."
+""
+echo "Please wait..."
+""
+start-officeinstall
+echo "If you need the shortcuts use option 9."
+echo "Please continue."
+pause
+cl
+""
+cl
+}
+}
+
+function start-officeinstall {
+Invoke-WebRequest $OfficeExe -outfile c:\temp\scriptdownloads\office365setup.exe
+Invoke-WebRequest $OfficeXMLInstall -outfile c:\temp\scriptdownloads\configuration.xml
+c:\temp\scriptdownloads\office365setup.exe /configure c:\temp\scriptdownloads\configuration.xml
+}
+
+function start-officeuninstalltool {
+echo "Office applications uninstall tool, with will open up an app."
+Invoke-WebRequest $OfficeUninstallTool -outfile C:\temp\scriptdownloads\officeuninstall.exe
+""
+echo "Downloading Office uninstall tool..."
+""
+echo "Done, starting Office uninstall tool."
+C:\temp\scriptdownloads\officeuninstall.exe
+""
+echo "Go through the prompts then continue."
+pause
+cl
 }
 
 function start-shortcuts-default-apps {
