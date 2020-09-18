@@ -28,14 +28,14 @@ goto :choice
 
 
 :yes
-
+cls
 REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows Media Foundation\Platform" /v EnableFrameServerMode /t REG_DWORD /d 0
 echo 64Bit Reg key added, please close the prompt and test the webcam works.
 pause
 exit
 
 :no
-
+cls
 echo 64Bit reg key will not be added, only the 32Bit key has been added, please close prompt. 
 pause
 exit
