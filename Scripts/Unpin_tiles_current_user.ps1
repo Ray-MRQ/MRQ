@@ -1,16 +1,10 @@
-﻿    $ver = $host | select version
-    if ($ver.Version.Major -gt 1)  {$Host.Runspace.ThreadOptions = "ReuseThread"}
-
-    # Verify that user running script is an administrator
-    $IsAdmin=[Security.Principal.WindowsIdentity]::GetCurrent()
-    If ((New-Object Security.Principal.WindowsPrincipal $IsAdmin).IsInRole([Security.Principal.WindowsBuiltinRole]::Administrator) -eq $FALSE)
-    {
-      "`nERROR: You are NOT an administrator.  Run this script after using Run As administrator."
-      pause
-        exit
-    }
-echo "==========================================================================="
-echo "Modiying start menu settings..."
+﻿echo "Would you like to remove tiles and taskbar applications on the start menu? "
+echo "This will become a default setting for new and current users"
+""
+do { $myInput = (Read-Host 'Choose an option, (Y/N)').ToLower() } while ($myInput -notin @('y','n'))
+if ($myInput -eq 'y') {
+echo "Modiying start menu & taskbar settings."
+""
 $START_MENU_LAYOUT = @"
 <LayoutModificationTemplate xmlns:defaultlayout="http://schemas.microsoft.com/Start/2014/FullDefaultLayout" xmlns:start="http://schemas.microsoft.com/Start/2014/StartLayout" Version="1" xmlns:taskbar="http://schemas.microsoft.com/Start/2014/TaskbarLayout" xmlns="http://schemas.microsoft.com/Start/2014/LayoutModification">
     <LayoutOptions StartTileGroupCellWidth="6" />
@@ -19,6 +13,15 @@ $START_MENU_LAYOUT = @"
             <defaultlayout:StartLayout GroupCellWidth="6" />
         </StartLayoutCollection>
     </DefaultLayoutOverride>
+    <CustomTaskbarLayoutCollection PinListPlacement="Replace">
+      <defaultlayout:TaskbarLayout>
+        <taskbar:TaskbarPinList>
+          <taskbar:DesktopApp DesktopApplicationLinkPath="C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Google Chrome.lnk" />
+		  <taskbar:DesktopApp DesktopApplicationLinkPath="C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Outlook.lnk" />
+		  <taskbar:DesktopApp DesktopApplicationLinkPath="%APPDATA%\Microsoft\Windows\Start Menu\Programs\System Tools\File Explorer.lnk" />
+        </taskbar:TaskbarPinList>
+      </defaultlayout:TaskbarLayout>
+    </CustomTaskbarLayoutCollection>
 </LayoutModificationTemplate>
 "@
 
@@ -48,9 +51,8 @@ foreach ($regAlias in $regAliases){
 echo "==========================================================================="
 echo "Complete... restarting proccesses"
 echo "==========================================================================="
-echo "Open the start menu (necessary to load the new layout), and give it a few seconds to process."
-pause
-cls
+echo "This will refresh your screen..."
+cl
 Stop-Process -name explorer -Force
 Start-Sleep -s 5
 $wshell = New-Object -ComObject wscript.shell; $wshell.SendKeys('^{ESCAPE}')
@@ -71,5 +73,13 @@ Stop-Process -name explorer -Force
 
 Remove-Item $layoutFile
 echo "==========================================================================="
-echo "Script is now complete, please close."
+echo "Now complete..."
+""
+echo "Please continue."
+""
+} else {
+echo "Not removing any tiles from the start menu..."
+Echo "Please continue."}
 pause
+cl
+exit
