@@ -129,6 +129,7 @@ echo "Please wait..."
 ""
 start-officeinstall
 echo "If you need the shortcuts use option 9."
+""
 echo "Please continue."
 pause
 cl
