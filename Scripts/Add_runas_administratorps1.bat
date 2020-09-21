@@ -20,5 +20,4 @@ bitsadmin /transfer myDownloadJob /download /priority normal "https://onl-my.sha
 reg import C:\RunAsAdminContextMenupowershell.reg
 del "C:\RunAsAdminContextMenupowershell.reg"
 echo "Check now with a .ps1 file and see if it appears in the context menu"
-powershell -command "& {Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Force}"
 pause
