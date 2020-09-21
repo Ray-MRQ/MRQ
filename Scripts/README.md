@@ -48,7 +48,7 @@ if ($myInput -eq 'y') {
 
 `findstr /?`
 
-#Create a app list to do commands etc. Example 
+# Create a app list to do commands etc. Example 
 ```
 $AppList = "Microsoft.SkypeApp",          
            "Microsoft.ZuneMusic",
