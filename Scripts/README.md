@@ -15,8 +15,6 @@ echo -
 set /p op=Type option:
 if "%op%"=="1" goto op1
 if "%op%"=="2" goto op2
-if "%op%"=="3" goto op3
-if "%op%"=="4" goto op4
 
 echo Please Pick an option:
 goto begin
@@ -45,3 +43,33 @@ if ($myInput -eq 'y') {
 ```
 # Creates a empty output for a command.
 `> $null 2>&1 hide output with this`
+
+# Find a specifc text to use
+
+`findstr /?`
+
+#Create a app list to do commands etc. Example 
+```
+$AppList = "Microsoft.SkypeApp",          
+           "Microsoft.ZuneMusic",
+           "Microsoft.ZuneVideo",
+           "Microsoft.Office.OneNote",
+           "Microsoft.BingFinance"
+ForEach ($App in $AppList)
+ {
+ $PackageFullName = (Get-AppxPackage $App -allusers).PackageFullName
+ $ProPackageFullName = (Get-AppxProvisionedPackage -online | where {$_.Displayname -eq $App}).PackageName
+ write-host $PackageFullName
+ Write-Host $ProPackageFullName
+ if ($PackageFullName)
+ {
+ Write-Host "Removing Package: $App"
+ remove-AppxPackage -package $PackageFullName 
+ }
+ if ($ProPackageFullName)
+ {
+ Write-Host "Removing Provisioned Package: $ProPackageFullName"
+ Remove-AppxProvisionedPackage -online -packagename $ProPackageFullName -allusers
+ }
+ }
+ ```
