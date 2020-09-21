@@ -1,7 +1,7 @@
 # Just a cheat sheet for useful stuff I've found.
 
 # Add options for batch scripts. 
-
+```
 echo off
 :begin
 echo Select a task:
@@ -32,15 +32,16 @@ goto begin
 
 :exit
 @exit
-
+```
 # Multiple choice powershell 
 
+```
 do { $myInput = (Read-Host 'Bla bla? (Y/N)').ToLower() } while ($myInput -notin @('y','n'))
 if ($myInput -eq 'y') {
 'branch for yes'
 } else {
 'branch for no'
 }
-
+```
 # Creates a empty output for a command.
-> $null 2>&1 hide output with this
+`> $null 2>&1 hide output with this`
