@@ -9,8 +9,7 @@ echo =============
 echo -
 echo 1) Option 1
 echo 2) Option 2
-echo 3) Option 3
-echo 4) Option 4
+
 echo -
 set /p op=Type option:
 if "%op%"=="1" goto op1
