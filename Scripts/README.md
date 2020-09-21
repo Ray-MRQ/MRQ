@@ -72,3 +72,37 @@ ForEach ($App in $AppList)
  }
  }
  ```
+ 
+ # Powershell permission check
+ ```
+    $ver = $host | select version
+    if ($ver.Version.Major -gt 1)  {$Host.Runspace.ThreadOptions = "ReuseThread"}
+    # Verify that user running script is an administrator
+    $IsAdmin=[Security.Principal.WindowsIdentity]::GetCurrent()
+    If ((New-Object Security.Principal.WindowsPrincipal $IsAdmin).IsInRole([Security.Principal.WindowsBuiltinRole]::Administrator) -eq $FALSE)
+    {
+      "`nERROR: You are NOT an administrator.  Run this script after using Run As administrator."
+      pause
+        exit
+    }
+```
+# Batch permission check
+```
+goto check_Permissions
+
+:check_Permissions
+    echo Administrative permissions required. 
+	echo -----------------------------------------
+	echo Detecting permissions...
+    net session >nul 2>&1
+    if %errorLevel% == 0 (
+        echo Success: Administrative permissions confirmed.
+		echo -------------------------------------
+    ) else (
+        echo Failure: Current permissions inadequate.
+		echo -------------------------------------
+		echo Run as administrator and try again.
+		pause
+		exit
+    )
+```
