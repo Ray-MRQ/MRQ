@@ -1,23 +1,6 @@
-# MRQ
+# Just a cheat sheet for useful stuff I've found.
 
-===================================================================================================================
-yes or no/two option script batch
-:choice
-set /P c=Would you like to apply this?[Y/N]?
-if /I "%c%" EQU "Y" goto :yes
-if /I "%c%" EQU "N" goto :no
-goto :choice
-
-
-:yes
-
-<insert code/command here>
-
-:no
-
-<insert code/command here>
-===============================================================================================================
-multiple choice script batch
+# Add options for batch scripts. 
 
 echo off
 :begin
@@ -47,19 +30,10 @@ goto begin
 echo you picked option 2
 goto begin
 
-:op3
-echo you picked option 3
-goto begin
-
-:op4
-echo you picked option 4
-goto begin
-
 :exit
 @exit
 
-==============================================================================================================
-powershell y or no. add more if ($myinput eq- '<whatever>') for it to be come multiple single choice.
+# Multiple choice powershell 
 
 do { $myInput = (Read-Host 'Bla bla? (Y/N)').ToLower() } while ($myInput -notin @('y','n'))
 if ($myInput -eq 'y') {
@@ -67,5 +41,6 @@ if ($myInput -eq 'y') {
 } else {
 'branch for no'
 }
-==============================================================================================================
+
+# Creates a empty output for a command.
 > $null 2>&1 hide output with this
