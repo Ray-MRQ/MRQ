@@ -19,21 +19,21 @@ $OldWindows = '1909' #Anything under 1909 or equal to
 
 #Download links.
 
-$OfficeExe = 'https://onl-my.sharepoint.com/:u:/g/personal/mohammed_quashem_onlinesupport_co_uk/EciJa-2XO-RMgLu_fqqh7S8Bd-_Hnme7yc3_pkbZkKrL9w?e=4pZQLL&download=1'
-$OfficeXMLInstall = 'https://onl-my.sharepoint.com/:u:/g/personal/mohammed_quashem_onlinesupport_co_uk/EdFIkokmMpBNj4-TxW_ANdoBuBQGUb26BY25FdaWUlkgHQ?e=eqAKKw&download=1'
-$OfficeXMLUninstall = 'https://onl-my.sharepoint.com/:u:/g/personal/mohammed_quashem_onlinesupport_co_uk/ETZDcbbQRCpOofVstrO4W8MB3zzf3WOCkvTz4EgyJwZFxw?e=EdRflN&download=1'
+$OfficeExe = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/setup.exe'
+$OfficeXMLInstall = 'https://github.com/Ray-MRQ/MRQ/raw/master/Regkeys_xmls/configuration-Office365-x86.xml'
+$OfficeXMLUninstall = 'https://github.com/Ray-MRQ/MRQ/raw/master/Regkeys_xmls/configruation_uninstall.xml'
 $OfficeUninstallTool = 'https://outlookdiagnostics.azureedge.net/sarasetup/SetupProd_OffScrub.exe'
-$SoftwareSilentInstallFile = 'https://onl-my.sharepoint.com/:u:/g/personal/mohammed_quashem_onlinesupport_co_uk/EeKZZvzYildFkgaO6UNLICgBkFgnf1MyPdVKwwRf8SfiCg?e=ylmJxn&download=1'
-$SoftwareInstallFile = 'https://onl-my.sharepoint.com/:u:/g/personal/mohammed_quashem_onlinesupport_co_uk/EciYRIQ6VpxBgEQEeOMfox8BnRPmsuuj-PzXt364ilHIiA?e=u1lHgE&download=1'
-$DefaultAppPre1909= 'https://onl-my.sharepoint.com/:u:/g/personal/mohammed_quashem_onlinesupport_co_uk/EbSSlQ8e7q1MqS_741Cn-pUBgUvDHFuxfq1oQ-BMSEEWyQ?e=aC08fW&download=1'
-$DefaultApp = 'https://onl-my.sharepoint.com/:u:/g/personal/mohammed_quashem_onlinesupport_co_uk/EccJivBPLflNunz9VtTCpWQBZmMydaOESBldl1nbDpannQ?e=slzI74&download=1'
-$MimecastInstall = 'https://onl-my.sharepoint.com/:u:/g/personal/mohammed_quashem_onlinesupport_co_uk/EarIZeb9QQxHsU_eMdOJXtABDNQFUBIOBwxS73Gr-sDhjQ?e=PcpQDx&download=1'
-$GlobalVPNInstall = 'https://onl-my.sharepoint.com/:u:/g/personal/mohammed_quashem_onlinesupport_co_uk/ERUDocBWpOVHoNwydbjYk84BZPm4t1uE4VBujGF63SUUNg?e=kp8RBP&download=1'
-$NeteXtenderInstall= 'https://onl-my.sharepoint.com/:u:/g/personal/mohammed_quashem_onlinesupport_co_uk/EdZ4uMDO5y1JjqKCOOqNC0kBkjOHeF3Pg0_vVNXHfyJjBw?e=rcydPz&download=1'
-$BloatwareRemoverWin10 = 'https://onl-my.sharepoint.com/:u:/g/personal/mohammed_quashem_onlinesupport_co_uk/EeOwf4fLG3ZMsGSuViirvSUBLBiRiDPt-OafyuxVaIdDXg?e=WisQiE&download=1'
-$HPBloatwareRemover = 'https://onl-my.sharepoint.com/:u:/g/personal/mohammed_quashem_onlinesupport_co_uk/EY1GPR6DEHVPsWqSZ7pRLjAB2GyjrAZtzQMkvY5SBOC9pg?e=CJWCvk&download=1'
-$PhotoviewerInstall = 'https://onl-my.sharepoint.com/:u:/g/personal/mohammed_quashem_onlinesupport_co_uk/ESAYxk0w24ZDssEcyxe7CQcBncnMBOFVrC6KncyDvZUB-w?e=gixpBi&download=1'
-$RunAsAdministratorPS = 'https://onl-my.sharepoint.com/:u:/g/personal/mohammed_quashem_onlinesupport_co_uk/EUdAD4ToqqtOqD8oI6EeEycBZvLTSuK96di0MsuxoCTkvw?e=bDhL5E&download=1'
+$SoftwareSilentInstallFile = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/ninite-silent.exe'
+$SoftwareInstallFile = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/Ninite%207Zip%20Chrome%20Firefox%20Foxit%20Reader%20Zoom%20Installer.exe'
+$DefaultAppPre1909= 'https://github.com/Ray-MRQ/MRQ/raw/master/Regkeys_xmls/Pre1909DefaultAppAssociations.xml'
+$DefaultApp = 'https://github.com/Ray-MRQ/MRQ/raw/master/Regkeys_xmls/2004AppAssociations.xml'
+$MimecastInstall = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/Mimecast%20for%20Outlook%207.0.1740.17532%20(32%20bit).msi'
+$GlobalVPNInstall = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/GVCInstall64.msi'
+$NeteXtenderInstall= 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/NetExtender.8.6.265.MSI'
+$BloatwareRemoverWin10 = 'https://github.com/Ray-MRQ/MRQ/raw/master/Scripts/Uninstall_windows10_bloatware_apps.ps1'
+$HPBloatwareRemover = 'https://github.com/Ray-MRQ/MRQ/raw/master/Scripts/HP-Bloatware-Removal-Auto.bat'
+$PhotoviewerInstall = 'https://github.com/Ray-MRQ/MRQ/raw/master/Regkeys_xmls/Restore_Windows_Photo_Viewer_ALL_USERS.reg'
+$RunAsAdministratorPS = 'https://github.com/Ray-MRQ/MRQ/raw/master/Regkeys_xmls/Add%20Run%20As%20Adminstrator%20PS.reg'
 
 
 ##############################################################################
