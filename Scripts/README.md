@@ -2,33 +2,32 @@
 
 # Add options for batch scripts. 
 ```
-echo off
 :begin
 echo Select a task:
 echo =============
 echo -
-echo 1) Option 1
-echo 2) Option 2
+echo 1) Turn on UAC
+echo 2) Use Dimmed UAC
+echo 3) Turn off UAC
 
-echo -
-set /p op=Type option:
+echo.
+echo.
+
+set /P c=Choose a option:
+
 if "%op%"=="1" goto op1
 if "%op%"=="2" goto op2
-
-echo Please Pick an option:
-goto begin
-
+if "%op%"=="3" goto op3
 
 :op1
-echo you picked option 1
-goto begin
 
-:op2
-echo you picked option 2
-goto begin
+whatever command
 
-:exit
-@exit
+:op2 
+whatever command 
+if you want loopback
+
+goto :begin
 ```
 # Multiple choice powershell 
 
