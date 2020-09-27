@@ -1,14 +1,9 @@
-﻿    $ver = $host | select version
-    if ($ver.Version.Major -gt 1)  {$Host.Runspace.ThreadOptions = "ReuseThread"}
-
-    # Verify that user running script is an administrator
-    $IsAdmin=[Security.Principal.WindowsIdentity]::GetCurrent()
-    If ((New-Object Security.Principal.WindowsPrincipal $IsAdmin).IsInRole([Security.Principal.WindowsBuiltinRole]::Administrator) -eq $FALSE)
-    {
-      "`nERROR: You are NOT an administrator.  Run this script after using Run As administrator."
-      pause
-        exit
-    }
+﻿if (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator"))  
+{  
+  $arguments = "& '" +$myinvocation.mycommand.definition + "'"
+  Start-Process powershell -Verb runAs -ArgumentList $arguments
+  Break
+}
 echo "Set time to DC"
 $Server = Read-Host -Prompt 'Input server/NTP name. (Add a comma to add multiple servers/NTP)'
 net stop w32time

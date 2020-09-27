@@ -1,4 +1,10 @@
-﻿echo "Would you like to remove tiles and taskbar applications on the start menu? "
+﻿if (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator"))  
+{  
+  $arguments = "& '" +$myinvocation.mycommand.definition + "'"
+  Start-Process powershell -Verb runAs -ArgumentList $arguments
+  Break
+}
+echo "Would you like to remove tiles and taskbar applications on the start menu? "
 echo "This will become a default setting for new and current users"
 ""
 do { $myInput = (Read-Host 'Choose an option, (Y/N)').ToLower() } while ($myInput -notin @('y','n'))
