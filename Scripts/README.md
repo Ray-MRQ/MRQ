@@ -126,3 +126,11 @@ net file 1>nul 2>nul && goto :run || powershell -ex unrestricted -Command "Start
 goto :eof
 :run
 ```
+
+# Surpess progress bar (Slows down download speed using Invoke-WebRequest)
+
+```
+$ProgressPreference = 'SilentlyContinue'
+#################
+$ProgressPreference = 'Continue'
+```
