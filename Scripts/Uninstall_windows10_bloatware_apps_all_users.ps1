@@ -1,3 +1,5 @@
+$OriginalPref = $ProgressPreference # Default is 'Continue'
+$ProgressPreference = "SilentlyContinue"
 echo " ____  __    _____    __   ____  _    _    __    ____  ____    ____  ____  __  __  _____  _  _  __    __   
 (  _ \(  )  (  _  )  /__\ (_  _)( \/\/ )  /__\  (  _ \( ___)  (  _ \( ___)(  \/  )(  _  )( \/ )/__\  (  )  
  ) _ ( )(__  )(_)(  /(__)\  )(   )    (  /(__)\  )   / )__)    )   / )__)  )    (  )(_)(  \  //(__)\  )(__ 
@@ -57,4 +59,5 @@ ForEach ($App in $AppList)
  ""
  echo "Complete."
  ""
+ $ProgressPreference = $OriginalPref
  pause

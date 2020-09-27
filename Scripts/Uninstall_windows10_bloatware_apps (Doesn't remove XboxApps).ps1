@@ -1,3 +1,5 @@
+$OriginalPref = $ProgressPreference # Default is 'Continue'
+$ProgressPreference = "SilentlyContinue"
 echo " ____  __    _____    __   ____  _    _    __    ____  ____    ____  ____  __  __  _____  _  _  __    __   
 (  _ \(  )  (  _  )  /__\ (_  _)( \/\/ )  /__\  (  _ \( ___)  (  _ \( ___)(  \/  )(  _  )( \/ )/__\  (  )  
  ) _ ( )(__  )(_)(  /(__)\  )(   )    (  /(__)\  )   / )__)    )   / )__)  )    (  )(_)(  \  //(__)\  )(__ 
@@ -42,6 +44,7 @@ ForEach ($App in $AppList)
  remove-AppxPackage -package $PackageFullName 
  }
  }
+$ProgressPreference = $OriginalPref
 cls
 echo "Please confirm it has removed applications."
 pause
