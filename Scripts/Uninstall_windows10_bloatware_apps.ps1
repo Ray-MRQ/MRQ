@@ -48,6 +48,7 @@ ForEach ($App in $AppList)
  }
  }
 cls
-echo "Please confirm it has removed applications."
+""
+echo "Complete."
+""
 pause
-exit
