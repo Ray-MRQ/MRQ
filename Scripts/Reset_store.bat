@@ -1,19 +1,7 @@
 @echo off
-goto check_Permissions
 
-:check_Permissions
-    echo Administrative permissions required. 
-	echo -----------------------------------------
-	echo Detecting permissions...
-    net session >nul 2>&1
-    if %errorLevel% == 0 (
-        echo Success: Administrative permissions confirmed.
-		echo -------------------------------------
-    ) else (
-        echo Failure: Current permissions inadequate.
-		echo -------------------------------------
-		echo Run as administrator and try again.
-		pause
-		exit
-    )
+net file 1>nul 2>nul && goto :run || powershell -ex unrestricted -Command "Start-Process -Verb RunAs -FilePath '%comspec%' -ArgumentList '/c %~fnx0 %*'"
+goto :eof
+:run
+
 WSReset.exe

@@ -1,24 +1,8 @@
 @echo off
-echo Before you start, this will only work if the admin account you are trying to use is logged in, or this script will fail.
-pause
-goto check_Permissions
 
-:check_Permissions
-    echo Administrative permissions required. 
-	echo -----------------------------------------
-	echo Detecting permissions...
-    net session >nul 2>&1
-    if %errorLevel% == 0 (
-        echo Success: Administrative permissions confirmed.
-		echo -------------------------------------
-    ) else (
-        echo Failure: Current permissions inadequate.
-		echo -------------------------------------
-		echo Run as administrator and try again.
-		pause
-		exit
-    )
-cls
+net file 1>nul 2>nul && goto :run || powershell -ex unrestricted -Command "Start-Process -Verb RunAs -FilePath '%comspec%' -ArgumentList '/c %~fnx0 %*'"
+goto :eof
+:run
 echo Modifying UAC.
 
 :begin
