@@ -4,7 +4,7 @@
   Start-Process powershell -Verb runAs -ArgumentList $arguments
   Break
 }
-
+cl
 # Set-ExecutionPolicy -ExecutionPolicy unrestricted -Scope LocalMachine
 
 #The below are "functions" so they only act as reference  for the Main menu to run commands. The actual script starts from the bottom and then references everything else above."
@@ -93,8 +93,10 @@ echo "Office 365 installed completed..."
 }
 ""
 echo "Starting download for applications.."
+$ProgressPreference = 'SilentlyContinue'
 Invoke-WebRequest $SoftwareSilentInstallFile -outfile c:\temp\scriptdownloads\silentinstall.exe
 Invoke-WebRequest $SoftwareInstallFile -outfile c:\temp\scriptdownloads\ninite.exe
+$ProgressPreference = 'Continue'
 c:\temp\scriptdownloads\silentinstall.exe
 ""
 echo "Silent installing 7Zip, Chrome, Foxit and Zoom..."
@@ -111,8 +113,10 @@ if ($myinput -eq 'y') {
 echo "Starting uninstall process..."
 
 ""
+$ProgressPreference = 'SilentlyContinue'
 Invoke-WebRequest $OfficeExe -outfile c:\temp\scriptdownloads\office365setup.exe
 Invoke-WebRequest $OfficeXMLUninstall -outfile c:\temp\scriptdownloads\office365uninstall.xml
+$ProgressPreference = 'Continue'
 c:\temp\scriptdownloads\office365setup.exe /configure c:\temp\scriptdownloads\office365uninstall.xml
 echo "Office365 ProPlus should be uninstalled."
 echo "If not, use option 12 and use the support tool to uninstall."
@@ -136,14 +140,18 @@ cl
 }
 
 function start-officeinstall {
+$ProgressPreference = 'SilentlyContinue'
 Invoke-WebRequest $OfficeExe -outfile c:\temp\scriptdownloads\office365setup.exe
 Invoke-WebRequest $OfficeXMLInstall -outfile c:\temp\scriptdownloads\configuration.xml
+$ProgressPreference = 'Continue'
 c:\temp\scriptdownloads\office365setup.exe /configure c:\temp\scriptdownloads\configuration.xml
 }
 
 function start-officeuninstalltool {
 echo "Office applications uninstall tool, with will open up an app."
+$ProgressPreference = 'SilentlyContinue'
 Invoke-WebRequest $OfficeUninstallTool -outfile C:\temp\scriptdownloads\officeuninstall.exe
+$ProgressPreference = 'Continue'
 ""
 echo "Downloading Office uninstall tool..."
 ""
@@ -214,7 +222,9 @@ do { $myInput = (Read-Host 'Would you like to install GlobalVPN or NeteXtender? 
 if ($myInput -eq 'global') {
 ""
 echo "Downloading & installing GlobalVPN..."
+$ProgressPreference = 'SilentlyContinue'
 Invoke-WebRequest $GlobalVPNInstall -outfile c:\temp\scriptdownloads\gvcinstall64.msi
+$ProgressPreference = 'Continue'
 msiexec.exe /i "C:\temp\scriptdownloads\gvcinstall64.msi" /qn+ /norestart allusers=2
 ""
 echo "Wait for a dialogue box to appear then continue."
@@ -229,7 +239,9 @@ Copy-Item "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Global VPN Clien
 if ($myinput -eq 'net') {
 ""
 echo "Downloading & installing NeteXtender..."
+$ProgressPreference = 'SilentlyContinue'
 Invoke-WebRequest $NeteXtenderInstall -outfile c:\temp\scriptdownloads\netextender.msi
+$ProgressPreference = 'Continue'
 msiexec /i "C:\temp\scriptdownloads\netextender.msi" /qn+ /norestart allusers=2
 ""
 echo "Wait for a dialogue box to appear then continue."
