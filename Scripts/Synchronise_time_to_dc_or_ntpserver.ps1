@@ -13,4 +13,9 @@ net start w32time
 w32tm /query /configuration
 w32tm /query /status
 w32tm /resync
+cls
+echo "Machine is now synced to $Server"
+""
+get-date -displayhint datetime
+""
 pause
