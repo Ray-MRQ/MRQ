@@ -23,14 +23,14 @@ if "%op%"=="2" goto op2
 
 :op1 
 cls
-powershell -command "& {Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Force}"
+powershell -command "& {Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Force -scope localmachine}"
 echo ExecutionPolicy changed to Unrestricted
 pause
 exit
 
 :op2 
 cls
-powershell -command "& {Set-ExecutionPolicy -ExecutionPolicy Restricted -Force}"
+powershell -command "& {Set-ExecutionPolicy -ExecutionPolicy Restricted -Force -scope localmachine}"
 echo ExecutionPolicy changed to Restricted
 pause
 exit
