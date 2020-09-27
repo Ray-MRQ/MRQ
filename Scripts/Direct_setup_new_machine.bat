@@ -14,9 +14,7 @@ bitsadmin /transfer myDownloadJob /download /priority normal "https://onl-my.sha
 powershell -command "& {Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Force}"
 powershell c:\temp\setup_new_machine.ps1
 cls
-echo Only press enter if you are done.
 powershell -command "& {Set-ExecutionPolicy -ExecutionPolicy Restricted -Force}"
-pause
 del c:\temp\setup_new_machine.ps1
 exit
 
