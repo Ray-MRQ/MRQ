@@ -736,7 +736,7 @@ function start-windows-update {
 cl
 ""
 echo "Run this last, if you have an old verison of windows and a feature update is applicable it will not move from the status checker until it restarts."
-echo "If you enabled bitlocker and still haven't restart, do it now and then use manual select option 18 to come back here."
+echo "If you enabled bitlocker and still haven't restart, do it now and then use manual select option 50 to come back here."
 pause
 cl
 ""
@@ -782,8 +782,7 @@ Install-PackageProvider -Name NuGet -Force -MinimumVersion 2.8.5.201 > $null 2>&
 Install-Module -Name PSWindowsUpdate -Force > $null 2>&1
 ""
 echo "Checking windows update status..."
-Hide-WindowsUpdate -KBArticleID KB4481252 
-Install-WindowsUpdate -AcceptAll -Install -Verbose | Out-File "c:\temp\$(get-date -f dd-MM-yyyy-HH-mm)-WindowsUpdate.log" -force
+Install-WindowsUpdate -AcceptAll -Install -MicrosoftUpdate -Verbose | Out-File "c:\temp\$(get-date -f dd-MM-yyyy-HH-mm)-WindowsUpdate.log" -force
 ""
 echo "Stored windows update log in c:\temp it goes from dd-MM-yyyy-HH-mm-windowsupdate.log"
 echo "Restart the PC if it prompts, then try run the updates again to confirm it's completed."
