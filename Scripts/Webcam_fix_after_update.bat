@@ -6,14 +6,17 @@ goto :eof
 
 echo This will add reg keys to fix webcam not working after update.
 pause
+cls
+
 REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Media Foundation\Platform" /v EnableFrameServerMode /t REG_DWORD /d 0
+
+echo.
 
 :choice
 set /P c=The second reg key is for 64Bit machines, would you like to apply this?[Y/N]?
 if /I "%c%" EQU "Y" goto :yes
 if /I "%c%" EQU "N" goto :no
 goto :choice
-
 
 :yes
 cls
