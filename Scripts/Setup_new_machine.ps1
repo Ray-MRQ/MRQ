@@ -4,7 +4,7 @@
   Start-Process powershell -Verb runAs -ArgumentList $arguments
   Break
 }
-cl
+cls
 # Set-ExecutionPolicy -ExecutionPolicy unrestricted -Scope LocalMachine
 
 #The below are "functions" so they only act as reference  for the Main menu to run commands. The actual script starts from the bottom and then references everything else above."
