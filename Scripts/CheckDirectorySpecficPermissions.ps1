@@ -1,3 +1,9 @@
+if (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator"))  
+{  
+  $arguments = "& '" +$myinvocation.mycommand.definition + "'"
+  Start-Process powershell -Verb runAs -ArgumentList $arguments
+  Break
+}
 echo "Export ACL permissions for a folder/directory"
 ""
 $Path = Read-Host -prompt 'Please eneter path to check ACL permissions'
