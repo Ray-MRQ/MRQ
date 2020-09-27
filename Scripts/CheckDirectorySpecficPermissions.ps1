@@ -9,6 +9,7 @@ echo "Export ACL permissions for a folder/directory"
 $Path = Read-Host -prompt 'Please eneter path to check ACL permissions'
 ""
 $ReportName = Read-Host -prompt 'Please enter HTML Name'
+
 [string]$CSS= @'
     <style>
     body {font-family:Verdana;
