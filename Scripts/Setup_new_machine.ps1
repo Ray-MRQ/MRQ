@@ -189,7 +189,9 @@ do { $myInput = (Read-Host 'Would you like to install Mimecast for Outlook 32Bit
 if ($myInput -eq 'y') {
 ""
 echo "Downloading & installing Mimecast for Outlook..."
+$ProgressPreference = 'SilentlyContinue'
 Invoke-WebRequest $MimecastInstall -outfile c:\temp\scriptdownloads\mimecast32bit.msi
+$ProgressPreference = 'Continue'
 msiexec /i "c:\temp\scriptdownloads\mimecast32bit.msi" /qn+ /norestart allusers=2
 ""
 echo "Wait for a dialogue box to appear then continue. (If Mimecast for Outlook is already installed it will not appear)."
