@@ -133,3 +133,16 @@ $ProgressPreference = 'SilentlyContinue'
 #################
 $ProgressPreference = 'Continue'
 ```
+
+# Send an email via SMTP on Powershell
+
+```
+$EmailFrom = "from@from.com"
+$EmailTo = "to@to.com"  # 
+$Subject = "Some great subject line"
+$Body = "Some great body section"
+$SMTPServer = "smtp.some.server"
+$SMTPClient = New-Object Net.Mail.SmtpClient($SmtpServer, 25)
+$SMTPClient.Credentials = New-Object System.Net.NetworkCredential("username", "password");
+$SMTPClient.Send($EmailFrom, $EmailTo, $Subject, $Body)
+```
