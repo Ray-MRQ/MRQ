@@ -138,7 +138,7 @@ $ProgressPreference = 'Continue'
 
 ```
 $EmailFrom = "from@from.com"
-$EmailTo = "to@to.com"  # 
+$EmailTo = "to@to.com"
 $Subject = "Some great subject line"
 $Body = "Some great body section"
 $SMTPServer = "smtp.some.server"
