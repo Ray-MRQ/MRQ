@@ -1,4 +1,4 @@
-if (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator"))  
+﻿if (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator"))  
 {  
   $arguments = "& '" +$myinvocation.mycommand.definition + "'"
   Start-Process powershell -Verb runAs -ArgumentList $arguments
@@ -22,6 +22,7 @@ $OldWindows = '1909' #Anything under 1909 or equal to
 $OfficeExe = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/setup.exe'
 $OfficeXMLInstall = 'https://github.com/Ray-MRQ/MRQ/raw/master/Regkeys_xmls/configuration-Office365-x86.xml'
 $OfficeXMLUninstall = 'https://github.com/Ray-MRQ/MRQ/raw/master/Regkeys_xmls/configruation_uninstall.xml'
+$OfficeXMLHomeUninstall = 'https://github.com/Ray-MRQ/MRQ/raw/master/Regkeys_xmls/configuration_uninstall_home.xml'
 $OfficeUninstallTool = 'https://outlookdiagnostics.azureedge.net/sarasetup/SetupProd_OffScrub.exe'
 $SoftwareSilentInstallFile = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/ninite-silent.exe'
 $SoftwareInstallFile = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/Ninite%207Zip%20Chrome%20Firefox%20Foxit%20Reader%20Zoom%20Installer.exe'
@@ -75,12 +76,20 @@ cl
 $uninstallKeys = Get-ChildItem -Path "HKLM:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall"
 $O365 = "Microsoft 365"
 $O365Check = $uninstallKeys | Where-Object { $_.GetValue("DisplayName") -match $O365 }
+
+$uninstallKeysHome = Get-ChildItem -Path "HKLM:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall"
+$O365Home = "Microsoft Office 365"
+$O365CheckHome = $uninstallKeysHome | Where-Object { $_.GetValue("DisplayName") -match $O365Home }
+
 $O365Installed = echo "Office 365 is installed."
 $O365NotInstalled = echo "Office 365 is not installed."
 if ($O365Check) {
 $O365Installed
 ""
 start-officeuninstall
+ }
+ if ($O365CheckHome) {
+ start-officeuninstall
  }
 else {
 $O365NotInstalled
@@ -613,7 +622,6 @@ BackupToAAD-BitLockerKeyProtector -MountPoint $env:SystemDrive -KeyProtectorId $
 ""
 echo "Done."
 ""
-echo "If you get an error, check if it contains "BackuptoAAD" this is for Azure Active directory in which case you can just ignore it."
 echo "Check that the recoverykey/password matches the one in the c:\temp if it is, remove the one in c:\temp and continue."
 echo "Please confirm the recovery key is in AD."
 pause
