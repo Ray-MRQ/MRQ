@@ -87,10 +87,10 @@ if ($O365Check) {
 $O365Installed
 ""
 start-officeuninstall
- }
- if ($O365CheckHome) {
- start-officeuninstall
- }
+}
+if ($O365CheckHome) {
+start-officeuninstall
+}
 else {
 $O365NotInstalled
 echo "Starting Office 365 install silently...."
@@ -120,7 +120,6 @@ do { $myInput = (Read-Host 'Would you like to uninstall Office365?(Y/N)').ToLowe
 if ($myinput -eq 'y') {
 ""
 echo "Starting uninstall process..."
-
 ""
 $ProgressPreference = 'SilentlyContinue'
 Invoke-WebRequest $OfficeExe -outfile c:\temp\scriptdownloads\office365setup.exe
