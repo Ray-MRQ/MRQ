@@ -22,6 +22,7 @@ $OldWindows = '1909' #Anything under 1909 or equal to
 $OfficeExe = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/setup.exe'
 $OfficeXMLInstall = 'https://github.com/Ray-MRQ/MRQ/raw/master/Regkeys_xmls/configuration-Office365-x86.xml'
 $OfficeXMLUninstall = 'https://github.com/Ray-MRQ/MRQ/raw/master/Regkeys_xmls/configruation_uninstall.xml'
+$OfficeXMLHomeUninstall = 'https://github.com/Ray-MRQ/MRQ/raw/master/Regkeys_xmls/configuration_uninstall_home.xml'
 $OfficeUninstallTool = 'https://outlookdiagnostics.azureedge.net/sarasetup/SetupProd_OffScrub.exe'
 $SoftwareSilentInstallFile = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/ninite-silent.exe'
 $SoftwareInstallFile = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/Ninite%207Zip%20Chrome%20Firefox%20Foxit%20Reader%20Zoom%20Installer.exe'
@@ -116,8 +117,10 @@ echo "Starting uninstall process..."
 $ProgressPreference = 'SilentlyContinue'
 Invoke-WebRequest $OfficeExe -outfile c:\temp\scriptdownloads\office365setup.exe
 Invoke-WebRequest $OfficeXMLUninstall -outfile c:\temp\scriptdownloads\office365uninstall.xml
+Invoke-WebRequest $OfficeXMLHomeUninstall -outfile c:\temp\scriptdownloads\office365homeuninstall.xml
 $ProgressPreference = 'Continue'
 c:\temp\scriptdownloads\office365setup.exe /configure c:\temp\scriptdownloads\office365uninstall.xml
+c:\temp\scriptdownloads\office365setup.exe /configure c:\temp\scriptdownloads\office365homeuninstall.xml
 echo "Office365 ProPlus should be uninstalled."
 echo "If not, use option 12 and use the support tool to uninstall."
 ""
