@@ -22,7 +22,6 @@ $OldWindows = '1909' #Anything under 1909 or equal to
 $OfficeExe = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/setup.exe'
 $OfficeXMLInstall = 'https://github.com/Ray-MRQ/MRQ/raw/master/Regkeys_xmls/configuration-Office365-x86.xml'
 $OfficeXMLUninstall = 'https://github.com/Ray-MRQ/MRQ/raw/master/Regkeys_xmls/configruation_uninstall.xml'
-$OfficeXMLHomeUninstall = 'https://github.com/Ray-MRQ/MRQ/raw/master/Regkeys_xmls/configuration_uninstall_home.xml'
 $OfficeUninstallTool = 'https://outlookdiagnostics.azureedge.net/sarasetup/SetupProd_OffScrub.exe'
 $SoftwareSilentInstallFile = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/ninite-silent.exe'
 $SoftwareInstallFile = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/Ninite%207Zip%20Chrome%20Firefox%20Foxit%20Reader%20Zoom%20Installer.exe'
@@ -76,24 +75,13 @@ cl
 $uninstallKeys = Get-ChildItem -Path "HKLM:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall"
 $O365 = "Microsoft 365"
 $O365Check = $uninstallKeys | Where-Object { $_.GetValue("DisplayName") -match $O365 }
-
-$uninstallKeysHome = Get-ChildItem -Path "HKLM:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall"
-$O365Home = "Microsoft Office 365"
-$O365CheckHome = $uninstallKeysHome | Where-Object { $_.GetValue("DisplayName") -match $O365Home }
-
-
 $O365Installed = echo "Office 365 is installed."
 $O365NotInstalled = echo "Office 365 is not installed."
-
-
 if ($O365Check) {
 $O365Installed
 ""
 start-officeuninstall
-}
-if ($O365CheckHome) {
-start-officeuninstall
-}
+ }
 else {
 $O365NotInstalled
 echo "Starting Office 365 install silently...."
@@ -128,10 +116,8 @@ echo "Starting uninstall process..."
 $ProgressPreference = 'SilentlyContinue'
 Invoke-WebRequest $OfficeExe -outfile c:\temp\scriptdownloads\office365setup.exe
 Invoke-WebRequest $OfficeXMLUninstall -outfile c:\temp\scriptdownloads\office365uninstall.xml
-Invoke-WebRequest $OfficeXMLHomeUninstall -outfile c:\temp\scriptdownloads\office365homeuninstall.xml
 $ProgressPreference = 'Continue'
 c:\temp\scriptdownloads\office365setup.exe /configure c:\temp\scriptdownloads\office365uninstall.xml
-c:\temp\scriptdownloads\office365setup.exe /configure c:\temp\scriptdownloads\office365homeuninstall.xml
 echo "Office365 ProPlus should be uninstalled."
 echo "If not, use option 12 and use the support tool to uninstall."
 ""
@@ -662,7 +648,7 @@ add-computer –domainname "$DomainName" -PassThru -Options JoinWithNewName,Acco
 echo "The above may not be accurate. (Because a restart is required to update the information)."
 ""
 echo "Just to be sure..."
-echo "Providing Hostname and Domain output..."
+echo "Providing Hostname & Domain output..."
 ""
 hostname
 systeminfo | findstr /B "Domain"
@@ -986,7 +972,7 @@ echo "The following options will be given during the script."
 ""
 echo ")Install 7zip, Chrome, Foxit reader, GlobalVPN/NeteXtender, Mimecast for Outlook, Office365 Apps."
 echo ")Sending key applications shortcuts to desktop."
-echo ")Set default apps, Outlook and chrome."
+echo ")Set default apps, Outlook & chrome."
 echo ")Removing Windows 10 Store apps."
 echo ")HP Bloatware remover." 
 echo ")Removing pinned tiles from start menu (and creates a default for new/current users)." 
