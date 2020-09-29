@@ -1,4 +1,4 @@
-﻿if (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator"))  
+if (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator"))  
 {  
   $arguments = "& '" +$myinvocation.mycommand.definition + "'"
   Start-Process powershell -Verb runAs -ArgumentList $arguments
@@ -76,13 +76,24 @@ cl
 $uninstallKeys = Get-ChildItem -Path "HKLM:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall"
 $O365 = "Microsoft 365"
 $O365Check = $uninstallKeys | Where-Object { $_.GetValue("DisplayName") -match $O365 }
+
+$uninstallKeysHome = Get-ChildItem -Path "HKLM:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall"
+$O365Home = "Microsoft Office 365"
+$O365CheckHome = $uninstallKeysHome | Where-Object { $_.GetValue("DisplayName") -match $O365Home }
+
+
 $O365Installed = echo "Office 365 is installed."
 $O365NotInstalled = echo "Office 365 is not installed."
+
+
 if ($O365Check) {
 $O365Installed
 ""
 start-officeuninstall
- }
+}
+if ($O365CheckHome) {
+start-officeuninstall
+}
 else {
 $O365NotInstalled
 echo "Starting Office 365 install silently...."
