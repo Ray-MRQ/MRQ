@@ -591,14 +591,14 @@ $RecoveryProtector = $BitLocker.KeyProtector | Where-Object { $_.KeyProtectorTyp
 Backup-BitLockerKeyProtector -MountPoint $env:SystemDrive -KeyProtectorId $RecoveryProtector.KeyProtectorID
 BackupToAAD-BitLockerKeyProtector -MountPoint $env:SystemDrive -KeyProtectorId $RecoveryProtector.KeyProtectorID
 
-echo "If you get an error this is regarding GPO it's an automatic command to push to AD."
-echo "If AD is setup correctly, after joining it to domain it should pull the bitlocker recovery automatically after restart."
+echo "If you get an error this is regarding GPO it's an automatic command to push to AD. (This will need to be re-run from manual install)"
+echo "If you get an error regarding BackUptoAAD this is for AzureActive Directory so it can be safely ignored."
 echo "Stored recovery key in C:\temp\"
 ""
 ""
-#echo "Absolutely check the recovery key is backed up to AD after joining the machine to domain."
 echo "If bitlocker recovery is not in AD you use option 11 from the manual select menu."
 echo "Make sure to restart for it to start bitlocker encryption."
+""
 echo "Make sure to restart this before applying windows update."
 pause
 cl
