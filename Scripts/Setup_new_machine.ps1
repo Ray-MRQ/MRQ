@@ -613,6 +613,7 @@ BackupToAAD-BitLockerKeyProtector -MountPoint $env:SystemDrive -KeyProtectorId $
 ""
 echo "Done."
 ""
+echo "If you get an error, check if it contains "BackuptoAAD" this is for Azure Active directory in which case you can just ignore it."
 echo "Check that the recoverykey/password matches the one in the c:\temp if it is, remove the one in c:\temp and continue."
 echo "Please confirm the recovery key is in AD."
 pause
