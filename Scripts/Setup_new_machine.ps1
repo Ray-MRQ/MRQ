@@ -144,7 +144,7 @@ pause
 cl
 ""
 }
-}}
+}
 
 function start-officeinstall {
 do { $myInput = (Read-Host 'Would you like to Office365?(Y/N)').ToLower() } while ($myInput -notin @('y','n'))
