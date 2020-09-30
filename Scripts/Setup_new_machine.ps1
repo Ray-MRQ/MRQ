@@ -93,9 +93,7 @@ start-officeuninstall
 }
 else {
 $O365NotInstalled
-echo "Starting Office 365 install silently...."
 ""
-echo "Please wait..."
 start-officeinstall
 ""
 echo "Office 365 installed completed..."
@@ -145,17 +143,22 @@ echo "Please continue."
 pause
 cl
 ""
-cl
 }
-}
+}}
 
 function start-officeinstall {
+do { $myInput = (Read-Host 'Would you like to Office365?(Y/N)').ToLower() } while ($myInput -notin @('y','n'))
+if ($myInput -eq 'y') {
+echo "Starting Office 365 install silently...."
+""
+echo "Please wait..."
+""
 $ProgressPreference = 'SilentlyContinue'
 Invoke-WebRequest $OfficeExe -outfile c:\temp\scriptdownloads\office365setup.exe
 Invoke-WebRequest $OfficeXMLInstall -outfile c:\temp\scriptdownloads\configuration.xml
 $ProgressPreference = 'Continue'
 c:\temp\scriptdownloads\office365setup.exe /configure c:\temp\scriptdownloads\configuration.xml
-}
+}}
 
 function start-officeuninstalltool {
 echo "Office applications uninstall tool, with will open up an app."
@@ -444,6 +447,7 @@ cl
 }
 
 function start-clearstartmenu {
+cl
 #Clear start menu
 echo "Would you like to remove tiles and taskbar applications on the start menu? "
 echo "This will become a default setting for new and current users"
@@ -612,6 +616,7 @@ cl
 }}
 
 function start-bitlocker-updaterecovery {
+cl
 ""
 echo "Updating Bitlocker recovery key to AD..."
 ""
@@ -629,6 +634,7 @@ pause
 }
 
 function start-disablefirewall-domain {
+cl
 do { $myInput = (Read-Host 'Disable Windows Firewall on Domain Network? (Y/N)').ToLower() } while ($myInput -notin @('Y','N'))
 if ($myinput -eq 'Y') {
 ""
