@@ -747,11 +747,14 @@ if ($myinput -eq 'Y') {
 schtasks /Delete /TN "\Microsoft\Windows\Defrag\ScheduledDefrag"  /f
 ""
 echo "Please continue."
+""
 pause
 cl
 }
 else {
+""
 echo "Not modifying Disk defrag."
+""
 pause
 cl
 }}
