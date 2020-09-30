@@ -95,8 +95,6 @@ else {
 $O365NotInstalled
 ""
 start-officeinstall
-""
-echo "Office 365 installed completed..."
 }
 ""
 echo "Starting download for applications.."
@@ -132,9 +130,6 @@ echo "If not, use option 12 and use the support tool to uninstall."
 pause
 ""
 cl
-echo "Starting install for Office365..."
-""
-echo "Please wait..."
 ""
 start-officeinstall
 echo "If you need the shortcuts use option 9."
@@ -147,7 +142,8 @@ cl
 }
 
 function start-officeinstall {
-do { $myInput = (Read-Host 'Would you like to Office365?(Y/N)').ToLower() } while ($myInput -notin @('y','n'))
+cl
+do { $myInput = (Read-Host 'Would you like to install Office365?(Y/N)').ToLower() } while ($myInput -notin @('y','n'))
 if ($myInput -eq 'y') {
 echo "Starting Office 365 install silently...."
 ""
