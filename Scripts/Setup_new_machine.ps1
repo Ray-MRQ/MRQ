@@ -738,7 +738,7 @@ echo "Run this last, if you have an old verison of windows and a feature update 
 echo "If you enabled bitlocker and still haven't restart, do it now and then use manual select option 50 to come back here."
 ""
 Install-PackageProvider -Name NuGet -Force -MinimumVersion 2.8.5.201 > $null 2>&1
-Import-Module PendingReboot -Force > $null 2>&1
+Install-Module -Name PendingReboot -Force > $null 2>&1
 Test-PendingReboot -SkipConfigurationManagerClientCheck
 ""
 pause
