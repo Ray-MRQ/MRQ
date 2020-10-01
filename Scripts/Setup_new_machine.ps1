@@ -739,6 +739,8 @@ echo "If you enabled bitlocker and still haven't restart, do it now and then use
 ""
 Install-PackageProvider -Name NuGet -Force -MinimumVersion 2.8.5.201 > $null 2>&1
 Install-Module -Name PendingReboot -Force > $null 2>&1
+""
+Echo "Checking if this PC requires a reboot..."
 Test-PendingReboot -SkipConfigurationManagerClientCheck
 ""
 pause
