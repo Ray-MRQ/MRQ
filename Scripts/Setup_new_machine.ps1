@@ -399,36 +399,6 @@ cl
 do { $myInput = (Read-Host 'Is this a HP workstation/laptop? If so would you like to remove bloatware for this as well? (Y/N)').ToLower() } while ($myInput -notin @('y','n'))
 if ($myInput -eq 'y') {
 echo "This may take a while..."
-#Uninstall HP Client Security Manager
-
-$HPClientSecurityManager = Get-WmiObject -Class Win32_Product | Where-Object { $_.Name -match "HP Client Security Manager" } 
-$HPClientSecurityManagerID = $HPClientSecurityManager.properties["IdentifyingNumber"].value.toString()
-MsiExec.exe /norestart /q/x $HPClientSecurityManagerID REMOVE=ALL
-
-#Uninstall HP Client Support Assistant
-
-$HPSupportAssistant = Get-WmiObject -Class Win32_Product | Where-Object { $_.Name -match "HP Support Assistant" }
-$HPSupportAssistantID = $HPSupportAssistant.properties["IdentifyingNumber"].value.toString()
-MsiExec.exe /norestart /q/x $HPSupportAssistantID REMOVE=ALL
-
-#Uninstall HP Notifications
-
-$HPNotifications = Get-WmiObject -Class Win32_Product | Where-Object { $_.Name -match "HP Notifications" }
-$HPNotificationsID = $HPNotifications.properties["IdentifyingNumber"].value.toString()
-MsiExec.exe /norestart /q/x $HPNotificationsID REMOVE=ALL
-
-#Uninstall HP JumpStart Bridge
-
-$HPJumpStartBridge = Get-WmiObject -Class Win32_Product | Where-Object { $_.Name -match "HP JumpStart Bridge" }
-$HPJumpStartBridgeID = $HPJumpStartBridge.properties["IdentifyingNumber"].value.toString()
-MsiExec.exe /norestart /q/x $HPJumpStartBridgeID REMOVE=ALL
-
-#Uninstall HP JumpStart Launch
-
-$HPJumpStartLaunch = Get-WmiObject -Class Win32_Product | Where-Object { $_.Name -match "HP JumpStart Launch" }
-$HPJumpStartLaunchID = $HPJumpStartLaunch.properties["IdentifyingNumber"].value.toString()
-MsiExec.exe /norestart /q/x $HPJumpStartLaunchID REMOVE=ALL
-cl
 Invoke-WebRequest $HPBloatwareRemover -outfile c:\temp\scriptdownloads\hpbloatwareremoval.bat
 Invoke-Expression -Command "cmd.exe /c c:\temp\scriptdownloads\hpbloatwareremoval.bat"
 ""
