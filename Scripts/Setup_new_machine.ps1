@@ -745,7 +745,7 @@ if ($myinput -eq 'Y') {
 if ($WindowsVerison -le $OldWindows) { 
 #Removes the Upgrader app if it's installed.
 C:\Windows10Upgrade\Windows10UpgraderApp.exe /ForceUninstall
-Del C:\Windows\UpdateAssistant\*.* /F /Q
+Del C:\Windows10Upgrade\*.*
 #
 echo "Starting windows updates..."
 echo "Please wait..."
