@@ -743,6 +743,10 @@ do { $myInput = (Read-Host 'Start Windows updates? (If applicable it will also a
 if ($myinput -eq 'Y') {
 ""
 if ($WindowsVerison -le $OldWindows) { 
+#Removes the Upgrader app if it's installed.
+C:\Windows10Upgrade\Windows10UpgraderApp.exe /ForceUninstall /quiet /norestart
+Del C:\Windows\UpdateAssistant\*.* /F /Q
+#
 echo "Starting windows updates..."
 echo "Please wait..."
 $dir = 'C:\temp\scriptdownloads\packages'
