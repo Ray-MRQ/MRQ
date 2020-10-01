@@ -746,6 +746,7 @@ Test-PendingReboot -SkipConfigurationManagerClientCheck
 pause
 cl
 ""
+cl
 do { $myInput = (Read-Host 'Start Windows updates? (If applicable it will also apply feature updates.) (Y/N)').ToLower() } while ($myInput -notin @('Y','N'))
 if ($myinput -eq 'Y') {
 ""
@@ -765,9 +766,8 @@ $file = "$($dir)\Win10Upgrade.exe"
 $webClient.DownloadFile($url,$file)
 Start-Process -FilePath $file -ArgumentList '/skipeula /auto upgrade /copylogs $dir'
 ""
-start-windows-update-running-checker
+#start-windows-update-running-checker <may not be needed.
 echo "Please re-run the bloatware remover after restarting as doing a feature update may add new bloatware back in."
-echo "Completed, please restart."
 ""
 exit
 }
