@@ -769,6 +769,9 @@ Start-Process -FilePath $file -ArgumentList '/skipeula /auto upgrade /copylogs $
 #start-windows-update-running-checker <may not be needed.
 echo "Please re-run the bloatware remover after restarting as doing a feature update may add new bloatware back in."
 ""
+echo "The script is setup to exit after hitting enter."
+pause
+""
 exit
 }
 else {
