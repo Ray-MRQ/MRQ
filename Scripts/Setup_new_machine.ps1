@@ -318,7 +318,8 @@ $AppList = "Microsoft.SkypeApp",
 		   "AD2F1837.HPSureShieldAI",
 		   "AD2F1837.HPPrivacySettings",
 		   "AD2F1837.HPJumpStarts",
-		   "Microsoft.XboxGameOverlay"
+		   "Microsoft.XboxGameOverlay",
+		   "SpotifyAB.SpotifyMusic"
 ForEach ($App in $AppList)
  {
  $PackageFullName = (Get-AppxPackage $App -allusers).PackageFullName
