@@ -798,18 +798,17 @@ Start-Process -FilePath $file -ArgumentList '/skipeula /auto upgrade /copylogs $
 echo "Please re-run the bloatware remover after restarting as doing a feature update may add new bloatware back in."
 ""
 echo "The script is setup to exit after hitting enter."
+""
 pause
 ""
 exit
 }
-else {
 if ($LatestWindows -match $LatestWindows) {
 ""
 echo "This is the latest Windows feature update."
 echo "Starting normal windows update instead..."
 start-windows-update-nofeature
-
-}}}}
+}}}
 
 function start-windows-update-nofeature {
 cl
@@ -842,6 +841,7 @@ pause
 cl
 }}
 
+# Function not in use.
 function start-windows-update-running-checker {
 Start-Sleep -seconds 30
 echo "Checking status of updater..."
@@ -863,6 +863,7 @@ Do {
     }
 } Until (!$ProcessesFound)
 }
+# Function not in use.
 
 #<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<This section above is to be used for only functions that need to run last.>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
@@ -972,7 +973,7 @@ echo "Clearing c:\temps\scriptdownloads."
 Remove-item c:\temp\scriptdownloads -recurse -force > $null 2>&1
 echo "Done..."
 ""
-echo "Please close prompt."
+echo "Please press any key."
 pause
 exit
 }
