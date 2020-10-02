@@ -324,25 +324,25 @@ $AppList = "Microsoft.SkypeApp",
 		   "Microsoft.XboxGameOverlay",
 		   "SpotifyAB.SpotifyMusic"
 ForEach ($App in $AppList)
- {
- $PackageFullName = (Get-AppxPackage $App -allusers).PackageFullName
- $ProPackageFullName = (Get-AppxProvisionedPackage -online | where {$_.Displayname -eq $App}).PackageName
- write-host $PackageFullName
- Write-Host $ProPackageFullName
- if ($PackageFullName)
- {
- Write-Host "Removing Package: $App"
- remove-AppxPackage -package $PackageFullName 
- }
- if ($ProPackageFullName)
- {
- Write-Host "Removing Provisioned Package: $ProPackageFullName"
- Remove-AppxProvisionedPackage -online -packagename $ProPackageFullName -allusers
- }
- }
- start-remove-cortana-websearch
- cl
-Remove-Item "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\HP Documentation.ink" -force > $null 2>&1
+{
+$PackageFullName = (Get-AppxPackage $App -allusers).PackageFullName
+$ProPackageFullName = (Get-AppxProvisionedPackage -online | where {$_.Displayname -eq $App}).PackageName
+write-host $PackageFullName
+Write-Host $ProPackageFullName
+if ($PackageFullName)
+{
+Write-Host "Removing Package: $App"
+remove-AppxPackage -package $PackageFullName 
+}
+if ($ProPackageFullName)
+{
+Write-Host "Removing Provisioned Package: $ProPackageFullName"
+Remove-AppxProvisionedPackage -online -packagename $ProPackageFullName -allusers
+}
+}
+start-remove-cortana-websearch
+cl
+Remove-Item "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\HP Documentation.lnk" -force > $null 2>&1
 echo "Completed."
 ""
 #echo "Word of note, Cortana may not remove on first attempt."
