@@ -320,6 +320,7 @@ $AppList = "Microsoft.SkypeApp",
 		   "AD2F1837.HPSureShieldAI",
 		   "AD2F1837.HPPrivacySettings",
 		   "AD2F1837.HPJumpStarts",
+		   "AD2F1837.HPPowerManager",
 		   "Microsoft.XboxGameOverlay",
 		   "SpotifyAB.SpotifyMusic"
 ForEach ($App in $AppList)
