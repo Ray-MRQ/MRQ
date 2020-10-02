@@ -5,8 +5,6 @@ echo " ____  __    _____    __   ____  _    _    __    ____  ____    ____  ____ 
  ) _ ( )(__  )(_)(  /(__)\  )(   )    (  /(__)\  )   / )__)    )   / )__)  )    (  )(_)(  \  //(__)\  )(__ 
 (____/(____)(_____)(__)(__)(__) (__/\__)(__)(__)(_)\_)(____)  (_)\_)(____)(_/\/\_)(_____)  \/(__)(__)(____)"
 ""
-echo "Start script? If you want to exit close the prompt, this is applies to all current/future users"
-pause
 $AppList = "Microsoft.SkypeApp",          
            "Microsoft.ZuneMusic",
            "Microsoft.ZuneVideo",
@@ -39,7 +37,13 @@ $AppList = "Microsoft.SkypeApp",
 		   "Microsoft.Xbox.TCUI",
 		   "Microsoft.XboxSpeechToTextOverlay",
 		   "Microsoft.XboxGamingOverlay",
-		   "Microsoft.XboxGameOverlay"
+		   "AD2F1837.HPSupportAssistant",
+		   "AD2F1837.HPPCHardwareDiagnosticsWindows",
+		   "AD2F1837.HPSureShieldAI",
+		   "AD2F1837.HPPrivacySettings",
+		   "AD2F1837.HPJumpStarts",
+		   "Microsoft.XboxGameOverlay",
+		   "SpotifyAB.SpotifyMusic"
 ForEach ($App in $AppList)
  {
  $PackageFullName = (Get-AppxPackage $App -allusers).PackageFullName
@@ -56,8 +60,37 @@ ForEach ($App in $AppList)
  Write-Host "Removing Provisioned Package: $ProPackageFullName"
  Remove-AppxProvisionedPackage -online -packagename $ProPackageFullName -allusers
  }
- ""
- echo "Complete."
- ""
- $ProgressPreference = $OriginalPref
- pause
+ }
+     #Stops Cortana from being used as part of your Windows Search Function
+    $Search = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search"
+    If (Test-Path $Search) {
+        Set-ItemProperty $Search AllowCortana -Value 0 
+    }
+    #Disables Web Search in Start Menu
+    $WebSearch = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search"
+    Set-ItemProperty "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" BingSearchEnabled -Value 0 
+    If (!(Test-Path $WebSearch)) {
+        New-Item $WebSearch
+    }
+    Set-ItemProperty $WebSearch DisableWebSearch -Value 1 
+""
+Invoke-Command {reg delete "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}" /f}
+Invoke-Command {reg delete "HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}" /f}
+Invoke-Command {reg add HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Explorer\ /v DisableSearchBoxSuggestions /t reg_dword /d 1 /f}
+Invoke-Command {reg add HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced /v ShowTaskViewButton /t reg_dword /d 0 /f}
+Invoke-Command {reg add HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Search /v SearchboxTaskbarMode /t red_dword /d 0 /f}
+Invoke-Command {reg add HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Explore /v HidePeopleBar /t reg_dword /d 1 /f}
+""
+echo "Refreshed screen to apply."
+Stop-Process -name explorer -Force
+echo "Done."
+""
+echo "Completed."
+""
+#echo "Word of note, Cortana may not remove on first attempt."
+#echo "Re-run the removal tool from the manual install menu using option 4."
+""
+
+$ProgressPreference = $OriginalPref
+echo "Windows 10 Bloatware apps removed..."
+echo "------"
