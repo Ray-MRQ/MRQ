@@ -10,7 +10,6 @@ echo  ) _ ( )(__  )(_)(  /(__)\  )(   )    (  /(__)\  )   / )__)    )   / )__)  
 echo (____/(____)(_____)(__)(__)(__) (__/\__)(__)(__)(_)\_)(____)  (_)\_)(____)(_/\/\_)(_____)  \/(__)(__)(____)
 echo.
 echo HP and Windows 10 Bloatware Removal Version 1.0
-echo By Thomas Lambert
 echo.
 echo.
 :Start
