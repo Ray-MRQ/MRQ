@@ -4,6 +4,8 @@
   Start-Process powershell -Verb runAs -ArgumentList $arguments
   Break
 }
+C:\Windows10Upgrade\Windows10UpgraderApp.exe /ForceUninstall > $null 2>&1
+Remove-Item C:\Windows10Upgrade\*.* -recurse -force > $null 2>&1
 cls
 # Set-ExecutionPolicy -ExecutionPolicy unrestricted -Scope LocalMachine
 
