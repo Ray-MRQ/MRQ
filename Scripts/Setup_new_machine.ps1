@@ -342,6 +342,7 @@ ForEach ($App in $AppList)
  }
  start-remove-cortana-websearch
  cl
+Remove-Item "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\HP Documentation.ink" -force > $null 2>&1
 echo "Completed."
 ""
 #echo "Word of note, Cortana may not remove on first attempt."
