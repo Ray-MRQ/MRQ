@@ -313,6 +313,11 @@ $AppList = "Microsoft.SkypeApp",
 		   "Microsoft.Xbox.TCUI",
 		   "Microsoft.XboxSpeechToTextOverlay",
 		   "Microsoft.XboxGamingOverlay",
+		   "AD2F1837.HPSupportAssistant",
+		   "AD2F1837.HPPCHardwareDiagnosticsWindows",
+		   "AD2F1837.HPSureShieldAI",
+		   "AD2F1837.HPPrivacySettings",
+		   "AD2F1837.HPJumpStarts",
 		   "Microsoft.XboxGameOverlay"
 ForEach ($App in $AppList)
  {
