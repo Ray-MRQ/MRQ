@@ -734,7 +734,7 @@ cl
 do { $myInput = (Read-Host 'Enable System Restore point? (Y/N)').ToLower() } while ($myInput -notin @('Y','N'))
 if ($myinput -eq 'Y') {
 ""
-Enable-ComputerRestore
+Enable-ComputerRestore -Drive "C:\"
 ""
 echo "Please check if System Restore point is active."
 pause
@@ -1010,7 +1010,7 @@ echo ")Rename PC"
 echo ")Set power config (Laptop/Desktop)"
 echo ")Disable defrag for SSDs"
 echo ")Windows Updates. (Includes feature updates)"
-
+echo ")Enable SystemRestore Point"
 ""
 main-menu
 
