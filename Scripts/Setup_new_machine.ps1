@@ -729,6 +729,24 @@ pause
 cl
 }}
 
+function start-systemrestorepoint {
+cl
+do { $myInput = (Read-Host 'Enable System Restore point? (Y/N)').ToLower() } while ($myInput -notin @('Y','N'))
+if ($myinput -eq 'Y') {
+""
+Enable-ComputerRestore
+""
+echo "Please check if System Restore point is active."
+pause
+cl
+}
+else {
+""
+echo "Not modifying System Restore Point"
+""
+pause
+}}
+
 #<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<If you want to add additonal features, start adding from above. Then add to manual-script and start-script.>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 function start-windows-update {
@@ -855,6 +873,7 @@ start-disablefirewall-domain
 start-joindomain
 start-power-config
 start-disable-defrag
+start-systemrestorepoint
 start-windows-update # MAKE SURE THIS IS THE LAST ONE ON THE LSIT
 cl
 echo "This will now return to main menu, if you wish to exit, exit from the menu."
@@ -895,6 +914,7 @@ echo "Option 16: Join PC to domain"
 echo "Option 17: Rename PC"
 echo "Option 18: Set power config (Laptop/Desktop"
 echo "Option 19: Disable disk defrag (For SSD)."
+echo "Option 20: Enable SystemRestore Point"
 
 
 #last options
@@ -903,7 +923,7 @@ echo "Option 50: Start windows updates (Includes feature update)"
 echo "Option MainMenu: Re-directs to main menu"
 echo "Option Exit: Exits launcher from sub-menu."
 ""
-do { $myInput = (Read-Host 'Choose from the above option').ToLower() } while ($myInput -notin @('1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','50','exit','mainmenu'))
+do { $myInput = (Read-Host 'Choose from the above option').ToLower() } while ($myInput -notin @('1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','50','exit','mainmenu'))
 if ($myInput -eq '1') {start-softwareinstall}
 if ($myInput -eq '2') {start-vpninstall}
 if ($myinput -eq '3') {start-mimecastinstall}
@@ -923,6 +943,7 @@ if ($myinput -eq '16') {start-joindomain}
 if ($myinput -eq '17') {start-rename-computer}
 if ($myinput -eq '18') {start-power-config}
 if ($myinput -eq '19') {start-disable-defrag}
+if ($myinput -eq '20') {start-systemrestorepoint}
 
 if ($myinput -eq '50') {start-windows-update}
 if ($myinput -eq 'mainmenu') {main-menu}
