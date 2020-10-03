@@ -125,7 +125,7 @@ Invoke-WebRequest $SoftwareInstallZoomFile -outfile c:\temp\scriptdownloads\Zoom
 $ProgressPreference = 'Continue'
 msiexec /i c:\temp\scriptdownloads\ZoomInstaller.msi /qn+ /norestart allusers=2
 echo "Wait for a dialogue box to appear then continue."
-}}}
+}}
 
 function start-officeuninstall {
 ""
