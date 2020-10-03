@@ -110,17 +110,15 @@ c:\temp\scriptdownloads\silentinstall.exe
 echo "Installed 7zip, Chrome and Foxit reader silently."
 ""
 Start-Sleep -seconds 30
-""
 do { $myInput = (Read-Host 'Would you like to install Zoom?(Y/N)').ToLower() } while ($myInput -notin @('y','n'))
 if ($myInput -eq 'y') {
+""
 echo "Starting Zoom download..."
 $ProgressPreference = 'SilentlyContinue'
 Invoke-WebRequest $SoftwareInstallZoomFile -outfile c:\temp\scriptdownloads\ZoomInstaller.msi
 $ProgressPreference = 'Continue'
 msiexec /i c:\temp\scriptdownloads\ZoomInstaller.msi /qn+ /norestart allusers=2
 echo "Wait for a dialogue box to appear then continue."
-else {
-echo "Not installing Zoom."
 }}}
 
 function start-officeuninstall {
@@ -158,6 +156,7 @@ function start-officeinstall {
 cl
 do { $myInput = (Read-Host 'Would you like to install Office365?(Y/N)').ToLower() } while ($myInput -notin @('y','n'))
 if ($myInput -eq 'y') {
+""
 echo "Starting Office 365 install silently...."
 ""
 echo "Please wait..."
