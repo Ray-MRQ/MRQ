@@ -817,6 +817,8 @@ echo "The script is setup to exit after hitting enter."
 ""
 pause
 ""
+pause
+""
 exit
 }
 if ($LatestWindows -match $LatestWindows) {
