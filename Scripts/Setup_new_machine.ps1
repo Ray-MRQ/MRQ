@@ -735,7 +735,7 @@ echo "This is for disabiling disk defrag for SSD."
 ""
 echo "Providing output for current drives on the machine."
 ""
-gwmi win32_diskdrive
+Get-PhysicalDisk | Format-Table -AutoSize
 ""
 do { $myInput = (Read-Host 'Disable disk frag? (Y/N)').ToLower() } while ($myInput -notin @('Y','N'))
 if ($myinput -eq 'Y') {
@@ -761,7 +761,8 @@ if ($myinput -eq 'Y') {
 ""
 Enable-ComputerRestore -Drive "C:\"
 ""
-echo "Please check if System Restore point is active."
+echo "If you get an empty output, it's enabled but double check from settings."
+""
 pause
 cl
 }
