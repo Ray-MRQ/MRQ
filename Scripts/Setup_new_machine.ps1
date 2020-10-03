@@ -28,6 +28,7 @@ $OfficeXMLHomeUninstall = 'https://github.com/Ray-MRQ/MRQ/raw/master/Regkeys_xml
 $OfficeUninstallTool = 'https://outlookdiagnostics.azureedge.net/sarasetup/SetupProd_OffScrub.exe'
 $SoftwareSilentInstallFile = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/ninite-silent.exe'
 $SoftwareInstallFile = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/Ninite%207Zip%20Chrome%20Foxit%20Reader%20Installer.exe'
+$SoftwareInstallZoomFile = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/ZoomInstallerFull.msi' 
 $DefaultAppPre1909= 'https://github.com/Ray-MRQ/MRQ/raw/master/Regkeys_xmls/Pre1909DefaultAppAssociations.xml'
 $DefaultApp = 'https://github.com/Ray-MRQ/MRQ/raw/master/Regkeys_xmls/2004AppAssociations.xml'
 $MimecastInstall = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/Mimecast%20for%20Outlook%207.0.1740.17532%20(32%20bit).msi'
@@ -106,11 +107,21 @@ Invoke-WebRequest $SoftwareInstallFile -outfile c:\temp\scriptdownloads\ninite.e
 $ProgressPreference = 'Continue'
 c:\temp\scriptdownloads\silentinstall.exe
 ""
-echo "Silent installing 7Zip, Chrome and Foxit."
+echo "Installed 7zip, Chrome and Foxit reader silently."
 ""
 Start-Sleep -seconds 30
-echo "Installed 7zip, Chrome and Foxit reader silently."
-}
+""
+do { $myInput = (Read-Host 'Would you like to install Zoom?(Y/N)').ToLower() } while ($myInput -notin @('y','n'))
+if ($myInput -eq 'y') {
+echo "Starting Zoom download..."
+$ProgressPreference = 'SilentlyContinue'
+Invoke-WebRequest $SoftwareInstallZoomFile -outfile c:\temp\scriptdownloads\ZoomInstaller.msi
+$ProgressPreference = 'Continue'
+msiexec /i c:\temp\scriptdownloads\ZoomInstaller.msi /qn+ /norestart allusers=2
+echo "Wait for a dialogue box to appear then continue."
+else {
+echo "Not installing Zoom."
+}}}
 
 function start-officeuninstall {
 ""
