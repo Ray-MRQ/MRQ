@@ -400,7 +400,8 @@ Invoke-WebRequest $HPBloatwareRemover -outfile c:\temp\scriptdownloads\hpbloatwa
 Invoke-Expression -Command "cmd.exe /c c:\temp\scriptdownloads\hpbloatwareremoval.bat"
 ""
 echo "HP Bloatware has been removed or at least attempted to remove most."
-echo "Do not remove HP Sure Sense installer or audio related, anything else can be uninstalled if it's still in the control panel."
+""
+echo "If you did come accross some HP crapware that wasn't removed let me know please? (MQ)"
 ""
 pause
 } else {
@@ -780,6 +781,8 @@ Install-PackageProvider -Name NuGet -Force -MinimumVersion 2.8.5.201 > $null 2>&
 Install-Module -Name PendingReboot -Force > $null 2>&1
 ""
 Echo "Checking if this PC requires a reboot..."
+echo "If you get an empty output it means no restarts are required."
+""
 Test-PendingReboot -SkipConfigurationManagerClientCheck
 ""
 pause
