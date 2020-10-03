@@ -27,7 +27,7 @@ $OfficeXMLUninstall = 'https://github.com/Ray-MRQ/MRQ/raw/master/Regkeys_xmls/co
 $OfficeXMLHomeUninstall = 'https://github.com/Ray-MRQ/MRQ/raw/master/Regkeys_xmls/configuration_uninstall_home.xml'
 $OfficeUninstallTool = 'https://outlookdiagnostics.azureedge.net/sarasetup/SetupProd_OffScrub.exe'
 $SoftwareSilentInstallFile = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/ninite-silent.exe'
-$SoftwareInstallFile = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/Ninite%207Zip%20Chrome%20Firefox%20Foxit%20Reader%20Zoom%20Installer.exe'
+$SoftwareInstallFile = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/Ninite%207Zip%20Chrome%20Foxit%20Reader%20Installer.exe'
 $DefaultAppPre1909= 'https://github.com/Ray-MRQ/MRQ/raw/master/Regkeys_xmls/Pre1909DefaultAppAssociations.xml'
 $DefaultApp = 'https://github.com/Ray-MRQ/MRQ/raw/master/Regkeys_xmls/2004AppAssociations.xml'
 $MimecastInstall = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/Mimecast%20for%20Outlook%207.0.1740.17532%20(32%20bit).msi'
@@ -67,7 +67,7 @@ echo "For software, the following will be installed."
 echo "Uninstall the ones you do not require as neeeded."
 ""
 ""
-echo 7Zip Chrome "Foxit Reader (equivlant to Adobe reader but allows editing.)" Zoom "Office365 Applications 32Bit" "NeteXtender or GlobalVPN (optional)" "Mimecast for Outlook32Bit (optional)" 
+echo 7Zip Chrome "Foxit Reader (equivlant to Adobe reader but allows editing.)" "Zoom (Optional)" "Office365 Applications 32Bit" "NeteXtender or GlobalVPN (optional)" "Mimecast for Outlook32Bit (optional)" 
 ""
 echo "Please confirm below."
 ""
@@ -106,10 +106,10 @@ Invoke-WebRequest $SoftwareInstallFile -outfile c:\temp\scriptdownloads\ninite.e
 $ProgressPreference = 'Continue'
 c:\temp\scriptdownloads\silentinstall.exe
 ""
-echo "Silent installing 7Zip, Chrome, Foxit and Zoom..."
+echo "Silent installing 7Zip, Chrome and Foxit."
 ""
 Start-Sleep -seconds 30
-echo "Installed 7zip, Chrome, Zoom and Foxit reader silently."
+echo "Installed 7zip, Chrome and Foxit reader silently."
 }
 
 function start-officeuninstall {
