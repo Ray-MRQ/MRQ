@@ -4,10 +4,16 @@
   Start-Process powershell -Verb runAs -ArgumentList $arguments
   Break
 }
+
+# Uninstall applications that if they already exist.
+$ProgressPreference = 'SilentlyContinue'
 C:\Windows10Upgrade\Windows10UpgraderApp.exe /ForceUninstall > $null 2>&1
 Remove-Item C:\Windows10Upgrade\*.* -recurse -force > $null 2>&1
+Get-InstalledModule -Name PendingReboot | Uninstall-Module
+Get-InstalledModule -Name PSWindowsUpdate | Uninstall-Module
+Get-InstalledModule -Name Nuget | Uninstall-Module
+$ProgressPreference = 'Continue'
 cls
-# Set-ExecutionPolicy -ExecutionPolicy unrestricted -Scope LocalMachine
 
 #The below are "functions" so they only act as reference  for the Main menu to run commands. The actual script starts from the bottom and then references everything else above."
 
