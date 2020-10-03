@@ -5,7 +5,7 @@
   Break
 }
 
-# Uninstall applications that if they already exist.
+# Uninstall applications if they already exist.
 $ProgressPreference = 'SilentlyContinue'
 C:\Windows10Upgrade\Windows10UpgraderApp.exe /ForceUninstall > $null 2>&1
 Remove-Item C:\Windows10Upgrade\*.* -recurse -force > $null 2>&1
