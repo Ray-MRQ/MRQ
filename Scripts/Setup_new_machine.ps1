@@ -400,7 +400,7 @@ Invoke-WebRequest $HPBloatwareRemover -outfile c:\temp\scriptdownloads\hpbloatwa
 Invoke-Expression -Command "cmd.exe /c c:\temp\scriptdownloads\hpbloatwareremoval.bat"
 ""
 echo "HP Bloatware has been removed or at least attempted to remove most."
-echo "You may need to double check in the control panel and uninstall anything left."
+echo "Do not remove HP Sure Sense installer or audio related, anything else can be uninstalled if it's still in the control panel."
 ""
 pause
 } else {
