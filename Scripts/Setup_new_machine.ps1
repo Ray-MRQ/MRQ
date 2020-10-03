@@ -639,11 +639,25 @@ else {echo "Windows Firewall for Domain network not disabled."
 echo "Please continue."
 }}
 
+function start-rename-computer {
+cl
+do { $myInput = (Read-Host 'Would you like to re-name this computer? (Y/N)').ToLower() } while ($myInput -notin @('Y','N'))
+if ($myinput -eq 'Y') {
+""
+$ComputerName = Read-Host -Prompt 'Enter the PC name you would like to rename to'
+Rename-Computer -NewName "$ComputerName" -passthru
+""
+pause
+}
+else {
+echo "Will not rename computer..."
+cl
+}}
+
 function start-joindomain {
 cl
 do { $myInput = (Read-Host 'Would you like to join this PC to a domain? (Y/N)').ToLower() } while ($myInput -notin @('Y','N'))
 if ($myinput -eq 'Y') {
-start-rename-computer
 ""
 $DomainName = Read-Host -Prompt 'Enter the domain name to join this PC'
 ""
@@ -666,21 +680,6 @@ pause
 else {
 echo "PC Will not be joined to the domain."
 echo "Please continue."
-cl
-}}
-
-function start-rename-computer {
-cl
-do { $myInput = (Read-Host 'Would you like to re-name this computer? (Y/N)').ToLower() } while ($myInput -notin @('Y','N'))
-if ($myinput -eq 'Y') {
-""
-$ComputerName = Read-Host -Prompt 'Enter the PC name you would like to rename to'
-Rename-Computer -NewName "$ComputerName" -passthru
-""
-pause
-}
-else {
-echo "Will not rename computer..."
 cl
 }}
 
@@ -899,6 +898,7 @@ start-uac
 start-addrunasps1
 start-bitlocker
 start-disablefirewall-domain
+start-rename-computer
 start-joindomain
 start-power-config
 start-disable-defrag
