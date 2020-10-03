@@ -46,6 +46,8 @@ START /WAIT /MIN WMIC product where name="HP JumpStart Bridge" call uninstall /n
 START /WAIT /MIN WMIC product where name="HP Customer Experience Enhancements" call uninstall /nointeractive
 START /WAIT /MIN WMIC product where name="HP ESU for Microsoft Windows 10" call uninstall /nointeractive
 START /WAIT /MIN WMIC product where Name="HP Support Solutions Framework" call uninstall /nointeractive
+START /WAIT /MIN WMIC product where Name="HP Sure Sense Installer" call uninstall /nointeractive
+START /WAIT /MIN WMIC product where Name="HP Connection Optimizer" call uninstall /nointeractive
 
 ::------------------------
 
@@ -675,6 +677,9 @@ start /wait msiexec /qn /norestart /x {D7D5F438-26EF-45AB-AB89-C476FBCF8584}
 start /wait msiexec /qn /norestart /x {348A1F5B-07B3-4436-9A47-FFE44EFE856E}
 start /wait msiexec /qn /norestart /x {55065080-504F-43BB-BE00-36B80D7D39A5}
 
+:: HP SUre Sense Installer
+start /wait msiexec /qn /norestart /x {B47A593F-4E09-42EC-883A-E89860DAECB2}
+
 :: HP System Default Settings
 start /wait msiexec /qn /norestart /x {5C90D8CF-F12A-41C6-9007-3B651A1F0D78}
 start /wait msiexec /qn /norestart /x {28FE073B-1230-4BF6-830C-7434FD0C0069}
@@ -805,6 +810,8 @@ start /wait msiexec /qn /norestart /x {3082CB96-66E8-456D-8326-118A4F5DC0C6}
 start /wait msiexec /qn /norestart /x {CFD917BE-F1F6-410E-ABEC-9EC819507D0D}
 start /wait msiexec /qn /norestart /x {5601F151-A69F-4E30-8C60-37928124CD07}
 start /wait msiexec /qn /norestart /x {EC720706-3F19-4B7F-BDDD-E31D9B3921D2}
+
+"C:\Program Files (x86)\InstallShield Installation Information\{6468C4A5-E47E-405F-B675-A70A70983EA6}\setup.exe" -runfromtemp -l0x0409  -removeonly
 
 goto END
 
