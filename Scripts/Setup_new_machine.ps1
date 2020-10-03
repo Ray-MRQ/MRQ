@@ -74,7 +74,7 @@ echo "For software, the following will be installed."
 echo "Uninstall the ones you do not require as neeeded."
 ""
 ""
-echo 7Zip Chrome "Foxit Reader (equivlant to Adobe reader but allows editing.)" "Zoom (Optional)" "Office365 Applications 32Bit" "NeteXtender or GlobalVPN (optional)" "Mimecast for Outlook32Bit (optional)" 
+echo 7Zip Chrome "Foxit Reader (equivlant to Adobe reader but allows editing.)" "Office365 Applications 32Bit" "Zoom (Optional)"  "NeteXtender or GlobalVPN (optional)" "Mimecast for Outlook32Bit (optional)" 
 ""
 echo "Please confirm below."
 ""
@@ -328,9 +328,8 @@ Write-Host "Removing Provisioned Package: $ProPackageFullName"
 Remove-AppxProvisionedPackage -online -packagename $ProPackageFullName -allusers
 }
 }
-start-remove-cortana-websearch
+start-bloatware-user-allusers
 cl
-Remove-Item "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\HP Documentation.lnk" -force > $null 2>&1
 echo "Completed."
 ""
 #echo "Word of note, Cortana may not remove on first attempt."
@@ -346,7 +345,7 @@ cl
 }
 if ($myinput -eq 'user') {
 Invoke-WebRequest $BloatwareRemoverWin10 -outfile "C:\temp\scriptdownloads\bloatwareremover.ps1"
-start-remove-cortana-websearch
+start-bloatware-user-allusers
 ""
 echo "This is for removing bloatware in user context instead of administrator."
 $User = Read-Host -Prompt 'Enter username (the person who the machine is for)'
@@ -365,7 +364,7 @@ cl
 }
 }
 
-function start-remove-cortana-websearch {
+function start-bloatware-user-allusers {
     #Stops Cortana from being used as part of your Windows Search Function
     $Search = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search"
     If (Test-Path $Search) {
@@ -411,10 +410,6 @@ cl
 }
 
 function start-shortcuts-default-apps {
-""
-echo "Please wait..."
-Start-Sleep -seconds 30
-cl
 echo "This part of the script is for changing default apps & shortcuts for Office."
 ""
 echo "Default apps only apply to new profiles. If the profile for the new user already exists,"

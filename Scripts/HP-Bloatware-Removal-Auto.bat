@@ -273,8 +273,7 @@ start /wait msiexec /qn /norestart /x {25F3EC6C-BB03-4CEB-B36C-E656A9DD149E}
 
 :: HP Documentation Extras
 reg delete "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\HP_Documentation" /f
-del /q /f "C:\Users\All Users\Microsoft\Windows\Start Menu\Programs\HP Help and Support\HP Documentation.lnk"
-del /q /f "C:\Users\All Users\Microsoft\Windows\Start Menu\Programs\HP\HP Documentation.lnk"
+del /q /f "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\HP Documentation.lnk"
 rmdir /S /Q "C:\Program Files\HP\Documentation"
 
 :: HP DocProc
