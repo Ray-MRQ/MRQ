@@ -190,34 +190,6 @@ pause
 cl
 }
 
-function start-shortcuts-default-apps {
-""
-echo "Please wait..."
-Start-Sleep -seconds 30
-cl
-echo "This part of the script is for changing default apps & shortcuts for Office."
-""
-echo "Default apps only apply to new profiles. If the profile for the new user already exists,"
-echo "Change default apps manaully from settings or re-create profile."
-""
-pause
-if ($WindowsVersion -le '1909') { 
-Invoke-WebRequest $DefaultAppPre1909 -outfile c:\temp\scriptdownloads\MyDefaultAppAssociations.xml 
-dism /online /Import-DefaultAppAssociations:"c:\temp\scriptdownloads\MyDefaultAppAssociations.xml" }
-else {
-Invoke-WebRequest $DefaultApp -outfile c:\temp\scriptdownloads\MyDefaultAppAssociations.xml
-dism /online /Import-DefaultAppAssociations:"c:\temp\scriptdownloads\MyDefaultAppAssociations.xml" }
-echo "Sending office shortcuts to desktop..."
-#Add any shortcuts needed for the above here. It just copies from Start menu to public desktop.
-Remove-Item "C:\Users\Public\Desktop\Foxit Reader.lnk" -force > $null 2>&1
-Copy-Item "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Outlook.lnk" -Destination "C:\Users\Public\Desktop\Outlook.lnk"
-Copy-Item "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Excel.lnk" -Destination "C:\Users\Public\Desktop\Excel.lnk"
-Copy-Item "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Powerpoint.lnk" -Destination "C:\Users\Public\Desktop\Powerpoint.lnk"
-Copy-Item "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Word.lnk" -Destination "C:\Users\Public\Desktop\Word.lnk"
-echo "Done."
-""
-}
-
 function start-mimecastinstall {
 cl
 do { $myInput = (Read-Host 'Would you like to install Mimecast for Outlook 32Bit?(Y/N)').ToLower() } while ($myInput -notin @('y','n'))
@@ -436,6 +408,34 @@ pause
 echo 'Not removing Bloatware for HP workstation/laptop...'
 }
 cl
+}
+
+function start-shortcuts-default-apps {
+""
+echo "Please wait..."
+Start-Sleep -seconds 30
+cl
+echo "This part of the script is for changing default apps & shortcuts for Office."
+""
+echo "Default apps only apply to new profiles. If the profile for the new user already exists,"
+echo "Change default apps manaully from settings or re-create profile."
+""
+pause
+if ($WindowsVersion -le '1909') { 
+Invoke-WebRequest $DefaultAppPre1909 -outfile c:\temp\scriptdownloads\MyDefaultAppAssociations.xml 
+dism /online /Import-DefaultAppAssociations:"c:\temp\scriptdownloads\MyDefaultAppAssociations.xml" }
+else {
+Invoke-WebRequest $DefaultApp -outfile c:\temp\scriptdownloads\MyDefaultAppAssociations.xml
+dism /online /Import-DefaultAppAssociations:"c:\temp\scriptdownloads\MyDefaultAppAssociations.xml" }
+echo "Sending office shortcuts to desktop..."
+#Add any shortcuts needed for the above here. It just copies from Start menu to public desktop.
+Remove-Item "C:\Users\Public\Desktop\Foxit Reader.lnk" -force > $null 2>&1
+Copy-Item "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Outlook.lnk" -Destination "C:\Users\Public\Desktop\Outlook.lnk"
+Copy-Item "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Excel.lnk" -Destination "C:\Users\Public\Desktop\Excel.lnk"
+Copy-Item "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Powerpoint.lnk" -Destination "C:\Users\Public\Desktop\Powerpoint.lnk"
+Copy-Item "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Word.lnk" -Destination "C:\Users\Public\Desktop\Word.lnk"
+echo "Done."
+""
 }
 
 function start-clearstartmenu {
@@ -887,11 +887,11 @@ Do {
 function start-script {
 start-addrunasps1
 start-softwareinstall
-start-shortcuts-default-apps
 start-mimecastinstall
 start-vpninstall 
 start-bloatwareremover
 start-hpbloatwareremoval
+start-shortcuts-default-apps
 start-clearstartmenu
 start-photoviewer
 start-uac
