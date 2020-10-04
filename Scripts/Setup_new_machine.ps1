@@ -690,6 +690,7 @@ if ($WindowsVerison -le $OldWindows) {
 #Removes the Upgrader app if it's installed.
 C:\Windows10Upgrade\Windows10UpgraderApp.exe /ForceUninstall > $null 2>&1
 Remove-Item C:\Windows10Upgrade\*.* -recurse -force > $null 2>&1
+cls
 #
 echo "Starting windows updates..."
 echo "Please wait..."
@@ -707,11 +708,7 @@ echo "Please re-run the bloatware remover after restarting as doing a feature up
 ""
 echo "The script is setup to exit after hitting enter."
 ""
-pause
-""
-pause
-""
-exit
+end-script
 }
 if ($LatestWindows -match $LatestWindows) {
 ""
