@@ -127,7 +127,10 @@ if ($myInput -eq 'y') {
 	exit
 	}
 	if ($myinput -eq 'n') {
-	
+	start-user-bloatware
+	start-basic-bloatware-remover
+	pause
+	exit
 	
  }}
 
