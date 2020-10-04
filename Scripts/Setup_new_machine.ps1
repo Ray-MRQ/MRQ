@@ -269,10 +269,10 @@ echo "If you get any errors, (red lines) this may be due to multiple profiles."
 echo "Use option user on that profile if that is the case."
 echo "Otherwise option y should work fine."
 ""
-do { $myInput = (Read-Host 'Please confirm with (Y/N/User) if you would like to remove Windows10Bloatware apps').ToLower() } while ($myInput -notin @('y','n','user'))
+do { $myInput = (Read-Host 'Please confirm with (Y/N) if you would like to remove Windows10Bloatware apps').ToLower() } while ($myInput -notin @('y','n',))
 if ($myInput -eq 'y') {
 Invoke-WebRequest $BloatwareRemoverWin10 c:\temp\scriptdownloads\bloatwareremover.ps1
-powershell c:\temp\scriptdownloads\bloatwareremover.ps1
+Start-Process -ArgumentList -FilePath Powershell -File c:\temp\scriptdownloads\bloatwareremover.ps1
 echo "Script complete..."
 cl
 }
