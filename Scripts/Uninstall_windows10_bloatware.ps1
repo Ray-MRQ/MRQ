@@ -113,8 +113,8 @@ if ($myInput -eq 'y') {
      if ($myInput -eq 'y') {
      start-allusers-bloatware-noxbox
      start-basic-bloatware-remover
-	 echo "Complete."
 	 cls
+	 echo "Complete."
 	 pause
 	 $ProgressPreference = $OriginalPref
      exit
