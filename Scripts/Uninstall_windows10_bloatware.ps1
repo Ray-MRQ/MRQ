@@ -105,8 +105,10 @@ $ProgressPreference = "SilentlyContinue"
 do { $myInput = (Read-Host 'Would you like to uninstall Windows10 Bloatware?(Y/N)').ToLower() } while ($myInput -notin @('y','n'))
 if ($myInput -eq 'y') {
 #############################################
+""
  do { $myInput = (Read-Host 'Would you like to apply this for all users or just the currently logged on user?(all/user)').ToLower() } while ($myInput -notin @('all','user'))
  if ($myInput -eq 'all') {
+""
      do { $myInput = (Read-Host 'Would you like to remove Xbox applications as well?(Y/N)').ToLower() } while ($myInput -notin @('Y','N'))
      if ($myInput -eq 'y') {
      start-allusers-bloatware-noxbox
@@ -125,6 +127,7 @@ if ($myInput -eq 'y') {
 }}
 ##############################################
  if ($myinput -eq 'user') {
+""
 echo "Enter the user context credentials."
 $cred = Get-Credential
 Invoke-WebRequest https://github.com/Ray-MRQ/MRQ/raw/master/Scripts/Uninstall_windows10_bloatware_user.ps1 -outfile c:\temp\scriptdownloads\windows10bloatware_user_specfic.ps1
@@ -146,8 +149,6 @@ ForEach ($App in $AppListNoXbox)
 {
 $PackageFullName = (Get-AppxPackage $App -allusers).PackageFullName
 $ProPackageFullName = (Get-AppxProvisionedPackage -online | where {$_.Displayname -eq $App}).PackageName
-write-host $PackageFullName
-Write-Host $ProPackageFullName
 if ($PackageFullName)
 {
 Write-Host "Removing Package: $App"
