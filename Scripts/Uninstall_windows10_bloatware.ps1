@@ -113,6 +113,8 @@ if ($myInput -eq 'y') {
      if ($myInput -eq 'y') {
      start-allusers-bloatware-noxbox
      start-basic-bloatware-remover
+	 echo "Complete."
+	 cls
 	 pause
 	 $ProgressPreference = $OriginalPref
      exit
@@ -120,6 +122,8 @@ if ($myInput -eq 'y') {
 	 if ($myinput -eq 'n') {
 	 start-allusers-bloatware
 	 start-basic-bloatware-remover
+	 cls
+	 echo "Complete."
 	 pause
 	 $ProgressPreference = $OriginalPref
 	 exit
@@ -169,8 +173,6 @@ ForEach ($App in $AppList)
 {
 $PackageFullName = (Get-AppxPackage $App -allusers).PackageFullName
 $ProPackageFullName = (Get-AppxProvisionedPackage -online | where {$_.Displayname -eq $App}).PackageName
-write-host $PackageFullName
-Write-Host $ProPackageFullName
 if ($PackageFullName)
 {
 Write-Host "Removing Package: $App"
