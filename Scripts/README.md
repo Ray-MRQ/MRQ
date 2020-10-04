@@ -52,11 +52,9 @@
 
 `Uninstall_onedrive.bat` Uninstall onedrive
 
-`Uninstall_windows10_bloatware_apps (Doesn't remove XboxApps).ps1` Bloatware removal but keeps Xbox apps, user specfic.
+`Uninstall_windows10_bloatware_apps.ps1` Bloatware removal
 
-`Uninstall_windows10_bloatware_apps.ps1` Bloatware removal user specfic.
-
-`Uninstall_windows10_bloatware_apps_all_users.ps1` Bloatware removal all users.
+`Uninstall_windows10_bloatware_user.ps1` Bloatware removal  user specifc
 
 `Unpin_tiles_all_users.ps1` Unpins all tiles and pins some. All users
 
