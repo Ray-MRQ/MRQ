@@ -272,7 +272,7 @@ echo "Otherwise option y should work fine."
 do { $myInput = (Read-Host 'Please confirm with (Y/N) if you would like to remove Windows10Bloatware apps').ToLower() } while ($myInput -notin @('y','n'))
 if ($myInput -eq 'y') {
 Invoke-WebRequest $BloatwareRemoverWin10 -outfile c:\temp\scriptdownloads\bloatwareremover.ps1
-Start-Process -ArgumentList -FilePath Powershell -File c:\temp\scriptdownloads\bloatwareremover.ps1
+powershell c:\temp\scriptdownloads\bloatwareremover.ps1
 echo "Script complete..."
 cl
 }
@@ -281,32 +281,6 @@ echo "windows 10 Bloatware apps will not be removed..."
 echo "Please continue."
 cl
 }
-}
-
-function start-bloatware-user-allusers {
-    #Stops Cortana from being used as part of your Windows Search Function
-    $Search = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search"
-    If (Test-Path $Search) {
-        Set-ItemProperty $Search AllowCortana -Value 0 
-    }
-    #Disables Web Search in Start Menu
-    $WebSearch = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search"
-    Set-ItemProperty "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" BingSearchEnabled -Value 0 
-    If (!(Test-Path $WebSearch)) {
-        New-Item $WebSearch
-    }
-    Set-ItemProperty $WebSearch DisableWebSearch -Value 1 
-""
-Invoke-Command {reg delete "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}" /f}
-Invoke-Command {reg delete "HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}" /f}
-Invoke-Command {reg add HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Explorer\ /v DisableSearchBoxSuggestions /t reg_dword /d 1 /f}
-Invoke-Command {reg add HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced /v ShowTaskViewButton /t reg_dword /d 0 /f}
-Invoke-Command {reg add HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Search /v SearchboxTaskbarMode /t red_dword /d 0 /f}
-Invoke-Command {reg add HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Explore /v HidePeopleBar /t reg_dword /d 1 /f}
-""
-echo "Refreshed screen to apply."
-Stop-Process -name explorer -Force
-echo "Done."
 }
 
 function start-hpbloatwareremoval {
