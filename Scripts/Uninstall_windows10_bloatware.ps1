@@ -10,7 +10,7 @@ cls
 
 #AllUsers
 
-$AppList = "Microsoft.SkypeApp",          
+$AppListNoXbox = "Microsoft.SkypeApp",          
            "Microsoft.ZuneMusic",
            "Microsoft.ZuneVideo",
            "Microsoft.Office.OneNote",
@@ -53,7 +53,7 @@ $AppList = "Microsoft.SkypeApp",
 
 #AllUsersNoXbox
 
-$AppListNoXbox = "Microsoft.SkypeApp",          
+$AppList = "Microsoft.SkypeApp",          
            "Microsoft.ZuneMusic",
            "Microsoft.ZuneVideo",
            "Microsoft.Office.OneNote",

@@ -5,9 +5,9 @@ echo " ____  __    _____    __   ____  _    _    __    ____  ____    ____  ____ 
  ) _ ( )(__  )(_)(  /(__)\  )(   )    (  /(__)\  )   / )__)    )   / )__)  )    (  )(_)(  \  //(__)\  )(__ 
 (____/(____)(_____)(__)(__)(__) (__/\__)(__)(__)(_)\_)(____)  (_)\_)(____)(_/\/\_)(_____)  \/(__)(__)(____)"
 ""
-#AllUsers
+#AllUsersNoXbox
 
-$AppList = "Microsoft.SkypeApp",          
+$AppListNoXbox = "Microsoft.SkypeApp",          
            "Microsoft.ZuneMusic",
            "Microsoft.ZuneVideo",
            "Microsoft.Office.OneNote",
@@ -48,9 +48,9 @@ $AppList = "Microsoft.SkypeApp",
 		   "Microsoft.XboxGameOverlay",
 		   "SpotifyAB.SpotifyMusic"
 
-#AllUsersNoXbox
+#AllUsers
 
-$AppListNoXbox = "Microsoft.SkypeApp",          
+$AppList = "Microsoft.SkypeApp",          
            "Microsoft.ZuneMusic",
            "Microsoft.ZuneVideo",
            "Microsoft.Office.OneNote",
