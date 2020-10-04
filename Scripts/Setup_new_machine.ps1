@@ -271,7 +271,7 @@ echo "Otherwise option y should work fine."
 ""
 do { $myInput = (Read-Host 'Please confirm with (Y/N) if you would like to remove Windows10Bloatware apps').ToLower() } while ($myInput -notin @('y','n'))
 if ($myInput -eq 'y') {
-Invoke-WebRequest $BloatwareRemoverWin10 c:\temp\scriptdownloads\bloatwareremover.ps1
+Invoke-WebRequest $BloatwareRemoverWin10 -outfile c:\temp\scriptdownloads\bloatwareremover.ps1
 Start-Process -ArgumentList -FilePath Powershell -File c:\temp\scriptdownloads\bloatwareremover.ps1
 echo "Script complete..."
 cl
