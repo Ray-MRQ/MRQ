@@ -40,7 +40,7 @@ $DefaultApp = 'https://github.com/Ray-MRQ/MRQ/raw/master/Regkeys_xmls/2004AppAss
 $MimecastInstall = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/Mimecast%20for%20Outlook%207.0.1740.17532%20(32%20bit).msi'
 $GlobalVPNInstall = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/GVCInstall64.msi'
 $NeteXtenderInstall= 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/NetExtender.8.6.265.MSI'
-$BloatwareRemoverWin10 = 'https://github.com/Ray-MRQ/MRQ/raw/master/Scripts/Uninstall_windows10_bloatware_apps.ps1'
+$BloatwareRemoverWin10 = 'https://github.com/Ray-MRQ/MRQ/raw/master/Scripts/Uninstall_windows10_bloatware.ps1'
 $HPBloatwareRemover = 'https://github.com/Ray-MRQ/MRQ/raw/master/Scripts/HP-Bloatware-Removal-Auto.bat'
 $PhotoviewerInstall = 'https://github.com/Ray-MRQ/MRQ/raw/master/Regkeys_xmls/Restore_Windows_Photo_Viewer_ALL_USERS.reg'
 $RunAsAdministratorPS = 'https://github.com/Ray-MRQ/MRQ/raw/master/Regkeys_xmls/Add%20Run%20As%20Adminstrator%20PS.reg'
@@ -271,90 +271,9 @@ echo "Otherwise option y should work fine."
 ""
 do { $myInput = (Read-Host 'Please confirm with (Y/N/User) if you would like to remove Windows10Bloatware apps').ToLower() } while ($myInput -notin @('y','n','user'))
 if ($myInput -eq 'y') {
-$AppList = "Microsoft.SkypeApp",          
-           "Microsoft.ZuneMusic",
-           "Microsoft.ZuneVideo",
-           "Microsoft.Office.OneNote",
-           "Microsoft.BingFinance",
-           "Microsoft.BingNews",
-           "Microsoft.BingWeather",
-           "Microsoft.BingSports",
-           "Microsoft.XboxApp",
-           "Microsoft.MicrosoftOfficeHub",
-		   "Microsoft.Wallet",
-		   "Microsoft.OneConnect",
-		   "Microsoft.MSPaint",
-		   "Microsoft.Print3D",
-		   "Microsoft.Messaging",
-		   "Microsoft.Microsoft3DViewer",
-		   "Microsoft.Windows.Cortana",
-		   "Microsoft.3DBuilder",
-		   "Microsoft.WindowsAlarms",
-		   "Microsoft.windowscommunicationsapps",
-		   "Microsoft.Getstarted",
-		   "Microsoft.WindowsMaps",
-		   "Microsoft.MicrosoftSolitaireCollection",
-		   "Microsoft.WindowsFeedbackHub",
-		   "Microsoft.MixedReality.Portal",
-		   "Microsoft.GetHelp",
-		   "Microsoft.People",
-		   "Microsoft.549981C3F5F10",
-		   "Microsoft.549981cf5f10",
-		   "Microsoft.Xbox.TCUI",
-		   "Microsoft.XboxSpeechToTextOverlay",
-		   "Microsoft.XboxGamingOverlay",
-		   "AD2F1837.HPSupportAssistant",
-		   "AD2F1837.HPPCHardwareDiagnosticsWindows",
-		   "AD2F1837.HPSureShieldAI",
-		   "AD2F1837.HPPrivacySettings",
-		   "AD2F1837.HPJumpStarts",
-		   "AD2F1837.HPPowerManager",
-		   "Microsoft.XboxGameOverlay",
-		   "SpotifyAB.SpotifyMusic"
-ForEach ($App in $AppList)
-{
-$PackageFullName = (Get-AppxPackage $App -allusers).PackageFullName
-$ProPackageFullName = (Get-AppxProvisionedPackage -online | where {$_.Displayname -eq $App}).PackageName
-write-host $PackageFullName
-Write-Host $ProPackageFullName
-if ($PackageFullName)
-{
-Write-Host "Removing Package: $App"
-remove-AppxPackage -package $PackageFullName 
-}
-if ($ProPackageFullName)
-{
-Write-Host "Removing Provisioned Package: $ProPackageFullName"
-Remove-AppxProvisionedPackage -online -packagename $ProPackageFullName -allusers
-}
-}
-start-bloatware-user-allusers
-cl
-echo "Completed."
-""
-#echo "Word of note, Cortana may not remove on first attempt."
-#echo "Re-run the removal tool from the manual install menu using option 4."
-""
-pause
-""
-cl
-$ProgressPreference = $OriginalPref
-echo "Windows 10 Bloatware apps removed..."
-echo "------"
-cl
-}
-if ($myinput -eq 'user') {
-Invoke-WebRequest $BloatwareRemoverWin10 -outfile "C:\temp\scriptdownloads\bloatwareremover.ps1"
-start-bloatware-user-allusers
-""
-echo "This is for removing bloatware in user context instead of administrator."
-$User = Read-Host -Prompt 'Enter username (the person who the machine is for)'
-""
-runas /noprofile /user:$env:computername\$user "powershell C:\temp\scriptdownloads\bloatwareremover.ps1"
-""
-echo "Please close the prompt once finished."
-""
-pause
+Invoke-WebRequest $BloatwareRemoverWin10 c:\temp\scriptdownloads\bloatwareremover.ps1
+powershell c:\temp\scriptdownloads\bloatwareremover.ps1
+echo "Script complete..."
 cl
 }
 if ($myinput -eq 'n') {
