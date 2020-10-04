@@ -4,7 +4,9 @@ if (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdenti
   Start-Process powershell -Verb runAs -ArgumentList $arguments
   Break
 }
-
+mkdir c:\temp\
+mkdir c:\temp\scriptdownloads
+cls
 
 #AllUsers
 
@@ -123,25 +125,13 @@ if ($myInput -eq 'y') {
 }}
 ##############################################
  if ($myinput -eq 'user') {
-    echo "Please enter user credentials..."
-	$cred = Get-Credential
-	do { $myInput = (Read-Host 'Would you like to remove Xbox applications as well?(Y/N)').ToLower() } while ($myInput -notin @('Y','N'))
-    if ($myInput -eq 'y') {
-	Start-Process -FilePath Powershell -Credential $cred -ArgumentList '-Command', 'start-user-bloatware-noxbox'
-	pause
-	start-basic-bloatware-remover
-	pause
-	$ProgressPreference = $OriginalPref
-	exit
-	}
-	if ($myinput -eq 'n') {
-	start-user-bloatware
-	start-basic-bloatware-remover
-	pause
-	$ProgressPreference = $OriginalPref
-	exit
-}}
-
+echo "Enter the user context credentials."
+$cred = Get-Credential
+Invoke-WebRequest https://github.com/Ray-MRQ/MRQ/raw/master/Scripts/Uninstall_windows10_bloatware_user.ps1 -outfile c:\temp\scriptdownloads\windows10bloatware_user_specfic.ps1
+Start-Process -FilePath Powershell -Credential $cred -ArgumentList '-File', c:\temp\scriptdownloads\windows10bloatware_user_specfic.ps1
+pause
+exit
+}
 else { 
 ""
 echo "Not removing bloatware..."
@@ -193,40 +183,7 @@ Remove-AppxProvisionedPackage -online -packagename $ProPackageFullName -allusers
 echo "Completed."
 }
 
-function start-user-bloatware {
-ForEach ($App in $AppList)
- {
- $PackageFullName = (Get-AppxPackage $App).PackageFullName
- if ($PackageFullName)
- {
- Write-Host "Removing Package: $App"
- remove-AppxPackage -package $PackageFullName 
- }
- }
-cls
-""
-echo "Complete."
-""
-}
-
-function start-user-bloatware-noxbox {
-ForEach ($App in $AppListNoXbox)
- {
- $PackageFullName = (Get-AppxPackage $App).PackageFullName
- if ($PackageFullName)
- {
- Write-Host "Removing Package: $App"
- remove-AppxPackage -package $PackageFullName 
- }
- }
-cls
-""
-echo "Complete."
-""
-}
-
 function start-basic-bloatware-remover {
-
      #Stops Cortana from being used as part of your Windows Search Function
     $Search = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search"
     If (Test-Path $Search) {

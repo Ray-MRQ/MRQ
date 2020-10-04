@@ -89,12 +89,8 @@ $AppListNoXbox = "Microsoft.SkypeApp",
 #
 
 function main-menu {
-    echo "Please enter user (local not admin) credentials..."
-	$cred = Get-Credential
 	do { $myInput = (Read-Host 'Would you like to remove Xbox applications as well?(Y/N)').ToLower() } while ($myInput -notin @('Y','N'))
     if ($myInput -eq 'y') {
-	Start-Process -FilePath Powershell -Credential $cred -ArgumentList '-Command', 'start-user-bloatware-noxbox'
-	pause
 	start-basic-bloatware-remover
 	pause
 	$ProgressPreference = $OriginalPref
