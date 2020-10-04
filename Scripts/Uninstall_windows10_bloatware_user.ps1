@@ -93,6 +93,8 @@ function main-menu {
     if ($myInput -eq 'y') {
 	start-user-bloatware-noxbox
 	start-basic-bloatware-remover
+	cls
+	echo "Completed."
 	pause
 	$ProgressPreference = $OriginalPref
 	exit
@@ -100,6 +102,8 @@ function main-menu {
 	if ($myinput -eq 'n') {
 	start-user-bloatware
 	start-basic-bloatware-remover
+	cls
+	echo "Complete."
 	pause
 	$ProgressPreference = $OriginalPref
 	exit

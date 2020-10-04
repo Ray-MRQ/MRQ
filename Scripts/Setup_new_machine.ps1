@@ -19,7 +19,7 @@ cls
 
 $createdby = echo "==================================Created By MQ 08/09/2020================================"
 $verifiedby = echo "=================================Verified By XX XX/XX/XXXX================================"
-$lastupdatedby = echo "===============================Last Updated By MQ 02/10/2020=============================="
+$lastupdatedby = echo "===============================Last Updated By MQ 04/10/2020=============================="
 
 $WindowsVerison = (Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion").ReleaseId
 $LatestWindows = '2004' #Current Windows verison
