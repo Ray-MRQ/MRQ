@@ -5,6 +5,7 @@ if (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdenti
   Break
 }
 
+
 #AllUsers
 
 $AppList = "Microsoft.SkypeApp",          
@@ -96,6 +97,9 @@ echo " ____  __    _____    __   ____  _    _    __    ____  ____    ____  ____ 
 ""
 
 function main-menu { 
+$OriginalPref = $ProgressPreference # Default is 'Continue'
+$ProgressPreference = "SilentlyContinue"
+
 do { $myInput = (Read-Host 'Would you like to uninstall Windows10 Bloatware?(Y/N)').ToLower() } while ($myInput -notin @('y','n'))
 if ($myInput -eq 'y') {
 #############################################
@@ -106,40 +110,44 @@ if ($myInput -eq 'y') {
      start-allusers-bloatware-noxbox
      start-basic-bloatware-remover
 	 pause
+	 $ProgressPreference = $OriginalPref
      exit
+	 }
 	 if ($myinput -eq 'n') {
 	 start-allusers-bloatware
 	 start-basic-bloatware-remover
 	 pause
+	 $ProgressPreference = $OriginalPref
+	 exit
 	 }
- }}
+}}
 ##############################################
- if ($myinput -eq 'user' {
-    start-user-bloatware
-	start-basic-bloatware-remover
-	pause
-	exit
+ if ($myinput -eq 'user') {
+    echo "Please enter user credentials..."
+	$cred = Get-Credential
 	do { $myInput = (Read-Host 'Would you like to remove Xbox applications as well?(Y/N)').ToLower() } while ($myInput -notin @('Y','N'))
     if ($myInput -eq 'y') {
-	start-user-bloatware-noxbox
+	Start-Process -FilePath Powershell -Credential $cred -ArgumentList '-Command', 'start-user-bloatware-noxbox'
+	pause
 	start-basic-bloatware-remover
 	pause
+	$ProgressPreference = $OriginalPref
 	exit
 	}
 	if ($myinput -eq 'n') {
 	start-user-bloatware
 	start-basic-bloatware-remover
 	pause
+	$ProgressPreference = $OriginalPref
 	exit
-	
- }}
+}}
 
 else { 
 ""
 echo "Not removing bloatware..."
 pause
 exit
-}}}
+}}
 
 function start-allusers-bloatware-noxbox {
 
@@ -239,7 +247,9 @@ Invoke-Command {reg add HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVer
 Invoke-Command {reg add HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Search /v SearchboxTaskbarMode /t red_dword /d 0 /f}
 Invoke-Command {reg add HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Explore /v HidePeopleBar /t reg_dword /d 1 /f}
 ""
+cls
 echo "Refreshed screen to apply."
+echo "Completed."
 Stop-Process -name explorer -Force
 }
 
