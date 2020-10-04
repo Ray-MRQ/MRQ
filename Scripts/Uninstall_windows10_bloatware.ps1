@@ -130,6 +130,7 @@ $cred = Get-Credential
 Invoke-WebRequest https://github.com/Ray-MRQ/MRQ/raw/master/Scripts/Uninstall_windows10_bloatware_user.ps1 -outfile c:\temp\scriptdownloads\windows10bloatware_user_specfic.ps1
 Start-Process -FilePath Powershell -Credential $cred -ArgumentList '-File', c:\temp\scriptdownloads\windows10bloatware_user_specfic.ps1
 pause
+Remove-Item c:\temp\scriptdownloads\windows10bloatware_user_specfic.ps1 -force > $null 2>&1
 exit
 }
 else { 
