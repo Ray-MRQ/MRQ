@@ -91,8 +91,8 @@ $AppListNoXbox = "Microsoft.SkypeApp",
 function main-menu {
 	do { $myInput = (Read-Host 'Would you like to remove Xbox applications as well?(Y/N)').ToLower() } while ($myInput -notin @('Y','N'))
     if ($myInput -eq 'y') {
-	start-basic-bloatware-remover
 	start-user-bloatware-noxbox
+	start-basic-bloatware-remover
 	pause
 	$ProgressPreference = $OriginalPref
 	exit
