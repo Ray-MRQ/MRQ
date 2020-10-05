@@ -7,8 +7,8 @@
 
 # Uninstall applications if they already exist.
 $ProgressPreference = 'SilentlyContinue'
-C:\Windows10Upgrade\Windows10UpgraderApp.exe /ForceUninstall 2>NUL
-Remove-Item C:\Windows10Upgrade\*.* -recurse -force 2>NUL
+C:\Windows10Upgrade\Windows10UpgraderApp.exe /ForceUninstall
+Remove-Item C:\Windows10Upgrade\*.* -recurse -force > $null 2>&1
 Get-InstalledModule -Name PendingReboot | Uninstall-Module > $null 2>&1
 Get-InstalledModule -Name PSWindowsUpdate | Uninstall-Module > $null 2>&1
 Get-InstalledModule -Name Nuget | Uninstall-Module > $null 2>&1
