@@ -46,8 +46,12 @@ $AppListNoXbox = "Microsoft.SkypeApp",
 		   "AD2F1837.HPJumpStarts",
 		   "AD2F1837.HPPowerManager",
 		   "Microsoft.XboxGameOverlay",
-		   "SpotifyAB.SpotifyMusic"
-
+		   "SpotifyAB.SpotifyMusic",
+		   "king.com.BubbleWitch3Saga",
+		   "A278AB0D.DisneyMagicKingdoms",
+		   "A278AB0D.MarchofEmpires",
+		   "king.com.CandyCrushSodaSaga"
+		   
 #AllUsers
 
 $AppList = "Microsoft.SkypeApp",          
@@ -85,7 +89,11 @@ $AppList = "Microsoft.SkypeApp",
 		   "AD2F1837.HPPrivacySettings",
 		   "AD2F1837.HPJumpStarts",
 		   "AD2F1837.HPPowerManager",
-		   "SpotifyAB.SpotifyMusic"
+		   "SpotifyAB.SpotifyMusic",
+		   "king.com.BubbleWitch3Saga",
+		   "A278AB0D.DisneyMagicKingdoms",
+		   "A278AB0D.MarchofEmpires",
+		   "king.com.CandyCrushSodaSaga"
 #
 
 function main-menu {
