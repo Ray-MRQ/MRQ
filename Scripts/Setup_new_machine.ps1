@@ -205,7 +205,7 @@ Invoke-WebRequest $MimecastInstall -outfile c:\temp\scriptdownloads\mimecast32bi
 $ProgressPreference = 'Continue'
 Start-Process msiexec.exe -Wait -ArgumentList '/i c:\temp\scriptdownloads\mimecast32bit.msi /qn /norestart allusers=2'
 ""
-echo "Wait for a dialogue box to appear then continue. (If Mimecast for Outlook is already installed it will not appear)."
+echo "Mimecast for Outlook is now installed."
 ""
 pause
 ""
@@ -248,7 +248,9 @@ $ProgressPreference = 'Continue'
 Start-Process msiexec.exe -Wait -ArgumentList '/i "C:\temp\scriptdownloads\netextender.msi /qn /norestart allusers=2'
 ""
 echo "NeteXtender should now be installed."
+""
 echo "Please continue."
+""
 pause
 ""
 }
