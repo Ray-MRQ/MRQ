@@ -60,7 +60,8 @@ $AppListNoXbox = "Microsoft.SkypeApp",
 		   "DellInc.PartnerPromo",
            "RivetNetworks.SmartByte",
            "ScreenovateTechnologies.DellMobileConnect",
-           "DellInc.MyDell"
+           "DellInc.MyDell",
+		   "DellInc.DellCustomerConnect"
 
 #AllUsersNoXbox
 
@@ -110,7 +111,8 @@ $AppList = "Microsoft.SkypeApp",
            "DellInc.PartnerPromo",
            "RivetNetworks.SmartByte",
            "ScreenovateTechnologies.DellMobileConnect",
-		   "DellInc.MyDell"
+		   "DellInc.MyDell",
+		   "DellInc.DellCustomerConnect"
 
 #
 
