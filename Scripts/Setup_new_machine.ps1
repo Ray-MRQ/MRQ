@@ -885,7 +885,7 @@ if ($myinput -eq '17') {start-rename-computer}
 if ($myinput -eq '18') {start-power-config}
 if ($myinput -eq '19') {start-disable-defrag}
 if ($myinput -eq '20') {start-systemrestorepoint}
-if ($myinput -eq '21') {start-hpbloatwareremoval}
+if ($myinput -eq '21') {start-dellbloatwareremoval}
 
 if ($myinput -eq '50') {start-windows-update}
 if ($myinput -eq 'mainmenu') {main-menu}
