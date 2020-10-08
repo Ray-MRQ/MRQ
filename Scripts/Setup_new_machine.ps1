@@ -235,7 +235,6 @@ echo "GlobalVPN should now be installed."
 echo "Sending GlobalVPN shortcut to desktop..."
 Copy-Item "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Global VPN Client.lnk" -Destination "C:\Users\Public\Desktop\Global VPN Client.lnk"
 ""
-echo "Please Continue."
 pause
 ""
 }
@@ -248,8 +247,6 @@ $ProgressPreference = 'Continue'
 Start-Process msiexec.exe -Wait -ArgumentList '/i C:\temp\scriptdownloads\netextender.msi /qn /norestart allusers=2'
 ""
 echo "NeteXtender should now be installed."
-""
-echo "Please continue."
 ""
 pause
 ""
