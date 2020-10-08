@@ -34,7 +34,8 @@ $OfficeXMLHomeUninstall = 'https://github.com/Ray-MRQ/MRQ/raw/master/Regkeys_xml
 $OfficeUninstallTool = 'https://outlookdiagnostics.azureedge.net/sarasetup/SetupProd_OffScrub.exe'
 $SoftwareSilentInstallFile = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/ninite-silent.exe'
 $SoftwareInstallFile = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/Ninite%207Zip%20Chrome%20Foxit%20Reader%20Installer.exe'
-$SoftwareInstallZoomFile = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/ZoomInstallerFull.msi' 
+$SoftwareInstallZoomFile = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/ZoomInstallerFull.msi'
+$SoftwareInstallAdobeReader = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/AcroRead.msi'
 $DefaultAppPre1909= 'https://github.com/Ray-MRQ/MRQ/raw/master/Regkeys_xmls/Pre1909DefaultAppAssociations.xml'
 $DefaultApp = 'https://github.com/Ray-MRQ/MRQ/raw/master/Regkeys_xmls/2004AppAssociations.xml'
 $MimecastInstall = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/Mimecast%20for%20Outlook%207.0.1740.17532%20(32%20bit).msi'
@@ -111,8 +112,10 @@ echo "Starting download for applications.."
 $ProgressPreference = 'SilentlyContinue'
 Invoke-WebRequest $SoftwareSilentInstallFile -outfile c:\temp\scriptdownloads\silentinstall.exe
 Invoke-WebRequest $SoftwareInstallFile -outfile c:\temp\scriptdownloads\ninite.exe
+Invoke-WebRequest $SoftwareInstallAdobeReader -outfile c:\temp\scriptdownloads\adobereader.msi
 $ProgressPreference = 'Continue'
 c:\temp\scriptdownloads\silentinstall.exe
+msiexec /i c:\temp\scriptdownloads\adobereader.msi /qn+ /norestart allusers=2
 ""
 echo "Installed 7zip, Chrome and Foxit reader silently."
 ""
