@@ -311,7 +311,7 @@ Invoke-Expression -Command "cmd.exe /c c:\temp\scriptdownloads\dellbloatwareremo
 ""
 echo "Dell Bloatware has been removed or at least attempted to remove most."
 ""
-echo "If you did come accross some HP crapware that wasn't removed let me know please? (MQ)"
+echo "If you did come accross some Dell crapware that wasn't removed let me know please? (MQ)"
 ""
 pause
 } else {
