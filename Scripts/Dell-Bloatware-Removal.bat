@@ -21,6 +21,9 @@ START /WAIT /MIN WMIC product where name="Dell Mobile Connect Drivers" call unin
 START /WAIT /MIN WMIC product where name="Dell SupportAssist Remediation" call uninstall /nointeractive
 START /WAIT /MIN WMIC product where name="SmartByte Drivers and Services" call uninstall /nointeractive
 START /WAIT /MIN WMIC product where name="Dell Update - SupportAssist Update Plugin" call uninstall /nointeractive
+START /WAIT /MIN WMIC product where name="Dell Update - SupportAssist" call uninstall /nointeractive
+START /WAIT /MIN WMIC product where name="Dell Digital Delivery Services" call uninstall /nointeractive
+START /WAIT /MIN WMIC product where name="Dell Update for Windows 10" call uninstall /nointeractive
 
 Echo Begin removal via GUID 
 
@@ -35,3 +38,9 @@ start /wait msiexec /qn /norestart /x {75F60BB7-09E9-4555-BFF0-D1B6102A33DE}
 
 ::Dell Update support assist update plugin
 start /wait msiexec /qn /norestart /x {B336B590-DB14-438C-A473-2ECD4E193BFC}
+
+::Dell SupportAssst
+start /wait msiexec /qn /norestart /x {CC611DE8-38C7-4650-968E-B973B254E98C}
+
+::Dell Update for Windows10
+start /wait msiexec /qn /norestart /x {70E9F8CC-A23E-4C25-B292-C86C1821587C}
