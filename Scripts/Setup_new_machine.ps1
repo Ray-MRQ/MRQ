@@ -76,7 +76,7 @@ echo "For software, the following will be installed."
 echo "Uninstall the ones you do not require as neeeded."
 ""
 ""
-echo 7Zip Chrome "Foxit Reader (equivlant to Adobe reader but allows editing.)" "Office365 Applications 32Bit" "Zoom (Optional)"  "NeteXtender or GlobalVPN (optional)" "Mimecast for Outlook32Bit (optional)" 
+echo 7Zip Chrome "Adobe Reader" "Office365 Applications 32Bit" "Zoom (Optional)"  "NeteXtender or GlobalVPN (optional)" "Mimecast for Outlook32Bit (optional)" 
 ""
 echo "Please confirm below."
 ""
@@ -115,9 +115,10 @@ Invoke-WebRequest $SoftwareInstallFile -outfile c:\temp\scriptdownloads\ninite.e
 Invoke-WebRequest $SoftwareInstallAdobeReader -outfile c:\temp\scriptdownloads\adobereader.msi
 $ProgressPreference = 'Continue'
 c:\temp\scriptdownloads\silentinstall.exe
-msiexec /i c:\temp\scriptdownloads\adobereader.msi /qn+ /norestart allusers=2
+$myJob = Start-Job {[msiexec /i c:\temp\scriptdownloads\adobereader.msi /qn+ /norestart allusers=2]}
+Wait-Job $myJob  
 ""
-echo "Installed 7zip, Chrome and Foxit reader silently."
+echo "Installed 7zip, Chrome and Adobe reader silently."
 ""
 Start-Sleep -seconds 30
 do { $myInput = (Read-Host 'Would you like to install Zoom?(Y/N)').ToLower() } while ($myInput -notin @('y','n'))
@@ -934,7 +935,7 @@ echo "==========================================================================
 ""
 echo "The following options will be given during the script."
 ""
-echo ")Install 7zip, Chrome, Foxit reader, GlobalVPN/NeteXtender, Mimecast for Outlook, Office365 Apps."
+echo ")Install 7zip, Chrome, Adobe reader, GlobalVPN/NeteXtender, Mimecast for Outlook, Office365 Apps."
 echo ")Sending key applications shortcuts to desktop."
 echo ")Set default apps, Outlook & chrome."
 echo ")Removing Windows 10 Store apps."
