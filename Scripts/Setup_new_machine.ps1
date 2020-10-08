@@ -33,7 +33,7 @@ $OfficeXMLUninstall = 'https://github.com/Ray-MRQ/MRQ/raw/master/Regkeys_xmls/co
 $OfficeXMLHomeUninstall = 'https://github.com/Ray-MRQ/MRQ/raw/master/Regkeys_xmls/configuration_uninstall_home.xml'
 $OfficeUninstallTool = 'https://outlookdiagnostics.azureedge.net/sarasetup/SetupProd_OffScrub.exe'
 $SoftwareSilentInstallFile = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/ninite-silent.exe'
-$SoftwareInstallFile = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/Ninite%207Zip%20Chrome%20Foxit%20Reader%20Installer.exe'
+$SoftwareInstallFile = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/Ninite%207Zip%20Chrome%20Installer.exe'
 $SoftwareInstallZoomFile = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/ZoomInstallerFull.msi'
 $SoftwareInstallAdobeReader = 'https://onl-my.sharepoint.com/:u:/g/personal/mohammed_quashem_onlinesupport_co_uk/EcRWAKSO321GgevynQeMUzkBpZ-6wm-kHKs7_uScUdfZmw?e=4bhFXR&download=1'
 $DefaultAppPre1909= 'https://github.com/Ray-MRQ/MRQ/raw/master/Regkeys_xmls/Pre1909DefaultAppAssociations.xml'
