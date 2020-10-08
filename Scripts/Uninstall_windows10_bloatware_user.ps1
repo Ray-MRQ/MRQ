@@ -15,7 +15,6 @@ $AppListNoXbox = "Microsoft.SkypeApp",
            "Microsoft.BingNews",
            "Microsoft.BingWeather",
            "Microsoft.BingSports",
-           "Microsoft.XboxApp",
            "Microsoft.MicrosoftOfficeHub",
 		   "Microsoft.Wallet",
 		   "Microsoft.OneConnect",
@@ -36,16 +35,12 @@ $AppListNoXbox = "Microsoft.SkypeApp",
 		   "Microsoft.People",
 		   "Microsoft.549981C3F5F10",
 		   "Microsoft.549981cf5f10",
-		   "Microsoft.Xbox.TCUI",
-		   "Microsoft.XboxSpeechToTextOverlay",
-		   "Microsoft.XboxGamingOverlay",
 		   "AD2F1837.HPSupportAssistant",
 		   "AD2F1837.HPPCHardwareDiagnosticsWindows",
 		   "AD2F1837.HPSureShieldAI",
 		   "AD2F1837.HPPrivacySettings",
 		   "AD2F1837.HPJumpStarts",
 		   "AD2F1837.HPPowerManager",
-		   "Microsoft.XboxGameOverlay",
 		   "SpotifyAB.SpotifyMusic",
 		   "king.com.BubbleWitch3Saga",
 		   "A278AB0D.DisneyMagicKingdoms",
@@ -60,56 +55,12 @@ $AppListNoXbox = "Microsoft.SkypeApp",
            "DellInc.MyDell",
 		   "DellInc.DellCustomerConnect"
 		   
-#AllUsers
-
-$AppList = "Microsoft.SkypeApp",          
-           "Microsoft.ZuneMusic",
-           "Microsoft.ZuneVideo",
-           "Microsoft.Office.OneNote",
-           "Microsoft.BingFinance",
-           "Microsoft.BingNews",
-           "Microsoft.BingWeather",
-           "Microsoft.BingSports",
-           "Microsoft.XboxApp",
-           "Microsoft.MicrosoftOfficeHub",
-		   "Microsoft.Wallet",
-		   "Microsoft.OneConnect",
-		   "Microsoft.MSPaint",
-		   "Microsoft.Print3D",
-		   "Microsoft.Messaging",
-		   "Microsoft.Microsoft3DViewer",
-		   "Microsoft.Windows.Cortana",
-		   "Microsoft.3DBuilder",
-		   "Microsoft.WindowsAlarms",
-		   "Microsoft.windowscommunicationsapps",
-		   "Microsoft.Getstarted",
-		   "Microsoft.WindowsMaps",
-		   "Microsoft.MicrosoftSolitaireCollection",
-		   "Microsoft.WindowsFeedbackHub",
-		   "Microsoft.MixedReality.Portal",
-		   "Microsoft.GetHelp",
-		   "Microsoft.People",
-		   "Microsoft.549981C3F5F10",
-		   "Microsoft.549981cf5f10",
-		   "AD2F1837.HPSupportAssistant",
-		   "AD2F1837.HPPCHardwareDiagnosticsWindows",
-		   "AD2F1837.HPSureShieldAI",
-		   "AD2F1837.HPPrivacySettings",
-		   "AD2F1837.HPJumpStarts",
-		   "AD2F1837.HPPowerManager",
-		   "SpotifyAB.SpotifyMusic",
-		   "king.com.BubbleWitch3Saga",
-		   "A278AB0D.DisneyMagicKingdoms",
-		   "A278AB0D.MarchofEmpires",
-		   "king.com.CandyCrushSodaSaga",
-		   "DellInc.DellDigitalDelivery",
-           "DellInc.DellPowerManager",
-           "DellInc.DellSupportAssistforPCs",
-           "DellInc.PartnerPromo",
-           "RivetNetworks.SmartByte",
-           "ScreenovateTechnologies.DellMobileConnect",
-           "DellInc.MyDell",
-		   "DellInc.DellCustomerConnect"
+#
+$RemoveXboxAppList = "Microsoft.Xbox.TCUI",
+		   "Microsoft.XboxSpeechToTextOverlay",
+		   "Microsoft.XboxApp",
+		   "Microsoft.XboxGameOverlay",
+		   "Microsoft.XboxGamingOverlay"
 #
 
 function main-menu {
@@ -151,7 +102,17 @@ echo "Complete."
 
 function start-user-bloatware-noxbox {
 
-ForEach ($App in $AppListNoXbox)
+ForEach ($App in $AppList)
+ {
+ $PackageFullName = (Get-AppxPackage $App).PackageFullName
+ if ($PackageFullName)
+ {
+ Write-Host "Removing Package: $App"
+ remove-AppxPackage -package $PackageFullName 
+ }
+ }
+ #############################################################################
+ ForEach ($App in $RemoveXboxAppListAppList)
  {
  $PackageFullName = (Get-AppxPackage $App).PackageFullName
  if ($PackageFullName)

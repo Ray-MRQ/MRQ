@@ -120,7 +120,6 @@ Start-Process msiexec.exe -Wait -ArgumentList '/i c:\temp\scriptdownloads\adober
 ""
 echo "Installed 7zip, Chrome and Adobe reader silently."
 ""
-Start-Sleep -seconds 30
 do { $myInput = (Read-Host 'Would you like to install Zoom?(Y/N)').ToLower() } while ($myInput -notin @('y','n'))
 if ($myInput -eq 'y') {
 ""
@@ -205,13 +204,11 @@ Invoke-WebRequest $MimecastInstall -outfile c:\temp\scriptdownloads\mimecast32bi
 $ProgressPreference = 'Continue'
 Start-Process msiexec.exe -Wait -ArgumentList '/i c:\temp\scriptdownloads\mimecast32bit.msi /qn /norestart allusers=2'
 ""
-echo "Mimecast for Outlook is now installed."
-""
-pause
-""
 netsh advfirewall firewall add rule name="Mimecast.Services.Windows.Personal" dir=in action=allow program="C:\program files (x86)\mimecast\mimecast windows service\msddsk.exe" enable=yes
 echo "Adding firewall rule..."
 echo "Mimecast for Outlook should now be installed."
+""
+pause
 } else {
 echo "Mimecast for Outlook32Bit will not be installed..."
 echo "Please continue."
@@ -220,7 +217,6 @@ echo "Please continue."
 
 function start-vpninstall {
 cl
-#Start-Sleep -seconds 120
 do { $myInput = (Read-Host 'Would you like to install GlobalVPN or NeteXtender? Or none? (Global/Net/N)').ToLower() } while ($myInput -notin @('global','net','N'))
 if ($myInput -eq 'global') {
 ""
