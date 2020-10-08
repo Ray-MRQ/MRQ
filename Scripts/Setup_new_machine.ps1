@@ -116,7 +116,7 @@ Invoke-WebRequest $SoftwareInstallAdobeReader -outfile c:\temp\scriptdownloads\a
 Expand-Archive -LiteralPath C:\temp\scriptdownloads\adobereader.zip -DestinationPath C:\temp\scriptdownloads\
 $ProgressPreference = 'Continue'
 c:\temp\scriptdownloads\silentinstall.exe
-msiexec /i c:\temp\scriptdownloads\adobereader\acroreader.msi /qn+ /norestart allusers=2
+Start-Process msiexec.exe -Wait -ArgumentList 'c:\temp\scriptdownloads\adobereader\acroread.msi /qn /norestart allusers=2'
 ""
 echo "Installed 7zip, Chrome and Adobe reader silently."
 ""
@@ -128,7 +128,7 @@ echo "Starting Zoom download..."
 $ProgressPreference = 'SilentlyContinue'
 Invoke-WebRequest $SoftwareInstallZoomFile -outfile c:\temp\scriptdownloads\ZoomInstaller.msi
 $ProgressPreference = 'Continue'
-msiexec /i c:\temp\scriptdownloads\ZoomInstaller.msi /qn+ /norestart allusers=2
+Start-Process msiexec.exe -Wait -ArgumentList '/i c:\temp\scriptdownloads\ZoomInstaller.msi /qn+ /norestart allusers=2'
 echo "Wait for a dialogue box to appear then continue."
 }}
 
@@ -857,7 +857,7 @@ echo "Option 14: Add run as administrator on ps1 context menu."
 echo "Option 15: Disable Windows Firewall on Domain network."
 echo "Option 16: Join PC to domain"
 echo "Option 17: Rename PC"
-echo "Option 18: Set power config (Laptop/Desktop"
+echo "Option 18: Set power config (Laptop/Desktop)"
 echo "Option 19: Disable disk defrag (For SSD)."
 echo "Option 20: Enable SystemRestore Point"
 echo "Option 21: Dell Bloatware removal"
