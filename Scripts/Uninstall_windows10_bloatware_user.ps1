@@ -86,14 +86,14 @@ function main-menu {
 
 function start-user-bloatware {
 ForEach ($App in $AppList)
- {
- $PackageFullName = (Get-AppxPackage $App).PackageFullName
- if ($PackageFullName)
- {
- Write-Host "Removing Package: $App"
- remove-AppxPackage -package $PackageFullName 
- }
- }
+{
+$PackageFullName = (Get-AppxPackage $App).PackageFullName
+if ($PackageFullName)
+{
+Write-Host "Removing Package: $App"
+remove-AppxPackage -package $PackageFullName 
+}
+}
 cls
 ""
 echo "Complete."
@@ -101,26 +101,25 @@ echo "Complete."
 }
 
 function start-user-bloatware-noxbox {
-
 ForEach ($App in $AppList)
- {
- $PackageFullName = (Get-AppxPackage $App).PackageFullName
- if ($PackageFullName)
- {
- Write-Host "Removing Package: $App"
- remove-AppxPackage -package $PackageFullName 
- }
- }
- #############################################################################
- ForEach ($App in $RemoveXboxAppList)
- {
- $PackageFullName = (Get-AppxPackage $App).PackageFullName
- if ($PackageFullName)
- {
- Write-Host "Removing Package: $App"
- remove-AppxPackage -package $PackageFullName 
- }
- }
+{
+$PackageFullName = (Get-AppxPackage $App).PackageFullName
+if ($PackageFullName)
+{
+Write-Host "Removing Package: $App"
+remove-AppxPackage -package $PackageFullName 
+}
+}
+#############################################################################
+ForEach ($App in $RemoveXboxAppList)
+{
+$PackageFullName = (Get-AppxPackage $App).PackageFullName
+if ($PackageFullName)
+{
+Write-Host "Removing Package: $App"
+remove-AppxPackage -package $PackageFullName 
+}
+}
 cls
 ""
 echo "Complete."
