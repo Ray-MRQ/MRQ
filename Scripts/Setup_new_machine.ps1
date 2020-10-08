@@ -42,6 +42,7 @@ $GlobalVPNInstall = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/G
 $NeteXtenderInstall= 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/NetExtender.8.6.265.MSI'
 $BloatwareRemoverWin10 = 'https://github.com/Ray-MRQ/MRQ/raw/master/Scripts/Uninstall_windows10_bloatware.ps1'
 $HPBloatwareRemover = 'https://github.com/Ray-MRQ/MRQ/raw/master/Scripts/HP-Bloatware-Removal-Auto.bat'
+$DellBloatwareRemover = 'https://github.com/Ray-MRQ/MRQ/raw/master/Scripts/Dell-Bloatware-Removal.bat'
 $PhotoviewerInstall = 'https://github.com/Ray-MRQ/MRQ/raw/master/Regkeys_xmls/Restore_Windows_Photo_Viewer_ALL_USERS.reg'
 $RunAsAdministratorPS = 'https://github.com/Ray-MRQ/MRQ/raw/master/Regkeys_xmls/Add%20Run%20As%20Adminstrator%20PS.reg'
 
@@ -299,6 +300,26 @@ echo "If you did come accross some HP crapware that wasn't removed let me know p
 pause
 } else {
 echo 'Not removing Bloatware for HP workstation/laptop...'
+}
+cl
+}
+
+function start-dellbloatwareremoval {
+#Dell Crapware
+cl
+do { $myInput = (Read-Host 'Is this a Dell workstation/laptop? If so would you like to remove bloatware for this as well? (Y/N)').ToLower() } while ($myInput -notin @('y','n'))
+if ($myInput -eq 'y') {
+echo "This may take a while..."
+Invoke-WebRequest $DellBloatwareRemover -outfile c:\temp\scriptdownloads\dellbloatwareremoval.bat
+Invoke-Expression -Command "cmd.exe /c c:\temp\scriptdownloads\dellbloatwareremoval.bat"
+""
+echo "Dell Bloatware has been removed or at least attempted to remove most."
+""
+echo "If you did come accross some HP crapware that wasn't removed let me know please? (MQ)"
+""
+pause
+} else {
+echo 'Not removing Bloatware for Dell workstation/laptop...'
 }
 cl
 }
@@ -781,6 +802,7 @@ start-mimecastinstall
 start-vpninstall 
 start-bloatwareremover
 start-hpbloatwareremoval
+start-dellbloatwareremoval
 start-shortcuts-default-apps
 start-clearstartmenu
 start-photoviewer
@@ -834,7 +856,7 @@ echo "Option 17: Rename PC"
 echo "Option 18: Set power config (Laptop/Desktop"
 echo "Option 19: Disable disk defrag (For SSD)."
 echo "Option 20: Enable SystemRestore Point"
-
+echo "Option 21: Dell Bloatware removal"
 
 #last options
 echo "Option 50: Start windows updates (Includes feature update)"
@@ -842,7 +864,7 @@ echo "Option 50: Start windows updates (Includes feature update)"
 echo "Option MainMenu: Re-directs to main menu"
 echo "Option Exit: Exits launcher from sub-menu."
 ""
-do { $myInput = (Read-Host 'Choose from the above option').ToLower() } while ($myInput -notin @('1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','50','exit','mainmenu'))
+do { $myInput = (Read-Host 'Choose from the above option').ToLower() } while ($myInput -notin @('1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','50','exit','mainmenu'))
 if ($myInput -eq '1') {start-softwareinstall}
 if ($myInput -eq '2') {start-vpninstall}
 if ($myinput -eq '3') {start-mimecastinstall}
@@ -863,6 +885,7 @@ if ($myinput -eq '17') {start-rename-computer}
 if ($myinput -eq '18') {start-power-config}
 if ($myinput -eq '19') {start-disable-defrag}
 if ($myinput -eq '20') {start-systemrestorepoint}
+if ($myinput -eq '21') {start-hpbloatwareremoval}
 
 if ($myinput -eq '50') {start-windows-update}
 if ($myinput -eq 'mainmenu') {main-menu}
@@ -930,6 +953,7 @@ echo ")Set power config (Laptop/Desktop)"
 echo ")Disable defrag for SSDs"
 echo ")Windows Updates. (Includes feature updates)"
 echo ")Enable SystemRestore Point"
+echo ")Dell Bloatware-Removal"
 ""
 main-menu
 
