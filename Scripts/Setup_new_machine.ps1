@@ -35,7 +35,7 @@ $OfficeUninstallTool = 'https://outlookdiagnostics.azureedge.net/sarasetup/Setup
 $SoftwareSilentInstallFile = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/ninite-silent.exe'
 $SoftwareInstallFile = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/Ninite%207Zip%20Chrome%20Foxit%20Reader%20Installer.exe'
 $SoftwareInstallZoomFile = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/ZoomInstallerFull.msi'
-$SoftwareInstallAdobeReader = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/AcroRead.msi'
+$SoftwareInstallAdobeReader = 'https://onl-my.sharepoint.com/:u:/g/personal/mohammed_quashem_onlinesupport_co_uk/EcRWAKSO321GgevynQeMUzkBpZ-6wm-kHKs7_uScUdfZmw?e=4bhFXR&download=1'
 $DefaultAppPre1909= 'https://github.com/Ray-MRQ/MRQ/raw/master/Regkeys_xmls/Pre1909DefaultAppAssociations.xml'
 $DefaultApp = 'https://github.com/Ray-MRQ/MRQ/raw/master/Regkeys_xmls/2004AppAssociations.xml'
 $MimecastInstall = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/Mimecast%20for%20Outlook%207.0.1740.17532%20(32%20bit).msi'
@@ -112,10 +112,11 @@ echo "Starting download for applications.."
 $ProgressPreference = 'SilentlyContinue'
 Invoke-WebRequest $SoftwareSilentInstallFile -outfile c:\temp\scriptdownloads\silentinstall.exe
 Invoke-WebRequest $SoftwareInstallFile -outfile c:\temp\scriptdownloads\ninite.exe
-Invoke-WebRequest $SoftwareInstallAdobeReader -outfile c:\temp\scriptdownloads\adobereader.msi
+Invoke-WebRequest $SoftwareInstallAdobeReader -outfile c:\temp\scriptdownloads\adobereader.zip
+Expand-Archive -LiteralPath C:\temp\scriptdownloads\adobereader.zip -DestinationPath C:\temp\scriptdownloads\adobereader\
 $ProgressPreference = 'Continue'
 c:\temp\scriptdownloads\silentinstall.exe
-$myJob = Start-Job {[msiexec /i c:\temp\scriptdownloads\adobereader.msi /qn+ /norestart allusers=2]}
+$myJob = Start-Job {[msiexec /i c:\temp\scriptdownloads\adobereader\acroreader.msi /qn+ /norestart allusers=2]}
 Wait-Job $myJob  
 ""
 echo "Installed 7zip, Chrome and Adobe reader silently."
