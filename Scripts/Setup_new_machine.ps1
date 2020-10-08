@@ -113,7 +113,7 @@ $ProgressPreference = 'SilentlyContinue'
 Invoke-WebRequest $SoftwareSilentInstallFile -outfile c:\temp\scriptdownloads\silentinstall.exe
 Invoke-WebRequest $SoftwareInstallFile -outfile c:\temp\scriptdownloads\ninite.exe
 Invoke-WebRequest $SoftwareInstallAdobeReader -outfile c:\temp\scriptdownloads\adobereader.zip
-Expand-Archive -LiteralPath C:\temp\scriptdownloads\adobereader.zip -DestinationPath C:\temp\scriptdownloads\adobereader\
+Expand-Archive -LiteralPath C:\temp\scriptdownloads\adobereader.zip -DestinationPath C:\temp\scriptdownloads\
 $ProgressPreference = 'Continue'
 c:\temp\scriptdownloads\silentinstall.exe
 msiexec /i c:\temp\scriptdownloads\adobereader\acroreader.msi /qn+ /norestart allusers=2
