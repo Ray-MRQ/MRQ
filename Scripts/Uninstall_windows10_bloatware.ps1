@@ -139,7 +139,7 @@ Remove-AppxProvisionedPackage -online -packagename $ProPackageFullName -allusers
 }
 }
 #######################################################################
-ForEach ($App in $RemoveXboxAppListAppList)
+ForEach ($App in $RemoveXboxAppList)
 {
 $PackageFullName = (Get-AppxPackage $App -allusers).PackageFullName
 $ProPackageFullName = (Get-AppxProvisionedPackage -online | where {$_.Displayname -eq $App}).PackageName

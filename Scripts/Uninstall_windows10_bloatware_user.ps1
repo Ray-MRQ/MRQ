@@ -112,7 +112,7 @@ ForEach ($App in $AppList)
  }
  }
  #############################################################################
- ForEach ($App in $RemoveXboxAppListAppList)
+ ForEach ($App in $RemoveXboxAppList)
  {
  $PackageFullName = (Get-AppxPackage $App).PackageFullName
  if ($PackageFullName)
