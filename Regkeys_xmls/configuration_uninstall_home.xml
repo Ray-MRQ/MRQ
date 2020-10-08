@@ -4,6 +4,10 @@
 <Remove>
     <Product ID="O365HomePremRetail">
       <Language ID="en-us" />
+	  <Language ID="de-de" />
+	  <Language ID="fr-fr" />
+	  <Language ID="it-it" />
+	  <Language ID="nl-nl" />
     </Product>
   </Remove>
 </Configuration>
