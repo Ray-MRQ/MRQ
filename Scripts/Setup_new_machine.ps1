@@ -128,7 +128,7 @@ echo "Starting Zoom download..."
 $ProgressPreference = 'SilentlyContinue'
 Invoke-WebRequest $SoftwareInstallZoomFile -outfile c:\temp\scriptdownloads\ZoomInstaller.msi
 $ProgressPreference = 'Continue'
-Start-Process msiexec.exe -Wait -ArgumentList '/i c:\temp\scriptdownloads\ZoomInstaller.msi /qn+ /norestart allusers=2'
+Start-Process msiexec.exe -Wait -ArgumentList '/i c:\temp\scriptdownloads\ZoomInstaller.msi /qn /norestart allusers=2'
 echo "Wait for a dialogue box to appear then continue."
 }}
 
@@ -204,7 +204,7 @@ echo "Downloading & installing Mimecast for Outlook..."
 $ProgressPreference = 'SilentlyContinue'
 Invoke-WebRequest $MimecastInstall -outfile c:\temp\scriptdownloads\mimecast32bit.msi
 $ProgressPreference = 'Continue'
-msiexec /i "c:\temp\scriptdownloads\mimecast32bit.msi" /qn+ /norestart allusers=2
+Start-Process msiexec.exe -Wait -ArgumentList '/i c:\temp\scriptdownloads\mimecast32bit.msi /qn /norestart allusers=2'
 ""
 echo "Wait for a dialogue box to appear then continue. (If Mimecast for Outlook is already installed it will not appear)."
 ""
@@ -229,7 +229,7 @@ echo "Downloading & installing GlobalVPN..."
 $ProgressPreference = 'SilentlyContinue'
 Invoke-WebRequest $GlobalVPNInstall -outfile c:\temp\scriptdownloads\gvcinstall64.msi
 $ProgressPreference = 'Continue'
-msiexec.exe /i "C:\temp\scriptdownloads\gvcinstall64.msi" /qn+ /norestart allusers=2
+Start-Process msiexec.exe -Wait -ArgumentList '/i C:\temp\scriptdownloads\gvcinstall64.msi /qn /norestart allusers=2'
 ""
 echo "Wait for a dialogue box to appear then continue."
 pause
@@ -246,7 +246,7 @@ echo "Downloading & installing NeteXtender..."
 $ProgressPreference = 'SilentlyContinue'
 Invoke-WebRequest $NeteXtenderInstall -outfile c:\temp\scriptdownloads\netextender.msi
 $ProgressPreference = 'Continue'
-msiexec /i "C:\temp\scriptdownloads\netextender.msi" /qn+ /norestart allusers=2
+Start-Process msiexec.exe -Wait -ArgumentList '/i "C:\temp\scriptdownloads\netextender.msi /qn /norestart allusers=2'
 ""
 echo "Wait for a dialogue box to appear then continue."
 pause
