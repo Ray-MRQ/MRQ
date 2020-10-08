@@ -129,7 +129,6 @@ $ProgressPreference = 'SilentlyContinue'
 Invoke-WebRequest $SoftwareInstallZoomFile -outfile c:\temp\scriptdownloads\ZoomInstaller.msi
 $ProgressPreference = 'Continue'
 Start-Process msiexec.exe -Wait -ArgumentList '/i c:\temp\scriptdownloads\ZoomInstaller.msi /qn /norestart allusers=2'
-echo "Wait for a dialogue box to appear then continue."
 }}
 
 function start-officeuninstall {
@@ -231,13 +230,13 @@ Invoke-WebRequest $GlobalVPNInstall -outfile c:\temp\scriptdownloads\gvcinstall6
 $ProgressPreference = 'Continue'
 Start-Process msiexec.exe -Wait -ArgumentList '/i C:\temp\scriptdownloads\gvcinstall64.msi /qn /norestart allusers=2'
 ""
-echo "Wait for a dialogue box to appear then continue."
-pause
 echo "GlobalVPN should now be installed."
 ""
 echo "Sending GlobalVPN shortcut to desktop..."
-""
 Copy-Item "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Global VPN Client.lnk" -Destination "C:\Users\Public\Desktop\Global VPN Client.lnk"
+""
+echo "Please Continue."
+pause
 ""
 }
 if ($myinput -eq 'net') {
@@ -248,11 +247,9 @@ Invoke-WebRequest $NeteXtenderInstall -outfile c:\temp\scriptdownloads\netextend
 $ProgressPreference = 'Continue'
 Start-Process msiexec.exe -Wait -ArgumentList '/i "C:\temp\scriptdownloads\netextender.msi /qn /norestart allusers=2'
 ""
-echo "Wait for a dialogue box to appear then continue."
-pause
-""
 echo "NeteXtender should now be installed."
 echo "Please continue."
+pause
 ""
 }
 if ($myinput -eq 'N') {
