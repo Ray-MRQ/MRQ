@@ -53,7 +53,14 @@ $AppListNoXbox = "Microsoft.SkypeApp",
 		   "SpotifyAB.SpotifyMusic",
 		   "A278AB0D.DisneyMagicKingdoms",
 		   "A278AB0D.MarchofEmpires",
-		   "king.com.CandyCrushSodaSaga"
+		   "king.com.CandyCrushSodaSaga",
+		   "DellInc.DellDigitalDelivery",
+		   "DellInc.DellPowerManager",
+		   "DellInc.DellSupportAssistforPCs",
+		   "DellInc.PartnerPromo",
+           "RivetNetworks.SmartByte",
+           "ScreenovateTechnologies.DellMobileConnect",
+           "DellInc.MyDell"
 
 #AllUsersNoXbox
 
@@ -97,6 +104,13 @@ $AppList = "Microsoft.SkypeApp",
 		   "A278AB0D.DisneyMagicKingdoms",
 		   "A278AB0D.MarchofEmpires",
 		   "king.com.CandyCrushSodaSaga"
+		   "DellInc.DellDigitalDelivery",
+           "DellInc.DellPowerManager",
+           "DellInc.DellSupportAssistforPCs",
+           "DellInc.PartnerPromo",
+           "RivetNetworks.SmartByte",
+           "ScreenovateTechnologies.DellMobileConnect",
+		   "DellInc.MyDell"
 
 #
 
