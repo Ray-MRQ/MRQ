@@ -7,7 +7,7 @@ echo " ____  __    _____    __   ____  _    _    __    ____  ____    ____  ____ 
 ""
 #AllUsersNoXbox
 
-$AppListNoXbox = "Microsoft.SkypeApp",          
+$AppList = "Microsoft.SkypeApp",          
            "Microsoft.ZuneMusic",
            "Microsoft.ZuneVideo",
            "Microsoft.Office.OneNote",

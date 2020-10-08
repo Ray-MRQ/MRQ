@@ -10,7 +10,7 @@ cls
 
 #AllUsers
 
-$AppListNoXbox = "Microsoft.SkypeApp",          
+$AppList = "Microsoft.SkypeApp",          
            "Microsoft.ZuneMusic",
            "Microsoft.ZuneVideo",
            "Microsoft.Office.OneNote",
