@@ -116,8 +116,7 @@ Invoke-WebRequest $SoftwareInstallAdobeReader -outfile c:\temp\scriptdownloads\a
 Expand-Archive -LiteralPath C:\temp\scriptdownloads\adobereader.zip -DestinationPath C:\temp\scriptdownloads\adobereader\
 $ProgressPreference = 'Continue'
 c:\temp\scriptdownloads\silentinstall.exe
-$myJob = Start-Job {[msiexec /i c:\temp\scriptdownloads\adobereader\acroreader.msi /qn+ /norestart allusers=2]}
-Wait-Job $myJob  
+msiexec /i c:\temp\scriptdownloads\adobereader\acroreader.msi /qn+ /norestart allusers=2
 ""
 echo "Installed 7zip, Chrome and Adobe reader silently."
 ""
