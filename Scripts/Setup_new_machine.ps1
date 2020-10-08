@@ -245,7 +245,7 @@ echo "Downloading & installing NeteXtender..."
 $ProgressPreference = 'SilentlyContinue'
 Invoke-WebRequest $NeteXtenderInstall -outfile c:\temp\scriptdownloads\netextender.msi
 $ProgressPreference = 'Continue'
-Start-Process msiexec.exe -Wait -ArgumentList '/i "C:\temp\scriptdownloads\netextender.msi /qn /norestart allusers=2'
+Start-Process msiexec.exe -Wait -ArgumentList '/i C:\temp\scriptdownloads\netextender.msi /qn /norestart allusers=2'
 ""
 echo "NeteXtender should now be installed."
 ""
