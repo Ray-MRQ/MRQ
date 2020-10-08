@@ -24,11 +24,6 @@ START /WAIT /MIN WMIC product where name="Dell Update - SupportAssist Update Plu
 
 Echo Begin removal via GUID 
 
-DELLPWOERMANGER 18469ED8-8C36-4CF7-BD43-0FC9B1931AF8
-dell mobile connect 2D27B76E-8FB1-495B-A61D-FB76349E7E36
-dell support assist 75F60BB7-09E9-4555-BFF0-D1B6102A33DE
-Dell Update - SupportAssist Update Plugin B336B590-DB14-438C-A473-2ECD4E193BFC
-
 ::DellPowerManager
 start /wait msiexec /qn /norestart /x {18469ED8-8C36-4CF7-BD43-0FC9B1931AF8}
 
