@@ -5,8 +5,6 @@ echo " ____  __    _____    __   ____  _    _    __    ____  ____    ____  ____ 
  ) _ ( )(__  )(_)(  /(__)\  )(   )    (  /(__)\  )   / )__)    )   / )__)  )    (  )(_)(  \  //(__)\  )(__ 
 (____/(____)(_____)(__)(__)(__) (__/\__)(__)(__)(_)\_)(____)  (_)\_)(____)(_/\/\_)(_____)  \/(__)(__)(____)"
 ""
-#AllUsersNoXbox
-
 $AppList = "Microsoft.SkypeApp",          
            "Microsoft.ZuneMusic",
            "Microsoft.ZuneVideo",
@@ -35,25 +33,29 @@ $AppList = "Microsoft.SkypeApp",
 		   "Microsoft.People",
 		   "Microsoft.549981C3F5F10",
 		   "Microsoft.549981cf5f10",
+		   "SpotifyAB.SpotifyMusic",
+		   "king.com.BubbleWitch3Saga",
+		   "A278AB0D.DisneyMagicKingdoms",
+		   "A278AB0D.MarchofEmpires",
+		   "king.com.CandyCrushSodaSaga",
+		   "SpotifyAB.SpotifyMusic",
+		   "RivetNetworks.SmartByte",
+		   "AD2F1837.HPPrinterControl",
 		   "AD2F1837.HPSupportAssistant",
 		   "AD2F1837.HPPCHardwareDiagnosticsWindows",
 		   "AD2F1837.HPSureShieldAI",
 		   "AD2F1837.HPPrivacySettings",
 		   "AD2F1837.HPJumpStarts",
 		   "AD2F1837.HPPowerManager",
-		   "SpotifyAB.SpotifyMusic",
-		   "king.com.BubbleWitch3Saga",
-		   "A278AB0D.DisneyMagicKingdoms",
-		   "A278AB0D.MarchofEmpires",
-		   "king.com.CandyCrushSodaSaga",
+		   "AD2F1837.HPSystemEventUtility",
+		   "AD2F1837.HPInc.EnergyStar",
 		   "DellInc.DellDigitalDelivery",
            "DellInc.DellPowerManager",
            "DellInc.DellSupportAssistforPCs",
            "DellInc.PartnerPromo",
-           "RivetNetworks.SmartByte",
            "ScreenovateTechnologies.DellMobileConnect",
            "DellInc.MyDell",
-		   "DellInc.DellCustomerConnect"
+		   "DellInc.DellCustomerConnect",
 		   
 #
 $RemoveXboxAppList = "Microsoft.Xbox.TCUI",
@@ -61,6 +63,8 @@ $RemoveXboxAppList = "Microsoft.Xbox.TCUI",
 		   "Microsoft.XboxApp",
 		   "Microsoft.XboxGameOverlay",
 		   "Microsoft.XboxGamingOverlay"
+#
+cls
 #
 
 function main-menu {
