@@ -43,6 +43,7 @@ $AppList = "Microsoft.SkypeApp",
 		   "king.com.CandyCrushSodaSaga",
 		   "SpotifyAB.SpotifyMusic",
 		   "RivetNetworks.SmartByte",
+		   "5A894077.McAfeeSecurity",
 		   ##################>>>>>>>>>>>>>>>>>>HP<<<<<<<<<<<<<<<<<<<<
 		   "AD2F1837.HPPrinterControl",
 		   "AD2F1837.HPSupportAssistant",

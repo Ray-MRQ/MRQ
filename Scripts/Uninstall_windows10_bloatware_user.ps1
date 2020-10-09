@@ -43,7 +43,6 @@ $AppList = "Microsoft.SkypeApp",
 		   "5A894077.McAfeeSecurity",
 		   ##################>>>>>>>>>>>>>>>>>>HP<<<<<<<<<<<<<<<<<<<<
 		   "AD2F1837.HPPrinterControl",
-		   "AD2F1837.HPSupportAssistant",
 		   "AD2F1837.HPPCHardwareDiagnosticsWindows",
 		   "AD2F1837.HPSureShieldAI",
 		   "AD2F1837.HPPrivacySettings",

@@ -30,7 +30,7 @@ START /WAIT /MIN WMIC product where name="HP Print SW" call uninstall /nointerac
 START /WAIT /MIN WMIC product where name="HP Notifications" call uninstall /nointeractive
 START /WAIT /MIN WMIC product where name="Pixel Sharp" call uninstall /nointeractive
 START /WAIT /MIN WMIC product where name="HP System Default Settings" call uninstall /nointeractive
-START /WAIT /MIN WMIC product where name="HP Support Assistant" call uninstall /nointeractive
+::START /WAIT /MIN WMIC product where name="HP Support Assistant" call uninstall /nointeractive
 START /WAIT /MIN WMIC product where name="Discover HP Touchpoint Manager" call uninstall /nointeractive
 START /WAIT /MIN WMIC product where name="HP 3D DriveGuard" call uninstall /nointeractive
 START /WAIT /MIN WMIC product where name="HP Welcome" call uninstall /nointeractive
@@ -642,32 +642,32 @@ start /wait msiexec /qn /norestart /x {BC5DD87B-0143-4D14-AAE6-97109614DC6B}
 start /wait msiexec /qn /norestart /x {A36CD345-625C-4d6c-B3E2-76E1248CB451}
 
 :: HP Support Assistant (various versions)
-start /wait msiexec /qn /norestart /x {8C696B4B-6AB1-44BC-9416-96EAC474CABE}
-start /wait msiexec /qn /norestart /x {61EB474B-67A6-47F4-B1B7-386851BAB3D0}
-start /wait msiexec /qn /norestart /x {4EDD5F10-3961-48C2-ACD9-63D5C125EA8F}
-start /wait msiexec /qn /norestart /x {7414C891-720D-4E86-85E5-C3AA898DA9EC}
-start /wait msiexec /qn /norestart /x {49524B48-4FE9-4A62-A9FD-1F2258DF5489}
-start /wait msiexec /qn /norestart /x {B18EF1BB-63C5-489A-8367-D1A253DFD5DD}
-start /wait msiexec /qn /norestart /x {E5C1C126-1687-4868-A3DD-B807176E4970}
-start /wait msiexec /qn /norestart /x {6F1C00D2-25C2-4CBA-8126-AE9A6E2E9CD5}
-start /wait msiexec /qn /norestart /x {ED84321F-D2C5-46F0-8CAA-DAB8496E9070}
-start /wait msiexec /qn /norestart /x {C807BEFB-0F17-41AC-B307-D7B5E1553040}
-start /wait msiexec /qn /norestart /x {A3876D50-4A88-4A34-92E1-5D7BC8F886E1}
-start /wait msiexec /qn /norestart /x {3A61A282-4F08-4D43-920C-DC30ECE528E8}
-start /wait msiexec /qn /norestart /x {E2C8D0C2-1C97-4C05-939A-5B13A0FE655C}
-start /wait msiexec /qn /norestart /x {8B2A1CFD-8F88-4081-9E18-99395CC27EE6}
-start /wait msiexec /qn /norestart /x {7F2A11F4-EAE8-4325-83EC-E3E99F85169E}
-start /wait msiexec /qn /norestart /x {8F2FC505-65FC-41B6-AAA7-55E266418E30}
-start /wait msiexec /qn /norestart /x {B8AC1A89-FFD1-4F97-8051-E505A160F562}
-start /wait msiexec /qn /norestart /x {7EF08127-4C30-4C05-8CEB-544F8A71C080}
-start /wait msiexec /qn /norestart /x {B1E569B6-A5EB-4C97-9F93-9ED2AA99AF0E}
-start /wait msiexec /qn /norestart /x {FB4BB287-37F9-4E27-9C4D-2D3882E08EFF}
-start /wait msiexec /qn /norestart /x {EE202411-2C26-49E8-9784-1BC1DBF7DE96}
-start /wait msiexec /qn /norestart /x {B60DCA15-56A3-4D2D-8747-22CF7D7B588B}
-start /wait msiexec /qn /norestart /x {6F44AF95-3CDE-4513-AD3F-6D45F17BF324}
-start /wait msiexec /qn /norestart /x {79C54A05-F146-4EA0-8A70-D4EFE6181E52}
-start /wait msiexec /qn /norestart /x {C595BE0A-1215-4A80-8765-23A0AAAE14EE}
-start /wait msiexec /qn /norestart /x {CA43FE4F-9FF2-4AD7-88F0-CC3BAC17B226}
+::start /wait msiexec /qn /norestart /x {8C696B4B-6AB1-44BC-9416-96EAC474CABE}
+::start /wait msiexec /qn /norestart /x {61EB474B-67A6-47F4-B1B7-386851BAB3D0}
+::start /wait msiexec /qn /norestart /x {4EDD5F10-3961-48C2-ACD9-63D5C125EA8F}
+::start /wait msiexec /qn /norestart /x {7414C891-720D-4E86-85E5-C3AA898DA9EC}
+::start /wait msiexec /qn /norestart /x {49524B48-4FE9-4A62-A9FD-1F2258DF5489}
+::start /wait msiexec /qn /norestart /x {B18EF1BB-63C5-489A-8367-D1A253DFD5DD}
+::start /wait msiexec /qn /norestart /x {E5C1C126-1687-4868-A3DD-B807176E4970}
+::start /wait msiexec /qn /norestart /x {6F1C00D2-25C2-4CBA-8126-AE9A6E2E9CD5}
+::start /wait msiexec /qn /norestart /x {ED84321F-D2C5-46F0-8CAA-DAB8496E9070}
+::start /wait msiexec /qn /norestart /x {C807BEFB-0F17-41AC-B307-D7B5E1553040}
+::start /wait msiexec /qn /norestart /x {A3876D50-4A88-4A34-92E1-5D7BC8F886E1}
+::start /wait msiexec /qn /norestart /x {3A61A282-4F08-4D43-920C-DC30ECE528E8}
+::start /wait msiexec /qn /norestart /x {E2C8D0C2-1C97-4C05-939A-5B13A0FE655C}
+::start /wait msiexec /qn /norestart /x {8B2A1CFD-8F88-4081-9E18-99395CC27EE6}
+::start /wait msiexec /qn /norestart /x {7F2A11F4-EAE8-4325-83EC-E3E99F85169E}
+::start /wait msiexec /qn /norestart /x {8F2FC505-65FC-41B6-AAA7-55E266418E30}
+::start /wait msiexec /qn /norestart /x {B8AC1A89-FFD1-4F97-8051-E505A160F562}
+::start /wait msiexec /qn /norestart /x {7EF08127-4C30-4C05-8CEB-544F8A71C080}
+::start /wait msiexec /qn /norestart /x {B1E569B6-A5EB-4C97-9F93-9ED2AA99AF0E}
+::start /wait msiexec /qn /norestart /x {FB4BB287-37F9-4E27-9C4D-2D3882E08EFF}
+::start /wait msiexec /qn /norestart /x {EE202411-2C26-49E8-9784-1BC1DBF7DE96}
+::start /wait msiexec /qn /norestart /x {B60DCA15-56A3-4D2D-8747-22CF7D7B588B}
+::start /wait msiexec /qn /norestart /x {6F44AF95-3CDE-4513-AD3F-6D45F17BF324}
+::start /wait msiexec /qn /norestart /x {79C54A05-F146-4EA0-8A70-D4EFE6181E52}
+::start /wait msiexec /qn /norestart /x {C595BE0A-1215-4A80-8765-23A0AAAE14EE}
+::start /wait msiexec /qn /norestart /x {CA43FE4F-9FF2-4AD7-88F0-CC3BAC17B226}
 
 :: HP Support Information
 start /wait msiexec /qn /norestart /x {B2B7B1C8-7C8B-476C-BE2C-049731C55992}
