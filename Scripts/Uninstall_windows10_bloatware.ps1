@@ -58,7 +58,7 @@ $AppList = "Microsoft.SkypeApp",
            "DellInc.PartnerPromo",
            "ScreenovateTechnologies.DellMobileConnect",
            "DellInc.MyDell",
-		   "DellInc.DellCustomerConnect",
+		   "DellInc.DellCustomerConnect"
 		   
 #
 $RemoveXboxAppList = "Microsoft.Xbox.TCUI",
