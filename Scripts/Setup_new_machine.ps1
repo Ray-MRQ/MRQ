@@ -7,8 +7,6 @@
 
 # Uninstall applications if they already exist.
 $ProgressPreference = 'SilentlyContinue'
-C:\Windows10Upgrade\Windows10UpgraderApp.exe /ForceUninstall
-Remove-Item C:\Windows10Upgrade\*.* -recurse -force > $null 2>&1
 Get-InstalledModule -Name PendingReboot | Uninstall-Module > $null 2>&1
 Get-InstalledModule -Name PSWindowsUpdate | Uninstall-Module > $null 2>&1
 Get-InstalledModule -Name Nuget | Uninstall-Module > $null 2>&1
@@ -680,6 +678,20 @@ echo "Not modifying System Restore Point"
 pause
 }}
 
+function start-removewindows10updateassistant {
+cl
+do { $myInput = (Read-Host 'Remove Windows10 Upadte assistant? (Y/N)').ToLower() } while ($myInput -notin @('Y','N'))
+if ($myinput -eq 'Y') {
+""
+C:\Windows10Upgrade\Windows10UpgraderApp.exe /ForceUninstall
+Remove-Item C:\Windows10Upgrade\*.* -recurse -force > $null 2>&1
+""
+echo "Removed Windows10 Update assistant..."
+}
+else {
+""
+echo "Not removing Windows10 Update assistant..."
+}}
 #<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<If you want to add additonal features, start adding from above. Then add to manual-script and start-script.>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 function start-windows-update {
@@ -853,6 +865,7 @@ echo "Option 18: Set power config (Laptop/Desktop)"
 echo "Option 19: Disable disk defrag (For SSD)."
 echo "Option 20: Enable SystemRestore Point"
 echo "Option 21: Dell Bloatware removal"
+echo "Option 22: Remove Windows10 Update Assistant"
 
 #last options
 echo "Option 50: Start windows updates (Includes feature update)"
@@ -860,7 +873,7 @@ echo "Option 50: Start windows updates (Includes feature update)"
 echo "Option MainMenu: Re-directs to main menu"
 echo "Option Exit: Exits launcher from sub-menu."
 ""
-do { $myInput = (Read-Host 'Choose from the above option').ToLower() } while ($myInput -notin @('1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','50','exit','mainmenu'))
+do { $myInput = (Read-Host 'Choose from the above option').ToLower() } while ($myInput -notin @('1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','50','exit','mainmenu'))
 if ($myInput -eq '1') {start-softwareinstall}
 if ($myInput -eq '2') {start-vpninstall}
 if ($myinput -eq '3') {start-mimecastinstall}
@@ -882,6 +895,7 @@ if ($myinput -eq '18') {start-power-config}
 if ($myinput -eq '19') {start-disable-defrag}
 if ($myinput -eq '20') {start-systemrestorepoint}
 if ($myinput -eq '21') {start-dellbloatwareremoval}
+if ($myinput -eq '22') {start-removewindows10updateassistant}
 
 if ($myinput -eq '50') {start-windows-update}
 if ($myinput -eq 'mainmenu') {main-menu}
