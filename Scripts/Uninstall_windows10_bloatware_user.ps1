@@ -68,7 +68,6 @@ $RemoveXboxAppList = "Microsoft.Xbox.TCUI",
 		   "Microsoft.XboxApp",
 		   "Microsoft.XboxGameOverlay",
 		   "Microsoft.XboxGamingOverlay"
-#
 cls
 #
 
