@@ -106,7 +106,7 @@ $O365NotInstalled
 start-officeinstall
 }
 ""
-echo "Starting download for applications.."
+echo "Starting download and install for 7Zip, Chrome & Adobe Reader..."
 $ProgressPreference = 'SilentlyContinue'
 Invoke-WebRequest $SoftwareSilentInstallFile -outfile c:\temp\scriptdownloads\silentinstall.exe
 Invoke-WebRequest $SoftwareInstallFile -outfile c:\temp\scriptdownloads\ninite.exe
@@ -148,14 +148,6 @@ echo "If not, use option 12 and use the support tool to uninstall."
 pause
 ""
 cl
-""
-start-officeinstall
-echo "If you need the shortcuts use option 9."
-""
-echo "Please continue."
-pause
-cl
-""
 }
 }
 
