@@ -42,7 +42,8 @@ $AppList = "Microsoft.SkypeApp",
 		   "4DF9E0F8.Netflix",
 		   "C27EB4BA.DropboxOEM",
 		   "Amazon.com.Amazon",
-		   "7EE7776C.LinkedInforWindows"
+		   "7EE7776C.LinkedInforWindows",
+		   "PricelinePartnerNetwork.Booking.comEMEABigsavingso",
 		   "RivetNetworks.SmartByte",
 		   "5A894077.McAfeeSecurity",
 		   "AD2F1837.HPPrinterControl",
@@ -68,6 +69,7 @@ $RemoveXboxAppList = "Microsoft.Xbox.TCUI",
 		   "Microsoft.XboxApp",
 		   "Microsoft.XboxGameOverlay",
 		   "Microsoft.XboxGamingOverlay"
+#
 cls
 #
 
