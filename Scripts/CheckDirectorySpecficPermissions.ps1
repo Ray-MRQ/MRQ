@@ -4,7 +4,7 @@ if (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdenti
   Start-Process powershell -Verb runAs -ArgumentList $arguments
   Break
 }
-echo "Export ACL permissions for a folder/directory"
+Write-Output "Export ACL permissions for a folder/directory"
 ""
 $Path = Read-Host -prompt 'Please eneter path to check ACL permissions'
 ""
@@ -27,13 +27,13 @@ $ReportName = Read-Host -prompt 'Please enter HTML Name'
     </style>
 '@
 
-dir $path | where { $_.PsIsContainer } | % { $path1 = $_.fullname; Get-Acl $_.Fullname | % { $_.access | Add-Member -MemberType NoteProperty 'Path' -Value $path1 -passthru }} | ConvertTo-Html -Head $css -Body "<h1>File Permissions Report</h1>`n<h5>Report ran by: $env:username</h5>`n<h5>Report ran on: $env:computername</h5>`n<h5>Generated on $(Get-Date)</h5>" | Out-File "C:\temp\$ReportName.html"
+Get-ChildItem $path | Where-Object { $_.PsIsContainer } | ForEach-Object { $path1 = $_.fullname; Get-Acl $_.Fullname | ForEach-Object { $_.access | Add-Member -MemberType NoteProperty 'Path' -Value $path1 -passthru }} | ConvertTo-Html -Head $css -Body "<h1>File Permissions Report</h1>`n<h5>Report ran by: $env:username</h5>`n<h5>Report ran on: $env:computername</h5>`n<h5>Generated on $(Get-Date)</h5>" | Out-File "C:\temp\$ReportName.html"
 
 (Get-Content c:\temp\$ReportName.html).replace('-536805376', 'Modify, Synchronize') | Set-Content c:\temp\$ReportName.html
 (Get-Content c:\temp\$ReportName.html).replace('268435456', 'FullControl') | Set-Content c:\temp\$ReportName.html
 (Get-Content c:\temp\$ReportName.html).replace('-1610612736', 'ReadAndExecute, Synchronize') | Set-Content c:\temp\$ReportName.html
 ""
-echo "Exported to c:\temp\$ReportName.html"
+Write-Output "Exported to c:\temp\$ReportName.html"
 ""
 pause 
 

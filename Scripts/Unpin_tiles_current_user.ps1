@@ -4,12 +4,12 @@
   Start-Process powershell -Verb runAs -ArgumentList $arguments
   Break
 }
-echo "Would you like to remove tiles and taskbar applications on the start menu? "
-echo "This will become a default setting for new and current users"
+Write-Output "Would you like to remove tiles and taskbar applications on the start menu? "
+Write-Outpute-Output "This will become a default setting for new and current users"
 ""
 do { $myInput = (Read-Host 'Choose an option, (Y/N)').ToLower() } while ($myInput -notin @('y','n'))
 if ($myInput -eq 'y') {
-echo "Modiying start menu & taskbar settings."
+Write-Output "Modiying start menu & taskbar settings."
 ""
 $START_MENU_LAYOUT = @"
 <LayoutModificationTemplate xmlns:defaultlayout="http://schemas.microsoft.com/Start/2014/FullDefaultLayout" xmlns:start="http://schemas.microsoft.com/Start/2014/StartLayout" Version="1" xmlns:taskbar="http://schemas.microsoft.com/Start/2014/TaskbarLayout" xmlns="http://schemas.microsoft.com/Start/2014/LayoutModification">
@@ -54,10 +54,10 @@ foreach ($regAlias in $regAliases){
     Set-ItemProperty -Path $keyPath -Name "LockedStartLayout" -Value 1
     Set-ItemProperty -Path $keyPath -Name "StartLayoutFile" -Value $layoutFile
 }
-echo "==========================================================================="
-echo "Complete... restarting proccesses"
-echo "==========================================================================="
-echo "This will refresh your screen..."
+Write-Outpute-Output "==========================================================================="
+Write-Output "Complete... restarting proccesses"
+Write-Output "==========================================================================="
+Write-Output "This will refresh your screen..."
 cl
 Stop-Process -name explorer -Force
 Start-Sleep -s 5
@@ -78,14 +78,14 @@ Stop-Process -name explorer -Force
 #Import-StartLayout -LayoutPath $layoutFile -MountPath $env:SystemDrive\
 
 Remove-Item $layoutFile
-echo "==========================================================================="
-echo "Now complete..."
+Write-Output "==========================================================================="
+Write-Output "Now complete..."
 ""
-echo "Please continue."
+Write-Output "Please continue."
 ""
 } else {
-echo "Not removing any tiles from the start menu..."
-Echo "Please continue."}
+Write-Output "Not removing any tiles from the start menu..."
+Write-Output "Please continue."}
 pause
 cl
 exit

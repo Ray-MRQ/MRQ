@@ -1,4 +1,4 @@
-echo "Check all ADUsers"
+Write-Output "Check all ADUsers"
 
 [string]$CSS= @'
     <style>
@@ -18,7 +18,7 @@ echo "Check all ADUsers"
     </style>
 '@
 
-Import-Module ActiveDirectory Get-ADUsers -Filter * |Select sAMAccountName,givenName|  ConvertTo-Html -Head $css -Body "<h1>$Customer MFA Report</h1>`n<h5>Generated on $(Get-Date)</h5>" | Out-File "C:\temp\ADUsers.html"
+Import-Module ActiveDirectory Get-ADUsers -Filter * |Select-Object sAMAccountName,givenName|  ConvertTo-Html -Head $css -Body "<h1>$Customer MFA Report</h1>`n<h5>Generated on $(Get-Date)</h5>" | Out-File "C:\temp\ADUsers.html"
 ""
-echo "C:\temp\ADUsers.html"
+Write-Output "C:\temp\ADUsers.html"
 pause

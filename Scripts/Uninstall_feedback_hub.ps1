@@ -1,3 +1,3 @@
-﻿echo "Run as administrator"
+﻿Write-Output "Run as administrator"
 Get-AppxPackage Microsoft.WindowsFeedbackHub| Remove-AppxPackage
-echo "Windows Feedback Hub is now uninstalled."
+Write-Output "Windows Feedback Hub is now uninstalled."

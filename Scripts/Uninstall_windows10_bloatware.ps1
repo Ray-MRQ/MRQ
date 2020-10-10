@@ -6,7 +6,7 @@ if (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdenti
 }
 mkdir c:\temp\
 mkdir c:\temp\scriptdownloads
-cls
+Clear-Host
 
 $AppList = "Microsoft.SkypeApp",          
            "Microsoft.ZuneMusic",
@@ -73,14 +73,14 @@ $RemoveXboxAppList = "Microsoft.Xbox.TCUI",
 		   "Microsoft.XboxGameOverlay",
 		   "Microsoft.XboxGamingOverlay"
 #
-cls
-echo " ____  __    _____    __   ____  _    _    __    ____  ____    ____  ____  __  __  _____  _  _  __    __   
+Clear-Host
+Write-Output " ____  __    _____    __   ____  _    _    __    ____  ____    ____  ____  __  __  _____  _  _  __    __   
 (  _ \(  )  (  _  )  /__\ (_  _)( \/\/ )  /__\  (  _ \( ___)  (  _ \( ___)(  \/  )(  _  )( \/ )/__\  (  )  
  ) _ ( )(__  )(_)(  /(__)\  )(   )    (  /(__)\  )   / )__)    )   / )__)  )    (  )(_)(  \  //(__)\  )(__ 
 (____/(____)(_____)(__)(__)(__) (__/\__)(__)(__)(_)\_)(____)  (_)\_)(____)(_/\/\_)(_____)  \/(__)(__)(____)"
 ""
 
-function main-menu { 
+function start-main-menu { 
 $OriginalPref = $ProgressPreference # Default is 'Continue'
 $ProgressPreference = "SilentlyContinue"
 
@@ -95,8 +95,8 @@ if ($myInput -eq 'y') {
      if ($myInput -eq 'y') {
      start-allusers-bloatware-noxbox
      start-basic-bloatware-remover
-	 cls
-	 echo "Complete."
+	 Clear-Host
+	 Write-Output "Complete."
 	 pause
 	 $ProgressPreference = $OriginalPref
      exit
@@ -104,8 +104,8 @@ if ($myInput -eq 'y') {
 	 if ($myinput -eq 'n') {
 	 start-allusers-bloatware
 	 start-basic-bloatware-remover
-	 cls
-	 echo "Complete."
+	 Clear-Host
+	 Write-Output "Complete."
 	 pause
 	 $ProgressPreference = $OriginalPref
 	 exit
@@ -114,7 +114,7 @@ if ($myInput -eq 'y') {
 ##############################################
  if ($myinput -eq 'user') {
 ""
-echo "Enter the user context credentials."
+Write-Output "Enter the user context credentials."
 $cred = Get-Credential
 Invoke-WebRequest https://github.com/Ray-MRQ/MRQ/raw/master/Scripts/Uninstall_windows10_bloatware_user.ps1 -outfile c:\temp\scriptdownloads\windows10bloatware_user_specfic.ps1
 Start-Process -FilePath Powershell -Credential $cred -ArgumentList '-File', c:\temp\scriptdownloads\windows10bloatware_user_specfic.ps1
@@ -124,7 +124,7 @@ exit
 }
 else { 
 ""
-echo "Not removing bloatware..."
+Write-Output "Not removing bloatware..."
 pause
 exit
 }}
@@ -134,7 +134,7 @@ function start-allusers-bloatware-noxbox {
 ForEach ($App in $AppList)
 {
 $PackageFullName = (Get-AppxPackage $App -allusers).PackageFullName
-$ProPackageFullName = (Get-AppxProvisionedPackage -online | where {$_.Displayname -eq $App}).PackageName
+$ProPackageFullName = (Get-AppxProvisionedPackage -online | Where-Object {$_.Displayname -eq $App}).PackageName
 if ($PackageFullName)
 {
 Write-Host "Removing Package: $App"
@@ -150,7 +150,7 @@ Remove-AppxProvisionedPackage -online -packagename $ProPackageFullName -allusers
 ForEach ($App in $RemoveXboxAppList)
 {
 $PackageFullName = (Get-AppxPackage $App -allusers).PackageFullName
-$ProPackageFullName = (Get-AppxProvisionedPackage -online | where {$_.Displayname -eq $App}).PackageName
+$ProPackageFullName = (Get-AppxProvisionedPackage -online | Where-Object {$_.Displayname -eq $App}).PackageName
 if ($PackageFullName)
 {
 Write-Host "Removing Package: $App"
@@ -162,7 +162,7 @@ Write-Host "Removing Provisioned Package: $ProPackageFullName"
 Remove-AppxProvisionedPackage -online -packagename $ProPackageFullName -allusers
 }
 }
-echo "Completed."
+Write-Output "Completed."
 }
 
 function start-allusers-bloatware {
@@ -170,7 +170,7 @@ function start-allusers-bloatware {
 ForEach ($App in $AppList)
 {
 $PackageFullName = (Get-AppxPackage $App -allusers).PackageFullName
-$ProPackageFullName = (Get-AppxProvisionedPackage -online | where {$_.Displayname -eq $App}).PackageName
+$ProPackageFullName = (Get-AppxProvisionedPackage -online | Where-Object {$_.Displayname -eq $App}).PackageName
 if ($PackageFullName)
 {
 Write-Host "Removing Package: $App"
@@ -182,7 +182,7 @@ Write-Host "Removing Provisioned Package: $ProPackageFullName"
 Remove-AppxProvisionedPackage -online -packagename $ProPackageFullName -allusers
 }
 }
-echo "Completed."
+Write-Output "Completed."
 }
 
 function start-basic-bloatware-remover {
@@ -206,10 +206,10 @@ Invoke-Command {reg add HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVer
 Invoke-Command {reg add HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Search /v SearchboxTaskbarMode /t red_dword /d 0 /f}
 Invoke-Command {reg add HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Explore /v HidePeopleBar /t reg_dword /d 1 /f}
 ""
-cls
-echo "Refreshed screen to apply."
-echo "Completed."
+Clear-Host
+Write-Output "Refreshed screen to apply."
+Write-Output "Completed."
 Stop-Process -name explorer -Force
 }
 
-main-menu
+start-main-menu

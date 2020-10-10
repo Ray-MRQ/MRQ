@@ -4,17 +4,17 @@ if (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdenti
   Start-Process powershell -Verb runAs -ArgumentList $arguments
   Break
 }
-cls
+Clear-Host
 
-echo "Remove OneDrive from context menu, please confirm before going ahead."
+Write-Output "Remove OneDrive from context menu, please confirm before going ahead."
 ""
 pause
 ""
 ""
 Invoke-Command {reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions\Blocked" /v "{CB3D0F55-BC2C-4C1A-85ED-23ED75B5106B}" /t reg_sz /f}
 ""
-echo "Refreshed screen to apply."
+Write-Output "Refreshed screen to apply."
 Stop-Process -name explorer -Force
-echo "Done."
+Write-Output "Done."
 ""
 pause

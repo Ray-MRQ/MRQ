@@ -21,7 +21,7 @@ $Customer = Read-Host -Prompt 'Enter customerID'
 
 
 
-Get-MsolUser -all | where {$_.isLicensed -eq $true} | select UserPrincipalName,@{N="MFA Status"; E={ if( $_.StrongAuthenticationMethods.IsDefault -eq $true) {($_.StrongAuthenticationMethods | Where IsDefault -eq $True).MethodType} else { "Disabled"}}} | ConvertTo-Html -Head $css -Body "<h1>$Customer MFA Report</h1>`n<h5>Generated on $(Get-Date)</h5>" | Out-File "\\onl40fsvm\TechSupport\Engineers\Mo\$Customer-MFAReport.html"
+Get-MsolUser -all | Where-Object {$_.isLicensed -eq $true} | Select-Object UserPrincipalName,@{N="MFA Status"; E={ if( $_.StrongAuthenticationMethods.IsDefault -eq $true) {($_.StrongAuthenticationMethods | Where-Object IsDefault -eq $True).MethodType} else { "Disabled"}}} | ConvertTo-Html -Head $css -Body "<h1>$Customer MFA Report</h1>`n<h5>Generated on $(Get-Date)</h5>" | Out-File "\\onl40fsvm\TechSupport\Engineers\Mo\$Customer-MFAReport.html"
 ""
-echo "Exported to \\onl40fsvm\TechSupport\Engineers\Mo\$Customer-MFAReport.html"
+Write-Output "Exported to \\onl40fsvm\TechSupport\Engineers\Mo\$Customer-MFAReport.html"
 pause
