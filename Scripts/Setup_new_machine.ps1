@@ -5,19 +5,11 @@
   Break
 }
 
-# Uninstall applications if they already exist.
-$ProgressPreference = 'SilentlyContinue'
-Get-InstalledModule -Name PendingReboot | Uninstall-Module > $null 2>&1
-Get-InstalledModule -Name PSWindowsUpdate | Uninstall-Module > $null 2>&1
-Get-InstalledModule -Name Nuget | Uninstall-Module > $null 2>&1
-$ProgressPreference = 'Continue'
-cls
-
 #The below are "functions" so they only act as reference  for the Main menu to run commands. The actual script starts from the bottom and then references everything else above."
 
-$createdby = echo "==================================Created By MQ 08/09/2020================================"
-$verifiedby = echo "=================================Verified By XX XX/XX/XXXX================================"
-$lastupdatedby = echo "===============================Last Updated By MQ 04/10/2020=============================="
+$createdby = Write-Output "==================================Created By MQ 08/09/2020================================"
+$verifiedby = Write-Output "=================================Verified By XX XX/XX/XXXX================================"
+$lastupdatedby = Write-Output "===============================Last Updated By MQ 04/10/2020=============================="
 
 $WindowsVerison = (Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion").ReleaseId
 $LatestWindows = '2004' #Current Windows verison
@@ -48,35 +40,35 @@ $RunAsAdministratorPS = 'https://github.com/Ray-MRQ/MRQ/raw/master/Regkeys_xmls/
 
 ##############################################################################
 	
-function main-menu {
+function start-main-menu {
 ""
-echo "Option 1: Automated/ineractive install."
-echo "Option 2: Manual select install"
-echo "Option 3: Exit installer"
+Write-Output "Option 1: Automated/ineractive install."
+Write-Output "Option 2: Manual select install"
+Write-Output "Option 3: Exit installer"
 ""
 do { $myInput = (Read-Host 'Type an option').ToLower() } while ($myInput -notin @('1','2','3'))
 if ($myinput -eq '1') {start-script}
-if ($myinput -eq '2') {manual-script}
-if ($myinput -eq '3') {end-script}}
+if ($myinput -eq '2') {start-manual-script}
+if ($myinput -eq '3') {start-end-script}}
 
 function start-softwareinstall {
-echo "Removing & creating directory in C:\temp\scriptdownloads..."
+Write-Output "Removing & creating directory in C:\temp\scriptdownloads..."
 mkdir c:\temp > $null 2>&1
 Remove-Item c:\temp\scriptdownloads -recurse -force > $null 2>&1
 mkdir c:\temp\scriptdownloads > $null 2>&1
-echo "============================================================================="
+Write-Output "============================================================================="
 cl
 $createdby
 $verifiedby
 $lastupdatedby
 ""
-echo "For software, the following will be installed."
-echo "Uninstall the ones you do not require as neeeded."
+Write-Output "For software, the following will be installed."
+Write-Output "Uninstall the ones you do not require as neeeded."
 ""
 ""
-echo 7Zip Chrome "Adobe Reader" "Office365 Applications 32Bit" "Zoom (Optional)"  "NeteXtender or GlobalVPN (optional)" "Mimecast for Outlook32Bit (optional)" 
+Write-Output 7Zip Chrome "Adobe Reader" "Office365 Applications 32Bit" "Zoom (Optional)"  "NeteXtender or GlobalVPN (optional)" "Mimecast for Outlook32Bit (optional)" 
 ""
-echo "Please confirm below."
+Write-Output "Please confirm below."
 ""
 pause
 cl
@@ -90,8 +82,8 @@ $uninstallKeysHome = Get-ChildItem -Path "HKLM:HKEY_LOCAL_MACHINE\SOFTWARE\Micro
 $O365Home = "Microsoft Office 365"
 $O365CheckHome = $uninstallKeysHome | Where-Object { $_.GetValue("DisplayName") -match $O365Home }
 
-$O365Installed = echo "Office 365 is installed."
-$O365NotInstalled = echo "Office 365 is not installed."
+$O365Installed = Write-Output "Office 365 is installed."
+$O365NotInstalled = Write-Output "Office 365 is not installed."
 if ($O365Check) {
 $O365Installed
 ""
@@ -106,7 +98,7 @@ $O365NotInstalled
 start-officeinstall
 }
 ""
-echo "Starting download and install for 7Zip, Chrome & Adobe Reader..."
+Write-Output "Starting download and install for 7Zip, Chrome & Adobe Reader..."
 $ProgressPreference = 'SilentlyContinue'
 Invoke-WebRequest $SoftwareSilentInstallFile -outfile c:\temp\scriptdownloads\silentinstall.exe
 Invoke-WebRequest $SoftwareInstallFile -outfile c:\temp\scriptdownloads\ninite.exe
@@ -116,12 +108,12 @@ $ProgressPreference = 'Continue'
 Start-Process c:\temp\scriptdownloads\silentinstall.exe -NoNewWindow -Wait
 Start-Process msiexec.exe -Wait -ArgumentList '/i c:\temp\scriptdownloads\adobereader\acroread.msi /qn /norestart allusers=2'
 ""
-echo "Installed 7zip, Chrome and Adobe reader silently."
+Write-Output "Installed 7zip, Chrome and Adobe reader silently."
 ""
 do { $myInput = (Read-Host 'Would you like to install Zoom?(Y/N)').ToLower() } while ($myInput -notin @('y','n'))
 if ($myInput -eq 'y') {
 ""
-echo "Starting Zoom download..."
+Write-Output "Starting Zoom download..."
 $ProgressPreference = 'SilentlyContinue'
 Invoke-WebRequest $SoftwareInstallZoomFile -outfile c:\temp\scriptdownloads\ZoomInstaller.msi
 $ProgressPreference = 'Continue'
@@ -133,7 +125,7 @@ function start-officeuninstall {
 do { $myInput = (Read-Host 'Would you like to uninstall Office365?(Y/N)').ToLower() } while ($myInput -notin @('y','n'))
 if ($myinput -eq 'y') {
 ""
-echo "Starting uninstall process..."
+Write-Output "Starting uninstall process..."
 ""
 $ProgressPreference = 'SilentlyContinue'
 Invoke-WebRequest $OfficeExe -outfile c:\temp\scriptdownloads\office365setup.exe
@@ -142,8 +134,8 @@ Invoke-WebRequest $OfficeXMLHomeUninstall -outfile c:\temp\scriptdownloads\offic
 $ProgressPreference = 'Continue'
 c:\temp\scriptdownloads\office365setup.exe /configure c:\temp\scriptdownloads\office365uninstall.xml
 c:\temp\scriptdownloads\office365setup.exe /configure c:\temp\scriptdownloads\office365uninstallhome.xml
-echo "Office365 ProPlus should be uninstalled."
-echo "If not, use option 12 and use the support tool to uninstall."
+Write-Output "Office365 ProPlus should be uninstalled."
+Write-Output "If not, use option 12 and use the support tool to uninstall."
 ""
 pause
 ""
@@ -156,9 +148,9 @@ cl
 do { $myInput = (Read-Host 'Would you like to install Office365?(Y/N)').ToLower() } while ($myInput -notin @('y','n'))
 if ($myInput -eq 'y') {
 ""
-echo "Starting Office 365 install silently...."
+Write-Output "Starting Office 365 install silently...."
 ""
-echo "Please wait..."
+Write-Output "Please wait..."
 ""
 $ProgressPreference = 'SilentlyContinue'
 Invoke-WebRequest $OfficeExe -outfile c:\temp\scriptdownloads\office365setup.exe
@@ -168,17 +160,17 @@ c:\temp\scriptdownloads\office365setup.exe /configure c:\temp\scriptdownloads\co
 }}
 
 function start-officeuninstalltool {
-echo "Office applications uninstall tool, with will open up an app."
+Write-Output "Office applications uninstall tool, with will open up an app."
 $ProgressPreference = 'SilentlyContinue'
 Invoke-WebRequest $OfficeUninstallTool -outfile C:\temp\scriptdownloads\officeuninstall.exe
 $ProgressPreference = 'Continue'
 ""
-echo "Downloading Office uninstall tool..."
+Write-Output "Downloading Office uninstall tool..."
 ""
-echo "Done, starting Office uninstall tool."
+Write-Output "Done, starting Office uninstall tool."
 C:\temp\scriptdownloads\officeuninstall.exe
 ""
-echo "Go through the prompts then continue."
+Write-Output "Go through the prompts then continue."
 pause
 cl
 }
@@ -188,20 +180,20 @@ cl
 do { $myInput = (Read-Host 'Would you like to install Mimecast for Outlook 32Bit?(Y/N)').ToLower() } while ($myInput -notin @('y','n'))
 if ($myInput -eq 'y') {
 ""
-echo "Downloading & installing Mimecast for Outlook..."
+Write-Output "Downloading & installing Mimecast for Outlook..."
 $ProgressPreference = 'SilentlyContinue'
 Invoke-WebRequest $MimecastInstall -outfile c:\temp\scriptdownloads\mimecast32bit.msi
 $ProgressPreference = 'Continue'
 Start-Process msiexec.exe -Wait -ArgumentList '/i c:\temp\scriptdownloads\mimecast32bit.msi /qn /norestart allusers=2'
 ""
 netsh advfirewall firewall add rule name="Mimecast.Services.Windows.Personal" dir=in action=allow program="C:\program files (x86)\mimecast\mimecast windows service\msddsk.exe" enable=yes
-echo "Adding firewall rule..."
-echo "Mimecast for Outlook should now be installed."
+Write-Output "Adding firewall rule..."
+Write-Output "Mimecast for Outlook should now be installed."
 ""
 pause
 } else {
-echo "Mimecast for Outlook32Bit will not be installed..."
-echo "Please continue."
+Write-Output "Mimecast for Outlook32Bit will not be installed..."
+Write-Output "Please continue."
 ""
 }}
 
@@ -210,16 +202,16 @@ cl
 do { $myInput = (Read-Host 'Would you like to install GlobalVPN or NeteXtender? Or none? (Global/Net/N)').ToLower() } while ($myInput -notin @('global','net','N'))
 if ($myInput -eq 'global') {
 ""
-echo "Downloading & installing GlobalVPN..."
+Write-Output "Downloading & installing GlobalVPN..."
 $ProgressPreference = 'SilentlyContinue'
 Invoke-WebRequest $GlobalVPNInstall -outfile c:\temp\scriptdownloads\gvcinstall64.msi
 $ProgressPreference = 'Continue'
 Start-Process msiexec.exe -Wait -ArgumentList '/i C:\temp\scriptdownloads\gvcinstall64.msi /qn /norestart allusers=2'
 ""
-echo "Adding firewall rule for GlobalVPN."
+Write-Output "Adding firewall rule for GlobalVPN."
 netsh advfirewall firewall add rule name="SonicWall Global VPN Client" dir=in action=allow program="C:\program files\sonicwall\global vpn client\swgvc.exe" enable=yes
 ""
-echo "GlobalVPN should now be installed."
+Write-Output "GlobalVPN should now be installed."
 Copy-Item "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Global VPN Client.lnk" -Destination "C:\Users\Public\Desktop\Global VPN Client.lnk"
 ""
 pause
@@ -227,46 +219,46 @@ pause
 }
 if ($myinput -eq 'net') {
 ""
-echo "Downloading & installing NeteXtender..."
+Write-Output "Downloading & installing NeteXtender..."
 $ProgressPreference = 'SilentlyContinue'
 Invoke-WebRequest $NeteXtenderInstall -outfile c:\temp\scriptdownloads\netextender.msi
 $ProgressPreference = 'Continue'
 Start-Process msiexec.exe -Wait -ArgumentList '/i C:\temp\scriptdownloads\netextender.msi /qn /norestart allusers=2'
 ""
-echo "NeteXtender should now be installed."
+Write-Output "NeteXtender should now be installed."
 ""
 pause
 ""
 }
 if ($myinput -eq 'N') {
 ""
-echo "Will not install NeteXtender or Global VPN."
+Write-Output "Will not install NeteXtender or Global VPN."
 ""
-echo "Please continue."
+Write-Output "Please continue."
 ""
 }}
 
 function start-bloatwareremover {
 cl
-$OriginalPref = $ProgressPreference # Default is 'Continue'
 $ProgressPreference = "SilentlyContinue"
 #Windows10 Apps bloatware remover
 ""
-echo "Before going ahead, please make sure you choose the correct option."
-echo "If you get any errors, (red lines) this may be due to multiple profiles."
-echo "Use option user on that profile if that is the case."
-echo "Otherwise option y should work fine."
+Write-Output "Before going ahead, please make sure you choose the correct option."
+Write-Output "If you get any errors, (red lines) this may be due to multiple profiles."
+Write-Output "Use option user on that profile if that is the case."
+Write-Output "Otherwise option y should work fine."
 ""
 do { $myInput = (Read-Host 'Please confirm with (Y/N) if you would like to remove Windows10Bloatware apps').ToLower() } while ($myInput -notin @('y','n'))
 if ($myInput -eq 'y') {
 Invoke-WebRequest $BloatwareRemoverWin10 -outfile c:\temp\scriptdownloads\bloatwareremover.ps1
 powershell c:\temp\scriptdownloads\bloatwareremover.ps1
-echo "Script complete..."
+Write-Output "Script complete..."
+$ProgressPreference = 'Continue'
 cl
 }
 if ($myinput -eq 'n') {
-echo "windows 10 Bloatware apps will not be removed..."
-echo "Please continue."
+Write-Output "windows 10 Bloatware apps will not be removed..."
+Write-Output "Please continue."
 cl
 }
 }
@@ -276,17 +268,17 @@ function start-hpbloatwareremoval {
 cl
 do { $myInput = (Read-Host 'Is this a HP workstation/laptop? If so would you like to remove bloatware for this as well? (Y/N)').ToLower() } while ($myInput -notin @('y','n'))
 if ($myInput -eq 'y') {
-echo "This may take a while..."
+Write-Output "This may take a while..."
 Invoke-WebRequest $HPBloatwareRemover -outfile c:\temp\scriptdownloads\hpbloatwareremoval.bat
 Invoke-Expression -Command "cmd.exe /c c:\temp\scriptdownloads\hpbloatwareremoval.bat"
 ""
-echo "HP Bloatware has been removed or at least attempted to remove most."
+Write-Output "HP Bloatware has been removed or at least attempted to remove most."
 ""
-echo "If you did come accross some HP crapware that wasn't removed let me know please? (MQ)"
+Write-Output "If you did come accross some HP crapware that wasn't removed let me know please? (MQ)"
 ""
 pause
 } else {
-echo 'Not removing Bloatware for HP workstation/laptop...'
+Write-Output 'Not removing Bloatware for HP workstation/laptop...'
 }
 cl
 }
@@ -296,26 +288,26 @@ function start-dellbloatwareremoval {
 cl
 do { $myInput = (Read-Host 'Is this a Dell workstation/laptop? If so would you like to remove bloatware for this as well? (Y/N)').ToLower() } while ($myInput -notin @('y','n'))
 if ($myInput -eq 'y') {
-echo "This may take a while..."
+Write-Output "This may take a while..."
 Invoke-WebRequest $DellBloatwareRemover -outfile c:\temp\scriptdownloads\dellbloatwareremoval.bat
 Invoke-Expression -Command "cmd.exe /c c:\temp\scriptdownloads\dellbloatwareremoval.bat"
 ""
-echo "Dell Bloatware has been removed or at least attempted to remove most."
+Write-Output "Dell Bloatware has been removed or at least attempted to remove most."
 ""
-echo "If you did come accross some Dell crapware that wasn't removed let me know please? (MQ)"
+Write-Output "If you did come accross some Dell crapware that wasn't removed let me know please? (MQ)"
 ""
 pause
 } else {
-echo 'Not removing Bloatware for Dell workstation/laptop...'
+Write-Output 'Not removing Bloatware for Dell workstation/laptop...'
 }
 cl
 }
 
 function start-shortcuts-default-apps {
-echo "This part of the script is for changing default apps & shortcuts for Office."
+Write-Output "This part of the script is for changing default apps & shortcuts for Office."
 ""
-echo "Default apps only apply to new profiles. If the profile for the new user already exists,"
-echo "Change default apps manaully from settings or re-create profile."
+Write-Output "Default apps only apply to new profiles. If the profile for the new user already exists,"
+Write-Output "Change default apps manaully from settings or re-create profile."
 ""
 pause
 if ($WindowsVersion -le '1909') { 
@@ -324,26 +316,26 @@ dism /online /Import-DefaultAppAssociations:"c:\temp\scriptdownloads\MyDefaultAp
 else {
 Invoke-WebRequest $DefaultApp -outfile c:\temp\scriptdownloads\MyDefaultAppAssociations.xml
 dism /online /Import-DefaultAppAssociations:"c:\temp\scriptdownloads\MyDefaultAppAssociations.xml" }
-echo "Sending office shortcuts to desktop..."
+Write-Output "Sending office shortcuts to desktop..."
 #Add any shortcuts needed for the above here. It just copies from Start menu to public desktop.
 Remove-Item "C:\Users\Public\Desktop\Foxit Reader.lnk" -force > $null 2>&1
 Copy-Item "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Outlook.lnk" -Destination "C:\Users\Public\Desktop\Outlook.lnk"
 Copy-Item "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Excel.lnk" -Destination "C:\Users\Public\Desktop\Excel.lnk"
 Copy-Item "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Powerpoint.lnk" -Destination "C:\Users\Public\Desktop\Powerpoint.lnk"
 Copy-Item "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Word.lnk" -Destination "C:\Users\Public\Desktop\Word.lnk"
-echo "Done."
+Write-Output "Done."
 ""
 }
 
 function start-clearstartmenu {
 cl
 #Clear start menu
-echo "Would you like to remove tiles and taskbar applications on the start menu? "
-echo "This will become a default setting for new and current users"
+Write-Output "Would you like to remove tiles and taskbar applications on the start menu? "
+Write-Output "This will become a default setting for new and current users"
 ""
 do { $myInput = (Read-Host 'Choose an option, (Y/N)').ToLower() } while ($myInput -notin @('y','n'))
 if ($myInput -eq 'y') {
-echo "Modiying start menu & taskbar settings."
+Write-Output "Modiying start menu & taskbar settings."
 ""
 $START_MENU_LAYOUT = @"
 <LayoutModificationTemplate xmlns:defaultlayout="http://schemas.microsoft.com/Start/2014/FullDefaultLayout" xmlns:start="http://schemas.microsoft.com/Start/2014/StartLayout" Version="1" xmlns:taskbar="http://schemas.microsoft.com/Start/2014/TaskbarLayout" xmlns="http://schemas.microsoft.com/Start/2014/LayoutModification">
@@ -388,10 +380,10 @@ foreach ($regAlias in $regAliases){
     Set-ItemProperty -Path $keyPath -Name "LockedStartLayout" -Value 1
     Set-ItemProperty -Path $keyPath -Name "StartLayoutFile" -Value $layoutFile
 }
-echo "==========================================================================="
-echo "Complete... restarting proccesses"
-echo "==========================================================================="
-echo "This will refresh your screen..."
+Write-Output "==========================================================================="
+Write-Output "Complete... restarting proccesses"
+Write-Output "==========================================================================="
+Write-Output "This will refresh your screen..."
 cl
 Stop-Process -name explorer -Force
 Start-Sleep -s 5
@@ -412,14 +404,14 @@ Stop-Process -name explorer -Force
 Import-StartLayout -LayoutPath $layoutFile -MountPath $env:SystemDrive\
 
 Remove-Item $layoutFile
-echo "==========================================================================="
-echo "Now complete..."
+Write-Output "==========================================================================="
+Write-Output "Now complete..."
 ""
-echo "Please continue."
+Write-Output "Please continue."
 ""
 } else {
-echo "Not removing any tiles from the start menu..."
-Echo "Please continue."
+Write-Output "Not removing any tiles from the start menu..."
+Write-Output "Please continue."
 cl
 }}
 
@@ -428,17 +420,17 @@ function start-photoviewer {
 cl
 do { $myInput = (Read-Host 'Would you like to install Photo Viewer? (Windows7 verision) (Y/N)').ToLower() } while ($myInput -notin @('y','n'))
 if ($myInput -eq 'y') {
-echo "Installing photo viewer...."
+Write-Output "Installing photo viewer...."
 Invoke-WebRequest $PhotoviewerInstall -outfile c:\temp\scriptdownloads\Photoviewer.reg
 Invoke-Command {reg import C:\temp\scriptdownloads\Photoviewer.reg *>&1 | Out-Null}
 Remove-Item "c:\temp\scriptdownloads\photoviewer.reg"
-echo "Photoviewer installed..."
-echo "Please confirm if that is installed by checking with a compatible file type and change default photos app to this."
-echo "-"
-echo "Please continue."
+Write-Output "Photoviewer installed..."
+Write-Output "Please confirm if that is installed by checking with a compatible file type and change default photos app to this."
+Write-Output "-"
+Write-Output "Please continue."
 } else {
-echo "Not installing Photoviewer (Windows 7 verision)...."
-echo "Please continue."
+Write-Output "Not installing Photoviewer (Windows 7 verision)...."
+Write-Output "Please continue."
 cl
 }}
 
@@ -453,8 +445,8 @@ if ($myInput -eq 'off') {
 Invoke-Command {reg add HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v EnableLUA /t REG_DWORD /d 0 /f}
 }
 if ($myInput -eq 'N') {
-echo "Not modying UAC..."
-echo "Please continue. (may require a restart but not always needed)"
+Write-Output "Not modying UAC..."
+Write-Output "Please continue. (may require a restart but not always needed)"
 cl
 }}
 
@@ -468,7 +460,7 @@ cl
 do { $myInput = (Read-Host 'Would you like to enable Bitlocker? (Y/N)').ToLower() } while ($myInput -notin @('Y','N'))
 if ($myinput -eq 'Y') {
 $localmachine = $env:computername
-echo "Staring encryption..."
+Write-Output "Staring encryption..."
 ""
 manage-bde -protectors -add C: -RecoveryPassword > C:\temp\$localmachine.RecoveryPassword.txt
 manage-bde -protectors -add C: -tpm > C:\temp\$localmachine.RecoveryPassword.txt
@@ -483,31 +475,31 @@ $RecoveryProtector = $BitLocker.KeyProtector | Where-Object { $_.KeyProtectorTyp
 Backup-BitLockerKeyProtector -MountPoint $env:SystemDrive -KeyProtectorId $RecoveryProtector.KeyProtectorID
 BackupToAAD-BitLockerKeyProtector -MountPoint $env:SystemDrive -KeyProtectorId $RecoveryProtector.KeyProtectorID
 
-echo "If you get an error this is regarding GPO it's an automatic command to push to AD. (This will need to be re-run from manual install)"
-echo "If you get an error regarding BackUptoAAD this is for AzureActive Directory so it can be safely ignored."
-echo "Stored recovery key in C:\temp\"
+Write-Output "If you get an error this is regarding GPO it's an automatic command to push to AD. (This will need to be re-run from manual install)"
+Write-Output "If you get an error regarding BackUptoAAD this is for AzureActive Directory so it can be safely ignored."
+Write-Output "Stored recovery key in C:\temp\"
 ""
 ""
-echo "If bitlocker recovery is not in AD you use option 11 from the manual select menu."
-echo "Make sure to restart for it to start bitlocker encryption."
+Write-Output "If bitlocker recovery is not in AD you use option 11 from the manual select menu."
+Write-Output "Make sure to restart for it to start bitlocker encryption."
 ""
-echo "Make sure to restart this before applying windows update."
+Write-Output "Make sure to restart this before applying windows update."
 pause
 cl
 }
 
 if ($myinput -eq 'n') {
 ""
-echo "Bitlocker will not be setup..."
+Write-Output "Bitlocker will not be setup..."
 ""
-echo "Please continue."
+Write-Output "Please continue."
 cl
 }}
 
 function start-bitlocker-updaterecovery {
 cl
 ""
-echo "Updating Bitlocker recovery key to AD..."
+Write-Output "Updating Bitlocker recovery key to AD..."
 ""
 $BitLocker = Get-BitLockerVolume -MountPoint $env:SystemDrive
 $RecoveryProtector = $BitLocker.KeyProtector | Where-Object { $_.KeyProtectorType -eq 'RecoveryPassword' }
@@ -515,11 +507,11 @@ $RecoveryProtector = $BitLocker.KeyProtector | Where-Object { $_.KeyProtectorTyp
 Backup-BitLockerKeyProtector -MountPoint $env:SystemDrive -KeyProtectorId $RecoveryProtector.KeyProtectorID
 BackupToAAD-BitLockerKeyProtector -MountPoint $env:SystemDrive -KeyProtectorId $RecoveryProtector.KeyProtectorID
 ""
-echo "Done."
+Write-Output "Done."
 ""
-echo "If you get an error regarding BackUptoAAD this is for AzureActive Directory so it can be safely ignored."
-echo "Check that the recoverykey/password matches the one in the c:\temp if it is, remove the one in c:\temp and continue."
-echo "Please confirm the recovery key is in AD."
+Write-Output "If you get an error regarding BackUptoAAD this is for AzureActive Directory so it can be safely ignored."
+Write-Output "Check that the recoverykey/password matches the one in the c:\temp if it is, remove the one in c:\temp and continue."
+Write-Output "Please confirm the recovery key is in AD."
 pause
 }
 
@@ -531,10 +523,10 @@ if ($myinput -eq 'Y') {
 Invoke-Command {reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender Security Center\Systray" /v HideSystray /t reg_dword /d 1 /f} > $null 2>&1 # Removes Windows Defender from taskbar
 ""
 Set-NetFirewallProfile -Profile Domain -Enabled False
-echo "Windows Firewall disabled for Domain network."
+Write-Output "Windows Firewall disabled for Domain network."
 }
-else {echo "Windows Firewall for Domain network not disabled."
-echo "Please continue."
+else {Write-Output "Windows Firewall for Domain network not disabled."
+Write-Output "Please continue."
 }}
 
 function start-rename-computer {
@@ -548,7 +540,7 @@ Rename-Computer -NewName "$ComputerName" -passthru
 pause
 }
 else {
-echo "Will not rename computer..."
+Write-Output "Will not rename computer..."
 cl
 }}
 
@@ -559,40 +551,40 @@ if ($myinput -eq 'Y') {
 ""
 $DomainName = Read-Host -Prompt 'Enter the domain name to join this PC'
 ""
-echo "Use domain credentials to join the PC to domain. With the Domain at the start e.g. Domain\Administrator"
+Write-Output "Use domain credentials to join the PC to domain. With the Domain at the start e.g. Domain\Administrator"
 ""
-sleep 5
+Start-Sleep 5
 add-computer –domainname "$DomainName" -PassThru -Options JoinWithNewName,AccountCreate
 ""
-echo "The above may not be accurate. (Because a restart is required to update the information)."
+Write-Output "The above may not be accurate. (Because a restart is required to update the information)."
 ""
-echo "Just to be sure..."
-echo "Providing Hostname & Domain output..."
+Write-Output "Just to be sure..."
+Write-Output "Providing Hostname & Domain output..."
 ""
 hostname
 systeminfo | findstr /B "Domain"
 ""
-echo "Please check if the above information is correct and then continue."
+Write-Output "Please check if the above information is correct and then continue."
 pause
 }
 else {
-echo "PC Will not be joined to the domain."
-echo "Please continue."
+Write-Output "PC Will not be joined to the domain."
+Write-Output "Please continue."
 cl
 }}
 
 function start-power-config {
 cl
 ""
-echo "Set power options."
+Write-Output "Set power options."
 ""
-echo "Laptop: Hiberate on power button and do nothing when the lid closes. Show Hibernate button on start menu."
-echo "Desktop: Show hibernate button on start menu. Disable sleep."
+Write-Output "Laptop: Hiberate on power button and do nothing when the lid closes. Show Hibernate button on start menu."
+Write-Output "Desktop: Show hibernate button on start menu. Disable sleep."
 ""
 do { $myInput = (Read-Host 'Change power settings?(laptop/desktop/N)').ToLower() } while ($myInput -notin @('laptop','desktop','N'))
 if ($myinput -eq 'laptop') {
 ""
-echo "Modifying Power settings for laptop..."
+Write-Output "Modifying Power settings for laptop..."
 ""
 powercfg -setdcvalueindex SCHEME_CURRENT 4f971e89-eebd-4455-a8de-9e59040e7347 7648efa3-dd9c-4e3e-b566-50f929386280 2
 powercfg -setacvalueindex SCHEME_CURRENT 4f971e89-eebd-4455-a8de-9e59040e7347 7648efa3-dd9c-4e3e-b566-50f929386280 2
@@ -600,38 +592,38 @@ powercfg -setacvalueindex SCHEME_CURRENT sub_buttons lidaction 0
 powercfg -setdcvalueindex SCHEME_CURRENT sub_buttons lidaction 0
 Invoke-Command {reg add HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FlyoutMenuSettings /v ShowHibernateOption /t reg_dword /d 1 /f}
 ""
-echo "Done."
-echo "Please continue."
+Write-Output "Done."
+Write-Output "Please continue."
 ""
 pause
 cl
 }
 if ($myinput -eq 'desktop') { 
 ""
-echo "Modifying Power settings for Desktop..."
+Write-Output "Modifying Power settings for Desktop..."
 ""
 Invoke-Command {reg add HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FlyoutMenuSettings /v ShowHibernateOption /t reg_dword /d 1 /f}
 powercfg -change -standby-timeout-dc 0
 powercfg -change -standby-timeout-ac 0
 ""
-echo "Done."
-echo "Please continue."
+Write-Output "Done."
+Write-Output "Please continue."
 ""
 pause
 cl
 }
 if ($myinput -eq 'N') {
 ""
-echo "Not modifying power settings..."
+Write-Output "Not modifying power settings..."
 pause
 cl
 }}
 
 function start-disable-defrag {
 cl
-echo "This is for disabiling disk defrag for SSD."
+Write-Output "This is for disabiling disk defrag for SSD."
 ""
-echo "Providing output for current drives on the machine."
+Write-Output "Providing output for current drives on the machine."
 ""
 Get-PhysicalDisk | Format-Table -AutoSize
 ""
@@ -639,14 +631,14 @@ do { $myInput = (Read-Host 'Disable disk frag? (Y/N)').ToLower() } while ($myInp
 if ($myinput -eq 'Y') {
 schtasks /Delete /TN "\Microsoft\Windows\Defrag\ScheduledDefrag"  /f
 ""
-echo "Please continue."
+Write-Output "Please continue."
 ""
 pause
 cl
 }
 else {
 ""
-echo "Not modifying Disk defrag."
+Write-Output "Not modifying Disk defrag."
 ""
 pause
 cl
@@ -659,14 +651,14 @@ if ($myinput -eq 'Y') {
 ""
 Enable-ComputerRestore -Drive "C:\"
 ""
-echo "If you get an empty output, it's enabled but double check from settings."
+Write-Output "If you get an empty output, it's enabled but double check from settings."
 ""
 pause
 cl
 }
 else {
 ""
-echo "Not modifying System Restore Point"
+Write-Output "Not modifying System Restore Point"
 ""
 pause
 }}
@@ -679,25 +671,25 @@ if ($myinput -eq 'Y') {
 C:\Windows10Upgrade\Windows10UpgraderApp.exe /ForceUninstall
 Remove-Item C:\Windows10Upgrade\*.* -recurse -force > $null 2>&1
 ""
-echo "Removed Windows10 Update assistant..."
+Write-Output "Removed Windows10 Update assistant..."
 }
 else {
 ""
-echo "Not removing Windows10 Update assistant..."
+Write-Output "Not removing Windows10 Update assistant..."
 }}
-#<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<If you want to add additonal features, start adding from above. Then add to manual-script and start-script.>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<If you want to add additonal features, start adding from above. Then add to start-manual-script and start-script.>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 function start-windows-update {
 cl
 ""
-echo "Run this last, if you have an old verison of windows and a feature update is applicable it will not move from the status checker until it restarts."
-echo "If you enabled bitlocker and still haven't restart, do it now and then use manual select option 50 to come back here."
+Write-Output "Run this last, if you have an old verison of windows and a feature update is applicable it will not move from the status checker until it restarts."
+Write-Output "If you enabled bitlocker and still haven't restart, do it now and then use manual select option 50 to come back here."
 ""
 Install-PackageProvider -Name NuGet -Force -MinimumVersion 2.8.5.201 > $null 2>&1
 Install-Module -Name PendingReboot -Force > $null 2>&1
 ""
-Echo "Checking if this PC requires a reboot..."
-echo "If you get an empty output it means no restarts are required."
+Write-Output "Checking if this PC requires a reboot..."
+Write-Output "If you get an empty output it means no restarts are required."
 ""
 Test-PendingReboot -SkipConfigurationManagerClientCheck
 ""
@@ -712,10 +704,10 @@ if ($WindowsVerison -le $OldWindows) {
 #Removes the Upgrader app if it's installed.
 C:\Windows10Upgrade\Windows10UpgraderApp.exe /ForceUninstall > $null 2>&1
 Remove-Item C:\Windows10Upgrade\*.* -recurse -force > $null 2>&1
-cls
+cl
 #
-echo "Starting windows updates..."
-echo "Please wait..."
+Write-Output "Starting windows updates..."
+Write-Output "Please wait..."
 $dir = 'C:\temp\scriptdownloads\packages'
 Remove-Item $dir -recurse -force > $null 2>&1
 mkdir $dir > $null 2>&1
@@ -726,16 +718,16 @@ $webClient.DownloadFile($url,$file)
 Start-Process -FilePath $file -ArgumentList '/skipeula /auto upgrade /copylogs $dir'
 ""
 #start-windows-update-running-checker <may not be needed.
-echo "Please re-run the bloatware remover after restarting as doing a feature update may add new bloatware back in."
+Write-Output "Please re-run the bloatware remover after restarting as doing a feature update may add new bloatware back in."
 ""
-echo "The script is setup to exit after hitting enter."
+Write-Output "The script is setup to exit after hitting enter."
 ""
-end-script
+start-end-script
 }
 if ($LatestWindows -match $LatestWindows) {
 ""
-echo "This is the latest Windows feature update."
-echo "Starting normal windows update instead..."
+Write-Output "This is the latest Windows feature update."
+Write-Output "Starting normal windows update instead..."
 start-windows-update-nofeature
 }}}
 
@@ -744,19 +736,19 @@ cl
 do { $myInput = (Read-Host 'Continue with updates? (This is already latest Windows Version only applying normal updates) (Y/N)').ToLower() } while ($myInput -notin @('Y','N'))
 if ($myinput -eq 'Y') {
 ""
-echo "Starting windows updates..."
-echo "Please wait..."
+Write-Output "Starting windows updates..."
+Write-Output "Please wait..."
 ""
 Install-PackageProvider -Name NuGet -Force -MinimumVersion 2.8.5.201 > $null 2>&1
 Install-Module -Name PSWindowsUpdate -Force > $null 2>&1
 ""
-echo "Checking windows update status..."
+Write-Output "Checking windows update status..."
 Install-WindowsUpdate -AcceptAll -Install -MicrosoftUpdate -Verbose | Out-File "c:\temp\$(get-date -f dd-MM-yyyy-HH-mm)-WindowsUpdate.log" -force
 ""
-echo "Stored windows update log in c:\temp it goes from dd-MM-yyyy-HH-mm-windowsupdate.log"
-echo "Restart the PC if it prompts, then try run the updates again to confirm it's completed."
+Write-Output "Stored windows update log in c:\temp it goes from dd-MM-yyyy-HH-mm-windowsupdate.log"
+Write-Output "Restart the PC if it prompts, then try run the updates again to confirm it's completed."
 ""
-echo "Here is the current update history for this computer."
+Write-Output "Here is the current update history for this computer."
 get-wmiobject -class win32_quickfixengineering
 ""
 ""
@@ -764,7 +756,7 @@ pause
 }
 else {
 ""
-echo "Not installing windows updates..."
+Write-Output "Not installing windows updates..."
 ""
 pause
 cl
@@ -773,12 +765,12 @@ cl
 # Function not in use.
 function start-windows-update-running-checker {
 Start-Sleep -seconds 30
-echo "Checking status of updater..."
+Write-Output "Checking status of updater..."
 $ProcessList = @(
     "Windows10UpgraderApp" #or whatever you want to monitor
 )
 Do {  
-    $ProcessesFound = Get-Process | ? {$ProcessList -contains $_.Name} | Select-Object -ExpandProperty Name
+    $ProcessesFound = Get-Process | Where-Object {$ProcessList -contains $_.Name} | Select-Object -ExpandProperty Name
     If ($ProcessesFound) {
 		cl
         Write-Host "Still running: $($ProcessesFound)"
@@ -818,53 +810,53 @@ start-disable-defrag
 start-systemrestorepoint
 start-windows-update # MAKE SURE THIS IS THE LAST ONE ON THE LSIT
 cl
-echo "This will now return to main menu, if you wish to exit, exit from the menu."
-echo "If you would like to re-run a install that didn't work, use option 1 from the menu."
-main-menu
+Write-Output "This will now return to main menu, if you wish to exit, exit from the menu."
+Write-Output "If you would like to re-run a install that didn't work, use option 1 from the menu."
+start-main-menu
 }
 
-function manual-script {
+function start-manual-script {
 cl
 $createdby
 $verifiedby
 $lastupdatedby
 ""
-echo "Removing & creating directory in C:\temp\scriptdownloads..."
+Write-Output "Removing & creating directory in C:\temp\scriptdownloads..."
 mkdir c:\temp > $null 2>&1
 Remove-Item c:\temp\scriptdownloads -recurse -force > $null 2>&1
 mkdir c:\temp\scriptdownloads > $null 2>&1
-echo "Done."
+Write-Output "Done."
 ""
-echo "Manual install has been selected, please choose what you would like to install selectively."
+Write-Output "Manual install has been selected, please choose what you would like to install selectively."
 ""
-echo "Option 1: Software install."
-echo "Option 2: VPN Install (NeteXtender/GlobalVPN)."
-echo "Option 3: Mimecast install for Outlook."
-echo "Option 4: Windows10 Bloatware removal."
-echo "Option 5: HP Bloatware removal."
-echo "Option 6: Clear start menu and apply taskbar applications."
-echo "Option 7: Install Photoviewer."
-echo "Option 8: Modify UAC."
-echo "Option 9: Reapply shortcuts & default apps."
-echo "Option 10: Enable Bitlocker."
-echo "Option 11: Update Bitlocker recovery password to AD."
-echo "Option 12: Office uninstall tool. (Only use this if you can't use option 13)"
-echo "Option 13: Uninstall Office using script."
-echo "Option 14: Add run as administrator on ps1 context menu."
-echo "Option 15: Disable Windows Firewall on Domain network."
-echo "Option 16: Join PC to domain"
-echo "Option 17: Rename PC"
-echo "Option 18: Set power config (Laptop/Desktop)"
-echo "Option 19: Disable disk defrag (For SSD)."
-echo "Option 20: Enable SystemRestore Point"
-echo "Option 21: Dell Bloatware removal"
-echo "Option 22: Remove Windows10 Update Assistant"
+Write-Output "Option 1: Software install."
+Write-Output "Option 2: VPN Install (NeteXtender/GlobalVPN)."
+Write-Output "Option 3: Mimecast install for Outlook."
+Write-Output "Option 4: Windows10 Bloatware removal."
+Write-Output "Option 5: HP Bloatware removal."
+Write-Output "Option 6: Clear start menu and apply taskbar applications."
+Write-Output "Option 7: Install Photoviewer."
+Write-Output "Option 8: Modify UAC."
+Write-Output "Option 9: Reapply shortcuts & default apps."
+Write-Output "Option 10: Enable Bitlocker."
+Write-Output "Option 11: Update Bitlocker recovery password to AD."
+Write-Output "Option 12: Office uninstall tool. (Only use this if you can't use option 13)"
+Write-Output "Option 13: Uninstall Office using script."
+Write-Output "Option 14: Add run as administrator on ps1 context menu."
+Write-Output "Option 15: Disable Windows Firewall on Domain network."
+Write-Output "Option 16: Join PC to domain"
+Write-Output "Option 17: Rename PC"
+Write-Output "Option 18: Set power config (Laptop/Desktop)"
+Write-Output "Option 19: Disable disk defrag (For SSD)."
+Write-Output "Option 20: Enable SystemRestore Point"
+Write-Output "Option 21: Dell Bloatware removal"
+Write-Output "Option 22: Remove Windows10 Update Assistant"
 
 #last options
-echo "Option 50: Start windows updates (Includes feature update)"
+Write-Output "Option 50: Start windows updates (Includes feature update)"
 ""
-echo "Option MainMenu: Re-directs to main menu"
-echo "Option Exit: Exits launcher from sub-menu."
+Write-Output "Option MainMenu: Re-directs to main menu"
+Write-Output "Option Exit: Exits launcher from sub-menu."
 ""
 do { $myInput = (Read-Host 'Choose from the above option').ToLower() } while ($myInput -notin @('1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','50','exit','mainmenu'))
 if ($myInput -eq '1') {start-softwareinstall}
@@ -891,23 +883,23 @@ if ($myinput -eq '21') {start-dellbloatwareremoval}
 if ($myinput -eq '22') {start-removewindows10updateassistant}
 
 if ($myinput -eq '50') {start-windows-update}
-if ($myinput -eq 'mainmenu') {main-menu}
-if ($myinput -eq 'exit') {end-script}
-manual-script
+if ($myinput -eq 'mainmenu') {start-main-menu}
+if ($myinput -eq 'exit') {start-end-script}
+start-manual-script
 }
 
-function end-script {
+function start-end-script {
 cl
 $createdby
 $verifiedby
 $lastupdatedby
-echo "End of script."
+Write-Output "End of script."
 ""
-echo "Clearing c:\temps\scriptdownloads."
+Write-Output "Clearing c:\temps\scriptdownloads."
 Remove-item c:\temp\scriptdownloads -recurse -force > $null 2>&1
-echo "Done..."
+Write-Output "Done..."
 ""
-echo "Please press any key."
+Write-Output "Please press any key."
 pause
 exit
 }
@@ -924,41 +916,41 @@ $createdby
 $verifiedby
 $lastupdatedby
 
-echo "Important! It is recommended that this is run before creating any user accounts/logging into them."
-echo "Meaning there should only be one account setup a this current time."
-echo "This is because default settings only apply before user creation"
+Write-Output "Important! It is recommended that this is run before creating any user accounts/logging into them."
+Write-Output "Meaning there should only be one account setup a this current time."
+Write-Output "This is because default settings only apply before user creation"
 ""
-echo "=============================================================================="
-echo "This is is a generic script for setting up new machines."
-echo "=============================================================================="
+Write-Output "=============================================================================="
+Write-Output "This is is a generic script for setting up new machines."
+Write-Output "=============================================================================="
 ""
-echo "The following options will be given during the script."
+Write-Output "The following options will be given during the script."
 ""
-echo ")Install 7zip, Chrome, Adobe reader, GlobalVPN/NeteXtender, Mimecast for Outlook, Office365 Apps."
-echo ")Sending key applications shortcuts to desktop."
-echo ")Set default apps, Outlook & chrome."
-echo ")Removing Windows 10 Store apps."
-echo ")HP Bloatware remover." 
-echo ")Removing pinned tiles from start menu (and creates a default for new/current users)." 
-echo ")Pin & remove taskbar applications."
-echo ")Removing web search from search bar."
-echo ")Disabling cortana & removing taskview from taskbar."
-echo ")Add run administrators on .ps1 context menu."
-echo ")Installing photoviewer. (Not Microsoft Photos)." 
-echo ")Disable or use Dimmed UAC." 
-echo ")Enable bitlocker."
-echo ")Update Bitlocker recovery key to AD."
-echo ")Uninstall Office365 tool."
-echo ")Disable Windows firewall on Domain network."
-echo ")Join PC to Domain"
-echo ")Rename PC"
-echo ")Set power config (Laptop/Desktop)"
-echo ")Disable defrag for SSDs"
-echo ")Windows Updates. (Includes feature updates)"
-echo ")Enable SystemRestore Point"
-echo ")Dell Bloatware-Removal"
+Write-Output ")Install 7zip, Chrome, Adobe reader, GlobalVPN/NeteXtender, Mimecast for Outlook, Office365 Apps."
+Write-Output ")Sending key applications shortcuts to desktop."
+Write-Output ")Set default apps, Outlook & chrome."
+Write-Output ")Removing Windows 10 Store apps."
+Write-Output ")HP Bloatware remover." 
+Write-Output ")Removing pinned tiles from start menu (and creates a default for new/current users)." 
+Write-Output ")Pin & remove taskbar applications."
+Write-Output ")Removing web search from search bar."
+Write-Output ")Disabling cortana & removing taskview from taskbar."
+Write-Output ")Add run administrators on .ps1 context menu."
+Write-Output ")Installing photoviewer. (Not Microsoft Photos)." 
+Write-Output ")Disable or use Dimmed UAC." 
+Write-Output ")Enable bitlocker."
+Write-Output ")Update Bitlocker recovery key to AD."
+Write-Output ")Uninstall Office365 tool."
+Write-Output ")Disable Windows firewall on Domain network."
+Write-Output ")Join PC to Domain"
+Write-Output ")Rename PC"
+Write-Output ")Set power config (Laptop/Desktop)"
+Write-Output ")Disable defrag for SSDs"
+Write-Output ")Windows Updates. (Includes feature updates)"
+Write-Output ")Enable SystemRestore Point"
+Write-Output ")Dell Bloatware-Removal"
 ""
-main-menu
+start-main-menu
 
 # SIG # Begin signature block
 # MIIFdQYJKoZIhvcNAQcCoIIFZjCCBWICAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
