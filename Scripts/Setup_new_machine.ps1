@@ -9,7 +9,7 @@
 
 $createdby = Write-Output "==================================Created By MQ 08/09/2020================================"
 $verifiedby = Write-Output "=================================Verified By XX XX/XX/XXXX================================"
-$lastupdatedby = Write-Output "===============================Last Updated By MQ 04/10/2020=============================="
+$lastupdatedby = Write-Output "===============================Last Updated By MQ 11/10/2020=============================="
 
 $WindowsVerison = (Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion").ReleaseId
 $LatestWindows = '2004' #Current Windows verison
