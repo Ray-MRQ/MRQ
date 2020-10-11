@@ -712,6 +712,7 @@ Write-Output "If you enabled bitlocker and still haven't restart, do it now and 
 ""
 Install-PackageProvider -Name NuGet -Force -MinimumVersion 2.8.5.201 > $null 2>&1
 Install-Module -Name PendingReboot -Force > $null 2>&1
+Import-Module -Name PendingReboot -Force > $null 2>&1
 ""
 Write-Output "Checking if this PC requires a reboot..."
 Write-Output "If you get an empty output it means no restarts are required."
