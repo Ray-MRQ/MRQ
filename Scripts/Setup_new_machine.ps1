@@ -4,7 +4,7 @@
   Start-Process powershell -Verb runAs -ArgumentList $arguments
   Break
 }
-
+Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Force -scope localmachine
 #The below are "functions" so they only act as reference  for the Main menu to run commands. The actual script starts from the bottom and then references everything else above."
 
 $createdby = Write-Output "==================================Created By MQ 08/09/2020================================"
@@ -962,6 +962,7 @@ Write-Output "Done..."
 ""
 Write-Output "Please press any key."
 pause
+Set-ExecutionPolicy -ExecutionPolicy Restricted -Force -scope localmachine
 exit
 }
 
