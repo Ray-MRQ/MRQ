@@ -741,7 +741,6 @@ $RebootFlags = [pscustomobject]@{
                          -ne 0)
 
     WMI_DetermineIfRebootPending =   (Invoke-WmiMethod -ComputerName 'localhost' -Namespace root\ccm\clientsdk -Class CCM_ClientUtilities -Name DetermineIfRebootPending  -ErrorAction SilentlyContinue ).RebootPending
-  
 }
 
 $RebootFlags
@@ -757,7 +756,6 @@ $Reboot_Required
 pause
 Clear-Host
 ""
-Clear-Host
 do { $myInput = (Read-Host 'Start Windows updates? (If applicable it will also apply feature updates.) (Y/N)').ToLower() } while ($myInput -notin @('Y','N'))
 if ($myinput -eq 'Y') {
 ""
