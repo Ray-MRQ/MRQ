@@ -72,31 +72,10 @@ Write-Output "Please confirm below."
 ""
 pause
 cl
-#=====================================================
 
-$uninstallKeys = Get-ChildItem -Path "HKLM:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall"
-$O365 = "Microsoft 365"
-$O365Check = $uninstallKeys | Where-Object { $_.GetValue("DisplayName") -match $O365 }
+#Run OfficeUninstall Check
+start-officecheck
 
-$uninstallKeysHome = Get-ChildItem -Path "HKLM:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall"
-$O365Home = "Microsoft Office 365"
-$O365CheckHome = $uninstallKeysHome | Where-Object { $_.GetValue("DisplayName") -match $O365Home }
-
-$O365Installed = Write-Output "Office 365 is installed."
-$O365NotInstalled = Write-Output "Office 365 is not installed."
-if ($O365Check) {
-$O365Installed
-""
-start-officeuninstall
-}
-if ($O365CheckHome) {
-start-officeuninstall
-}
-else {
-$O365NotInstalled
-""
-start-officeinstall
-}
 ""
 Write-Output "Starting download and install for 7Zip, Chrome & Adobe Reader..."
 $ProgressPreference = 'SilentlyContinue'
@@ -120,7 +99,33 @@ $ProgressPreference = 'Continue'
 Start-Process msiexec.exe -Wait -ArgumentList '/i c:\temp\scriptdownloads\ZoomInstaller.msi /qn /norestart allusers=2'
 }}
 
-function start-officeuninstall {
+start-officecheck {
+$uninstallKeys = Get-ChildItem -Path "HKLM:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall"
+$O365 = "Microsoft 365"
+$O365Check = $uninstallKeys | Where-Object { $_.GetValue("DisplayName") -match $O365 }
+
+$uninstallKeysHome = Get-ChildItem -Path "HKLM:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall"
+$O365Home = "Microsoft Office 365"
+$O365CheckHome = $uninstallKeysHome | Where-Object { $_.GetValue("DisplayName") -match $O365Home }
+
+$O365Installed = Write-Output "Office 365 is installed."
+$O365NotInstalled = Write-Output "Office 365 is not installed."
+if ($O365Check) {
+$O365Installed
+""
+start-officeuninstall-pro
+}
+if ($O365CheckHome) {
+start-officeuninstall-home
+}
+else {
+$O365NotInstalled
+""
+start-officeinstall
+}
+}
+
+function start-officeuninstall-pro {
 ""
 do { $myInput = (Read-Host 'Would you like to uninstall Office365?(Y/N)').ToLower() } while ($myInput -notin @('y','n'))
 if ($myinput -eq 'y') {
@@ -130,10 +135,8 @@ Write-Output "Starting uninstall process..."
 $ProgressPreference = 'SilentlyContinue'
 Invoke-WebRequest $OfficeExe -outfile c:\temp\scriptdownloads\office365setup.exe
 Invoke-WebRequest $OfficeXMLUninstall -outfile c:\temp\scriptdownloads\office365uninstall.xml
-Invoke-WebRequest $OfficeXMLHomeUninstall -outfile c:\temp\scriptdownloads\office365uninstallhome.xml
 $ProgressPreference = 'Continue'
 c:\temp\scriptdownloads\office365setup.exe /configure c:\temp\scriptdownloads\office365uninstall.xml
-c:\temp\scriptdownloads\office365setup.exe /configure c:\temp\scriptdownloads\office365uninstallhome.xml
 Write-Output "Office365 ProPlus should be uninstalled."
 Write-Output "If not, use option 12 and use the support tool to uninstall."
 ""
@@ -142,6 +145,27 @@ pause
 cl
 }
 }
+
+function start-officeuninstall-home {
+    ""
+    do { $myInput = (Read-Host 'Would you like to uninstall Office365?(Y/N)').ToLower() } while ($myInput -notin @('y','n'))
+    if ($myinput -eq 'y') {
+    ""
+    Write-Output "Starting uninstall process..."
+    ""
+    $ProgressPreference = 'SilentlyContinue'
+    Invoke-WebRequest $OfficeExe -outfile c:\temp\scriptdownloads\office365setup.exe
+    Invoke-WebRequest $OfficeXMLHomeUninstall -outfile c:\temp\scriptdownloads\office365uninstallhome.xml
+    $ProgressPreference = 'Continue'
+    c:\temp\scriptdownloads\office365setup.exe /configure c:\temp\scriptdownloads\office365uninstallhome.xml
+    Write-Output "Office365 ProPlus should be uninstalled."
+    Write-Output "If not, use option 12 and use the support tool to uninstall."
+    ""
+    pause
+    ""
+    cl
+    }
+    }
 
 function start-officeinstall {
 cl
@@ -871,7 +895,7 @@ if ($myinput -eq '9') {start-shortcuts-default-apps}
 if ($myinput -eq '10') {start-bitlocker}
 if ($myinput -eq '11') {start-bitlocker-updaterecovery}
 if ($myinput -eq '12') {start-officeuninstalltool}
-if ($myinput -eq '13') {start-officeuninstall}
+if ($myinput -eq '13') {start-officecheck}
 if ($myinput -eq '14') {start-addrunasps1}
 if ($myinput -eq '15') {start-disablefirewall-domain}
 if ($myinput -eq '16') {start-joindomain}
