@@ -711,7 +711,6 @@ Write-Output "Run this last, if you have an old verison of windows and a feature
 Write-Output "If you enabled bitlocker and still haven't restart, do it now and then use manual select option 50 to come back here."
 ""
 Write-Output "Checking if this PC requires a reboot..."
-Write-Output "If you get an empty output it means no restarts are required."
 ""
 $RebootFlags = [pscustomobject]@{
     
@@ -752,6 +751,8 @@ if( $RebootFlags.PSObject.Properties | ForEach-Object {if ($_.value) {$True} } )
     }
 
 $Reboot_Required
+""
+Write-Host "If there is true anywhere above a restart is required, restart before going ahead."
 ""
 pause
 Clear-Host
