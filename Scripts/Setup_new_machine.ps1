@@ -49,7 +49,8 @@ Write-Output "Option 3: Exit installer"
 do { $myInput = (Read-Host 'Type an option').ToLower() } while ($myInput -notin @('1','2','3'))
 if ($myinput -eq '1') {start-script}
 if ($myinput -eq '2') {start-manual-script}
-if ($myinput -eq '3') {start-end-script}}
+if ($myinput -eq '3') {start-end-script}
+}
 
 function start-softwareinstall {
 Write-Output "Removing & creating directory in C:\temp\scriptdownloads..."
@@ -165,7 +166,7 @@ function start-officeuninstall-home {
     ""
     cl
     }
-    }
+}
 
 function start-officeinstall {
 cl
@@ -477,7 +478,8 @@ cl
 function start-addrunasps1 { 
 Invoke-WebRequest $RunAsAdministratorPS -outfile c:\temp\RunAsAdminContextMenupowershell.reg
 Invoke-Command {reg import C:\temp\RunAsAdminContextMenupowershell.reg *>&1 | Out-Null}
-remove-item "C:\temp\RunAsAdminContextMenupowershell.reg"}
+remove-item "C:\temp\RunAsAdminContextMenupowershell.reg"
+}
 
 function start-bitlocker {
 cl
