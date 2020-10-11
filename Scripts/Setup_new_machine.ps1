@@ -100,7 +100,7 @@ $ProgressPreference = 'Continue'
 Start-Process msiexec.exe -Wait -ArgumentList '/i c:\temp\scriptdownloads\ZoomInstaller.msi /qn /norestart allusers=2'
 }}
 
-start-officecheck {
+function start-officecheck {
 $uninstallKeys = Get-ChildItem -Path "HKLM:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall"
 $O365 = "Microsoft 365"
 $O365Check = $uninstallKeys | Where-Object { $_.GetValue("DisplayName") -match $O365 }
