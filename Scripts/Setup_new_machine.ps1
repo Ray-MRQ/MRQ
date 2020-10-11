@@ -58,7 +58,7 @@ mkdir c:\temp > $null 2>&1
 Remove-Item c:\temp\scriptdownloads -recurse -force > $null 2>&1
 mkdir c:\temp\scriptdownloads > $null 2>&1
 Write-Output "============================================================================="
-cls
+Clear-Host
 $createdby
 $verifiedby
 $lastupdatedby
@@ -72,7 +72,7 @@ Write-Output 7Zip Chrome "Adobe Reader" "Office365 Applications 32Bit" "Zoom (Op
 Write-Output "Please confirm below."
 ""
 pause
-cls
+Clear-Host
 
 #Run OfficeUninstall Check
 start-officecheck
@@ -143,7 +143,7 @@ Write-Output "If not, use option 12 and use the support tool to uninstall."
 ""
 pause
 ""
-cls
+Clear-Host
 }
 }
 
@@ -164,12 +164,12 @@ Write-Output "If not, use option 12 and use the support tool to uninstall."
 ""
 pause
 ""
-cls
+Clear-Host
 }
 }
 
 function start-officeinstall {
-cls
+Clear-Host
 do { $myInput = (Read-Host 'Would you like to install Office365?(Y/N)').ToLower() } while ($myInput -notin @('y','n'))
 if ($myInput -eq 'y') {
 ""
@@ -199,11 +199,11 @@ C:\temp\scriptdownloads\officeuninstall.exe
 ""
 Write-Output "Go through the prompts then continue."
 pause
-cls
+Clear-Host
 }
 
 function start-mimecastinstall {
-cls
+Clear-Host
 do { $myInput = (Read-Host 'Would you like to install Mimecast for Outlook 32Bit?(Y/N)').ToLower() } while ($myInput -notin @('y','n'))
 if ($myInput -eq 'y') {
 ""
@@ -225,7 +225,7 @@ Write-Output "Please continue."
 }}
 
 function start-vpninstall {
-cls
+Clear-Host
 do { $myInput = (Read-Host 'Would you like to install GlobalVPN or NeteXtender? Or none? (Global/Net/N)').ToLower() } while ($myInput -notin @('global','net','N'))
 if ($myInput -eq 'global') {
 ""
@@ -264,7 +264,7 @@ Write-Output "Please continue."
 }}
 
 function start-bloatwareremover {
-cls
+Clear-Host
 $ProgressPreference = "SilentlyContinue"
 #Windows10 Apps bloatware remover
 ""
@@ -279,18 +279,18 @@ Invoke-WebRequest $BloatwareRemoverWin10 -outfile c:\temp\scriptdownloads\bloatw
 powershell c:\temp\scriptdownloads\bloatwareremover.ps1
 Write-Output "Script complete..."
 $ProgressPreference = 'Continue'
-cls
+Clear-Host
 }
 if ($myinput -eq 'n') {
 Write-Output "windows 10 Bloatware apps will not be removed..."
 Write-Output "Please continue."
-cls
+Clear-Host
 }
 }
 
 function start-hpbloatwareremoval {
 #HP Crapware
-cls
+Clear-Host
 do { $myInput = (Read-Host 'Is this a HP workstation/laptop? If so would you like to remove bloatware for this as well? (Y/N)').ToLower() } while ($myInput -notin @('y','n'))
 if ($myInput -eq 'y') {
 Write-Output "This may take a while..."
@@ -305,12 +305,12 @@ pause
 } else {
 Write-Output 'Not removing Bloatware for HP workstation/laptop...'
 }
-cls
+Clear-Host
 }
 
 function start-dellbloatwareremoval {
 #Dell Crapware
-cls
+Clear-Host
 do { $myInput = (Read-Host 'Is this a Dell workstation/laptop? If so would you like to remove bloatware for this as well? (Y/N)').ToLower() } while ($myInput -notin @('y','n'))
 if ($myInput -eq 'y') {
 Write-Output "This may take a while..."
@@ -325,7 +325,7 @@ pause
 } else {
 Write-Output 'Not removing Bloatware for Dell workstation/laptop...'
 }
-cls
+Clear-Host
 }
 
 function start-shortcuts-default-apps {
@@ -352,7 +352,7 @@ Write-Output "Done."
 ""
 }
 function start-clearstartmenu {
-cls
+Clear-Host
 #Clear start menu
 Write-Output "Would you like to remove tiles and taskbar applications on the start menu? "
 Write-Output "This will become a default setting for new and current users"
@@ -408,7 +408,7 @@ Write-Output "==================================================================
 Write-Output "Complete... restarting proccesses"
 Write-Output "==========================================================================="
 Write-Output "This will refresh your screen..."
-cls
+Clear-Host
 Stop-Process -name explorer -Force
 Start-Sleep -s 5
 $wshell = New-Object -ComObject wscript.shell; $wshell.SendKeys('^{ESCAPE}')
@@ -436,12 +436,12 @@ Write-Output "Please continue."
 } else {
 Write-Output "Not removing any tiles from the start menu..."
 Write-Output "Please continue."
-cls
+Clear-Host
 }}
 
 function start-photoviewer {
 #Photoviewer regkey
-cls
+Clear-Host
 do { $myInput = (Read-Host 'Would you like to install Photo Viewer? (Windows7 verision) (Y/N)').ToLower() } while ($myInput -notin @('y','n'))
 if ($myInput -eq 'y') {
 Write-Output "Installing photo viewer...."
@@ -455,11 +455,11 @@ Write-Output "Please continue."
 } else {
 Write-Output "Not installing Photoviewer (Windows 7 verision)...."
 Write-Output "Please continue."
-cls
+Clear-Host
 }}
 
 function start-uac {
-cls
+Clear-Host
 #Dimm or turn off UAC
 do { $myInput = (Read-Host 'Would you like to modify UAC? (Dim/Off/N)').ToLower() } while ($myInput -notin @('dim','off','N'))
 if ($myInput -eq 'dim') {
@@ -471,7 +471,7 @@ Invoke-Command {reg add HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\
 if ($myInput -eq 'N') {
 Write-Output "Not modying UAC..."
 Write-Output "Please continue. (may require a restart but not always needed)"
-cls
+Clear-Host
 }}
 
 function start-addrunasps1 { 
@@ -481,7 +481,7 @@ remove-item "C:\temp\RunAsAdminContextMenupowershell.reg"
 }
 
 function start-bitlocker {
-cls
+Clear-Host
 do { $myInput = (Read-Host 'Would you like to enable Bitlocker? (Y/N)').ToLower() } while ($myInput -notin @('Y','N'))
 if ($myinput -eq 'Y') {
 $localmachine = $env:computername
@@ -510,7 +510,7 @@ Write-Output "Make sure to restart for it to start bitlocker encryption."
 ""
 Write-Output "Make sure to restart this before applying windows update."
 pause
-cls
+Clear-Host
 }
 
 if ($myinput -eq 'n') {
@@ -518,11 +518,11 @@ if ($myinput -eq 'n') {
 Write-Output "Bitlocker will not be setup..."
 ""
 Write-Output "Please continue."
-cls
+Clear-Host
 }}
 
 function start-bitlocker-updaterecovery {
-cls
+Clear-Host
 ""
 Write-Output "Updating Bitlocker recovery key to AD..."
 ""
@@ -541,7 +541,7 @@ pause
 }
 
 function start-disablefirewall-domain {
-cls
+Clear-Host
 do { $myInput = (Read-Host 'Disable Windows Firewall on Domain Network? (Y/N)').ToLower() } while ($myInput -notin @('Y','N'))
 if ($myinput -eq 'Y') {
 ""
@@ -555,7 +555,7 @@ Write-Output "Please continue."
 }}
 
 function start-rename-computer {
-cls
+Clear-Host
 do { $myInput = (Read-Host 'Would you like to re-name this computer? (Y/N)').ToLower() } while ($myInput -notin @('Y','N'))
 if ($myinput -eq 'Y') {
 ""
@@ -566,11 +566,11 @@ pause
 }
 else {
 Write-Output "Will not rename computer..."
-cls
+Clear-Host
 }}
 
 function start-joindomain {
-cls
+Clear-Host
 do { $myInput = (Read-Host 'Would you like to join this PC to a domain? (Y/N)').ToLower() } while ($myInput -notin @('Y','N'))
 if ($myinput -eq 'Y') {
 ""
@@ -595,11 +595,11 @@ pause
 else {
 Write-Output "PC Will not be joined to the domain."
 Write-Output "Please continue."
-cls
+Clear-Host
 }}
 
 function start-power-config {
-cls
+Clear-Host
 ""
 Write-Output "Set power options."
 ""
@@ -621,7 +621,7 @@ Write-Output "Done."
 Write-Output "Please continue."
 ""
 pause
-cls
+Clear-Host
 }
 if ($myinput -eq 'desktop') { 
 ""
@@ -635,17 +635,17 @@ Write-Output "Done."
 Write-Output "Please continue."
 ""
 pause
-cls
+Clear-Host
 }
 if ($myinput -eq 'N') {
 ""
 Write-Output "Not modifying power settings..."
 pause
-cls
+Clear-Host
 }}
 
 function start-disable-defrag {
-cls
+Clear-Host
 Write-Output "This is for disabiling disk defrag for SSD."
 ""
 Write-Output "Providing output for current drives on the machine."
@@ -659,18 +659,18 @@ schtasks /Delete /TN "\Microsoft\Windows\Defrag\ScheduledDefrag"  /f
 Write-Output "Please continue."
 ""
 pause
-cls
+Clear-Host
 }
 else {
 ""
 Write-Output "Not modifying Disk defrag."
 ""
 pause
-cls
+Clear-Host
 }}
 
 function start-systemrestorepoint {
-cls
+Clear-Host
 do { $myInput = (Read-Host 'Enable System Restore point? (Y/N)').ToLower() } while ($myInput -notin @('Y','N'))
 if ($myinput -eq 'Y') {
 ""
@@ -679,7 +679,7 @@ Enable-ComputerRestore -Drive "C:\"
 Write-Output "If you get an empty output, it's enabled but double check from settings."
 ""
 pause
-cls
+Clear-Host
 }
 else {
 ""
@@ -689,7 +689,7 @@ pause
 }}
 
 function start-removewindows10updateassistant {
-cls
+Clear-Host
 do { $myInput = (Read-Host 'Remove Windows10 Upadte assistant? (Y/N)').ToLower() } while ($myInput -notin @('Y','N'))
 if ($myinput -eq 'Y') {
 ""
@@ -705,7 +705,7 @@ Write-Output "Not removing Windows10 Update assistant..."
 #<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<If you want to add additonal features, start adding from above. Then add to start-manual-script and start-script.>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 function start-windows-update {
-cls
+Clear-Host
 ""
 Write-Output "Run this last, if you have an old verison of windows and a feature update is applicable it will not move from the status checker until it restarts."
 Write-Output "If you enabled bitlocker and still haven't restart, do it now and then use manual select option 50 to come back here."
@@ -720,10 +720,10 @@ $RebootFlags = [pscustomobject]@{
     Auto_Update = (Test-Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\RebootRequired' -ErrorAction SilentlyContinue )
 
     Session_Manager = ( 
-                        ( 
+                        $null -NE ( 
                             Get-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager'  -ErrorAction SilentlyContinue |
                             Select-Object -ExpandProperty 'PendingFileRenameOperations' -ErrorAction SilentlyContinue 
-                        ) -NE $null
+                        )
                           
                       )
 
@@ -747,7 +747,7 @@ $RebootFlags = [pscustomobject]@{
 $RebootFlags
 $Reboot_Required = $False
 
-if( $RebootFlags.PSObject.Properties | foreach {if ($_.value) {$True} } ) # if any of the flags is true, a reboot is needed
+if( $RebootFlags.PSObject.Properties | ForEach-Object {if ($_.value) {$True} } ) # if any of the flags is true, a reboot is needed
     {
         $Reboot_Required = $true
     }
@@ -755,9 +755,9 @@ if( $RebootFlags.PSObject.Properties | foreach {if ($_.value) {$True} } ) # if a
 $Reboot_Required
 ""
 pause
-cls
+Clear-Host
 ""
-cls
+Clear-Host
 do { $myInput = (Read-Host 'Start Windows updates? (If applicable it will also apply feature updates.) (Y/N)').ToLower() } while ($myInput -notin @('Y','N'))
 if ($myinput -eq 'Y') {
 ""
@@ -765,7 +765,7 @@ if ($WindowsVerison -le $OldWindows) {
 #Removes the Upgrader app if it's installed.
 C:\Windows10Upgrade\Windows10UpgraderApp.exe /ForceUninstall > $null 2>&1
 Remove-Item C:\Windows10Upgrade\*.* -recurse -force > $null 2>&1
-cls
+Clear-Host
 #
 Write-Output "Starting windows updates..."
 Write-Output "Please wait..."
@@ -793,7 +793,7 @@ start-windows-update-nofeature
 }}}
 
 function start-windows-update-nofeature {
-cls
+Clear-Host
 do { $myInput = (Read-Host 'Continue with updates? (This is already latest Windows Version only applying normal updates) (Y/N)').ToLower() } while ($myInput -notin @('Y','N'))
 if ($myinput -eq 'Y') {
 ""
@@ -820,7 +820,7 @@ else {
 Write-Output "Not installing windows updates..."
 ""
 pause
-cls
+Clear-Host
 }}
 
 # Function not in use.
@@ -833,7 +833,7 @@ $ProcessList = @(
 Do {  
     $ProcessesFound = Get-Process | Where-Object {$ProcessList -contains $_.Name} | Select-Object -ExpandProperty Name
     If ($ProcessesFound) {
-		cls
+		Clear-Host
         Write-Host "Still running: $($ProcessesFound)"
 		Write-Host "This will refresh every couple of seconds."
 		Write-Host "When the update is complete Windows10Assistant will appear."
@@ -870,14 +870,14 @@ start-power-config
 start-disable-defrag
 start-systemrestorepoint
 start-windows-update # MAKE SURE THIS IS THE LAST ONE ON THE LSIT
-cls
+Clear-Host
 Write-Output "This will now return to main menu, if you wish to exit, exit from the menu."
 Write-Output "If you would like to re-run a install that didn't work, use option 1 from the menu."
 start-main-menu
 }
 
 function start-manual-script {
-cls
+Clear-Host
 $createdby
 $verifiedby
 $lastupdatedby
@@ -950,7 +950,7 @@ start-manual-script
 }
 
 function start-end-script {
-cls
+Clear-Host
 $createdby
 $verifiedby
 $lastupdatedby
@@ -970,7 +970,7 @@ function clWorkaround {
     clear-host
     Write-Output "$([char]27)[2J$([char]27)[3J"
 }
-#Set-Alias -Name cls -Value clWorkaround -Scope "Local"
+#Set-Alias -Name Clear-Host -Value clWorkaround -Scope "Local"
 
 #Start of the script.
 
