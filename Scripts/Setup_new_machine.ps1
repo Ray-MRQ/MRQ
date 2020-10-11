@@ -148,24 +148,24 @@ cl
 }
 
 function start-officeuninstall-home {
-    ""
-    do { $myInput = (Read-Host 'Would you like to uninstall Office365?(Y/N)').ToLower() } while ($myInput -notin @('y','n'))
-    if ($myinput -eq 'y') {
-    ""
-    Write-Output "Starting uninstall process..."
-    ""
-    $ProgressPreference = 'SilentlyContinue'
-    Invoke-WebRequest $OfficeExe -outfile c:\temp\scriptdownloads\office365setup.exe
-    Invoke-WebRequest $OfficeXMLHomeUninstall -outfile c:\temp\scriptdownloads\office365uninstallhome.xml
-    $ProgressPreference = 'Continue'
-    c:\temp\scriptdownloads\office365setup.exe /configure c:\temp\scriptdownloads\office365uninstallhome.xml
-    Write-Output "Office365 ProPlus should be uninstalled."
-    Write-Output "If not, use option 12 and use the support tool to uninstall."
-    ""
-    pause
-    ""
-    cl
-    }
+""
+do { $myInput = (Read-Host 'Would you like to uninstall Office365?(Y/N)').ToLower() } while ($myInput -notin @('y','n'))
+if ($myinput -eq 'y') {
+""
+Write-Output "Starting uninstall process..."
+""
+$ProgressPreference = 'SilentlyContinue'
+Invoke-WebRequest $OfficeExe -outfile c:\temp\scriptdownloads\office365setup.exe
+Invoke-WebRequest $OfficeXMLHomeUninstall -outfile c:\temp\scriptdownloads\office365uninstallhome.xml
+$ProgressPreference = 'Continue'
+c:\temp\scriptdownloads\office365setup.exe /configure c:\temp\scriptdownloads\office365uninstallhome.xml
+Write-Output "Office365 ProPlus should be uninstalled."
+Write-Output "If not, use option 12 and use the support tool to uninstall."
+""
+pause
+""
+cl
+}
 }
 
 function start-officeinstall {
