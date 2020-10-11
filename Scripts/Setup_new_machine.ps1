@@ -175,7 +175,7 @@ if ($myInput -eq 'y') {
 ""
 Write-Output "Starting Office 365 install silently...."
 ""
-Write-Output "Please wait..."
+Write-Output "Downloading and installing Office365"
 ""
 $ProgressPreference = 'SilentlyContinue'
 Invoke-WebRequest $OfficeExe -outfile c:\temp\scriptdownloads\office365setup.exe
