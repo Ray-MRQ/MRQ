@@ -351,7 +351,6 @@ Copy-Item "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Word.lnk" -Desti
 Write-Output "Done."
 ""
 }
-
 function start-clearstartmenu {
 cl
 #Clear start menu
