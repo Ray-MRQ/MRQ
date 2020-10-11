@@ -237,12 +237,10 @@ Start-Process msiexec.exe -Wait -ArgumentList '/i C:\temp\scriptdownloads\gvcins
 ""
 Write-Output "Adding firewall rule for GlobalVPN."
 netsh advfirewall firewall add rule name="SonicWall Global VPN Client" dir=in action=allow program="C:\program files\sonicwall\global vpn client\swgvc.exe" enable=yes
-""
 Write-Output "GlobalVPN should now be installed."
 Copy-Item "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Global VPN Client.lnk" -Destination "C:\Users\Public\Desktop\Global VPN Client.lnk"
 ""
 pause
-""
 }
 if ($myinput -eq 'net') {
 ""
