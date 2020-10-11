@@ -182,6 +182,8 @@ Invoke-WebRequest $OfficeExe -outfile c:\temp\scriptdownloads\office365setup.exe
 Invoke-WebRequest $OfficeXMLInstall -outfile c:\temp\scriptdownloads\configuration.xml
 $ProgressPreference = 'Continue'
 c:\temp\scriptdownloads\office365setup.exe /configure c:\temp\scriptdownloads\configuration.xml
+""
+Write-Output "Office365 is now installed."
 }}
 
 function start-officeuninstalltool {
