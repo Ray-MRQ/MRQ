@@ -2,6 +2,12 @@
 
 `Add_runas_administratorps1.bat` Adds Run As administrator to  PS1 Context Menu.
 
+`BuildScript_get.bat` Just gets the build script + modfies execution policy using batch.
+
+`BuildScript_get.ps1` Just gets the build script + modfies execution policy using powershell.
+
+`BuildScript.ps1` Build Script (formley setup script)
+
 `CS Services Restart.bat` Restart Centrastage services.
 
 `Change_Exection_Policy.bat` Change Exefction Policy for Powershell.
@@ -39,8 +45,6 @@
 `Reset_store.bat` Resets the MS store.
 
 `Restart_or_Shutdown_a_pc.ps1` Restart/shutdowna PC from powershell
-
-`Setup_new_machine.ps1` Generic Build script.
 
 `Synchronise_time_to_dc_or_ntpserver.ps1` Synchronise time to a server.
 
