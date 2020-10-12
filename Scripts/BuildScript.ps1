@@ -712,7 +712,6 @@ Write-Output "If you enabled bitlocker and still haven't restart, do it now and 
 Write-Output ''
 Write-Output "Checking if this PC requires a reboot..."
 Write-Output ''
-
 $RebootFlags = [pscustomobject]@{
     
     Component_Based_Servicing = (Test-Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Component Based Servicing\RebootPending' -ErrorAction SilentlyContinue )
@@ -752,6 +751,7 @@ if( $RebootFlags.PSObject.Properties | ForEach-Object {if ($_.value) {$True} } )
     }
 
 $Reboot_Required
+
 Write-Output ''
 Write-Host "If there is true anywhere above a restart is required, restart before going ahead."
 Write-Output ''
