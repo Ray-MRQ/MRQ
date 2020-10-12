@@ -1,3 +1,4 @@
 {
-    "powershell.codeFormatting.autoCorrectAliases": true
+    "powershell.codeFormatting.autoCorrectAliases": true,
+    "editor.colorDecorators": false
 }

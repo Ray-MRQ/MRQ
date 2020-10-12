@@ -5,7 +5,7 @@
   Break
 }
 Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Force -scope localmachine
-
+Clear-Host
 $createdby = Write-Output "==================================Created By MQ 08/09/2020================================"
 $verifiedby = Write-Output "=================================Verified By XX XX/XX/XXXX================================"
 $lastupdatedby = Write-Output "===============================Last Updated By MQ 11/10/2020=============================="
