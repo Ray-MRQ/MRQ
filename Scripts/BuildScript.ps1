@@ -23,6 +23,7 @@ $OfficeXMLHomeUninstall = 'https://github.com/Ray-MRQ/MRQ/raw/master/Regkeys_xml
 $OfficeUninstallTool = 'https://outlookdiagnostics.azureedge.net/sarasetup/SetupProd_OffScrub.exe'
 $SoftwareInstallChrome = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/GoogleChromeStandaloneEnterprise64.msi'
 $SoftwareInstall7zip = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/7z1604-x64.msi'
+$SoftwareInstallJava = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/jre1.8.0_26164.msi'
 $SoftwareInstallZoomFile = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/ZoomInstallerFull.msi'
 $SoftwareInstallAdobeReader = 'https://onl-my.sharepoint.com/:u:/g/personal/mohammed_quashem_onlinesupport_co_uk/EcRWAKSO321GgevynQeMUzkBpZ-6wm-kHKs7_uScUdfZmw?e=4bhFXR&download=1'
 $DefaultAppPre1909= 'https://github.com/Ray-MRQ/MRQ/raw/master/Regkeys_xmls/Pre1909DefaultAppAssociations.xml'
@@ -81,14 +82,16 @@ Write-Output "Starting download and install for 7Zip, Chrome & Adobe Reader..."
 $ProgressPreference = 'SilentlyContinue'
 Invoke-WebRequest $SoftwareInstallChrome -outfile c:\temp\scriptdownloads\chrome.msi
 Invoke-WebRequest $SoftwareInstall7zip -outfile c:\temp\scriptdownloads\7zip.msi
+Invoke-WebRequest $SoftwareInstallJava -outfile c:\temp\scriptdownloads\java.msi
 Invoke-WebRequest $SoftwareInstallAdobeReader -outfile c:\temp\scriptdownloads\adobereader.zip
 Expand-Archive -LiteralPath C:\temp\scriptdownloads\adobereader.zip -DestinationPath C:\temp\scriptdownloads\
 $ProgressPreference = 'Continue'
 Start-Process msiexec.exe -Wait -ArgumentList '/i c:\temp\scriptdownloads\chrome.msi /qn /norestart allusers=2'
 Start-Process msiexec.exe -Wait -ArgumentList '/i c:\temp\scriptdownloads\7zip.msi /qn /norestart allusers=2'
+Start-Process msiexec.exe -Wait -ArgumentList '/i c:\temp\scriptdownloads\java.msi /qn /norestart allusers=2'
 Start-Process msiexec.exe -Wait -ArgumentList '/i c:\temp\scriptdownloads\adobereader\acroread.msi /qn /norestart allusers=2'
 Write-Output ''
-Write-Output "Installed 7zip, Chrome and Adobe reader silently."
+Write-Output "Installed 7zip, Java, Chrome and Adobe reader silently."
 Write-Output ''
 do { $myInput = (Read-Host 'Would you like to install Zoom?(Y/N)').ToLower() } while ($myInput -notin @('y','n'))
 if ($myInput -eq 'y') {
@@ -988,7 +991,7 @@ Write-Output "==================================================================
 Write-Output ''
 Write-Output "The following options will be given during the script."
 Write-Output ''
-Write-Output ")Install 7zip, Chrome, Adobe reader, GlobalVPN/NeteXtender, Mimecast for Outlook, Office365 Apps."
+Write-Output ")Install 7zip, Chrome, Adobe reader, Java, GlobalVPN/NeteXtender, Mimecast for Outlook, Office365 Apps."
 Write-Output ")Sending key applications shortcuts to desktop."
 Write-Output ")Set default apps, Outlook & chrome."
 Write-Output ")Removing Windows 10 Store apps."
