@@ -67,7 +67,7 @@ Write-Output "For software, the following will be installed."
 Write-Output "Uninstall the ones you do not require as neeeded."
 Write-Output ''
 Write-Output ''
-Write-Output 7Zip Chrome "Adobe Reader" "Office365 Applications 32Bit" "Zoom (Optional)"  "NeteXtender or GlobalVPN (optional)" "Mimecast for Outlook32Bit (optional)" 
+Write-Output 7Zip Chrome Java "Adobe Reader" "Office365 Applications 32Bit" "Zoom (Optional)"  "NeteXtender or GlobalVPN (optional)" "Mimecast for Outlook32Bit (optional)" 
 Write-Output ''
 Write-Output "Please confirm below."
 Write-Output ''
