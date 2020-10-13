@@ -358,7 +358,8 @@ Write-Output ''
 Write-Output "Default apps only apply to new profiles. If the profile for the new user already exists,"
 Write-Output "Change default apps manaully from settings or re-create profile."
 Write-Output ''
-pause
+do { $myInput = (Read-Host 'Add shortcuts & default apps?(Y/N)').ToLower() } while ($myInput -notin @('y','n'))
+if ($myInput -eq 'y') {
 if ($WindowsVersion -le '1909') { 
 Invoke-WebRequest $DefaultAppPre1909 -outfile c:\temp\scriptdownloads\MyDefaultAppAssociations.xml 
 dism /online /Import-DefaultAppAssociations:"c:\temp\scriptdownloads\MyDefaultAppAssociations.xml" }
@@ -375,6 +376,13 @@ Copy-Item "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Word.lnk" -Desti
 Write-Output "Done."
 Write-Output ''
 }
+if ($myinput -eq 'n') {
+Write-Output ''
+Write-Output "Not adding shortcuts/default apps."
+Write-Output ''
+}
+}
+
 function start-clearstartmenu {
 Clear-Host
 #Clear start menu
