@@ -4,7 +4,6 @@
   Start-Process powershell -Verb runAs -ArgumentList $arguments
   Break
 }
-Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Force -scope localmachine
 Clear-Host
 $createdby = Write-Output "==================================Created By MQ 08/09/2020================================"
 $verifiedby = Write-Output "=================================Verified By XX XX/XX/XXXX================================"
@@ -965,7 +964,6 @@ Write-Output "Done..."
 Write-Output ''
 Write-Output "Please press any key."
 pause
-Set-ExecutionPolicy -ExecutionPolicy Restricted -Force -scope localmachine
 exit
 }
 
