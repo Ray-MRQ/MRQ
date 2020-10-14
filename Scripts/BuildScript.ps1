@@ -989,13 +989,6 @@ $createdby
 $Version
 $lastupdatedby
 
-Write-Output "Important! It is recommended that this is run before creating any user accounts/logging into them."
-Write-Output "Meaning there should only be one account setup a this current time."
-Write-Output "This is because default settings only apply before user creation"
-Write-Output ''
-Write-Output "=============================================================================="
-Write-Output "This is is a generic script for setting up new machines."
-Write-Output "=============================================================================="
 Write-Output ''
 Write-Output "The following options will be given during the script."
 Write-Output ''
