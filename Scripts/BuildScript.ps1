@@ -6,7 +6,7 @@
 }
 Clear-Host
 $createdby = Write-Output "Created By MQ 08/09/2020"
-$Version = Write-Output "Version 2.63"
+$Version = Write-Output "Version 2.64"
 $lastupdatedby = Write-Output "Last Updated By MQ 14/10/2020"
 
 $WindowsVerison = (Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion").ReleaseId
@@ -41,6 +41,13 @@ $RunAsAdministratorPS = 'https://github.com/Ray-MRQ/MRQ/raw/master/Regkeys_xmls/
 ##############################################################################
 	
 function start-main-menu {
+Clear-Host
+$createdby
+$Version
+$lastupdatedby
+Write-Output ''
+Write-Output "This is a generic build script"
+Write-Output "If you would like to check the features of this script, use option 2 then go to opion 0."
 Write-Output ''
 Write-Output "Option 1: Automated/ineractive install."
 Write-Output "Option 2: Manual select install"
@@ -1011,12 +1018,6 @@ pause
 exit
 }
 #####################################################################################################################
-$createdby
-$Version
-$lastupdatedby
-Write-Output ''
-Write-Output "This is a generic build script"
-Write-Output "If you would like to check the features of this script, use option 2 then go to opion 0."
 start-main-menu
 ######################################################################################################################
 
