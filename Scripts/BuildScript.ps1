@@ -6,7 +6,7 @@
 }
 Clear-Host
 $createdby = Write-Output "Created By MQ 08/09/2020"
-$Version = Write-Output "Version 2.60"
+$Version = Write-Output "Version 2.63"
 $lastupdatedby = Write-Output "Last Updated By MQ 14/10/2020"
 
 $WindowsVerison = (Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion").ReleaseId
@@ -1016,7 +1016,7 @@ $Version
 $lastupdatedby
 Write-Output ''
 Write-Output "This is a generic build script"
-Write-Output "If you would like to check the features of this script, use option 0 on the manual script option."
+Write-Output "If you would like to check the features of this script, use option 2 then go to opion 0."
 start-main-menu
 ######################################################################################################################
 
