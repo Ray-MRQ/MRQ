@@ -5,9 +5,9 @@
   Break
 }
 Clear-Host
-$createdby = Write-Output "==================================Created By MQ 08/09/2020================================"
-$verifiedby = Write-Output "=================================Verified By XX XX/XX/XXXX================================"
-$lastupdatedby = Write-Output "===============================Last Updated By MQ 11/10/2020=============================="
+$createdby = Write-Output "Created By MQ 08/09/2020"
+$Version = Write-Output "Version 2.57"
+$lastupdatedby = Write-Output "Last Updated By MQ 14/10/2020"
 
 $WindowsVerison = (Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion").ReleaseId
 $LatestWindows = '2004' #Current Windows verison
@@ -60,7 +60,7 @@ mkdir c:\temp\scriptdownloads > $null 2>&1
 Write-Output "============================================================================="
 Clear-Host
 $createdby
-$verifiedby
+$Version
 $lastupdatedby
 Write-Output ''
 Write-Output "For software, the following will be installed."
@@ -891,7 +891,7 @@ start-main-menu
 function start-manual-script {
 Clear-Host
 $createdby
-$verifiedby
+$Version
 $lastupdatedby
 Write-Output ''
 Write-Output "Removing & creating directory in C:\temp\scriptdownloads..."
@@ -964,7 +964,7 @@ start-manual-script
 function start-end-script {
 Clear-Host
 $createdby
-$verifiedby
+$Version
 $lastupdatedby
 Write-Output "End of script."
 Write-Output ''
@@ -986,7 +986,7 @@ function clWorkaround {
 #Start of the script.
 
 $createdby
-$verifiedby
+$Version
 $lastupdatedby
 
 Write-Output "Important! It is recommended that this is run before creating any user accounts/logging into them."
