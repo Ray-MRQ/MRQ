@@ -859,7 +859,7 @@ Do {
 }
 # Function not in use.
 
-#<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<This section above is to be used for only functions that need to run last.>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#Starter functions
 
 function start-echofeatures {
     Clear-Host
@@ -1010,15 +1010,7 @@ Write-Output "Please press any key."
 pause
 exit
 }
-
-function clWorkaround {
-    clear-host
-    Write-Output "$([char]27)[2J$([char]27)[3J"
-}
-#Set-Alias -Name Clear-Host -Value clWorkaround -Scope "Local"
-
-#Start of the script.
-
+#####################################################################################################################
 $createdby
 $Version
 $lastupdatedby
@@ -1026,6 +1018,7 @@ Write-Output ''
 Write-Output "This is a generic build script"
 Write-Output "If you would like to check the features of this script, use option 0 on the manual script option."
 start-main-menu
+######################################################################################################################
 
 # SIG # Begin signature block
 # MIIFdQYJKoZIhvcNAQcCoIIFZjCCBWICAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
