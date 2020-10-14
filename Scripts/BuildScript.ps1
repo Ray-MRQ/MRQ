@@ -93,7 +93,7 @@ Start-Process msiexec.exe -Wait -ArgumentList '/i c:\temp\scriptdownloads\java.m
 Start-Process msiexec.exe -Wait -ArgumentList '/i c:\temp\scriptdownloads\teams.msi /qn /norestart allusers=2'
 Start-Process msiexec.exe -Wait -ArgumentList '/i c:\temp\scriptdownloads\adobereader\acroread.msi /qn /norestart allusers=2'
 Write-Output ''
-Write-Output "Installed 7zip, Java, Chrome and Adobe reader silently."
+Write-Output "Installed 7zip, Java, Chrome and Adobe reader silently. (Teams requires a restart for the install to be done)"
 Write-Output ''
 do { $myInput = (Read-Host 'Would you like to install Zoom?(Y/N)').ToLower() } while ($myInput -notin @('y','n'))
 if ($myInput -eq 'y') {
