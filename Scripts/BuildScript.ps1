@@ -6,7 +6,7 @@
 }
 Clear-Host
 $createdby = Write-Output "Created By MQ 08/09/2020"
-$Version = Write-Output "Version 2.66"
+$Version = Write-Output "Version 2.65"
 $lastupdatedby = Write-Output "Last Updated By MQ 14/10/2020"
 
 $WindowsVerison = (Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion").ReleaseId
@@ -841,32 +841,6 @@ Write-Output ''
 pause
 Clear-Host
 }}
-
-# Function not in use.
-function start-windows-update-running-checker {
-Start-Sleep -seconds 30
-Write-Output "Checking status of updater..."
-$ProcessList = @(
-    "Windows10UpgraderApp" #or whatever you want to monitor
-)
-Do {  
-    $ProcessesFound = Get-Process | Where-Object {$ProcessList -contains $_.Name} | Select-Object -ExpandProperty Name
-    If ($ProcessesFound) {
-		Clear-Host
-        Write-Host "Still running: $($ProcessesFound)"
-		Write-Host "This will refresh every couple of seconds."
-		Write-Host "When the update is complete Windows10Assistant will appear."
-		Write-Host "Make sure to click restart now on the assisant applicaiton (when it appears) or you will not be able to continue with the script."
-		Write-Output ''
-		Write-Host "Current time output."
-		Get-Date
-        Start-Sleep 10
-    }
-} Until (!$ProcessesFound)
-}
-# Function not in use.
-
-#Starter functions
 
 function start-echofeatures {
     Clear-Host
