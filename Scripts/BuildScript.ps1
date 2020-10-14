@@ -6,7 +6,7 @@
 }
 Clear-Host
 $createdby = Write-Output "Created By MQ 08/09/2020"
-$Version = Write-Output "Version 2.64"
+$Version = Write-Output "Version 2.66"
 $lastupdatedby = Write-Output "Last Updated By MQ 14/10/2020"
 
 $WindowsVerison = (Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion").ReleaseId
@@ -1007,13 +1007,13 @@ Clear-Host
 $createdby
 $Version
 $lastupdatedby
+Write-Output ''
 Write-Output "End of script."
 Write-Output ''
 Write-Output "Clearing c:\temps\scriptdownloads."
 Remove-item c:\temp\scriptdownloads -recurse -force > $null 2>&1
 Write-Output "Done..."
 Write-Output ''
-Write-Output "Please press any key."
 pause
 exit
 }
