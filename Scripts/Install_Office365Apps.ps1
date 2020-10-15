@@ -38,6 +38,34 @@ function start-officecheck {
     }
 }
     
+function start-officecheck {
+    $uninstallKeys = Get-ChildItem -Path "HKLM:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall"
+    $O365 = "Microsoft 365"
+    $O365Check = $uninstallKeys | Where-Object { $_.GetValue("DisplayName") -match $O365 }
+    
+    $uninstallKeysHome = Get-ChildItem -Path "HKLM:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall"
+    $O365Home = "Microsoft Office 365"
+    $O365CheckHome = $uninstallKeysHome | Where-Object { $_.GetValue("DisplayName") -match $O365Home }
+    
+    $O365Installed = Write-Output "Office 365 is installed."
+    $O365NotInstalled = Write-Output "Office 365 is not installed."
+    if ($O365Check) {
+    $O365Installed
+    Write-Output ''
+    start-officeuninstall-pro
+    start-officeinstall
+    }
+    if ($O365CheckHome) {
+    start-officeuninstall-home
+    start-officeinstall
+    }
+    else {
+    $O365NotInstalled
+    Write-Output ''
+    start-officeinstall
+    }
+}
+    
 function start-officeuninstall-pro {
     Write-Output ''
     do { $myInput = (Read-Host 'Would you like to uninstall Office365?(Y/N)').ToLower() } while ($myInput -notin @('y','n'))
@@ -49,7 +77,7 @@ function start-officeuninstall-pro {
     Invoke-WebRequest $OfficeExe -outfile c:\temp\scriptdownloads\office365setup.exe
     Invoke-WebRequest $OfficeXMLUninstall -outfile c:\temp\scriptdownloads\office365uninstall.xml
     $ProgressPreference = 'Continue'
-    Start-Process -Wait -ArgumentList 'c:\temp\scriptdownloads\office365setup.exe /configure c:\temp\scriptdownloads\office365uninstall.xml'
+    c:\temp\scriptdownloads\office365setup.exe /configure c:\temp\scriptdownloads\office365uninstall.xml
     Write-Output "Office365 ProPlus should be uninstalled."
     Write-Output "If not, use option 12 and use the support tool to uninstall."
     Write-Output ''
@@ -70,7 +98,7 @@ function start-officeuninstall-home {
     Invoke-WebRequest $OfficeExe -outfile c:\temp\scriptdownloads\office365setup.exe
     Invoke-WebRequest $OfficeXMLHomeUninstall -outfile c:\temp\scriptdownloads\office365uninstallhome.xml
     $ProgressPreference = 'Continue'
-    Start-Process -Wait -ArgumentList 'c:\temp\scriptdownloads\office365setup.exe /configure c:\temp\scriptdownloads\office365uninstallhome.xml'
+    c:\temp\scriptdownloads\office365setup.exe /configure c:\temp\scriptdownloads\office365uninstallhome.xml
     Write-Output "Office365 ProPlus should be uninstalled."
     Write-Output "If not, use option 12 and use the support tool to uninstall."
     Write-Output ''
@@ -80,7 +108,7 @@ function start-officeuninstall-home {
     }
 }
     
-function start-officeinstall {
+    function start-officeinstall {
     Clear-Host
     do { $myInput = (Read-Host 'Would you like to install Office365?(Y/N)').ToLower() } while ($myInput -notin @('y','n'))
     if ($myInput -eq 'y') {
@@ -98,8 +126,8 @@ function start-officeinstall {
     Write-Output "Office365 is now installed."
 }}
     
+    
 Write-Output "Install Office365 Apps (32Bit only)"
 Write-Output "####################"
 Write-Output "Checking if Office365 is installed...."
 start-officecheck
-start-officeinstall
