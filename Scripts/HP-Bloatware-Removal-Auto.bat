@@ -25,7 +25,6 @@ START /WAIT /MIN WMIC product where name="Guide" call uninstall /nointeractive
 START /WAIT /MIN WMIC product where name="Energy Star" call uninstall /nointeractive
 START /WAIT /MIN WMIC product where name="StatusAlerts" call uninstall /nointeractive
 START /WAIT /MIN WMIC product where name="Support" call uninstall /nointeractive
-START /WAIT /MIN WMIC product where name="Documentation" call uninstall /nointeractive
 START /WAIT /MIN WMIC product where name="HP Print SW" call uninstall /nointeractive
 START /WAIT /MIN WMIC product where name="HP Notifications" call uninstall /nointeractive
 START /WAIT /MIN WMIC product where name="Pixel Sharp" call uninstall /nointeractive
