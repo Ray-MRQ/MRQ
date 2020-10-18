@@ -327,8 +327,8 @@ Clear-Host
 do { $myInput = (Read-Host 'Is this a HP workstation/laptop? If so would you like to remove bloatware for this as well? (Y/N)').ToLower() } while ($myInput -notin @('y','n'))
 if ($myInput -eq 'y') {
 Write-Output "This may take a while..."
-Invoke-WebRequest $HPBloatwareRemover -outfile c:\temp\scriptdownloads\hpbloatwareremoval.bat
-Invoke-Expression -Command "cmd.exe /c c:\temp\scriptdownloads\hpbloatwareremoval.bat"
+Invoke-WebRequest $HPBloatwareRemover -outfile c:\temp\scriptdownloads\hpbloatwareremoval.ps1
+Invoke-Expression -Command "cmd.exe /c c:\temp\scriptdownloads\hpbloatwareremoval.ps1"
 Write-Output ''
 Write-Output "HP Bloatware has been removed or at least attempted to remove most."
 Write-Output ''
@@ -347,8 +347,8 @@ Clear-Host
 do { $myInput = (Read-Host 'Is this a Dell workstation/laptop? If so would you like to remove bloatware for this as well? (Y/N)').ToLower() } while ($myInput -notin @('y','n'))
 if ($myInput -eq 'y') {
 Write-Output "This may take a while..."
-Invoke-WebRequest $DellBloatwareRemover -outfile c:\temp\scriptdownloads\dellbloatwareremoval.bat
-Invoke-Expression -Command "cmd.exe /c c:\temp\scriptdownloads\dellbloatwareremoval.bat"
+Invoke-WebRequest $DellBloatwareRemover -outfile c:\temp\scriptdownloads\dellbloatwareremoval.ps1
+Invoke-Expression -Command "cmd.exe /c c:\temp\scriptdownloads\dellbloatwareremoval.ps1"
 Write-Output ''
 Write-Output "Dell Bloatware has been removed or at least attempted to remove most."
 Write-Output ''
