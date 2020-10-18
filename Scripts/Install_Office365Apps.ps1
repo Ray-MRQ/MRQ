@@ -27,32 +27,6 @@ function start-officecheck {
     $O365Installed
     Write-Output ''
     start-officeuninstall-pro
-    }
-    if ($O365CheckHome) {
-    start-officeuninstall-home
-    }
-    else {
-    $O365NotInstalled
-    Write-Output ''
-    start-officeinstall
-    }
-}
-    
-function start-officecheck {
-    $uninstallKeys = Get-ChildItem -Path "HKLM:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall"
-    $O365 = "Microsoft 365"
-    $O365Check = $uninstallKeys | Where-Object { $_.GetValue("DisplayName") -match $O365 }
-    
-    $uninstallKeysHome = Get-ChildItem -Path "HKLM:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall"
-    $O365Home = "Microsoft Office 365"
-    $O365CheckHome = $uninstallKeysHome | Where-Object { $_.GetValue("DisplayName") -match $O365Home }
-    
-    $O365Installed = Write-Output "Office 365 is installed."
-    $O365NotInstalled = Write-Output "Office 365 is not installed."
-    if ($O365Check) {
-    $O365Installed
-    Write-Output ''
-    start-officeuninstall-pro
     start-officeinstall
     }
     if ($O365CheckHome) {
@@ -79,7 +53,6 @@ function start-officeuninstall-pro {
     $ProgressPreference = 'Continue'
     c:\temp\scriptdownloads\office365setup.exe /configure c:\temp\scriptdownloads\office365uninstall.xml
     Write-Output "Office365 ProPlus should be uninstalled."
-    Write-Output "If not, use option 12 and use the support tool to uninstall."
     Write-Output ''
     pause
     Write-Output ''
