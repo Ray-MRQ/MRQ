@@ -104,6 +104,7 @@ function start-officeinstall {
 }}
 
 function start-main-menu {
+Write-Output ''
 do { $myInput = (Read-Host 'Automatic uninstall or manual uninstall?(A/M)').ToLower() } while ($myInput -notin @('A','M'))
 if ($myInput -eq 'a') {
 start-officecheck
