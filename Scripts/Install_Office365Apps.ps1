@@ -21,22 +21,25 @@ function start-officecheck {
     $O365Home = "Microsoft Office 365"
     $O365CheckHome = $uninstallKeysHome | Where-Object { $_.GetValue("DisplayName") -match $O365Home }
     
-    $O365Installed = Write-Output "Office 365 is installed."
+    $O365Installed = Write-Output "Office 365 installation has been detected."
     $O365NotInstalled = Write-Output "Office 365 is not installed."
     if ($O365Check) {
     $O365Installed
     Write-Output ''
     start-officeuninstall-pro
     start-officeinstall
+    pause
     }
     if ($O365CheckHome) {
     start-officeuninstall-home
     start-officeinstall
+    pause
     }
     else {
     $O365NotInstalled
     Write-Output ''
     start-officeinstall
+    pause
     }
 }
     
@@ -102,5 +105,6 @@ function start-officeuninstall-home {
     
 Write-Output "Install Office365 Apps (32Bit only)"
 Write-Output "####################"
+Write-Output ''
 Write-Output "Checking if Office365 is installed...."
 start-officecheck
