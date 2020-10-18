@@ -6,7 +6,7 @@
 }
 Clear-Host
 $createdby = Write-Output "Created By MQ 08/09/2020"
-$Version = Write-Output "Version 1.30"
+$Version = Write-Output "Version 1.31"
 $lastupdatedby = Write-Output "Last Updated By MQ 18/10/2020"
 
 $WindowsVerison = (Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion").ReleaseId
@@ -328,7 +328,7 @@ do { $myInput = (Read-Host 'Is this a HP workstation/laptop? If so would you lik
 if ($myInput -eq 'y') {
 Write-Output "This may take a while..."
 Invoke-WebRequest $HPBloatwareRemover -outfile c:\temp\scriptdownloads\hpbloatwareremoval.ps1
-Invoke-Expression -Command "cmd.exe /c c:\temp\scriptdownloads\hpbloatwareremoval.ps1"
+powershell c:\temp\scriptdownloads\hpbloatwareremoval.ps1
 Write-Output ''
 Write-Output "HP Bloatware has been removed or at least attempted to remove most."
 Write-Output ''
@@ -348,7 +348,7 @@ do { $myInput = (Read-Host 'Is this a Dell workstation/laptop? If so would you l
 if ($myInput -eq 'y') {
 Write-Output "This may take a while..."
 Invoke-WebRequest $DellBloatwareRemover -outfile c:\temp\scriptdownloads\dellbloatwareremoval.ps1
-Invoke-Expression -Command "cmd.exe /c c:\temp\scriptdownloads\dellbloatwareremoval.ps1"
+powershell c:\temp\scriptdownloads\dellbloatwareremoval.ps1
 Write-Output ''
 Write-Output "Dell Bloatware has been removed or at least attempted to remove most."
 Write-Output ''
