@@ -23,7 +23,7 @@ $UWPAppList = "AD2F1837.HPPrinterControl",
     "AD2F1837.HPInc.EnergyStar",
     "0E3921EB.sMedioTrueDVDforHP"
 
-$WMICApplist = "Assistant"
+$WMICApplist = "Assistant",
     "HP Documentation",
     "Documentation",
     "Guide",
