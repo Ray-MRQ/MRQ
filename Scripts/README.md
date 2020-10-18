@@ -18,7 +18,7 @@
 
 `CheckSpecficDirectoryPermissions.ps1` Checks the root of that folder and all the sub folders, not anything lower.
 
-`Dell-Bloatware-removal.ps1` HP Bloatware removal, UWP/WMIC/GUID
+`Dell-Bloatware-removal.ps1` Dell Bloatware removal, UWP/WMIC/GUID
 
 `HP-Bloatware-removal.ps1` HP Bloatware removal, UWP/WMIC/GUID
 
