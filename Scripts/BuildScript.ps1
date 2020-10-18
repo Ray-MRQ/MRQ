@@ -515,25 +515,12 @@ manage-bde -on C:
 Write-Output ''
 Write-Output ''
 Write-Output ''
-$BitLocker = Get-BitLockerVolume -MountPoint $env:SystemDrive
-$RecoveryProtector = $BitLocker.KeyProtector | Where-Object { $_.KeyProtectorType -eq 'RecoveryPassword' }
-
-Backup-BitLockerKeyProtector -MountPoint $env:SystemDrive -KeyProtectorId $RecoveryProtector.KeyProtectorID
-BackupToAAD-BitLockerKeyProtector -MountPoint $env:SystemDrive -KeyProtectorId $RecoveryProtector.KeyProtectorID
-
-Write-Output "If you get an error this is regarding GPO it's an automatic command to push to AD. (This will need to be re-run from manual install)"
-Write-Output "If you get an error regarding BackUptoAAD this is for AzureActive Directory so it can be safely ignored."
 Write-Output "Stored recovery key in C:\temp\"
-Write-Output ''
-Write-Output ''
-Write-Output "If bitlocker recovery is not in AD you use option 11 from the manual select menu."
-Write-Output "Make sure to restart for it to start bitlocker encryption."
 Write-Output ''
 Write-Output "Make sure to restart this before applying windows update."
 pause
 Clear-Host
 }
-
 if ($myinput -eq 'n') {
 Write-Output ''
 Write-Output "Bitlocker will not be setup..."
@@ -544,6 +531,8 @@ Clear-Host
 
 function start-bitlocker-updaterecovery {
 Clear-Host
+do { $myInput = (Read-Host 'Would you like to update Bitlocker recovery key?(Y/N)').ToLower() } while ($myInput -notin @('Y','N'))
+if ($myinput -eq 'Y') {
 Write-Output ''
 Write-Output "Updating Bitlocker recovery key to AD..."
 Write-Output ''
@@ -551,15 +540,18 @@ $BitLocker = Get-BitLockerVolume -MountPoint $env:SystemDrive
 $RecoveryProtector = $BitLocker.KeyProtector | Where-Object { $_.KeyProtectorType -eq 'RecoveryPassword' }
 
 Backup-BitLockerKeyProtector -MountPoint $env:SystemDrive -KeyProtectorId $RecoveryProtector.KeyProtectorID
-BackupToAAD-BitLockerKeyProtector -MountPoint $env:SystemDrive -KeyProtectorId $RecoveryProtector.KeyProtectorID
+#BackupToAAD-BitLockerKeyProtector -MountPoint $env:SystemDrive -KeyProtectorId $RecoveryProtector.KeyProtectorID
 Write-Output ''
 Write-Output "Done."
 Write-Output ''
-Write-Output "If you get an error regarding BackUptoAAD this is for AzureActive Directory so it can be safely ignored."
-Write-Output "Check that the recoverykey/password matches the one in the c:\temp if it is, remove the one in c:\temp and continue."
+#Write-Output "If you get an error regarding BackUptoAAD this is for AzureActive Directory so it can be safely ignored."
+#Write-Output "Check that the recoverykey/password matches the one in the c:\temp if it is, remove the one in c:\temp and continue."
+Write-Output "If you get any errors double check the computer is in the correct OU."
 Write-Output "Please confirm the recovery key is in AD."
-pause
-}
+pause}
+else {
+Write-Output "Not updating bitlocker recovery."
+}}
 
 function start-disablefirewall-domain {
 Clear-Host
@@ -890,6 +882,7 @@ start-clearstartmenu
 start-uac
 start-addrunasps1
 start-bitlocker
+start-bitlocker-updaterecovery
 start-disablefirewall-domain
 start-rename-computer
 start-joindomain
