@@ -113,6 +113,7 @@ else {
     if ($myInput -eq 'H') {
         start-officeuninstall-home
         start-officeinstall
+    }
     else {
         start-officeuninstall-pro
         start-officeinstall
