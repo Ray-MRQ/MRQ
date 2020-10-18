@@ -18,11 +18,9 @@
 
 `CheckSpecficDirectoryPermissions.ps1` Checks the root of that folder and all the sub folders, not anything lower.
 
-`Direct_setup_new_machine.bat` Used to run the Setup_new_machine.ps1 but is on the ONL share.
+`Dell-Bloatware-removal.ps1` HP Bloatware removal, UWP/WMIC/GUID
 
-`Direct_setup_new_machine_git.bat` Runs the Setup new machine script from git.
-
-`HP-Bloatware-removal-auto.bat` It's in the name...
+`HP-Bloatware-removal.ps1` HP Bloatware removal, UWP/WMIC/GUID
 
 `Install_choclatey.bat` Installs choclatey for powershell.
 
