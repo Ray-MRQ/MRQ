@@ -24,8 +24,7 @@ $UWPAppList = "DellInc.DellDigitalDelivery",
     "DellInc.DellOptimizer",
     "DellInc.DellCustomerConnect"
 
-$WMICApplist = "Dell Power Manager Service",
-    "Dell Mobile Connect Drivers",
+$WMICApplist = "Dell Mobile Connect Drivers",
     "Dell SupportAssist Remediation",
     "SmartByte Drivers and Services",
     "Dell Update - SupportAssist Update Plugin",
@@ -65,7 +64,7 @@ Write-Output "Removed UWP apps."
 
 function start-WMIC-removal {
 ForEach ($App in $WMICAppList) {
-Start-Process -wait WMIC -ArgumentList '/MIN product where name="Dell Digital Delivery Services" call uninstall /nointeractive'
+Start-Process -wait WMIC -ArgumentList '/MIN product where name=$App call uninstall /nointeractive'
 }            
 Write-Output "Removed apps using WMIC."
 }
