@@ -21,6 +21,7 @@ $UWPAppList = "DellInc.DellDigitalDelivery",
     "DellInc.PartnerPromo",
     "ScreenovateTechnologies.DellMobileConnect",
     "DellInc.MyDell",
+    "DellInc.DellOptimizer",
     "DellInc.DellCustomerConnect"
 
 $WMICApplist = "Dell Power Manager Service",
@@ -31,11 +32,17 @@ $WMICApplist = "Dell Power Manager Service",
     "Dell Update - SupportAssist",
     "Dell Digital Delivery Services"
 
-$GUIDApplist = "{18469ED8-8C36-4CF7-BD43-0FC9B1931AF8}", #DellPowerManager
-    "{2D27B76E-8FB1-495B-A61D-FB76349E7E36}", #Dell Mobile Connect
-    "{75F60BB7-09E9-4555-BFF0-D1B6102A33DE}", #Dell Update Support assist
-    "{B336B590-DB14-438C-A473-2ECD4E193BFC}", #Dell Update support assist update plugin
-    "{CC611DE8-38C7-4650-968E-B973B254E98C}"  #Dell SupportAssst
+$GUIDApplist = "{18469ED8-8C36-4CF7-BD43-0FC9B1931AF8}",
+    "{2D27B76E-8FB1-495B-A61D-FB76349E7E36}", 
+    "{75F60BB7-09E9-4555-BFF0-D1B6102A33DE}", 
+    "{B336B590-DB14-438C-A473-2ECD4E193BFC}",
+    "{4EA9855C-3339-4AE3-977B-6DF8A369469D}",
+    "{E27862BD-4371-4245-896A-7EBE989B6F7F}",
+    "{1906C253-4035-4CA5-A501-075E691CCEC9}",
+    "{57CBE96A-3AA5-4421-A87C-6C6C3B6C5ECA}",
+    "{C559D0AB-2D9E-4B59-B2B8-0C2061B3F9BC}",
+    "{CC5730C7-C867-43BD-94DA-00BB3836906F}",
+    "{CC611DE8-38C7-4650-968E-B973B254E98C}"  
 
 function start-UWP-removal {
 ForEach ($App in $UWPAppList) {
