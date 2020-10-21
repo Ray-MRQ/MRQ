@@ -510,6 +510,7 @@ $GUIDApplist = "{6F340107-F9AA-47C6-B54C-C3A19F11553F}",
       "{EC720706-3F19-4B7F-BDDD-E31D9B3921D2}"
 
 function start-UWP-removal {
+$ProgressPreference = 'SilentlyContinue'
 ForEach ($App in $UWPAppList) {
  $PackageFullName = (Get-AppxPackage $App -allusers).PackageFullName
  $ProPackageFullName = (Get-AppxProvisionedPackage -online | Where-Object {$_.Displayname -eq $App}).PackageName
@@ -525,6 +526,7 @@ ForEach ($App in $UWPAppList) {
  Write-Host "Removing Provisioned Package: $ProPackageFullName"
  Remove-AppxProvisionedPackage -online -packagename $ProPackageFullName -allusers
 }}
+$ProgressPreference = 'Continue'
 Write-Output "Removed UWP apps."
 }
 
