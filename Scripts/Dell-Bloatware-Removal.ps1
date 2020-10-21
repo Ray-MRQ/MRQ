@@ -29,6 +29,8 @@ $WMICApplist = "Dell Mobile Connect Drivers",
     "SmartByte Drivers and Services",
     "Dell Update - SupportAssist Update Plugin",
     "Dell Update - SupportAssist",
+    "Dell Update - SupportAssist Remediation",
+    "Dell Update Optimizer Service",
     "Dell Digital Delivery Services"
 
 $GUIDApplist = "{18469ED8-8C36-4CF7-BD43-0FC9B1931AF8}",
@@ -71,7 +73,7 @@ Write-Output "Removed apps using WMIC."
 
 function start-GUID-removal {
 ForEach ($App in $GUIDAppList) {
-Start-Process msiexec -Wait -ArgumentList '/qn /norestart /x $App'
+Start-Process msiexec -Wait -ArgumentList '/qn /norestart /x $App /x'
 }            
 Write-Output "Removed apps using GUID."
 }
