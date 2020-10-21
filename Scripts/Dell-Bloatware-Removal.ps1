@@ -79,7 +79,7 @@ Write-Output "Removed apps using WMIC."
 
 function start-GUID-removal {
 ForEach ($App in $GUIDAppList) {
-Start-Process msiexec -Wait -ArgumentList '/X $App /qn /norestart' -PassThru
+Start-Process msiexec -Wait -ArgumentList '/X $App /qn /norestart'
 }            
 Write-Output "Removed apps using GUID."
 }
