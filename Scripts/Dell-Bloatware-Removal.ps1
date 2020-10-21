@@ -22,6 +22,7 @@ $UWPAppList = "DellInc.DellDigitalDelivery",
     "ScreenovateTechnologies.DellMobileConnect",
     "DellInc.MyDell",
     "DellInc.DellOptimizer",
+    "STMicroelectronicsMEMS.DellFreeFallDataProtection",
     "DellInc.DellCustomerConnect"
 
 $WMICApplist = "Dell Mobile Connect Drivers",
@@ -43,6 +44,7 @@ $GUIDApplist = "{18469ED8-8C36-4CF7-BD43-0FC9B1931AF8}",
     "{57CBE96A-3AA5-4421-A87C-6C6C3B6C5ECA}",
     "{C559D0AB-2D9E-4B59-B2B8-0C2061B3F9BC}",
     "{CC5730C7-C867-43BD-94DA-00BB3836906F}",
+    "{286A9ADE-A581-43E8-AA85-6F5D58C7DC88}",
     "{CC611DE8-38C7-4650-968E-B973B254E98C}"  
 
 function start-UWP-removal {
@@ -75,7 +77,7 @@ Write-Output "Removed apps using WMIC."
 
 function start-GUID-removal {
 ForEach ($App in $GUIDAppList) {
-Start-Process msiexec -Wait -ArgumentList '/uninstall $App /passive /quiet'
+Start-Process msiexec -Wait -ArgumentList '/qn /norestart /x $App'
 }            
 Write-Output "Removed apps using GUID."
 }
