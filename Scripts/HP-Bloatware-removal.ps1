@@ -539,7 +539,7 @@ Write-Output "Removed apps using WMIC."
 
 function start-GUID-removal {
 ForEach ($App in $GUIDAppList) {
-  Start-Process msiexec -Wait -ArgumentList '/qn /norestart /x $App'
+  Start-Process msiexec -Wait -ArgumentList '/X $App /qn /norestart' -PassThru
 }            
 Write-Output "Removed apps using GUID."
 Start-Process "C:\Program Files (x86)\InstallShield Installation Information\{6468C4A5-E47E-405F-B675-A70A70983EA6}\setup.exe" -Argumentlist '-runfromtemp -l0x0409  -removeonly'
