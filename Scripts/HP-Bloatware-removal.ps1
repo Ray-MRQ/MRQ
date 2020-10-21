@@ -53,6 +53,7 @@ $WMICApplist = "Assistant",
     "HP Connection Optimizer"
 
 $GUIDApplist = "{6F340107-F9AA-47C6-B54C-C3A19F11553F}",
+      "{A30F03AC-EF79-40E4-AA5F-414EB135AFCF}",
       "{06FCC605-92A1-4A1C-B7D1-85E5778290A4}",
       "{669D4A35-146B-4314-89F1-1AC3D7B88367}",
       "{B2EE25B9-5B00-4ACF-94F0-92433C28C39E}",
@@ -507,6 +508,7 @@ $GUIDApplist = "{6F340107-F9AA-47C6-B54C-C3A19F11553F}",
       "{3082CB96-66E8-456D-8326-118A4F5DC0C6}",
       "{CFD917BE-F1F6-410E-ABEC-9EC819507D0D}",
       "{5601F151-A69F-4E30-8C60-37928124CD07}",
+      "{394C7F61-1C1F-11EA-9634-3863BB3CB5AC}",
       "{EC720706-3F19-4B7F-BDDD-E31D9B3921D2}"
 
 function start-UWP-removal {
@@ -555,6 +557,8 @@ Write-Output ''
 start-WMIC-removal
 Write-Output ''
 start-GUID-removal
+CMD /C "C:\Program Files\HP\Documentation\Doc_Uninstall.cmd"
+c:\Program Files\HP\HP ProtectTools Security Manager\Bin\setup.exe
 Write-Output ''
 Write-Output "Completed bloatware removal."
 pause
