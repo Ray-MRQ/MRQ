@@ -24,7 +24,6 @@ $SoftwareInstallChrome = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20fi
 $SoftwareInstall7zip = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/7z1604-x64.msi'
 $SoftwareInstallJava = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/jre1.8.0_26164.msi'
 $SoftwareInstallZoomFile = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/ZoomInstallerFull.msi'
-$SoftwareInstallTeams = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/Teams_windows_x64.msi'
 $SoftwareInstallAdobeReader = 'https://onl-my.sharepoint.com/:u:/g/personal/mohammed_quashem_onlinesupport_co_uk/EcRWAKSO321GgevynQeMUzkBpZ-6wm-kHKs7_uScUdfZmw?e=4bhFXR&download=1'
 $MimecastInstall = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/Mimecast%20for%20Outlook%207.0.1740.17532%20(32%20bit).msi'
 $GlobalVPNInstall = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/GVCInstall64.msi'
@@ -74,7 +73,7 @@ Write-Output "For software, the following will be installed."
 Write-Output "Uninstall the ones you do not require as neeeded."
 Write-Output ''
 Write-Output ''
-Write-Output 7Zip Chrome Java Teams "Adobe Reader" "Office365 Applications 32Bit" "Zoom (Optional)"  "NeteXtender or GlobalVPN (optional)" "Mimecast for Outlook32Bit (optional)" 
+Write-Output 7Zip Chrome Java  "Adobe Reader" "Office365 Applications 32Bit" "Zoom (Optional)"  "NeteXtender or GlobalVPN (optional)" "Mimecast for Outlook32Bit (optional)" 
 Write-Output ''
 Write-Output "Please confirm below."
 Write-Output ''
@@ -85,7 +84,7 @@ Clear-Host
 start-officecheck
 
 Write-Output ''
-Write-Output "Starting download and install for 7Zip, Java, Teams, Chrome & Adobe Reader..."
+Write-Output "Starting download and install for 7Zip, Java, , Chrome & Adobe Reader..."
 $ProgressPreference = 'SilentlyContinue'
 Invoke-WebRequest $SoftwareInstallChrome -outfile c:\temp\scriptdownloads\chrome.msi
 Invoke-WebRequest $SoftwareInstall7zip -outfile c:\temp\scriptdownloads\7zip.msi
@@ -97,10 +96,9 @@ $ProgressPreference = 'Continue'
 Start-Process msiexec.exe -Wait -ArgumentList '/i c:\temp\scriptdownloads\chrome.msi /qn /norestart allusers=2'
 Start-Process msiexec.exe -Wait -ArgumentList '/i c:\temp\scriptdownloads\7zip.msi /qn /norestart allusers=2'
 Start-Process msiexec.exe -Wait -ArgumentList '/i c:\temp\scriptdownloads\java.msi /qn /norestart allusers=2'
-Start-Process msiexec.exe -Wait -ArgumentList '/i c:\temp\scriptdownloads\teams.msi /qn /norestart allusers=2'
 Start-Process msiexec.exe -Wait -ArgumentList '/i c:\temp\scriptdownloads\adobereader\acroread.msi /qn /norestart allusers=2'
 Write-Output ''
-Write-Output "Installed 7zip, Java, Chrome and Adobe reader silently. (Teams requires a restart for the install to be done)"
+Write-Output "Installed 7zip, Java, Chrome and Adobe reader silently."
 Write-Output ''
 do { $myInput = (Read-Host 'Would you like to install Zoom?(Y/N)').ToLower() } while ($myInput -notin @('y','n'))
 if ($myInput -eq 'y') {
@@ -841,7 +839,7 @@ function start-echofeatures {
     Write-Output ''
     Write-Output "The following options will be given during the script."
     Write-Output ''
-    Write-Output ")Install 7zip, Chrome, Adobe reader, Java, Teams, GlobalVPN/NeteXtender, Mimecast for Outlook, Office365 Apps."
+    Write-Output ")Install 7zip, Chrome, Adobe reader, Java, , GlobalVPN/NeteXtender, Mimecast for Outlook, Office365 Apps."
     Write-Output ")Sending key applications shortcuts to desktop."
     Write-Output ")Set default apps, Outlook & chrome."
     Write-Output ")Removing Windows 10 Store apps."
