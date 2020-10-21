@@ -72,7 +72,7 @@ Write-Output "Removed UWP apps."
 
 function start-WMIC-removal {
 ForEach ($App in $WMICAppList) {
-Start-Process -wait WMIC -ArgumentList '/MIN product where name=$App call uninstall /nointeractive'
+Start-Process -wait WMIC -ArgumentList 'product where name="$App" call uninstall /nointeractive'
 }            
 Write-Output "Removed apps using WMIC."
 }
