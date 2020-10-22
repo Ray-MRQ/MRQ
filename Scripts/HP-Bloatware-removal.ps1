@@ -537,7 +537,7 @@ Write-Output "Removed UWP apps."
 
 function start-GAP-removal {
 ForEach ($App in $GAPAppList) {
-Get-Package "$App" | Uninstall-Package
+Get-Package "$App" | Uninstall-Package -erroraction 'silentlycontinue'
 }            
 Write-Output "Removed apps using GAP."
 }
@@ -548,7 +548,7 @@ ForEach ($App in $GUIDAppList) {
 }            
 Write-Output "Removed apps using GUID."
 CMD /C "C:\Program Files\HP\Documentation\Doc_Uninstall.cmd"
-c:\Program Files\HP\HP ProtectTools Security Manager\Bin\setup.exe
+"c:\Program Files\HP\HP ProtectTools Security Manager\Bin\setup.exe"
 Start-Process "C:\Program Files (x86)\InstallShield Installation Information\{6468C4A5-E47E-405F-B675-A70A70983EA6}\setup.exe" -Argumentlist '-runfromtemp -l0x0409  -removeonly'
 }
 
