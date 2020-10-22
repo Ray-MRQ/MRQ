@@ -23,7 +23,7 @@ $UWPAppList = "AD2F1837.HPPrinterControl",
     "AD2F1837.HPInc.EnergyStar",
     "0E3921EB.sMedioTrueDVDforHP"
 
-$WMICApplist = "Assistant",
+$GAPApplist = "Assistant",
     "HP Documentation",
     "Documentation",
     "Guide",
@@ -50,7 +50,9 @@ $WMICApplist = "Assistant",
     "HP ESU for Microsoft Windows 10",
     "HP Support Solutions Framework",
     "HP Sure Sense Installer",
-    "HP Connection Optimizer"
+    "HP Connection Optimizer",
+    "ExpressVPN",
+    "McAfee Live"
 
 $GUIDApplist = "{6F340107-F9AA-47C6-B54C-C3A19F11553F}",
       "{A30F03AC-EF79-40E4-AA5F-414EB135AFCF}",
@@ -533,11 +535,11 @@ $ProgressPreference = 'Continue'
 Write-Output "Removed UWP apps."
 }
 
-function start-WMIC-removal {
-ForEach ($App in $WMICAppList) {
+function start-GAP-removal {
+ForEach ($App in $GAPAppList) {
 Get-Package "$App" | Uninstall-Package
 }            
-Write-Output "Removed apps using WMIC."
+Write-Output "Removed apps using GAP."
 }
 
 function start-GUID-removal {
@@ -557,7 +559,7 @@ do { $myInput = (Read-Host 'Remove HP bloatware?(Y/N)').ToLower() } while ($myIn
 if ($myInput -eq 'y') {
 start-UWP-removal
 Write-Output ''
-start-WMIC-removal
+start-GAP-removal
 Write-Output ''
 start-GUID-removal
 Write-Output ''

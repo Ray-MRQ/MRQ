@@ -25,14 +25,16 @@ $UWPAppList = "DellInc.DellDigitalDelivery",
     "STMicroelectronicsMEMS.DellFreeFallDataProtection",
     "DellInc.DellCustomerConnect"
 
-$WMICApplist = "Dell Mobile Connect Drivers",
+$GAPApplist = "Dell Mobile Connect Drivers",
     "Dell SupportAssist Remediation",
     "SmartByte Drivers and Services",
     "Dell Update - SupportAssist Update Plugin",
     "Dell Update - SupportAssist",
     "Dell Update - SupportAssist Remediation",
     "Dell Update Optimizer Service",
-    "Dell Digital Delivery Services"
+    "Dell Digital Delivery Services",
+    "McAfee Live",
+    "ExpressVPN"
 
 $GUIDApplist = "{18469ED8-8C36-4CF7-BD43-0FC9B1931AF8}",
     "{2D27B76E-8FB1-495B-A61D-FB76349E7E36}", 
@@ -70,11 +72,11 @@ $ProgressPreference = 'Continue'
 Write-Output "Removed UWP apps."
 }
 
-function start-WMIC-removal {
-ForEach ($App in $WMICAppList) {
+function start-GAP-removal {
+ForEach ($App in $GAPAppList) {
 Get-Package "$App" | Uninstall-Package
 }            
-Write-Output "Removed apps using WMIC."
+Write-Output "Removed apps using GAP."
 }
 
 function start-GUID-removal {
@@ -91,7 +93,7 @@ do { $myInput = (Read-Host 'Remove Dell bloatware?(Y/N)').ToLower() } while ($my
 if ($myInput -eq 'y') {
 start-UWP-removal
 Write-Output ''
-start-WMIC-removal
+start-GAP-removal
 Write-Output ''
 start-GUID-removal
 Write-Output ''
