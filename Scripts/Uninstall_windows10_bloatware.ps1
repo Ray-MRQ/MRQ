@@ -46,7 +46,8 @@ $AppList = "Microsoft.SkypeApp",
 		   "C27EB4BA.DropboxOEM",
 		   "Amazon.com.Amazon",
 		   "7EE7776C.LinkedInforWindows",
-		   "PricelinePartnerNetwork.Booking.comEMEABigsavingso"
+		   "PricelinePartnerNetwork.Booking.comEMEABigsavingso",
+		   "MixedRealityLearning"
 		   
 #
 $RemoveXboxAppList = "Microsoft.Xbox.TCUI",

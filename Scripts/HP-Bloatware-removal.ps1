@@ -21,6 +21,7 @@ $UWPAppList = "AD2F1837.HPPrinterControl",
     "AD2F1837.HPPowerManager",
     "AD2F1837.HPSystemEventUtility",
     "AD2F1837.HPInc.EnergyStar",
+    "5A894077.McAfeeSecurity",
     "0E3921EB.sMedioTrueDVDforHP"
 
 $GAPApplist = "Assistant",
