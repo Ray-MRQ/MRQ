@@ -90,7 +90,6 @@ Invoke-WebRequest $SoftwareInstallChrome -outfile c:\temp\scriptdownloads\chrome
 Invoke-WebRequest $SoftwareInstall7zip -outfile c:\temp\scriptdownloads\7zip.msi
 Invoke-WebRequest $SoftwareInstallJava -outfile c:\temp\scriptdownloads\java.msi
 Invoke-WebRequest $SoftwareInstallAdobeReader -outfile c:\temp\scriptdownloads\adobereader.zip
-Invoke-WebRequest $SoftwareInstallTeams -outfile c:\temp\scriptdownloads\teams.msi
 Expand-Archive -LiteralPath C:\temp\scriptdownloads\adobereader.zip -DestinationPath C:\temp\scriptdownloads\
 $ProgressPreference = 'Continue'
 Start-Process msiexec.exe -Wait -ArgumentList '/i c:\temp\scriptdownloads\chrome.msi /qn /norestart allusers=2'
