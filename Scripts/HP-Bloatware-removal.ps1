@@ -535,7 +535,7 @@ Write-Output "Removed UWP apps."
 
 function start-WMIC-removal {
 ForEach ($App in $WMICAppList) {
-Start-Process -wait WMIC -ArgumentList 'product where name="$App" call uninstall /nointeractive'
+Get-Package "$App" | Uninstall-Package
 }            
 Write-Output "Removed apps using WMIC."
 }
@@ -545,6 +545,8 @@ ForEach ($App in $GUIDAppList) {
   Start-Process msiexec -Wait -ArgumentList '/X $App /qn /norestart'
 }            
 Write-Output "Removed apps using GUID."
+CMD /C "C:\Program Files\HP\Documentation\Doc_Uninstall.cmd"
+c:\Program Files\HP\HP ProtectTools Security Manager\Bin\setup.exe
 Start-Process "C:\Program Files (x86)\InstallShield Installation Information\{6468C4A5-E47E-405F-B675-A70A70983EA6}\setup.exe" -Argumentlist '-runfromtemp -l0x0409  -removeonly'
 }
 
@@ -558,8 +560,6 @@ Write-Output ''
 start-WMIC-removal
 Write-Output ''
 start-GUID-removal
-CMD /C "C:\Program Files\HP\Documentation\Doc_Uninstall.cmd"
-c:\Program Files\HP\HP ProtectTools Security Manager\Bin\setup.exe
 Write-Output ''
 Write-Output "Completed bloatware removal."
 pause
