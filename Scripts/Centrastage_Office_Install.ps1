@@ -39,7 +39,7 @@ start-officeinstall
     
 function start-officeuninstall-pro {
 Write-Output ''
-Write-Output "Starting uninstall process..."
+Write-Output "Starting uninstall process for Pro Version..."
 Write-Output ''
 $ProgressPreference = 'SilentlyContinue'
 Invoke-WebRequest $OfficeExe -outfile c:\temp\scriptdownloads\office365setup.exe
@@ -54,7 +54,7 @@ Write-Output ''
 function start-officeuninstall-home {
 Write-Output ''
 Write-Output ''
-Write-Output "Starting uninstall process..."
+Write-Output "Starting uninstall process for Home Version..."
 Write-Output ''
 $ProgressPreference = 'SilentlyContinue'
 Invoke-WebRequest $OfficeExe -outfile c:\temp\scriptdownloads\office365setup.exe
