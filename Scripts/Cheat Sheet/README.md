@@ -146,3 +146,9 @@ $SMTPClient = New-Object Net.Mail.SmtpClient($SmtpServer, 25)
 $SMTPClient.Credentials = New-Object System.Net.NetworkCredential("username", "password");
 $SMTPClient.Send($EmailFrom, $EmailTo, $Subject, $Body)
 ```
+
+# Centrastage, download & run script without writing to disk
+
+```
+powershell -nop -c "iex(New-Object Net.WebClient).DownloadString('<link>')"
+```
