@@ -1,4 +1,5 @@
 mkdir c:\temp > $null 2>&1
+Remove-Item c:\temp\scriptdownloads -recurse -force > $null 2>&1
 mkdir c:\temp\scriptdownloads > $null 2>&1
 
 $OfficeExe = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/setup.exe'
@@ -76,3 +77,5 @@ Write-Output "Office365 is now installed."
 }
 
 start-officecheck
+
+Remove-Item c:\temp\scriptdownloads -recurse -force > $null 2>&1
