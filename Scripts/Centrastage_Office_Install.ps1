@@ -22,9 +22,11 @@ $O365NotInstalled = Write-Output "Office 365 is not installed."
 if ($O365Check) {
 $O365Installed
 start-officeuninstall-pro
+start-officeinstall
 }
 if ($O365CheckHome) {
 start-officeuninstall-home
+start-officeinstall
 }
 else {
 $O365NotInstalled
