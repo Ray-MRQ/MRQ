@@ -128,6 +128,7 @@ start-officeinstall
 }
 if ($O365CheckHome) {
 start-officeuninstall-home
+start-officeuninstall-pro
 start-officeinstall
 }
 else {
@@ -142,7 +143,7 @@ Write-Output ''
 do { $myInput = (Read-Host 'Would you like to uninstall Office365?(Y/N)').ToLower() } while ($myInput -notin @('y','n'))
 if ($myinput -eq 'y') {
 Write-Output ''
-Write-Output "Starting uninstall process..."
+Write-Output "Starting uninstall process for Pro version..."
 Write-Output ''
 $ProgressPreference = 'SilentlyContinue'
 Invoke-WebRequest $OfficeExe -outfile c:\temp\scriptdownloads\office365setup.exe
@@ -163,7 +164,7 @@ Write-Output ''
 do { $myInput = (Read-Host 'Would you like to uninstall Office365?(Y/N)').ToLower() } while ($myInput -notin @('y','n'))
 if ($myinput -eq 'y') {
 Write-Output ''
-Write-Output "Starting uninstall process..."
+Write-Output "Starting uninstall process for Home version..."
 Write-Output ''
 $ProgressPreference = 'SilentlyContinue'
 Invoke-WebRequest $OfficeExe -outfile c:\temp\scriptdownloads\office365setup.exe
