@@ -26,6 +26,7 @@ start-officeinstall
 }
 if ($O365CheckHome) {
 start-officeuninstall-home
+start-officeuninstall-pro
 start-officeinstall
 }
 else {
