@@ -721,49 +721,6 @@ Write-Output ''
 Write-Output "Run this last, if you have an old verison of windows and a feature update is applicable it will not move from the status checker until it restarts."
 Write-Output "If you enabled bitlocker and still haven't restart, do it now and then use manual select option 50 to come back here."
 Write-Output ''
-Write-Output "Checking if this PC requires a reboot..."
-Write-Output ''
-$RebootFlags = [pscustomobject]@{
-    
-    Component_Based_Servicing = (Test-Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Component Based Servicing\RebootPending' -ErrorAction SilentlyContinue )
-
-    Auto_Update = (Test-Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\RebootRequired' -ErrorAction SilentlyContinue )
-
-    Session_Manager = ( 
-                        $null -NE ( 
-                            Get-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager'  -ErrorAction SilentlyContinue |
-                            Select-Object -ExpandProperty 'PendingFileRenameOperations' -ErrorAction SilentlyContinue 
-                        )
-                          
-                      )
-
-    Pending_System_Renames = (!
-                                ((Get-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\ComputerName\ActiveComputerName'  -ErrorAction SilentlyContinue |
-                                Select-Object -ExpandProperty 'ComputerName' -ErrorAction SilentlyContinue) `
-                                -EQ `
-                                 (Get-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\ComputerName\ComputerName'  -ErrorAction SilentlyContinue |
-                                Select-Object -ExpandProperty 'ComputerName' -ErrorAction SilentlyContinue))
-                            )
-
-    UpdateExeVolatile = (
-                            [int](Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Updates' -ErrorAction SilentlyContinue|
-                            Select-Object -ExpandProperty 'UpdateExeVolatile' -ErrorAction SilentlyContinue ) `
-                         -ne 0)
-
-    WMI_DetermineIfRebootPending =   (Invoke-WmiMethod -ComputerName 'localhost' -Namespace root\ccm\clientsdk -Class CCM_ClientUtilities -Name DetermineIfRebootPending  -ErrorAction SilentlyContinue ).RebootPending
-}
-
-$RebootFlags
-$Reboot_Required = $False
-
-if( $RebootFlags.PSObject.Properties | ForEach-Object {if ($_.value) {$True} } ) # if any of the flags is true, a reboot is needed
-    {
-        $Reboot_Required = $true
-    }
-
-$Reboot_Required
-
-Write-Output ''
 Write-Host "If there is true anywhere above a restart is required, restart before going ahead."
 Write-Output ''
 pause
