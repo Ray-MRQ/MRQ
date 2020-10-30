@@ -166,3 +166,10 @@ else {
     Write-Host "Failed"
 }
 ```
+# Copy a users group membership to another user
+
+```
+$CopyFromUser = Get-ADUser JSmith -prop MemberOf
+$CopyToUser = Get-ADUser MAdams -prop MemberOf
+$CopyFromUser.MemberOf | Where{$CopyToUser.MemberOf -notcontains $_} |  Add-ADGroupMember -Members $CopyToUser
+```
