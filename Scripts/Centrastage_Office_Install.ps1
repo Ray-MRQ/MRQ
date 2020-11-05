@@ -79,4 +79,7 @@ c:\temp\scriptdownloads\office365setup.exe /configure c:\temp\scriptdownloads\co
 Write-Output "Office365 is now installed."
 }
 
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls, [Net.SecurityProtocolType]::Tls11, [Net.SecurityProtocolType]::Tls12, [Net.SecurityProtocolType]::Ssl3
+[Net.ServicePointManager]::SecurityProtocol = "Tls, Tls11, Tls12, Ssl3"
+
 start-officecheck
