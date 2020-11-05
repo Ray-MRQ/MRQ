@@ -80,5 +80,3 @@ Write-Output "Office365 is now installed."
 }
 
 start-officecheck
-
-Remove-Item c:\temp\scriptdownloads -recurse -force > $null 2>&1
