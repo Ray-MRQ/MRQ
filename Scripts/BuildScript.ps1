@@ -752,6 +752,7 @@ Write-Output ''
 Write-Output "The script is setup to exit after hitting enter."
 Write-Output ''
 Start-Sleep -Seconds 60
+exit
 }
 if ($LatestWindows -match $LatestWindows) {
 Write-Output ''
