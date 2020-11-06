@@ -53,6 +53,7 @@ $GAPApplist = "Assistant",
     "HP Connection Optimizer",
     "ExpressVPN",
     "HP Performance Advisor",
+    "AD2F1837.HPWorkWell",
     "McAfee Live"
 
 $GUIDApplist = "{6F340107-F9AA-47C6-B54C-C3A19F11553F}",

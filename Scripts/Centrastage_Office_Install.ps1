@@ -83,3 +83,5 @@ Write-Output "Office365 is now installed."
 [Net.ServicePointManager]::SecurityProtocol = "Tls, Tls11, Tls12, Ssl3"
 
 start-officecheck
+
+Remove-Item c:\temp\scriptdownloads -recurse -force > $null 2>&1 
