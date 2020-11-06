@@ -22,7 +22,9 @@ $UWPAppList = "AD2F1837.HPPrinterControl",
     "AD2F1837.HPSystemEventUtility",
     "AD2F1837.HPInc.EnergyStar",
     "5A894077.McAfeeSecurity",
-    "0E3921EB.sMedioTrueDVDforHP"
+    "0E3921EB.sMedioTrueDVDforHP",
+    "AD2F1837.HPWorkWell",
+    "McAfee Live"
 
 $GAPApplist = "Assistant",
     "HP Documentation",
@@ -52,14 +54,15 @@ $GAPApplist = "Assistant",
     "HP Sure Sense Installer",
     "HP Connection Optimizer",
     "ExpressVPN",
-    "HP Performance Advisor",
-    "AD2F1837.HPWorkWell",
-    "McAfee Live"
+    "HP Sure Run",
+    "HP Performance Advisor"
 
 $GUIDApplist = "{6F340107-F9AA-47C6-B54C-C3A19F11553F}",
+      "{36D6FFE0-888D-4680-AA7B-B1F896CAB9F6}",
       "{A30F03AC-EF79-40E4-AA5F-414EB135AFCF}",
       "{06FCC605-92A1-4A1C-B7D1-85E5778290A4}",
       "{669D4A35-146B-4314-89F1-1AC3D7B88367}",
+      "{E84148C6-6E8D-40C5-832D-68EB369ACDE1}",
       "{B2EE25B9-5B00-4ACF-94F0-92433C28C39E}",
       "{3023EBDA-BF1B-4831-B347-E5018555F26E}",
       "{2F518061-89DB-4AF0-9A7A-2BF73B60E6F0}",
