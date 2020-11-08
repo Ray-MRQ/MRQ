@@ -15,7 +15,7 @@ goto :choice
 :yes
 cls
 REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\MTCUVC" /v EnableMtcUvc /t REG_DWORD /d 0
-echo 64Bit Reg key added, please close the prompt and test the webcam works.
+echo Added REG key, now test by clicking on the sound icon.
 pause
 exit
 
