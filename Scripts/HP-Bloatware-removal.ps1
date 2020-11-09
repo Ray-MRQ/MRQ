@@ -24,6 +24,7 @@ $UWPAppList = "AD2F1837.HPPrinterControl",
     "5A894077.McAfeeSecurity",
     "0E3921EB.sMedioTrueDVDforHP",
     "AD2F1837.HPWorkWell",
+    "ExpressVPN",
     "McAfee Live"
 
 $GAPApplist = "Assistant",
@@ -55,7 +56,6 @@ $GAPApplist = "Assistant",
     "HP Support Solutions Framework",
     "HP Sure Sense Installer",
     "HP Connection Optimizer",
-    "ExpressVPN",
     "HP Performance Advisor"
 
 $GUIDApplist = "{6F340107-F9AA-47C6-B54C-C3A19F11553F}",

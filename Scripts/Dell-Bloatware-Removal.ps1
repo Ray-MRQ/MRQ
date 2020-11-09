@@ -24,7 +24,9 @@ $UWPAppList = "DellInc.DellDigitalDelivery",
     "DellInc.DellOptimizer",
     "STMicroelectronicsMEMS.DellFreeFallDataProtection",
     "5A894077.McAfeeSecurity",
-    "DellInc.DellCustomerConnect"
+    "DellInc.DellCustomerConnect",
+    "McAfee Live",
+    "ExpressVPN"
 
 $GAPApplist = "Dell Mobile Connect Drivers",
     "Dell SupportAssist Remediation",
@@ -33,9 +35,7 @@ $GAPApplist = "Dell Mobile Connect Drivers",
     "Dell Update - SupportAssist",
     "Dell Update - SupportAssist Remediation",
     "Dell Update Optimizer Service",
-    "Dell Digital Delivery Services",
-    "McAfee Live",
-    "ExpressVPN"
+    "Dell Digital Delivery Services"
 
 $GUIDApplist = "{18469ED8-8C36-4CF7-BD43-0FC9B1931AF8}",
     "{2D27B76E-8FB1-495B-A61D-FB76349E7E36}", 
