@@ -1,4 +1,4 @@
-Write-Outpute-Output "Restart/Shutdown a PC remotely"
+Write-Output "Restart/Shutdown a PC remotely"
 ""
 
 $PCName = Read-Host -prompt 'Enter PC name'
