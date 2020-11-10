@@ -12,6 +12,11 @@ if ($myinput -eq 'restart') {
 Write-Output "Restarting remote PC if possible..."
 ""
 runas /noprofile /user:$user "powershell shutdown /r /m \\$PCName /t 0"
+""
+Write-Output "Pinging machine..."
+Write-Output "Close prompt if you are done"
+""
+ping $PCName -t -4
 }
 if ($myinput -eq 'shutdown') {
 runas /noprofile /user:$user "powershell shutdown /s /m \\$PCName"
