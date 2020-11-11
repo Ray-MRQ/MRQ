@@ -11,6 +11,7 @@ $OfficeExe = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/setup.ex
 $OfficeXMLInstall = 'https://github.com/Ray-MRQ/MRQ/raw/master/Regkeys_xmls/configuration-Office365-x86.xml'
 $OfficeXMLUninstall = 'https://github.com/Ray-MRQ/MRQ/raw/master/Regkeys_xmls/configruation_uninstall.xml'
 $OfficeXMLHomeUninstall = 'https://github.com/Ray-MRQ/MRQ/raw/master/Regkeys_xmls/configuration_uninstall_home.xml'
+$OfficeXMLBuisnessUninstall = 'https://github.com/Ray-MRQ/MRQ/raw/master/Regkeys_xmls/configuration_uninstall_buisness.xml'
 
 function start-officecheck {
     $uninstallKeys = Get-ChildItem -Path "HKLM:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall"
@@ -27,6 +28,7 @@ function start-officecheck {
     $O365Installed
     Write-Output ''
     start-officeuninstall-pro
+    start-officeuninstall-buisness
     start-officeinstall
     pause
     }
@@ -62,7 +64,27 @@ function start-officeuninstall-pro {
     Clear-Host
     }
 }
-    
+ 
+function start-officeuninstall-buisness {
+    Write-Output ''
+    do { $myInput = (Read-Host 'Would you like to uninstall Office365?(Y/N)').ToLower() } while ($myInput -notin @('y','n'))
+    if ($myinput -eq 'y') {
+    Write-Output ''
+    Write-Output "Starting uninstall process..."
+    Write-Output ''
+    $ProgressPreference = 'SilentlyContinue'
+    Invoke-WebRequest $OfficeExe -outfile c:\temp\scriptdownloads\office365setup.exe
+    Invoke-WebRequest $OfficeXMLBuisnessUninstall -outfile c:\temp\scriptdownloads\office365uninstallbuisness.xml
+    $ProgressPreference = 'Continue'
+    c:\temp\scriptdownloads\office365setup.exe /configure c:\temp\scriptdownloads\office365uninstallbuisness.xml
+    Write-Output "Office365 ProPlus should be uninstalled."
+    Write-Output ''
+    pause
+    Write-Output ''
+    Clear-Host
+    }
+}
+
 function start-officeuninstall-home {
     Write-Output ''
     do { $myInput = (Read-Host 'Would you like to uninstall Office365?(Y/N)').ToLower() } while ($myInput -notin @('y','n'))
