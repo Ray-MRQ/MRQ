@@ -76,7 +76,7 @@ Write-Output "Removed UWP apps."
 function start-GAP-removal {
 ForEach ($App in $GAPAppList) {
 Get-Package "$App" | Uninstall-Package
-Get-Package "$App" | ForEach-Object { & $_.Meta.Attributes['UninstallString'] /S }
+Get-Package "$App" | ForEach-Object { & $_.Meta.Attributes['UninstallString'] /S } -ErrorAction SilentlyContinue
 }            
 Write-Output "Removed apps using GAP."
 }
