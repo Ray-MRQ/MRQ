@@ -44,6 +44,7 @@ $AppList = "Microsoft.SkypeApp",
 		   "Amazon.com.Amazon",
 		   "7EE7776C.LinkedInforWindows",
 		   "MixedRealityLearning",
+		   "Microsoft.BingTranslator",
 		   "PricelinePartnerNetwork.Booking.comEMEABigsavingso"
 		   
 #
