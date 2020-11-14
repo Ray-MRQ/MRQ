@@ -77,7 +77,7 @@ function start-officeuninstall-buisness {
     Invoke-WebRequest $OfficeXMLBuisnessUninstall -outfile c:\temp\scriptdownloads\office365uninstallbuisness.xml
     $ProgressPreference = 'Continue'
     c:\temp\scriptdownloads\office365setup.exe /configure c:\temp\scriptdownloads\office365uninstallbuisness.xml
-    Write-Output "Office365 ProPlus should be uninstalled."
+    Write-Output "Office365 Buisness ProPlus should be uninstalled."
     Write-Output ''
     pause
     Write-Output ''
