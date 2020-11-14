@@ -55,9 +55,6 @@ Write-Output ''
  
 function start-officeuninstall-buisness {
     Write-Output ''
-    do { $myInput = (Read-Host 'Would you like to uninstall Office365?(Y/N)').ToLower() } while ($myInput -notin @('y','n'))
-    if ($myinput -eq 'y') {
-    Write-Output ''
     Write-Output "Starting uninstall process..."
     Write-Output ''
     $ProgressPreference = 'SilentlyContinue'
