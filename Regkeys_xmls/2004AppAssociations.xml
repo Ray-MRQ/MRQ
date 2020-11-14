@@ -1,54 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
--<DefaultAssociations>
-<Association ApplicationName="Photos" ProgId="AppX43hnxtbyyps62jhe9sqpdzxn1790zetc" Identifier=".arw"/>
-<Association ApplicationName="Windows Photo Viewer" ProgId="PhotoViewer.FileAssoc.Bitmap" Identifier=".bmp"/>
-<Association ProgId="FoxitReader.CCPDFDoc" Identifier=".cpdf"/>
-<Association ApplicationName="Windows Photo Viewer" ProgId="PhotoViewer.FileAssoc.Tiff" Identifier=".cr2"/>
-<Association ApplicationName="Photos" ProgId="AppX43hnxtbyyps62jhe9sqpdzxn1790zetc" Identifier=".crw"/>
-<Association ApplicationName="Windows Photo Viewer" ProgId="PhotoViewer.FileAssoc.Bitmap" Identifier=".dib"/>
-<Association ApplicationName="Photos" ProgId="AppX43hnxtbyyps62jhe9sqpdzxn1790zetc" Identifier=".erf"/>
-<Association ApplicationName="Windows Photo Viewer" ProgId="PhotoViewer.FileAssoc.Gif" Identifier=".gif"/>
-<Association ApplicationName="Google Chrome" ProgId="ChromeHTML" Identifier=".htm"/>
-<Association ApplicationName="Google Chrome" ProgId="ChromeHTML" Identifier=".html"/>
-<Association ApplicationName="Notepad" ProgId="inffile" Identifier=".inf"/>
-<Association ApplicationName="Notepad" ProgId="inifile" Identifier=".ini"/>
-<Association ApplicationName="Windows Photo Viewer" ProgId="PhotoViewer.FileAssoc.JFIF" Identifier=".jfif"/>
-<Association ApplicationName="Windows Photo Viewer" ProgId="PhotoViewer.FileAssoc.Jpeg" Identifier=".jpe"/>
-<Association ApplicationName="Windows Photo Viewer" ProgId="PhotoViewer.FileAssoc.Jpeg" Identifier=".jpeg"/>
-<Association ApplicationName="Windows Photo Viewer" ProgId="PhotoViewer.FileAssoc.Jpeg" Identifier=".jpg"/>
-<Association ApplicationName="Windows Photo Viewer" ProgId="PhotoViewer.FileAssoc.Wdp" Identifier=".jxr"/>
-<Association ApplicationName="Photos" ProgId="AppX43hnxtbyyps62jhe9sqpdzxn1790zetc" Identifier=".kdc"/>
-<Association ApplicationName="Notepad" ProgId="txtfile" Identifier=".log"/>
-<Association ApplicationName="Windows Media Player" ProgId="WMP11.AssocFile.MP3" Identifier=".MP2"/>
-<Association ApplicationName="Photos" ProgId="AppX43hnxtbyyps62jhe9sqpdzxn1790zetc" Identifier=".mrw"/>
-<Association ApplicationName="Photos" ProgId="AppX43hnxtbyyps62jhe9sqpdzxn1790zetc" Identifier=".nef"/>
-<Association ApplicationName="Photos" ProgId="AppX43hnxtbyyps62jhe9sqpdzxn1790zetc" Identifier=".nrw"/>
-<Association ApplicationName="Photos" ProgId="AppX43hnxtbyyps62jhe9sqpdzxn1790zetc" Identifier=".orf"/>
-<Association ApplicationName="Adobe Acrobat Reader DC" ProgId="AcroExch.Document.DC" Identifier=".pdf"/>
-<Association ApplicationName="Photos" ProgId="AppX43hnxtbyyps62jhe9sqpdzxn1790zetc" Identifier=".pef"/>
-<Association ApplicationName="Windows Photo Viewer" ProgId="PhotoViewer.FileAssoc.Png" Identifier=".png"/>
-<Association ApplicationName="Notepad" ProgId="Microsoft.PowerShellScript.1" Identifier=".ps1"/>
-<Association ApplicationName="Notepad" ProgId="Microsoft.PowerShellData.1" Identifier=".psd1"/>
-<Association ApplicationName="Notepad" ProgId="Microsoft.PowerShellModule.1" Identifier=".psm1"/>
-<Association ApplicationName="Photos" ProgId="AppX43hnxtbyyps62jhe9sqpdzxn1790zetc" Identifier=".raf"/>
-<Association ApplicationName="Photos" ProgId="AppX43hnxtbyyps62jhe9sqpdzxn1790zetc" Identifier=".raw"/>
-<Association ApplicationName="Photos" ProgId="AppX43hnxtbyyps62jhe9sqpdzxn1790zetc" Identifier=".rw2"/>
-<Association ApplicationName="Photos" ProgId="AppX43hnxtbyyps62jhe9sqpdzxn1790zetc" Identifier=".rwl"/>
-<Association ApplicationName="Notepad" ProgId="txtfile" Identifier=".scp"/>
-<Association ApplicationName="Photos" ProgId="AppX43hnxtbyyps62jhe9sqpdzxn1790zetc" Identifier=".sr2"/>
-<Association ApplicationName="Photos" ProgId="AppX43hnxtbyyps62jhe9sqpdzxn1790zetc" Identifier=".srw"/>
-<Association ApplicationName="Windows Photo Viewer" ProgId="TIFImage.Document" Identifier=".tif"/>
-<Association ApplicationName="Windows Photo Viewer" ProgId="TIFImage.Document" Identifier=".tiff"/>
-<Association ApplicationName="Notepad" ProgId="txtfile" Identifier=".txt"/>
-<Association ApplicationName="Internet Browser" ProgId="IE.AssocFile.URL" Identifier=".url"/>
-<Association ApplicationName="Windows Photo Viewer" ProgId="PhotoViewer.FileAssoc.Wdp" Identifier=".wdp"/>
-<Association ApplicationName="Internet Explorer" ProgId="IE.AssocFile.WEBSITE" Identifier=".website"/>
-<Association ApplicationName="Notepad" ProgId="txtfile" Identifier=".wtx"/>
-<Association ApplicationName="Google Chrome" ProgId="ChromeHTML" Identifier="http"/>
-<Association ApplicationName="Google Chrome" ProgId="ChromeHTML" Identifier="https"/>
-<Association ApplicationName="Outlook" ProgId="Outlook.URL.mailto.15" Identifier="mailto"/>
-<Association ApplicationName="Microsoft Edge" ProgId="MSEdgeHTM" Identifier="microsoft-edge"/>
-<Association ApplicationName="Microsoft Edge" ProgId="MSEdgeHTM" Identifier="microsoft-edge-holographic"/>
-<Association ApplicationName="Microsoft Edge" ProgId="MSEdgeHTM" Identifier="ms-xbl-3d8b930f"/>
+<DefaultAssociations>
+  <Association Identifier=".arw" ProgId="AppX43hnxtbyyps62jhe9sqpdzxn1790zetc" ApplicationName="Photos" />
+  <Association Identifier=".bmp" ProgId="PhotoViewer.FileAssoc.Bitmap" ApplicationName="Windows Photo Viewer" />
+  <Association Identifier=".cr2" ProgId="PhotoViewer.FileAssoc.Tiff" ApplicationName="Windows Photo Viewer" />
+  <Association Identifier=".crw" ProgId="AppX43hnxtbyyps62jhe9sqpdzxn1790zetc" ApplicationName="Photos" />
+  <Association Identifier=".dib" ProgId="PhotoViewer.FileAssoc.Bitmap" ApplicationName="Windows Photo Viewer" />
+  <Association Identifier=".erf" ProgId="AppX43hnxtbyyps62jhe9sqpdzxn1790zetc" ApplicationName="Photos" />
+  <Association Identifier=".gif" ProgId="PhotoViewer.FileAssoc.Gif" ApplicationName="Windows Photo Viewer" />
+  <Association Identifier=".htm" ProgId="ChromeHTML" ApplicationName="Google Chrome" />
+  <Association Identifier=".html" ProgId="ChromeHTML" ApplicationName="Google Chrome" />
+  <Association Identifier=".inf" ProgId="inffile" ApplicationName="Notepad" />
+  <Association Identifier=".ini" ProgId="inifile" ApplicationName="Notepad" />
+  <Association Identifier=".jfif" ProgId="PhotoViewer.FileAssoc.JFIF" ApplicationName="Windows Photo Viewer" />
+  <Association Identifier=".jpe" ProgId="PhotoViewer.FileAssoc.Jpeg" ApplicationName="Windows Photo Viewer" />
+  <Association Identifier=".jpeg" ProgId="PhotoViewer.FileAssoc.Jpeg" ApplicationName="Windows Photo Viewer" />
+  <Association Identifier=".jpg" ProgId="PhotoViewer.FileAssoc.Jpeg" ApplicationName="Windows Photo Viewer" />
+  <Association Identifier=".jxr" ProgId="PhotoViewer.FileAssoc.Wdp" ApplicationName="Windows Photo Viewer" />
+  <Association Identifier=".kdc" ProgId="AppX43hnxtbyyps62jhe9sqpdzxn1790zetc" ApplicationName="Photos" />
+  <Association Identifier=".log" ProgId="txtfile" ApplicationName="Notepad" />
+  <Association Identifier=".MP2" ProgId="WMP11.AssocFile.MP3" ApplicationName="Windows Media Player" />
+  <Association Identifier=".mrw" ProgId="AppX43hnxtbyyps62jhe9sqpdzxn1790zetc" ApplicationName="Photos" />
+  <Association Identifier=".nef" ProgId="AppX43hnxtbyyps62jhe9sqpdzxn1790zetc" ApplicationName="Photos" />
+  <Association Identifier=".nrw" ProgId="AppX43hnxtbyyps62jhe9sqpdzxn1790zetc" ApplicationName="Photos" />
+  <Association Identifier=".orf" ProgId="AppX43hnxtbyyps62jhe9sqpdzxn1790zetc" ApplicationName="Photos" />
+  <Association Identifier=".pdf" ProgId="AcroExch.Document.DC" ApplicationName="Adobe Acrobat Reader DC" />
+  <Association Identifier=".pef" ProgId="AppX43hnxtbyyps62jhe9sqpdzxn1790zetc" ApplicationName="Photos" />
+  <Association Identifier=".png" ProgId="PhotoViewer.FileAssoc.Png" ApplicationName="Windows Photo Viewer" />
+  <Association Identifier=".ps1" ProgId="Microsoft.PowerShellScript.1" ApplicationName="Notepad" />
+  <Association Identifier=".psd1" ProgId="Microsoft.PowerShellData.1" ApplicationName="Notepad" />
+  <Association Identifier=".psm1" ProgId="Microsoft.PowerShellModule.1" ApplicationName="Notepad" />
+  <Association Identifier=".raf" ProgId="AppX43hnxtbyyps62jhe9sqpdzxn1790zetc" ApplicationName="Photos" />
+  <Association Identifier=".raw" ProgId="AppX43hnxtbyyps62jhe9sqpdzxn1790zetc" ApplicationName="Photos" />
+  <Association Identifier=".rw2" ProgId="AppX43hnxtbyyps62jhe9sqpdzxn1790zetc" ApplicationName="Photos" />
+  <Association Identifier=".rwl" ProgId="AppX43hnxtbyyps62jhe9sqpdzxn1790zetc" ApplicationName="Photos" />
+  <Association Identifier=".scp" ProgId="txtfile" ApplicationName="Notepad" />
+  <Association Identifier=".sr2" ProgId="AppX43hnxtbyyps62jhe9sqpdzxn1790zetc" ApplicationName="Photos" />
+  <Association Identifier=".srw" ProgId="AppX43hnxtbyyps62jhe9sqpdzxn1790zetc" ApplicationName="Photos" />
+  <Association Identifier=".tif" ProgId="TIFImage.Document" ApplicationName="Windows Photo Viewer" />
+  <Association Identifier=".tiff" ProgId="TIFImage.Document" ApplicationName="Windows Photo Viewer" />
+  <Association Identifier=".txt" ProgId="txtfile" ApplicationName="Notepad" />
+  <Association Identifier=".url" ProgId="IE.AssocFile.URL" ApplicationName="Internet Browser" />
+  <Association Identifier=".wdp" ProgId="PhotoViewer.FileAssoc.Wdp" ApplicationName="Windows Photo Viewer" />
+  <Association Identifier=".website" ProgId="IE.AssocFile.WEBSITE" ApplicationName="Internet Explorer" />
+  <Association Identifier=".wtx" ProgId="txtfile" ApplicationName="Notepad" />
+  <Association Identifier="http" ProgId="ChromeHTML" ApplicationName="Google Chrome" />
+  <Association Identifier="https" ProgId="ChromeHTML" ApplicationName="Google Chrome" />
+  <Association Identifier="mailto" ProgId="Outlook.URL.mailto.15" ApplicationName="Outlook" />
+  <Association Identifier="microsoft-edge" ProgId="MSEdgeHTM" ApplicationName="Microsoft Edge" />
+  <Association Identifier="microsoft-edge-holographic" ProgId="MSEdgeHTM" ApplicationName="Microsoft Edge" />
+  <Association Identifier="ms-xbl-3d8b930f" ProgId="MSEdgeHTM" ApplicationName="Microsoft Edge" />
 </DefaultAssociations>
