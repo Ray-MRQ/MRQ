@@ -15,10 +15,6 @@ $OldWindows = '1909' #Anything under 1909 or equal to
 
 #Download links.
 
-$OfficeExe = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/setup.exe'
-$OfficeXMLInstall = 'https://github.com/Ray-MRQ/MRQ/raw/master/Regkeys_xmls/configuration-Office365-x86.xml'
-$OfficeXMLUninstall = 'https://github.com/Ray-MRQ/MRQ/raw/master/Regkeys_xmls/configruation_uninstall.xml'
-$OfficeXMLHomeUninstall = 'https://github.com/Ray-MRQ/MRQ/raw/master/Regkeys_xmls/configuration_uninstall_home.xml'
 $OfficeUninstallTool = 'https://outlookdiagnostics.azureedge.net/sarasetup/SetupProd_OffScrub.exe'
 $SoftwareInstallChrome = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/GoogleChromeStandaloneEnterprise64.msi'
 $SoftwareInstall7zip = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/7z1604-x64.msi'
