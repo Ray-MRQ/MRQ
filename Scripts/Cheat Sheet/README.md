@@ -173,3 +173,31 @@ $CopyFromUser = Get-ADUser JSmith -prop MemberOf
 $CopyToUser = Get-ADUser MAdams -prop MemberOf
 $CopyFromUser.MemberOf | Where{$CopyToUser.MemberOf -notcontains $_} |  Add-ADGroupMember -Members $CopyToUser
 ```
+
+# GUI Message box for POSHGUI
+
+```
+$msgBoxInput =  [System.Windows.MessageBox]::Show('Would you like to play a game?','Game  input','YesNoCancel','Error')
+
+  switch  ($msgBoxInput) {
+
+  'Yes' {
+
+  ## Do something 
+
+  }
+
+  'No' {
+
+  ## Do something
+
+  }
+
+  'Cancel' {
+
+  ## Do something
+
+  }
+
+  }
+  ```
