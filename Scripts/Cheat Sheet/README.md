@@ -201,3 +201,9 @@ $msgBoxInput =  [System.Windows.MessageBox]::Show('Would you like to ???','Windo
 
   }
   ```
+
+# Show a message box on screen
+
+```
+[System.Windows.MessageBox]::Show('Hello')
+```
