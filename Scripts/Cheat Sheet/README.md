@@ -177,7 +177,7 @@ $CopyFromUser.MemberOf | Where{$CopyToUser.MemberOf -notcontains $_} |  Add-ADGr
 # GUI Message box for POSHGUI
 
 ```
-$msgBoxInput =  [System.Windows.MessageBox]::Show('Would you like to play a game?','Game  input','YesNoCancel','Error')
+$msgBoxInput =  [System.Windows.MessageBox]::Show('Would you like to ???','Window header','YesNoCancel','Error')
 
   switch  ($msgBoxInput) {
 
