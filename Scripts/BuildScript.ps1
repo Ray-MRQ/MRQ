@@ -25,6 +25,7 @@ $SoftwareInstall7zip = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20file
 $SoftwareInstallJava = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/jre1.8.0_26164.msi'
 $SoftwareInstallZoomFile = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/ZoomInstallerFull.msi'
 $SoftwareInstallAdobeReader = 'https://onl-my.sharepoint.com/:u:/g/personal/mohammed_quashem_onlinesupport_co_uk/EcRWAKSO321GgevynQeMUzkBpZ-6wm-kHKs7_uScUdfZmw?e=4bhFXR&download=1'
+$Office365Install = 'https://github.com/Ray-MRQ/MRQ/raw/master/Scripts/Install_Office365Apps.ps1'
 $MimecastInstall = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/Mimecast%20for%20Outlook%207.0.1740.17532%20(32%20bit).msi'
 $GlobalVPNInstall = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/GVCInstall64.msi'
 $NeteXtenderInstall= 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/NetExtender.8.6.265.MSI'
@@ -80,9 +81,6 @@ Write-Output ''
 pause
 Clear-Host
 
-#Run OfficeUninstall Check
-start-officecheck
-
 Write-Output ''
 Write-Output "Starting download and install for 7Zip, Java, , Chrome & Adobe Reader..."
 $ProgressPreference = 'SilentlyContinue'
@@ -110,93 +108,9 @@ Start-Process msiexec.exe -Wait -ArgumentList '/i c:\temp\scriptdownloads\ZoomIn
 }}
 
 function start-officecheck {
-$uninstallKeys = Get-ChildItem -Path "HKLM:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall"
-$O365 = "Microsoft 365"
-$O365Check = $uninstallKeys | Where-Object { $_.GetValue("DisplayName") -match $O365 }
-
-$uninstallKeysHome = Get-ChildItem -Path "HKLM:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall"
-$O365Home = "Microsoft Office 365"
-$O365CheckHome = $uninstallKeysHome | Where-Object { $_.GetValue("DisplayName") -match $O365Home }
-
-$O365Installed = Write-Output "Office 365 is installed."
-$O365NotInstalled = Write-Output "Office 365 is not installed."
-if ($O365Check) {
-$O365Installed
-Write-Output ''
-start-officeuninstall-pro
-start-officeinstall
+Invoke-WebRequest $Office365Install -outfile C:\temp\scriptdownloads\office365install.ps1
+powershell C:\temp\scriptdownloads\office365install.ps1
 }
-if ($O365CheckHome) {
-start-officeuninstall-home
-start-officeuninstall-pro
-start-officeinstall
-}
-else {
-$O365NotInstalled
-Write-Output ''
-start-officeinstall
-}
-}
-
-function start-officeuninstall-pro {
-Write-Output ''
-do { $myInput = (Read-Host 'Would you like to uninstall Office365?(Y/N)').ToLower() } while ($myInput -notin @('y','n'))
-if ($myinput -eq 'y') {
-Write-Output ''
-Write-Output "Starting uninstall process for Pro version..."
-Write-Output ''
-$ProgressPreference = 'SilentlyContinue'
-Invoke-WebRequest $OfficeExe -outfile c:\temp\scriptdownloads\office365setup.exe
-Invoke-WebRequest $OfficeXMLUninstall -outfile c:\temp\scriptdownloads\office365uninstall.xml
-$ProgressPreference = 'Continue'
-c:\temp\scriptdownloads\office365setup.exe /configure c:\temp\scriptdownloads\office365uninstall.xml
-Write-Output "Office365 ProPlus should be uninstalled."
-Write-Output "If not, use option 12 and use the support tool to uninstall."
-Write-Output ''
-pause
-Write-Output ''
-Clear-Host
-}
-}
-
-function start-officeuninstall-home {
-Write-Output ''
-do { $myInput = (Read-Host 'Would you like to uninstall Office365?(Y/N)').ToLower() } while ($myInput -notin @('y','n'))
-if ($myinput -eq 'y') {
-Write-Output ''
-Write-Output "Starting uninstall process for Home version..."
-Write-Output ''
-$ProgressPreference = 'SilentlyContinue'
-Invoke-WebRequest $OfficeExe -outfile c:\temp\scriptdownloads\office365setup.exe
-Invoke-WebRequest $OfficeXMLHomeUninstall -outfile c:\temp\scriptdownloads\office365uninstallhome.xml
-$ProgressPreference = 'Continue'
-c:\temp\scriptdownloads\office365setup.exe /configure c:\temp\scriptdownloads\office365uninstallhome.xml
-Write-Output "Office365 ProPlus should be uninstalled."
-Write-Output "If not, use option 12 and use the support tool to uninstall."
-Write-Output ''
-pause
-Write-Output ''
-Clear-Host
-}
-}
-
-function start-officeinstall {
-Clear-Host
-do { $myInput = (Read-Host 'Would you like to install Office365?(Y/N)').ToLower() } while ($myInput -notin @('y','n'))
-if ($myInput -eq 'y') {
-Write-Output ''
-Write-Output "Starting Office 365 install silently...."
-Write-Output ''
-Write-Output "Downloading and installing Office365"
-Write-Output ''
-$ProgressPreference = 'SilentlyContinue'
-Invoke-WebRequest $OfficeExe -outfile c:\temp\scriptdownloads\office365setup.exe
-Invoke-WebRequest $OfficeXMLInstall -outfile c:\temp\scriptdownloads\configuration.xml
-$ProgressPreference = 'Continue'
-c:\temp\scriptdownloads\office365setup.exe /configure c:\temp\scriptdownloads\configuration.xml
-Write-Output ''
-Write-Output "Office365 is now installed."
-}}
 
 function start-officeuninstalltool {
 Write-Output "Office applications uninstall tool, with will open up an app."
