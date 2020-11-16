@@ -76,7 +76,7 @@ Write-Output "Please confirm below."
 Write-Output ''
 pause
 Clear-Host
-
+start-officecheck
 Write-Output ''
 Write-Output "Starting download and install for 7Zip, Java, , Chrome & Adobe Reader..."
 $ProgressPreference = 'SilentlyContinue'
