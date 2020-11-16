@@ -30,12 +30,10 @@ function start-officecheck {
     start-officeuninstall-pro
     start-officeuninstall-buisness
     start-officeinstall
-    pause
     }
     if ($O365CheckHome) {
     start-officeuninstall-home
     start-officeinstall
-    pause
     }
     else {
     $O365NotInstalled
