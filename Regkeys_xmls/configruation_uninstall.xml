@@ -4,6 +4,22 @@
 <Remove>
     <Product ID="O365ProPlusRetail">
       <Language ID="en-us" />
+    <Language ID="en-us" />
+	  <Language ID="de-de" />
+	  <Language ID="fr-fr" />
+	  <Language ID="it-it" />
+	  <Language ID="nl-nl" />
+    <Language ID="ar-sa" />
+    <Language ID="da-dk" />
+    <Language ID="de-de" />
+    <Language ID="es-es" />
+    <Language ID="fi-fi" />
+    <Language ID="it-it" />
+    <Language ID="nb-no" />
+    <Language ID="pl-pl" />
+    <Language ID="pt-pt" />
+    <Language ID="sv-se" />
+      
     </Product>
   </Remove>
 </Configuration>
