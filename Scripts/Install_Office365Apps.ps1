@@ -67,7 +67,6 @@ function start-officeuninstall-buisness {
     Write-Output ''
     Clear-Host
     }
-}
 
 function start-officeuninstall-home {
     Write-Output ''
