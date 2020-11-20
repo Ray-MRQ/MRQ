@@ -50,6 +50,7 @@ $GUIDApplist = "{18469ED8-8C36-4CF7-BD43-0FC9B1931AF8}",
     "{1906C253-4035-4CA5-A501-075E691CCEC9}",
     "{57CBE96A-3AA5-4421-A87C-6C6C3B6C5ECA}",
     "{C559D0AB-2D9E-4B59-B2B8-0C2061B3F9BC}",
+    "{E5B9C3E5-889C-4F22-A959-F4B8465D8876}",
     "{CC5730C7-C867-43BD-94DA-00BB3836906F}",
     "{286A9ADE-A581-43E8-AA85-6F5D58C7DC88}",
     "{3a267e2b-0948-4f12-a103-e2ac0461179d}",
@@ -90,6 +91,7 @@ ForEach ($App in $GUIDAppList) {
 Start-Process msiexec -Wait -ArgumentList '/X $App /qn /norestart'
 }            
 Write-Output "Removed apps using GUID."
+C:\Program Files\McAfee\MSC\mcuihost.exe /body:misp://MSCJsRes.dll::uninstall.html /id:uninstall
 }
 
 ############################################################################

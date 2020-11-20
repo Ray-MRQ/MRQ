@@ -60,6 +60,7 @@ $GAPApplist = "Assistant",
 
 $GUIDApplist = "{6F340107-F9AA-47C6-B54C-C3A19F11553F}",
       "{36D6FFE0-888D-4680-AA7B-B1F896CAB9F6}",
+      "{E5B9C3E5-889C-4F22-A959-F4B8465D8876}",
       "{A30F03AC-EF79-40E4-AA5F-414EB135AFCF}",
       "{06FCC605-92A1-4A1C-B7D1-85E5778290A4}",
       "{669D4A35-146B-4314-89F1-1AC3D7B88367}",
@@ -558,6 +559,7 @@ Write-Output "Removed apps using GUID."
 CMD /C "C:\Program Files\HP\Documentation\Doc_Uninstall.cmd"
 "c:\Program Files\HP\HP ProtectTools Security Manager\Bin\setup.exe"
 Start-Process "C:\Program Files (x86)\InstallShield Installation Information\{6468C4A5-E47E-405F-B675-A70A70983EA6}\setup.exe" -Argumentlist '-runfromtemp -l0x0409  -removeonly'
+C:\Program Files\McAfee\MSC\mcuihost.exe /body:misp://MSCJsRes.dll::uninstall.html /id:uninstall
 }
 
 ############################################################################
