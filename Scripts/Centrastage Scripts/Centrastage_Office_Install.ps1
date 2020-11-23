@@ -24,12 +24,10 @@ if ($O365Check) {
 $O365Installed
 start-officeuninstall-pro
 start-officeuninstall-buisness
-start-officeinstall
 }
 if ($O365CheckHome) {
 start-officeuninstall-home
 start-officeuninstall-pro
-start-officeinstall
 }
 else {
 $O365NotInstalled
