@@ -25,8 +25,7 @@ $UWPAppList = "AD2F1837.HPPrinterControl",
     "0E3921EB.sMedioTrueDVDforHP",
     "AD2F1837.HPWorkWell",
     "AD2F1837.HPQuickDrop",
-    "AD2F1837.HPQuickDrop",
-    "AD2F1837.HPSupportAssistant",
+    "AD2F1837.myHP",
     "ExpressVPN",
     "McAfee Live"
 
