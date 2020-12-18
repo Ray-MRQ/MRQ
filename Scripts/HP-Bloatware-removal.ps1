@@ -567,6 +567,7 @@ C:\Program Files\McAfee\MSC\mcuihost.exe /body:misp://MSCJsRes.dll::uninstall.ht
 function start-main-menu {
 do { $myInput = (Read-Host 'Remove HP bloatware?(Y/N)').ToLower() } while ($myInput -notin @('Y','N'))
 if ($myInput -eq 'y') {
+Install-PackageProvider -Name NuGet -Force -MinimumVersion 2.8.5.208 > $null 2>&1
 start-UWP-removal
 Write-Output ''
 start-GAP-removal
