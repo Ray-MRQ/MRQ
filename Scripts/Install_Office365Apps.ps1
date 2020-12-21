@@ -92,7 +92,7 @@ function start-officeuninstall-home {
 }
     
 function start-officeinstall {
-    Clear-Host
+    Write-Output ''
     do { $myInput = (Read-Host 'Would you like to install Office365?(Y/N)').ToLower() } while ($myInput -notin @('y','n'))
     if ($myInput -eq 'y') {
     Write-Output ''
@@ -110,23 +110,6 @@ function start-officeinstall {
     pause
 }}
 
-function start-main-menu {
-Write-Output ''
-do { $myInput = (Read-Host 'Automatic uninstall or manual uninstall?(A/M)').ToLower() } while ($myInput -notin @('A','M'))
-if ($myInput -eq 'a') {
-start-officecheck
-}
-else {
-    do { $myInput = (Read-Host 'Is this Office365 Home or Retail you would like to uninstall? (H/R)').ToLower() } while ($myInput -notin @('H','R'))
-    if ($myInput -eq 'H') {
-        start-officeuninstall-home
-        start-officeinstall
-    }
-    else {
-        start-officeuninstall-pro
-        start-officeinstall
-}}}
-    
 Write-Output "Install Office365 Apps (32Bit only)"
 Write-Output "####################"
 Write-Output ''

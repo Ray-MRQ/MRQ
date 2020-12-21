@@ -80,7 +80,7 @@ start-officecheck
 Write-Output "If for whatever reason office did not install, you can re-install from manual selection Option 13."
 pause
 Write-Output ''
-Write-Output "Starting download and install for 7Zip, Java, , Chrome & Adobe Reader..."
+Write-Output "Starting download and install for 7Zip, Java, Chrome & Adobe Reader..."
 $ProgressPreference = 'SilentlyContinue'
 Invoke-WebRequest $SoftwareInstallChrome -outfile c:\temp\scriptdownloads\chrome.msi
 Invoke-WebRequest $SoftwareInstall7zip -outfile c:\temp\scriptdownloads\7zip.msi
