@@ -63,7 +63,7 @@ function start-main-menu{
 	start-user-bloatware-noxbox
 	start-basic-bloatware-remover
 	Clear-Host
-	Write-Output "Completed."
+	Write-Output "Completed bloatware removal. Please continue."
 	pause
 	$ProgressPreference = $OriginalPref
 	exit
@@ -72,7 +72,7 @@ function start-main-menu{
 	start-user-bloatware
 	start-basic-bloatware-remover
 	Clear-Host
-	Write-Output "Complete."
+	Write-Output "Completed bloatware removal. Please continue."
 	pause
 	$ProgressPreference = $OriginalPref
 	exit
