@@ -578,7 +578,7 @@ start-GAP-removal
 Write-Output ''
 start-GUID-removal
 Clear-Host
-Write-Output "Completed bloatware removal."
+Write-Output "Completed bloatware removal. Please continue."
 pause
 }
 if ($myinput -eq 'n') {
