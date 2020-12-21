@@ -131,4 +131,4 @@ Write-Output "Install Office365 Apps (32Bit only)"
 Write-Output "####################"
 Write-Output ''
 Write-Output "Checking if Office365 is installed...."
-start-main-menu
+start-officecheck
