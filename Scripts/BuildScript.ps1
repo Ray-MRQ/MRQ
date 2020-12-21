@@ -67,7 +67,7 @@ $Version
 $lastupdatedby
 Write-Output ''
 Write-Output "For software, the following will be installed."
-Write-Output "Uninstall the ones you do not require as neeeded."
+Write-Output "Uninstall the ones you do not require as needed."
 Write-Output ''
 Write-Output ''
 Write-Output 7Zip Chrome Java  "Adobe Reader" "Office365 Applications 32Bit" "Zoom (Optional)"  "NeteXtender or GlobalVPN (optional)" "Mimecast for Outlook32Bit (optional)" 
@@ -77,6 +77,8 @@ Write-Output ''
 pause
 Clear-Host
 start-officecheck
+Write-Output "If for whatever reason office did not install, you can re-install from manual selection Option 13."
+pause
 Write-Output ''
 Write-Output "Starting download and install for 7Zip, Java, , Chrome & Adobe Reader..."
 $ProgressPreference = 'SilentlyContinue'
@@ -497,7 +499,7 @@ if ($myinput -eq 'Y') {
 Write-Output ''
 $DomainName = Read-Host -Prompt 'Enter the domain name to join this PC'
 Write-Output ''
-Write-Output "Use domain credentials to join the PC to domain. With the Domain at the start e.g. Domain\Administrator"
+Write-Output "Use domain credentials to join the PC to domain. There will be a prompt on the screen to do this part."
 Write-Output ''
 Start-Sleep 5
 add-computer –domainname "$DomainName" -PassThru -Options JoinWithNewName,AccountCreate
@@ -789,7 +791,7 @@ Write-Output "Option 9: Reapply shortcuts & default apps."
 Write-Output "Option 10: Enable Bitlocker."
 Write-Output "Option 11: Update Bitlocker recovery password to AD."
 Write-Output "Option 12: Office uninstall tool. (Only use this if you can't use option 13)"
-Write-Output "Option 13: Uninstall Office using script."
+Write-Output "Option 13: Re-run Office script."
 Write-Output "Option 14: Add run as administrator on ps1 context menu."
 Write-Output "Option 15: Disable Windows Firewall on Domain network."
 Write-Output "Option 16: Join PC to domain"
