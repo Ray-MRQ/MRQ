@@ -573,7 +573,7 @@ Write-Output ''
 start-GAP-removal
 Write-Output ''
 start-GUID-removal
-Write-Output ''
+Clear-Host
 Write-Output "Completed bloatware removal."
 pause
 }
