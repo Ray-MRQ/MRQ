@@ -75,6 +75,7 @@ ForEach ($App in $UWPAppList) {
  Remove-AppxProvisionedPackage -online -packagename $ProPackageFullName -allusers
 }}
 $ProgressPreference = 'Continue'
+Clear-Host
 Write-Output "Removed UWP apps."
 }
 
@@ -82,7 +83,8 @@ function start-GAP-removal {
 ForEach ($App in $GAPAppList) {
 Get-Package "$App" | Uninstall-Package
 Get-Package "$App" | ForEach-Object { & $_.Meta.Attributes['UninstallString'] /S } -ErrorAction SilentlyContinue
-}            
+}
+Clear-Host            
 Write-Output "Removed apps using GAP."
 }
 
@@ -90,8 +92,10 @@ function start-GUID-removal {
 ForEach ($App in $GUIDAppList) {
 Start-Process msiexec -Wait -ArgumentList '/X $App /qn /norestart'
 }            
+Clear-Host
 Write-Output "Removed apps using GUID."
 C:\Program Files\McAfee\MSC\mcuihost.exe /body:misp://MSCJsRes.dll::uninstall.html /id:uninstall
+Write-Output "There are a couple prompts for manual uninstall, please uninstall them before continuing."
 }
 
 ############################################################################

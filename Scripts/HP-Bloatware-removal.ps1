@@ -540,6 +540,7 @@ ForEach ($App in $UWPAppList) {
  Remove-AppxProvisionedPackage -online -packagename $ProPackageFullName -allusers
 }}
 $ProgressPreference = 'Continue'
+Clear-Host
 Write-Output "Removed UWP apps."
 }
 
@@ -547,7 +548,8 @@ function start-GAP-removal {
 ForEach ($App in $GAPAppList) {
 Get-Package "$App" | Uninstall-Package -ErrorAction 'SilentlyContinue'
 Get-Package "$App" | ForEach-Object { & $_.Meta.Attributes['UninstallString'] /S } -ErrorAction 'SilentlyContinue'
-}            
+}
+Clear-Host            
 Write-Output "Removed apps using GAP."
 }
 
@@ -560,6 +562,8 @@ CMD /C "C:\Program Files\HP\Documentation\Doc_Uninstall.cmd"
 "c:\Program Files\HP\HP ProtectTools Security Manager\Bin\setup.exe"
 Start-Process "C:\Program Files (x86)\InstallShield Installation Information\{6468C4A5-E47E-405F-B675-A70A70983EA6}\setup.exe" -Argumentlist '-runfromtemp -l0x0409  -removeonly'
 C:\Program Files\McAfee\MSC\mcuihost.exe /body:misp://MSCJsRes.dll::uninstall.html /id:uninstall
+Write-Output "There are a couple prompts for manual uninstall, please uninstall them before continuing."
+pause
 }
 
 ############################################################################
