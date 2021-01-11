@@ -538,6 +538,7 @@ powercfg -setdcvalueindex SCHEME_CURRENT 4f971e89-eebd-4455-a8de-9e59040e7347 76
 powercfg -setacvalueindex SCHEME_CURRENT 4f971e89-eebd-4455-a8de-9e59040e7347 7648efa3-dd9c-4e3e-b566-50f929386280 2
 powercfg -setacvalueindex SCHEME_CURRENT sub_buttons lidaction 0
 powercfg -setdcvalueindex SCHEME_CURRENT sub_buttons lidaction 0
+powercfg -SetActive SCHEME_CURRENT
 Invoke-Command {reg add HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FlyoutMenuSettings /v ShowHibernateOption /t reg_dword /d 1 /f}
 Write-Output ''
 Write-Output "Done."
@@ -553,6 +554,7 @@ Write-Output ''
 Invoke-Command {reg add HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FlyoutMenuSettings /v ShowHibernateOption /t reg_dword /d 1 /f}
 powercfg -change -standby-timeout-dc 0
 powercfg -change -standby-timeout-ac 0
+powercfg -SetActive SCHEME_CURRENT
 Write-Output ''
 Write-Output "Done."
 Write-Output "Please continue."
