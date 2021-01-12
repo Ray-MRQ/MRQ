@@ -562,6 +562,8 @@ CMD /C "C:\Program Files\HP\Documentation\Doc_Uninstall.cmd"
 "c:\Program Files\HP\HP ProtectTools Security Manager\Bin\setup.exe"
 Start-Process "C:\Program Files (x86)\InstallShield Installation Information\{6468C4A5-E47E-405F-B675-A70A70983EA6}\setup.exe" -Argumentlist '-runfromtemp -l0x0409  -removeonly'
 C:\Program Files\McAfee\MSC\mcuihost.exe /body:misp://MSCJsRes.dll::uninstall.html /id:uninstall
+MsiExec.exe /X "{E5B9C3E5-889C-4F22-A959-F4B8465D8876}" /qn
+Clear-Host
 Write-Output "There are a couple prompts for manual uninstall, please uninstall them before continuing."
 pause
 }
