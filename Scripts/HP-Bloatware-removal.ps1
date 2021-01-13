@@ -29,8 +29,7 @@ $UWPAppList = "AD2F1837.HPPrinterControl",
     "ExpressVPN",
     "McAfee Live"
 
-$GAPApplist = "Assistant",
-    "HP Documentation",
+$GAPApplist = "HP Documentation",
     "Documentation",
     "Guide",
     "Energy Star",
