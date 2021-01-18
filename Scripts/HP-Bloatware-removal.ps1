@@ -18,6 +18,7 @@ $UWPAppList = "AD2F1837.HPPrinterControl",
     "AD2F1837.HPSureShieldAI",
     "AD2F1837.HPPrivacySettings",
     "AD2F1837.HPJumpStarts",
+    "AD2F1837.HPJumpStart_v10z8vjag6ke6"
     "AD2F1837.HPPowerManager",
     "AD2F1837.HPSystemEventUtility",
     "AD2F1837.HPInc.EnergyStar",
