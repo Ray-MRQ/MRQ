@@ -188,22 +188,22 @@ Write-Output ''
 }}
 
 function start-photoviewer {
-    #Photoviewer regkey
-    Clear-Host
-    do { $myInput = (Read-Host 'Would you like to install Photo Viewer? (Windows7 verision) (Y/N)').ToLower() } while ($myInput -notin @('y','n'))
-    if ($myInput -eq 'y') {
-    Write-Output "Installing photo viewer...."
-    Invoke-WebRequest $PhotoviewerInstall -outfile c:\temp\scriptdownloads\Photoviewer.reg
-    Invoke-Command {reg import C:\temp\scriptdownloads\Photoviewer.reg *>&1 | Out-Null}
-    Remove-Item "c:\temp\scriptdownloads\photoviewer.reg"
-    Write-Output "Photoviewer installed..."
-    Write-Output "Please confirm if that is installed by checking with a compatible file type and change default photos app to this."
-    Write-Output "-"
-    Write-Output "Please continue."
-    } else {
-    Write-Output "Not installing Photoviewer (Windows 7 verision)...."
-    Write-Output "Please continue."
-    Clear-Host
+#Photoviewer regkey
+Clear-Host
+do { $myInput = (Read-Host 'Would you like to install Photo Viewer? (Windows7 verision) (Y/N)').ToLower() } while ($myInput -notin @('y','n'))
+if ($myInput -eq 'y') {
+Write-Output "Installing photo viewer...."
+Invoke-WebRequest $PhotoviewerInstall -outfile c:\temp\scriptdownloads\Photoviewer.reg
+Invoke-Command {reg import C:\temp\scriptdownloads\Photoviewer.reg *>&1 | Out-Null}
+Remove-Item "c:\temp\scriptdownloads\photoviewer.reg"
+Write-Output "Photoviewer installed..."
+Write-Output "Please confirm if that is installed by checking with a compatible file type and change default photos app to this."
+Write-Output "-"
+Write-Output "Please continue."
+} else {
+Write-Output "Not installing Photoviewer (Windows 7 verision)...."
+Write-Output "Please continue."
+Clear-Host
 }}
 
 function start-bloatwareremover {
@@ -726,36 +726,36 @@ Clear-Host
 }}
 
 function start-echofeatures {
-    Clear-Host
-    Write-Output ''
-    Write-Output "The following options will be given during the script."
-    Write-Output ''
-    Write-Output ")Install 7zip, Chrome, Adobe reader, Java, , GlobalVPN/NeteXtender, Mimecast for Outlook, Office365 Apps."
-    Write-Output ")Sending key applications shortcuts to desktop."
-    Write-Output ")Set default apps, Outlook & chrome."
-    Write-Output ")Removing Windows 10 Store apps."
-    Write-Output ")HP Bloatware remover." 
-    Write-Output ")Removing pinned tiles from start menu (and creates a default for new/current users)." 
-    Write-Output ")Pin & remove taskbar applications."
-    Write-Output ")Removing web search from search bar."
-    Write-Output ")Disabling cortana & removing taskview from taskbar."
-    Write-Output ")Add run administrators on .ps1 context menu."
-    Write-Output ")Installing photoviewer. (Not Microsoft Photos)." 
-    Write-Output ")Disable or use Dimmed UAC." 
-    Write-Output ")Enable bitlocker."
-    Write-Output ")Update Bitlocker recovery key to AD."
-    Write-Output ")Uninstall Office365 tool."
-    Write-Output ")Disable Windows firewall on Domain network."
-    Write-Output ")Join PC to Domain"
-    Write-Output ")Rename PC"
-    Write-Output ")Set power config (Laptop/Desktop)"
-    Write-Output ")Disable defrag for SSDs"
-    Write-Output ")Windows Updates. (Includes feature updates)"
-    Write-Output ")Enable SystemRestore Point"
-    Write-Output ")Dell Bloatware-Removal"
-    Write-Output ")Set Default timezone to GMT/UK and UK Keyboard"
-    Write-Output ''
-    pause
+Clear-Host
+Write-Output ''
+Write-Output "The following options will be given during the script."
+Write-Output ''
+Write-Output ")Install 7zip, Chrome, Adobe reader, Java, , GlobalVPN/NeteXtender, Mimecast for Outlook, Office365 Apps."
+Write-Output ")Sending key applications shortcuts to desktop."
+Write-Output ")Set default apps, Outlook & chrome."
+Write-Output ")Removing Windows 10 Store apps."
+Write-Output ")HP Bloatware remover." 
+Write-Output ")Removing pinned tiles from start menu (and creates a default for new/current users)." 
+Write-Output ")Pin & remove taskbar applications."
+Write-Output ")Removing web search from search bar."
+Write-Output ")Disabling cortana & removing taskview from taskbar."
+Write-Output ")Add run administrators on .ps1 context menu."
+Write-Output ")Installing photoviewer. (Not Microsoft Photos)." 
+Write-Output ")Disable or use Dimmed UAC." 
+Write-Output ")Enable bitlocker."
+Write-Output ")Update Bitlocker recovery key to AD."
+Write-Output ")Uninstall Office365 tool."
+Write-Output ")Disable Windows firewall on Domain network."
+Write-Output ")Join PC to Domain"
+Write-Output ")Rename PC"
+Write-Output ")Set power config (Laptop/Desktop)"
+Write-Output ")Disable defrag for SSDs"
+Write-Output ")Windows Updates. (Includes feature updates)"
+Write-Output ")Enable SystemRestore Point"
+Write-Output ")Dell Bloatware-Removal"
+Write-Output ")Set Default timezone to GMT/UK and UK Keyboard"
+Write-Output ''
+pause
 }
 
 function start-script {
