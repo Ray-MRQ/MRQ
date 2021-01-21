@@ -6,12 +6,12 @@
 }
 Clear-Host
 $createdby = Write-Output "Created By MQ 08/09/2020"
-$Version = Write-Output "Version 1.40"
-$lastupdatedby = Write-Output "Last Updated By MQ 21/12/2020"
+$Version = Write-Output "Version 1.45"
+$lastupdatedby = Write-Output "Last Updated By MQ 21/01/2021"
 
-$WindowsVerison = (Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion").ReleaseId
-$LatestWindows = '2004' #Current Windows verison
-$OldWindows = '1909' #Anything under 1909 or equal to
+$WindowsVerison = (Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion").CurrentBuild
+$LatestWindows = '19041' #Current Windows verison
+$OldWindows = '18363' #Anything under 1909 or equal to
 
 #Download links.
 
@@ -613,6 +613,22 @@ Write-Output ''
 pause
 }}
 
+function start-setdefault-timezone {
+Clear-Host
+do { $myInput = (Read-Host 'Set Timezone to UK and change default keyboard? (Y/N)').ToLower() } while ($myInput -notin @('Y','N'))
+if ($myinput -eq 'Y') {
+set-timezone -id "GMT Standard Time" -passthru
+Get-Date -Format “dddd MM/dd/yyyy HH:mm K”
+Rename-Item -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000409" -NewName "00000409-disabled"
+Set-WinDefaultInputMethodOverride -InputTip "0809:00000809"
+Write-Output 'Applied default timzone to GMT and applied default UK keyboard. (Setting keyboard has been problematic and not work.)'
+}
+else {
+Write-Output "Not applying default UK Timezone or keyboard."
+Write-Output ''
+pause
+}}
+
 function start-removewindows10updateassistant {
 Clear-Host
 do { $myInput = (Read-Host 'Remove Windows10 Upadte assistant? (Y/N)').ToLower() } while ($myInput -notin @('Y','N'))
@@ -734,6 +750,7 @@ function start-echofeatures {
     Write-Output ")Windows Updates. (Includes feature updates)"
     Write-Output ")Enable SystemRestore Point"
     Write-Output ")Dell Bloatware-Removal"
+    Write-Output ")Set Default timezone to GMT/UK and UK Keyboard"
     Write-Output ''
     pause
 }
@@ -759,6 +776,7 @@ start-joindomain
 start-power-config
 start-disable-defrag
 start-systemrestorepoint
+start-setdefault-timezone
 start-windows-update # MAKE SURE THIS IS THE LAST ONE ON THE LSIT
 Clear-Host
 Write-Output "This will now return to main menu, if you wish to exit, exit from the menu."
@@ -803,6 +821,7 @@ Write-Output "Option 19: Disable disk defrag (For SSD)."
 Write-Output "Option 20: Enable SystemRestore Point"
 Write-Output "Option 21: Dell Bloatware removal"
 Write-Output "Option 22: Remove Windows10 Update Assistant"
+Write-Output "Option 23: Set Default timezone to GMT/UK and UK Keyboard"
 
 #last options
 Write-Output "Option 50: Start windows updates (Includes feature update)"
@@ -810,7 +829,7 @@ Write-Output ''
 Write-Output "Option MainMenu: Re-directs to main menu"
 Write-Output "Option Exit: Exits launcher from sub-menu."
 Write-Output ''
-do { $myInput = (Read-Host 'Choose from the above option').ToLower() } while ($myInput -notin @('0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','50','exit','mainmenu'))
+do { $myInput = (Read-Host 'Choose from the above option').ToLower() } while ($myInput -notin @('0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','50','exit','mainmenu'))
 if ($myinput -eq '0') {start-echofeatures}
 if ($myInput -eq '1') {start-softwareinstall}
 if ($myInput -eq '2') {start-vpninstall}
@@ -834,6 +853,7 @@ if ($myinput -eq '19') {start-disable-defrag}
 if ($myinput -eq '20') {start-systemrestorepoint}
 if ($myinput -eq '21') {start-dellbloatwareremoval}
 if ($myinput -eq '22') {start-removewindows10updateassistant}
+if ($myinput -eq '23') {start-setdefault-timezone}
 
 if ($myinput -eq '50') {start-windows-update}
 if ($myinput -eq 'mainmenu') {start-main-menu}
