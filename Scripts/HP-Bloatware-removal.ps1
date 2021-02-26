@@ -546,17 +546,21 @@ Write-Output "Removed UWP apps."
 }
 
 function start-GAP-removal {
+$ProgressPreference = 'SilentlyContinue'
 ForEach ($App in $GAPAppList) {
 Get-Package "$App" | Uninstall-Package -ErrorAction 'SilentlyContinue'
 Get-Package "$App" | ForEach-Object { & $_.Meta.Attributes['UninstallString'] /S } -ErrorAction 'SilentlyContinue'
 }
 Clear-Host            
 Write-Output "Removed apps using GAP."
+$ProgressPreference = 'Continue'
 }
 
 function start-GUID-removal {
+$ProgressPreference = 'SilentlyContinue'
 ForEach ($App in $GUIDAppList) {
-  Start-Process msiexec -Wait -ArgumentList '/X $App /qn /norestart'
+Start-Process msiexec -Wait -ArgumentList '/X $App /qn /norestart'
+$ProgressPreference = 'Continue'
 }            
 Write-Output "Removed apps using GUID."
 CMD /C "C:\Program Files\HP\Documentation\Doc_Uninstall.cmd"
