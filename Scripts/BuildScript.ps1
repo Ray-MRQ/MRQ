@@ -619,7 +619,6 @@ do { $myInput = (Read-Host 'Set Timezone to UK and change default keyboard? (Y/N
 if ($myinput -eq 'Y') {
 set-timezone -id "GMT Standard Time" -passthru
 Get-Date -Format “dddd MM/dd/yyyy HH:mm K”
-Rename-Item -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000409" -NewName "00000409-disabled"
 Set-WinDefaultInputMethodOverride -InputTip "0809:00000809"
 Write-Output 'Applied default timzone to GMT and applied default UK keyboard. (Setting keyboard has been problematic and not work.)'
 Write-Output ''
