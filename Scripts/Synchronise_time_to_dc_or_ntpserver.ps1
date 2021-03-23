@@ -13,7 +13,7 @@ net start w32time
 w32tm /query /configuration
 w32tm /query /status
 w32tm /resync
-Clear-Hostar-Host
+Clear-Host
 Write-Output "Machine is now synced to $Server"
 ""
 get-date -displayhint datetime
