@@ -21,7 +21,7 @@ $SoftwareInstall7zip = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20file
 $SoftwareInstallJava = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/jre1.8.0_26164.msi'
 $SoftwareInstallZoomFile = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/ZoomInstallerFull.msi'
 $SoftwareInstallAdobeReader = 'https://onl-my.sharepoint.com/:u:/g/personal/mohammed_quashem_onlinesupport_co_uk/EcRWAKSO321GgevynQeMUzkBpZ-6wm-kHKs7_uScUdfZmw?e=4bhFXR&download=1'
-$Office365Install = 'https://raw.githubusercontent.com/Ray-MRQ/MRQ/master/Scripts/Centrastage%20Scripts/Centrastage_Office_Install.ps1'
+$Office365Install = 'https://github.com/Ray-MRQ/MRQ/raw/master/Scripts/Centrastage%20Scripts/Centrastage_Office_Install.ps1'
 $MimecastInstall = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/Mimecast%20for%20Outlook%207.0.1740.17532%20(32%20bit).msi'
 $GlobalVPNInstall = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/GVCInstall64.msi'
 $NeteXtenderInstall= 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/NetExtender.8.6.265.MSI'
