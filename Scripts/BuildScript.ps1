@@ -77,8 +77,6 @@ Write-Output ''
 pause
 Clear-Host
 start-officecheck
-Write-Output "If for whatever reason office did not install, you can re-install from manual selection Option 13."
-pause
 Write-Output ''
 Write-Output "Starting download and install for 7Zip, Java, Chrome & Adobe Reader..."
 $ProgressPreference = 'SilentlyContinue'
