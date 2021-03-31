@@ -439,7 +439,7 @@ Clear-Host
 
 function start-bitlocker-updaterecovery {
 Clear-Host
-do { $myInput = (Read-Host 'Would you like to update Bitlocker recovery key?(Y/N)').ToLower() } while ($myInput -notin @('Y','N'))
+do { $myInput = (Read-Host '(Please check if the computer is in the right OU otherwise it will fail) Would you like to update Bitlocker recovery key?(Y/N)').ToLower() } while ($myInput -notin @('Y','N'))
 if ($myinput -eq 'Y') {
 Write-Output ''
 Write-Output "Updating Bitlocker recovery key to AD..."
@@ -617,7 +617,6 @@ do { $myInput = (Read-Host 'Set Timezone to UK and change default keyboard? (Y/N
 if ($myinput -eq 'Y') {
 set-timezone -id "GMT Standard Time" -passthru
 Get-Date -Format “dddd MM/dd/yyyy HH:mm K”
-Set-WinDefaultInputMethodOverride -InputTip "0809:00000809"
 Write-Output 'Applied default timzone to GMT and applied default UK keyboard. (Setting keyboard has been problematic and not work.)'
 Write-Output ''
 Get-Date
@@ -769,10 +768,10 @@ start-clearstartmenu
 start-uac
 start-addrunasps1
 start-bitlocker
-start-bitlocker-updaterecovery
 start-disablefirewall-domain
 start-rename-computer
 start-joindomain
+start-bitlocker-updaterecovery
 start-power-config
 start-disable-defrag
 start-systemrestorepoint
