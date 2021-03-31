@@ -17,7 +17,7 @@ start-officeuninstall-home
 start-officeinstall
 else {Write-Host "Will not install office."
 exit
-}}
+}}}
 
 function start-officeuninstall-pro {
 Write-Output ''
