@@ -10,7 +10,7 @@ $Version = Write-Output "Version 1.47"
 $lastupdatedby = Write-Output "Last Updated By MQ 21/01/2021"
 
 $WindowsVerison = (Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion").CurrentBuild
-$LatestWindows = '19041' #Current Windows verison
+$LatestWindows = '19042' #Current Windows verison
 $OldWindows = '18363' #Anything under this or equal to
 
 #Download links.
