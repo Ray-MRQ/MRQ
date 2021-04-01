@@ -56,12 +56,8 @@ if ($myinput -eq '3') {start-end-script}
 }
 
 function start-softwareinstall {
-Write-Output "Removing & creating directory in C:\temp\scriptdownloads..."
-mkdir c:\temp > $null 2>&1
-Remove-Item c:\temp\scriptdownloads -recurse -force > $null 2>&1
-mkdir c:\temp\scriptdownloads > $null 2>&1
-Write-Output "============================================================================="
 Clear-Host
+Write-Output "============================================================================="
 $createdby
 $Version
 $lastupdatedby
@@ -755,6 +751,9 @@ pause
 }
 
 function start-script {
+mkdir c:\temp > $null 2>&1
+Remove-Item c:\temp\scriptdownloads -recurse -force > $null 2>&1
+mkdir c:\temp\scriptdownloads > $null 2>&1
 start-addrunasps1
 start-softwareinstall
 start-mimecastinstall
@@ -877,37 +876,6 @@ exit
 }
 #####################################################################################################################
 start-main-menu
-######################################################################################################################
 
-# SIG # Begin signature block
-# MIIFdQYJKoZIhvcNAQcCoIIFZjCCBWICAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
-# gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUVRDmhuWRBUmGnZNuk5odDKhA
-# eg2gggMVMIIDETCCAfmgAwIBAgIQVhOR9PCld55K0eL7v5x/hDANBgkqhkiG9w0B
-# AQsFADAVMRMwEQYDVQQDDApNb2hhbW1lZFJRMB4XDTIwMDkxNTE5NTMwMVoXDTIx
-# MDkxNTIwMTMwMVowFTETMBEGA1UEAwwKTW9oYW1tZWRSUTCCASIwDQYJKoZIhvcN
-# AQEBBQADggEPADCCAQoCggEBAMb9d6KoKjormPOMW/yUR9i8auOCBZNRxDAaDgJq
-# Utx5aRugHWyESPPFYbnKrqCmunFXBzKhvDWX9b1qMwo5oFX7AUAMCd6P2VB59jIJ
-# qPF/N/HvnuGvK08+IwcJ96yg4FZJPTi8BNYUTZZxnuwv3hHQtVfmg1HpUO1UyJII
-# DTtyzZKz6SdcEHL5W0OqiffHp44ZbAktJyWO1SYfN7J2AbdN34yUR2iCE5+hB97c
-# 3mVoKkLjzRBPmsDVUy8bsMIxUReQtgREJgR7VlZI7UxrYN1eT7nl8i/lVEiFtIXr
-# 6msI3FRrrygh+l4+FnpvGYFGBVrvGrYEXtcPT3UDYeG5ADUCAwEAAaNdMFswDgYD
-# VR0PAQH/BAQDAgeAMBMGA1UdJQQMMAoGCCsGAQUFBwMDMBUGA1UdEQQOMAyCCk1v
-# aGFtbWVkUlEwHQYDVR0OBBYEFMwK7mMAt1iN0ehfHdJ3FrpyA3dDMA0GCSqGSIb3
-# DQEBCwUAA4IBAQB/2cfhmZpeYnX8+0vrI8GrbgwLkFxcP0+hvBZQYiQSg/s3m2Rv
-# iBOkMQbjx8NwmzxSsyO44Q/nq/xtXuyXNWtKMjjx36E1ke1WyEMf6ozFVJ3dw+va
-# VDd9wj0gNPZoJkeLWsXSBKjwMDdsS0wI6l/N+9oPBoa3kDMjWCJ1BLmwp3WF97sz
-# XVO4Nhp4egicI2c5wpKu3cY3Su/WCOheU5Qg9jTI0TEB/LYKte5fRTX8h1VzyTwC
-# BAxruLb5D10XegbBJChl3LBiFXgVVvhaK12lqwM8eAOwdPwTO92ZdIMYqYjRhKI+
-# 15K0TsSmp5eLdBt0bG3+NmnwKPmLOdnDnaMpMYIByjCCAcYCAQEwKTAVMRMwEQYD
-# VQQDDApNb2hhbW1lZFJRAhBWE5H08KV3nkrR4vu/nH+EMAkGBSsOAwIaBQCgeDAY
-# BgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3DQEJAzEMBgorBgEEAYI3
-# AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEVMCMGCSqGSIb3DQEJBDEW
-# BBQVRGgv8Yp9uk8XqN0jvd/tlbRxlDANBgkqhkiG9w0BAQEFAASCAQBxsPqFD9Ny
-# HMGrIWnIYx5o7ncrtValZMF8qttZEWe1BChe9tH/C3GdqXrqyZ6frS5qsgbo/fFI
-# MmZaImrD1dB5GCyHBcm1kWRG7tvaDB2c4uTIHZkpPQiHfaEf8EXvb2NWCIhy0kN9
-# T/vj//+mUQAP/utnmkanb5uNInm6WW47hjyq7CPOfV+sXmnmum1XDLpB2cotn122
-# bHDz8vf6AipwVr6+TZFGSG98OWBpaUvnS3t7BVCZjZtmU/IEWGUQ7G+adQbPxmT3
-# 5PxcXplYfOlzVDaKiNskNXY8xauPScGH2MrpZLoAK8Rtpxb95Ez2IXy60DuCEdN/
-# /6lXTuOZ/uCz
-# SIG # End signature block
+
+#Force clear
