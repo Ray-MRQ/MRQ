@@ -76,11 +76,11 @@ start-officecheck
 Write-Output ''
 Write-Output "Starting download and install for 7Zip, Java, Chrome & Adobe Reader..."
 $ProgressPreference = 'SilentlyContinue'
-Invoke-WebRequest $SoftwareInstallChrome -outfile c:\temp\scriptdownloads\chrome.msi -Verbose
-Invoke-WebRequest $SoftwareInstall7zip -outfile c:\temp\scriptdownloads\7zip.msi -Verbose
-Invoke-WebRequest $SoftwareInstallJava -outfile c:\temp\scriptdownloads\java.msi -Verbose
-Invoke-WebRequest $SoftwareInstallAdobeReader -outfile c:\temp\scriptdownloads\adobereader.zip -Verbose
-Expand-Archive -LiteralPath C:\temp\scriptdownloads\adobereader.zip -DestinationPath C:\temp\scriptdownloads\ -Verbose
+Invoke-WebRequest $SoftwareInstallChrome -outfile c:\temp\scriptdownloads\chrome.msi 
+Invoke-WebRequest $SoftwareInstall7zip -outfile c:\temp\scriptdownloads\7zip.msi 
+Invoke-WebRequest $SoftwareInstallJava -outfile c:\temp\scriptdownloads\java.msi 
+Invoke-WebRequest $SoftwareInstallAdobeReader -outfile c:\temp\scriptdownloads\adobereader.zip 
+Expand-Archive -LiteralPath C:\temp\scriptdownloads\adobereader.zip -DestinationPath C:\temp\scriptdownloads\ 
 $ProgressPreference = 'Continue'
 Start-Process msiexec.exe -Wait -ArgumentList '/i c:\temp\scriptdownloads\chrome.msi /qn /norestart allusers=2'
 Start-Process msiexec.exe -Wait -ArgumentList '/i c:\temp\scriptdownloads\7zip.msi /qn /norestart allusers=2'
