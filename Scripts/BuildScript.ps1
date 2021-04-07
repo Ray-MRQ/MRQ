@@ -43,7 +43,6 @@ $Version
 $lastupdatedby
 Write-Output ''
 Write-Output "This is a generic build script"
-Write-Output "If you would like to check the features of this script, use option 2 then go to option 0."
 Write-Output ''
 Write-Output "Option 1: Automated/ineractive install."
 Write-Output "Option 2: Manual select install"
