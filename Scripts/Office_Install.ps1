@@ -18,15 +18,15 @@ exit
 
 function start-officeuninstall-pro {
 Write-Output ''
-Write-Output "Starting uninstall process for Pro Version..."
+Write-Output "Starting uninstall process for all Office versions..."
+Write-Output "Please wait."
 Write-Output ''
 $ProgressPreference = 'SilentlyContinue'
 Invoke-WebRequest $OfficeExe -outfile c:\temp\scriptdownloads\office365setup.exe
 Invoke-WebRequest $OfficeXMLUninstall -outfile c:\temp\scriptdownloads\office365uninstall.xml
 $ProgressPreference = 'Continue'
 c:\temp\scriptdownloads\office365setup.exe /configure c:\temp\scriptdownloads\office365uninstall.xml
-Write-Output "Office365 ProPlus should be uninstalled."
-Write-Output ''
+Write-Output "Office apps should be uninstalled."
 Write-Output ''
 }
  
@@ -39,21 +39,14 @@ c:\temp\scriptdownloads\office365setup.exe /configure c:\temp\scriptdownloads\of
 }
 
 function start-officeuninstall-home {
-Write-Output ''
-Write-Output ''
-Write-Output "Starting uninstall process for Home Version..."
-Write-Output ''
 $ProgressPreference = 'SilentlyContinue'
 Invoke-WebRequest $OfficeExe -outfile c:\temp\scriptdownloads\office365setup.exe
 Invoke-WebRequest $OfficeXMLHomeUninstall -outfile c:\temp\scriptdownloads\office365uninstallhome.xml
 $ProgressPreference = 'Continue'
 c:\temp\scriptdownloads\office365setup.exe /configure c:\temp\scriptdownloads\office365uninstallhome.xml
-Write-Output "Office365 ProPlus should be uninstalled."
-Write-Output ''
 }
     
 function start-officeinstall {
-Write-Output ''
 Write-Output "Starting Office 365 install silently...."
 Write-Output ''
 Write-Output "Downloading and installing Office365"
