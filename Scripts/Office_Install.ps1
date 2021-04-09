@@ -22,28 +22,28 @@ Write-Output "Starting uninstall process for all Office versions..."
 Write-Output "Please wait."
 Write-Output ''
 $ProgressPreference = 'SilentlyContinue'
-Invoke-WebRequest $OfficeExe -outfile c:\temp\scriptdownloads\office365setup.exe
-Invoke-WebRequest $OfficeXMLUninstall -outfile c:\temp\scriptdownloads\office365uninstall.xml
+Invoke-WebRequest $OfficeExe -outfile c:\temp\downloads\office365setup.exe
+Invoke-WebRequest $OfficeXMLUninstall -outfile c:\temp\downloads\office365uninstall.xml
 $ProgressPreference = 'Continue'
-c:\temp\scriptdownloads\office365setup.exe /configure c:\temp\scriptdownloads\office365uninstall.xml
+c:\temp\downloads\office365setup.exe /configure c:\temp\downloads\office365uninstall.xml
 Write-Output "Office apps should be uninstalled."
 Write-Output ''
 }
  
 function start-officeuninstall-buisness {
 $ProgressPreference = 'SilentlyContinue'
-Invoke-WebRequest $OfficeExe -outfile c:\temp\scriptdownloads\office365setup.exe
-Invoke-WebRequest $OfficeXMLBuisnessUninstall -outfile c:\temp\scriptdownloads\office365uninstallbuisness.xml
+Invoke-WebRequest $OfficeExe -outfile c:\temp\downloads\office365setup.exe
+Invoke-WebRequest $OfficeXMLBuisnessUninstall -outfile c:\temp\downloads\office365uninstallbuisness.xml
 $ProgressPreference = 'Continue'
-c:\temp\scriptdownloads\office365setup.exe /configure c:\temp\scriptdownloads\office365uninstallbuisness.xml
+c:\temp\downloads\office365setup.exe /configure c:\temp\downloads\office365uninstallbuisness.xml
 }
 
 function start-officeuninstall-home {
 $ProgressPreference = 'SilentlyContinue'
-Invoke-WebRequest $OfficeExe -outfile c:\temp\scriptdownloads\office365setup.exe
-Invoke-WebRequest $OfficeXMLHomeUninstall -outfile c:\temp\scriptdownloads\office365uninstallhome.xml
+Invoke-WebRequest $OfficeExe -outfile c:\temp\downloads\office365setup.exe
+Invoke-WebRequest $OfficeXMLHomeUninstall -outfile c:\temp\downloads\office365uninstallhome.xml
 $ProgressPreference = 'Continue'
-c:\temp\scriptdownloads\office365setup.exe /configure c:\temp\scriptdownloads\office365uninstallhome.xml
+c:\temp\downloads\office365setup.exe /configure c:\temp\downloads\office365uninstallhome.xml
 }
     
 function start-officeinstall {
@@ -52,10 +52,10 @@ Write-Output ''
 Write-Output "Downloading and installing Office365"
 Write-Output ''
 $ProgressPreference = 'SilentlyContinue'
-Invoke-WebRequest $OfficeExe -outfile c:\temp\scriptdownloads\office365setup.exe
-Invoke-WebRequest $OfficeXMLInstall -outfile c:\temp\scriptdownloads\configuration.xml
+Invoke-WebRequest $OfficeExe -outfile c:\temp\downloads\office365setup.exe
+Invoke-WebRequest $OfficeXMLInstall -outfile c:\temp\downloads\configuration.xml
 $ProgressPreference = 'Continue'
-c:\temp\scriptdownloads\office365setup.exe /configure c:\temp\scriptdownloads\configuration.xml
+c:\temp\downloads\office365setup.exe /configure c:\temp\downloads\configuration.xml
 Write-Output "Office365 is now installed."
 }
 
@@ -64,4 +64,4 @@ Copy-Item "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Outlook.lnk" -De
 Copy-Item "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Excel.lnk" -Destination "C:\Users\Public\Desktop\Excel.lnk"
 Copy-Item "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Powerpoint.lnk" -Destination "C:\Users\Public\Desktop\Powerpoint.lnk"
 Copy-Item "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Word.lnk" -Destination "C:\Users\Public\Desktop\Word.lnk"
-Remove-Item c:\temp\scriptdownloads -recurse -force > $null 2>&1 
+Remove-Item c:\temp\downloads -recurse -force > $null 2>&1 
