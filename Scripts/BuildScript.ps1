@@ -71,8 +71,8 @@ Write-Output ''
 pause
 Clear-Host
 start-officecheck
-Invoke-WebRequest $InstallGenericApps -outfile c:\temp\genericapps.ps1 -verbose
-powershell c:\temp\genericapps.ps1
+[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+choco install googlechrome adobereader 7zip silverlight javaruntime -yr --force --ignorechecksum
 do { $myInput = (Read-Host 'Would you like to install Zoom?(Y/N)').ToLower() } while ($myInput -notin @('y','n'))
 if ($myInput -eq 'y') {
 Write-Output ''
