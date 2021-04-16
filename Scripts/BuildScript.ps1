@@ -76,11 +76,7 @@ choco install googlechrome adobereader 7zip silverlight javaruntime -yr --force 
 do { $myInput = (Read-Host 'Would you like to install Zoom?(Y/N)').ToLower() } while ($myInput -notin @('y','n'))
 if ($myInput -eq 'y') {
 Write-Output ''
-Write-Output "Starting Zoom download..."
-$ProgressPreference = 'SilentlyContinue'
-Invoke-WebRequest $SoftwareInstallZoomFile -outfile c:\temp\downloads\ZoomInstaller.msi 
-$ProgressPreference = 'Continue'
-Start-Process msiexec.exe -Wait -ArgumentList '/i c:\temp\downloads\ZoomInstaller.msi /qn /norestart allusers=2'
+choco install zoom zoom-outlook -yr --force --ignorechecksum
 }}
 
 function start-officecheck {
