@@ -73,12 +73,12 @@ Clear-Host
 start-officecheck
 [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 Clear-Host
-choco install googlechrome 7zip silverlight javaruntime -y --ignorechecksum
-choco install adobereader -params '"/DesktopIcon"'
+choco install googlechrome 7zip silverlight -y --ignorechecksum
+coco intsall jre8 -PackageParameters "/exclude:32" -y --ignorechecksum
+choco install adobereader -params '"/DesktopIcon"' -y --ignorechecksum
 do { $myInput = (Read-Host 'Would you like to install Zoom?(Y/N)').ToLower() } while ($myInput -notin @('y','n'))
 if ($myInput -eq 'y') {
 Write-Output ''
-Write-Output "Adobe installs take long, it's not stuck..."
 choco install zoom zoom-outlook -y --ignorechecksum
 }}
 
@@ -645,6 +645,7 @@ Clear-Host
 #
 Write-Output "Starting windows updates..."
 Write-Output "Please wait..."
+$dir = c:\temp\downloads
 $webClient = New-Object System.Net.WebClient
 $url = 'https://go.microsoft.com/fwlink/?LinkID=799445'
 $file = "$($dir)\Win10Upgrade.exe"
