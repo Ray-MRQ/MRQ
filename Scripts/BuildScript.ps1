@@ -72,11 +72,12 @@ pause
 Clear-Host
 start-officecheck
 [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
-choco install googlechrome adobereader 7zip silverlight javaruntime -yr --force --ignorechecksum
+choco install googlechrome adobereader 7zip silverlight javaruntime -y --force --ignorechecksum
 do { $myInput = (Read-Host 'Would you like to install Zoom?(Y/N)').ToLower() } while ($myInput -notin @('y','n'))
 if ($myInput -eq 'y') {
 Write-Output ''
-choco install zoom zoom-outlook -yr --force --ignorechecksum
+Write-Output "Adobe installs take long, it's not stuck..."
+choco install zoom zoom-outlook -y --force --ignorechecksum
 }}
 
 function start-officecheck {
