@@ -75,6 +75,7 @@ Clear-Host
 choco install googlechrome 7zip silverlight -y --ignorechecksum
 coco intsall jre8 -PackageParameters "/exclude:32" -y --ignorechecksum
 choco install adobereader -params '"/DesktopIcon"' -y --ignorechecksum
+Clear-Host
 do { $myInput = (Read-Host 'Would you like to install Zoom?(Y/N)').ToLower() } while ($myInput -notin @('y','n'))
 if ($myInput -eq 'y') {
 Write-Output ''
