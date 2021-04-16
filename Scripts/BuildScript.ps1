@@ -751,10 +751,8 @@ pause
 
 function start-script {
 mkdir c:\temp > $null 2>&1
-Remove-Item c:\temp\scriptdownloads -recurse -force > $null 2>&1
 Remove-Item c:\temp\downloads -recurse -force > $null 2>&1
 mkdir c:\temp\downloads > $null 2>&1
-mkdir c:\temp\scriptdownloads > $null 2>&1
 start-addrunasps1
 start-softwareinstall
 start-mimecastinstall
@@ -791,10 +789,8 @@ $lastupdatedby
 Write-Output ''
 Write-Output "Removing & creating directory in C:\temp\scriptdownloads..."
 mkdir c:\temp > $null 2>&1
-Remove-Item c:\temp\scriptdownloads -recurse -force > $null 2>&1
 Remove-Item c:\temp\downloads -recurse -force > $null 2>&1
 mkdir c:\temp\downloads > $null 2>&1
-mkdir c:\temp\scriptdownloads > $null 2>&1
 Write-Output "Done."
 Write-Output ''
 Write-Output "Manual install has been selected, please choose what you would like to install selectively."
@@ -871,7 +867,7 @@ Write-Output ''
 Write-Output "End of script."
 Write-Output ''
 Write-Output "Clearing c:\temps\scriptdownloads."
-Remove-item c:\temp\scriptdownloads -recurse -force > $null 2>&1
+Remove-item c:\temp\downloads -recurse -force > $null 2>&1
 Write-Output "Done..."
 Write-Output ''
 pause
