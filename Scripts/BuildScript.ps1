@@ -68,7 +68,7 @@ Write-Output ''
 pause
 Clear-Host
 start-officecheck
-Invoke-WebRequest -Uri $InstallGenericApps -outifle c:\temp\downloads\genericapps.ps1
+Invoke-WebRequest -Uri $InstallGenericApps -outfile c:\temp\downloads\genericapps.ps1 -verbose
 powershell c:\temp\downloads\genericapps.ps1
 do { $myInput = (Read-Host 'Would you like to install Zoom?(Y/N)').ToLower() } while ($myInput -notin @('y','n'))
 if ($myInput -eq 'y') {
