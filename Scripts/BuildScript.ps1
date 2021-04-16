@@ -75,10 +75,10 @@ start-officecheck
 Write-Output ''
 Write-Output "Starting download and install for 7Zip, Java, Chrome & Adobe Reader..."
 $ProgressPreference = 'SilentlyContinue'
-Invoke-WebRequest -Uri $SoftwareInstallChrome -outfile c:\temp\downloads\chrome.msi 
-Invoke-WebRequest -Uri $SoftwareInstall7zip -outfile c:\temp\downloads\7zip.msi 
-Invoke-WebRequest -Uri $SoftwareInstallJava -outfile c:\temp\downloads\java.msi 
-Invoke-WebRequest -Uri $SoftwareInstallAdobeReader -outfile c:\temp\downloads\adobereader.zip 
+Invoke-WebRequest -Uri $SoftwareInstallChrome -outfile c:\temp\downloads\chrome.msi -Verbose
+Invoke-WebRequest -Uri $SoftwareInstall7zip -outfile c:\temp\downloads\7zip.msi -Verbose
+Invoke-WebRequest -Uri $SoftwareInstallJava -outfile c:\temp\downloads\java.msi -Verbose
+Invoke-WebRequest -Uri $SoftwareInstallAdobeReader -outfile c:\temp\downloads\adobereader.zip -Verbose
 Expand-Archive -LiteralPath c:\temp\downloads\adobereader.zip -DestinationPath c:\temp\downloads\ 
 $ProgressPreference = 'Continue'
 Start-Process msiexec.exe -Wait -ArgumentList '/i c:\temp\downloads\chrome.msi /qn /norestart allusers=2'
@@ -99,14 +99,14 @@ Start-Process msiexec.exe -Wait -ArgumentList '/i c:\temp\downloads\ZoomInstalle
 }}
 
 function start-officecheck {
-Invoke-WebRequest $Office365Install -outfile c:\temp\downloads\office365install.ps1
+Invoke-WebRequest $Office365Install -outfile c:\temp\downloads\office365install.ps1 -Verbose
 powershell c:\temp\downloads\office365install.ps1
 }
 
 function start-officeuninstalltool {
 Write-Output "Office applications uninstall tool, with will open up an app."
 $ProgressPreference = 'SilentlyContinue'
-Invoke-WebRequest $OfficeUninstallTool -outfile c:\temp\downloads\officeuninstall.exe
+Invoke-WebRequest $OfficeUninstallTool -outfile c:\temp\downloads\officeuninstall.exe -Verbose
 $ProgressPreference = 'Continue'
 Write-Output ''
 Write-Output "Downloading Office uninstall tool..."
@@ -126,7 +126,7 @@ if ($myInput -eq 'y') {
 Write-Output ''
 Write-Output "Downloading & installing Mimecast for Outlook..."
 $ProgressPreference = 'SilentlyContinue'
-Invoke-WebRequest $MimecastInstall -outfile c:\temp\downloads\mimecast32bit.msi
+Invoke-WebRequest $MimecastInstall -outfile c:\temp\downloads\mimecast32bit.msi -Verbose
 $ProgressPreference = 'Continue'
 Start-Process msiexec.exe -Wait -ArgumentList '/i c:\temp\downloads\mimecast32bit.msi /qn /norestart allusers=2'
 Write-Output ''
@@ -148,7 +148,7 @@ if ($myInput -eq 'global') {
 Write-Output ''
 Write-Output "Downloading & installing GlobalVPN..."
 $ProgressPreference = 'SilentlyContinue'
-Invoke-WebRequest $GlobalVPNInstall -outfile c:\temp\downloads\gvcinstall64.msi
+Invoke-WebRequest $GlobalVPNInstall -outfile c:\temp\downloads\gvcinstall64.msi -Verbose
 $ProgressPreference = 'Continue'
 Start-Process msiexec.exe -Wait -ArgumentList '/i c:\temp\downloads\gvcinstall64.msi /qn /norestart allusers=2'
 Write-Output ''
@@ -163,7 +163,7 @@ if ($myinput -eq 'net') {
 Write-Output ''
 Write-Output "Downloading & installing NeteXtender..."
 $ProgressPreference = 'SilentlyContinue'
-Invoke-WebRequest $NeteXtenderInstall -outfile c:\temp\downloads\netextender.msi
+Invoke-WebRequest $NeteXtenderInstall -outfile c:\temp\downloads\netextender.msi -Verbose
 $ProgressPreference = 'Continue'
 Start-Process msiexec.exe -Wait -ArgumentList '/i c:\temp\downloads\netextender.msi /qn /norestart allusers=2'
 Write-Output ''
@@ -186,7 +186,7 @@ Clear-Host
 do { $myInput = (Read-Host 'Would you like to install Photo Viewer? (Windows7 verision) (Y/N)').ToLower() } while ($myInput -notin @('y','n'))
 if ($myInput -eq 'y') {
 Write-Output "Installing photo viewer...."
-Invoke-WebRequest $PhotoviewerInstall -outfile c:\temp\downloads\Photoviewer.reg
+Invoke-WebRequest $PhotoviewerInstall -outfile c:\temp\downloads\Photoviewer.reg -Verbose
 Invoke-Command {reg import c:\temp\downloads\Photoviewer.reg *>&1 | Out-Null}
 Remove-Item "c:\temp\downloads\photoviewer.reg"
 Write-Output "Photoviewer installed..."
@@ -211,7 +211,7 @@ Write-Output "Otherwise option y should work fine."
 Write-Output ''
 do { $myInput = (Read-Host 'Please confirm with (Y/N) if you would like to remove Windows10Bloatware apps').ToLower() } while ($myInput -notin @('y','n'))
 if ($myInput -eq 'y') {
-Invoke-WebRequest $BloatwareRemoverWin10 -outfile c:\temp\downloads\bloatwareremover.ps1
+Invoke-WebRequest $BloatwareRemoverWin10 -outfile c:\temp\downloads\bloatwareremover.ps1 -Verbose
 powershell c:\temp\downloads\bloatwareremover.ps1
 Write-Output "Script complete..."
 $ProgressPreference = 'Continue'
@@ -230,7 +230,7 @@ Clear-Host
 do { $myInput = (Read-Host 'Is this a HP workstation/laptop? If so would you like to remove bloatware for this as well? (Y/N)').ToLower() } while ($myInput -notin @('y','n'))
 if ($myInput -eq 'y') {
 Write-Output "This may take a while..."
-Invoke-WebRequest $HPBloatwareRemover -outfile c:\temp\downloads\hpbloatwareremoval.ps1
+Invoke-WebRequest $HPBloatwareRemover -outfile c:\temp\downloads\hpbloatwareremoval.ps1 -Verbose
 powershell c:\temp\downloads\hpbloatwareremoval.ps1
 Write-Output ''
 Write-Output "HP Bloatware has been removed or at least attempted to remove most."
@@ -250,7 +250,7 @@ Clear-Host
 do { $myInput = (Read-Host 'Is this a Dell workstation/laptop? If so would you like to remove bloatware for this as well? (Y/N)').ToLower() } while ($myInput -notin @('y','n'))
 if ($myInput -eq 'y') {
 Write-Output "This may take a while..."
-Invoke-WebRequest $DellBloatwareRemover -outfile c:\temp\downloads\dellbloatwareremoval.ps1
+Invoke-WebRequest $DellBloatwareRemover -outfile c:\temp\downloads\dellbloatwareremoval.ps1 -Verbose
 powershell c:\temp\downloads\dellbloatwareremoval.ps1
 Write-Output ''
 Write-Output "Dell Bloatware has been removed or at least attempted to remove most."
