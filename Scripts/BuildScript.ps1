@@ -16,7 +16,7 @@ $OldWindows = '18363' #Anything under this or equal to
 #Download links.
 
 $OfficeUninstallTool = 'https://outlookdiagnostics.azureedge.net/sarasetup/SetupProd_OffScrub.exe'
-$InstallGenericApps =
+$InstallGenericApps = 'https://github.com/Ray-MRQ/MRQ/raw/master/Scripts/Install_generic_apps.ps1'
 $Office365Install = 'https://github.com/Ray-MRQ/MRQ/raw/master/Scripts/Office_Install.ps1'
 $MimecastInstall = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/Mimecast%20for%20Outlook%207.9.0.79%20(32%20bit).msi'
 $GlobalVPNInstall = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/GVCInstall64.msi'
@@ -69,6 +69,7 @@ pause
 Clear-Host
 start-officecheck
 Invoke-WebRequest -Uri $InstallGenericApps -outifle c:\temp\downloads\genericapps.ps1
+powershell c:\temp\downloads\genericapps.ps1
 do { $myInput = (Read-Host 'Would you like to install Zoom?(Y/N)').ToLower() } while ($myInput -notin @('y','n'))
 if ($myInput -eq 'y') {
 Write-Output ''
