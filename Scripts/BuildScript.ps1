@@ -73,7 +73,8 @@ Clear-Host
 start-officecheck
 [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 Clear-Host
-choco install googlechrome adobereader 7zip silverlight javaruntime -y --ignorechecksum
+choco install googlechrome 7zip silverlight javaruntime -y --ignorechecksum
+choco install adobereader -params '"/DesktopIcon"'
 do { $myInput = (Read-Host 'Would you like to install Zoom?(Y/N)').ToLower() } while ($myInput -notin @('y','n'))
 if ($myInput -eq 'y') {
 Write-Output ''
