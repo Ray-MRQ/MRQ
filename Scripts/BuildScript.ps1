@@ -695,7 +695,6 @@ Write-Output ''
 Write-Output "Not installing windows updates..."
 Write-Output ''
 pause
-Clear-Host
 }}
 
 function start-echofeatures {
@@ -758,8 +757,6 @@ start-systemrestorepoint
 start-setdefault-timezone
 start-windows-update # MAKE SURE THIS IS THE LAST ONE ON THE LSIT
 Clear-Host
-Write-Output "This will now return to main menu, if you wish to exit, exit from the menu."
-Write-Output "If you would like to re-run a install that didn't work, use option 1 from the menu."
 start-main-menu
 }
 
