@@ -51,6 +51,9 @@ if ($myinput -eq '3') {start-end-script}
 }
 
 function start-softwareinstall {
+mkdir c:\temp > $null 2>&1
+Remove-Item c:\temp\downloads -recurse -force > $null 2>&1
+mkdir c:\temp\downloads > $null 2>&1
 Clear-Host
 Write-Output "============================================================================="
 $createdby
