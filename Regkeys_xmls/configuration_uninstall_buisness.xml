@@ -18,6 +18,9 @@
     <Language ID="pl-pl" />
     <Language ID="pt-pt" />
     <Language ID="sv-se" />
+    <Language ID="th-th" />
+    <Language ID="zh-cn" />
+    <Language ID="zw-se" />
     </Product>
   </Remove>
 </Configuration>
