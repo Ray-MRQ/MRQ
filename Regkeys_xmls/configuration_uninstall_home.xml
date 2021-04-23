@@ -21,6 +21,7 @@
     <Language ID="th-th" />
     <Language ID="zh-cn" />
     <Language ID="zw-se" />
+    <Language ID="zh-tw" />
     </Product>
   </Remove>
 </Configuration>
