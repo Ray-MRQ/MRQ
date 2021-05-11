@@ -4,7 +4,6 @@
 <Remove>
     <Product ID="O365ProPlusRetail">
       <Language ID="en-us" />
-    <Language ID="en-us" />
 	  <Language ID="de-de" />
 	  <Language ID="fr-fr" />
 	  <Language ID="it-it" />
