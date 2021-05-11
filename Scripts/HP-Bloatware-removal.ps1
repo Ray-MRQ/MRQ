@@ -27,7 +27,7 @@ $UWPAppList = "AD2F1837.HPPrinterControl",
     "AD2F1837.HPWorkWell",
     "AD2F1837.HPQuickDrop",
     "AD2F1837.myHP",
-    "AD2F1837.HPSureView"
+    "AD2F1837.HPSureView",
     "ExpressVPN",
     "McAfee Live"
 
