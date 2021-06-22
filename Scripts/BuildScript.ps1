@@ -577,8 +577,24 @@ do { $myInput = (Read-Host 'Enable System Restore point? (Y/N)').ToLower() } whi
 if ($myinput -eq 'Y') {
 Write-Output ''
 Enable-ComputerRestore -Drive "C:\"
+
+Function SystemRestore {
+  $return = Checkpoint-Computer "System-Restore Enabled"
+  return $true
+}
+
+Function OnlyTrue {
+  if (SystemRestore -eq $true) {
+      ((Get-ComputerRestorePoint).Description)[-1]
+  } else {
+      Write-Host "Failed to enable system restore"
+  }
+}
+
+OnlyTrue
+
 Write-Output ''
-Write-Output "If you get an empty output, it's enabled but double check from settings."
+Write-Output "If you get an empty output, double check from settings."
 Write-Output ''
 pause
 Clear-Host
