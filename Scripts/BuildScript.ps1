@@ -6,11 +6,11 @@
 }
 Clear-Host
 $createdby = Write-Output "Created By MQ 08/09/2020"
-$Version = Write-Output "Version 1.53"
-$lastupdatedby = Write-Output "Last Updated By MQ 16/04/2022"
+$Version = Write-Output "Version 1.67"
+$lastupdatedby = Write-Output "Last Updated By MQ 07/08/2021"
 
 $WindowsVerison = (Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion").CurrentBuild
-$LatestWindows = '19042' #Current Windows verison
+$LatestWindows = '19043' #Current Windows verison
 $OldWindows = '18363' #Anything under this or equal to
 
 #Download links.
