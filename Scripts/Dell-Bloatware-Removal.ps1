@@ -74,7 +74,6 @@ ForEach ($App in $UWPAppList) {
  Write-Host "Removing Provisioned Package: $ProPackageFullName"
  Remove-AppxProvisionedPackage -online -packagename $ProPackageFullName -allusers
 }}
-$ProgressPreference = 'Continue'
 Clear-Host
 Write-Output "Removed UWP apps."
 }
@@ -92,7 +91,8 @@ function start-GUID-removal {
 ForEach ($App in $GUIDAppList) {
 Start-Process msiexec -Wait -ArgumentList '/X $App /qn /norestart'
 }
-C:\Program Files\McAfee\MSC\mcuihost.exe /body:misp://MSCJsRes.dll::uninstall.html /id:uninstall            
+C:\Program Files\McAfee\MSC\mcuihost.exe /body:misp://MSCJsRes.dll::uninstall.html /id:uninstall
+$ProgressPreference = 'Continue'            
 Clear-Host
 Write-Output "Removed apps using GUID."
 Write-Output "There are a couple prompts for manual uninstall, please uninstall them before continuing."
