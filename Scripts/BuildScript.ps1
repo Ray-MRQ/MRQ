@@ -400,7 +400,78 @@ manage-bde -protectors -add C: -tpm > C:\temp\$localmachine.RecoveryPassword.txt
 manage-bde -protectors -get C: > C:\temp\$localmachine.RecoveryPassword.txt
 manage-bde -on C:
 Write-Output ''
-Write-Output ''
+$TPMStatusInfo = Get-WmiObject -Class Win32_TPM -EnableAllPrivileges -Namespace "root\CIMV2\Security\MicrosoftTpm"
+$TPMActive=$false
+$TPMEnabled=$false
+$TPMVersion=$null
+
+$bitlockerrecovery = (get-bitlockervolume -mountpoint C).keyprotector | foreach {$_.recoverypassword} | where {$_ -ne ""}
+
+if (!$bitlockerrecovery){
+	write-host "C Drive not encrypted."
+    
+    #Check for TPM Status
+    if ($null -eq $TPMStatusInfo){
+        write-host "No TPM detected."
+        New-ItemProperty -Path HKLM:\SOFTWARE\CentraStage\ -Name "Custom21" -PropertyType String -Value "No TPM Detected."
+    }
+    else {
+        #Verify TPM is Enabled
+        if ((Get-WmiObject -Namespace ROOT\CIMV2\Security\MicrosoftTpm -Class Win32_Tpm).IsEnabled().isenabled -eq $true){
+            write-host "TPM is enabled."
+            $TPMEnabled=$true
+        }
+        else {
+            write-host "TPM is not enabled."
+        }
+    
+        #Verify TPM is activated
+        if ((Get-WmiObject -Namespace ROOT\CIMV2\Security\MicrosoftTpm -Class Win32_Tpm).IsActivated().isactivated -eq $true){
+            write-host "TPM is active."
+            $TPMActive=$true
+        }
+        else {
+            write-host "TPM is not active."
+        }
+        #Check TPM Version
+        if ($TPMStatusInfo.SpecVersion | select-string -Pattern '1.2') {
+            write-host "Found version 1.2 TPM."
+            $TPMVersion="1.2"
+        }
+        if ($TPMStatusInfo.SpecVersion | select-string -Pattern '2.0') {
+            write-host "Found version 2.0 TPM."
+            $TPMVersion="2.0"
+        }
+        if (($TPMEnabled -eq $true) -AND ($TPMActive -eq $true) -AND ($null -ne $TPMVersion)){
+            write-host "Ready for Bitlocker."
+            New-ItemProperty -Path HKLM:\SOFTWARE\CentraStage\ -Name Custom21 -PropertyType String -Value "Ready for Bitlocker."
+        }
+        else {
+            #This combination shouldn't be possible...
+            if (($TPMActive -eq $true) -AND ($null -eq $TPMVersion)){
+                write-host "Unknown TPM version detected."
+                New-ItemProperty -Path HKLM:\SOFTWARE\CentraStage\ -Name Custom21 -PropertyType String -Value "Unknown TPM version detected."
+            }
+            else {
+                if ($TPMActive -eq $false) {
+                    write-host "TPM not active."
+                    New-ItemProperty -Path HKLM:\SOFTWARE\CentraStage\ -Name Custom21 -PropertyType String -Value "TPM not active."
+                }
+                else {
+                    #If the script actually makes it here, log the status.  This will only happen if the script encounters some weird combination of values.
+                    write-host "Anomalous status. Check me."
+                    New-ItemProperty -Path HKLM:\SOFTWARE\CentraStage\ -Name Custom21 -PropertyType String -Value "Anomalous status. Check me."
+                }
+            }
+        }
+    
+    }
+}
+else {
+	write-host "Encrypted"
+        write-host "Bitlocker key is: $bitlockerrecovery"
+	New-ItemProperty -Path HKLM:\SOFTWARE\CentraStage\ -Name Custom21 -PropertyType String -Value "$bitlockerrecovery"
+}
 Write-Output ''
 Write-Output "Stored recovery key in C:\temp\"
 Write-Output ''
@@ -602,7 +673,7 @@ Clear-Host
 do { $myInput = (Read-Host 'Set Timezone to UK and change default keyboard? (Y/N)').ToLower() } while ($myInput -notin @('Y','N'))
 if ($myinput -eq 'Y') {
 set-timezone -id "GMT Standard Time" -passthru
-Get-Date -Format “dddd MM/dd/yyyy HH:mm K”
+#Get-Date -Format “dddd MM/dd/yyyy HH:mm K”
 Write-Output 'Applied default timzone to GMT and applied default UK keyboard. (Setting keyboard has been problematic and not work.)'
 Write-Output ''
 Get-Date
@@ -628,6 +699,18 @@ else {
 Write-Output ''
 Write-Output "Not removing Windows10 Update assistant..."
 }}
+
+function start-updatedisktypetocs {
+$DiskList = @()
+$Disks = Get-PhysicalDisk | Select-Object FriendlyName, MediaType,BusType
+foreach($Disk in $Disks){
+$Disklist += "Diskname: $($Disk.FriendlyName) MediaType: $($Disk.MediaType) Bustype:$($Disk.BusType) / "
+}
+New-ItemProperty "HKLM:\SOFTWARE\CentraStage" -Name "Custom22" -PropertyType string -value $Disklist -Force
+Write-Host "Updated disk type to CS."
+pause
+}
+
 #<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<If you want to add additonal features, start adding from above. Then add to start-manual-script and start-script.>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 function start-windows-update {
@@ -742,6 +825,7 @@ mkdir c:\temp > $null 2>&1
 Remove-Item c:\temp\downloads -recurse -force > $null 2>&1
 mkdir c:\temp\downloads > $null 2>&1
 start-addrunasps1
+start-updatedisktypetocs
 start-softwareinstall
 start-mimecastinstall
 start-vpninstall
@@ -805,6 +889,7 @@ Write-Output "Option 20: Enable SystemRestore Point"
 Write-Output "Option 21: Dell Bloatware removal"
 Write-Output "Option 22: Remove Windows10 Update Assistant"
 Write-Output "Option 23: Set Default timezone to GMT/UK and UK Keyboard"
+Write-Output "OPtion 24: Update disk type to CS"
 
 #last options
 Write-Output "Option 50: Start windows updates (Includes feature update)"
@@ -837,6 +922,7 @@ if ($myinput -eq '20') {start-systemrestorepoint}
 if ($myinput -eq '21') {start-dellbloatwareremoval}
 if ($myinput -eq '22') {start-removewindows10updateassistant}
 if ($myinput -eq '23') {start-setdefault-timezone}
+if ($myinput -eq '24' {start-updatedisktypetocs})
 
 if ($myinput -eq '50') {start-windows-update}
 if ($myinput -eq 'mainmenu') {start-main-menu}
@@ -852,9 +938,8 @@ $lastupdatedby
 Write-Output ''
 Write-Output "End of script."
 Write-Output ''
-#Write-Output "Clearing c:\temps\scriptdownloads."
-#Remove-item c:\temp\downloads -recurse -force > $null 2>&1
-#Write-Output "Done..."
+Remove-item c:\temp\downloads -recurse -force > $null 2>&1
+Write-Output "Done..."
 Write-Output ''
 pause
 exit
