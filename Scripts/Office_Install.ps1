@@ -26,8 +26,6 @@ Invoke-WebRequest $OfficeExe -outfile c:\temp\downloads\office365setup.exe
 Invoke-WebRequest $OfficeXMLUninstall -outfile c:\temp\downloads\office365uninstall.xml
 $ProgressPreference = 'Continue'
 c:\temp\downloads\office365setup.exe /configure c:\temp\downloads\office365uninstall.xml
-Write-Output "Office apps should be uninstalled."
-Write-Output ''
 }
  
 function start-officeuninstall-buisness {
@@ -44,6 +42,8 @@ Invoke-WebRequest $OfficeExe -outfile c:\temp\downloads\office365setup.exe
 Invoke-WebRequest $OfficeXMLHomeUninstall -outfile c:\temp\downloads\office365uninstallhome.xml
 $ProgressPreference = 'Continue'
 c:\temp\downloads\office365setup.exe /configure c:\temp\downloads\office365uninstallhome.xml
+Write-Output "Office apps should be uninstalled."
+Write-Output ''
 }
     
 function start-officeinstall {

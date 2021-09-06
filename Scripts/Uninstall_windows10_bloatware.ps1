@@ -5,7 +5,7 @@ if (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdenti
   Break
 }
 mkdir c:\temp\
-mkdir c:\temp\scriptdownloads
+mkdir c:\temp\downloads\
 Clear-Host
 
 $AppList = "Microsoft.SkypeApp",          
@@ -104,10 +104,10 @@ if ($myInput -eq 'y') {
 ""
 Write-Output "Enter the user context credentials."
 $cred = Get-Credential
-Invoke-WebRequest https://github.com/Ray-MRQ/MRQ/raw/master/Scripts/Uninstall_windows10_bloatware_user.ps1 -outfile c:\temp\scriptdownloads\windows10bloatware_user_specfic.ps1
-Start-Process -FilePath Powershell -Credential $cred -ArgumentList '-File', c:\temp\scriptdownloads\windows10bloatware_user_specfic.ps1
+Invoke-WebRequest https://github.com/Ray-MRQ/MRQ/raw/master/Scripts/Uninstall_windows10_bloatware_user.ps1 -outfile c:\temp\downloads\windows10bloatware_user_specfic.ps1
+Start-Process -FilePath Powershell -Credential $cred -ArgumentList '-File', c:\temp\downloads\windows10bloatware_user_specfic.ps1
 pause
-Remove-Item c:\temp\scriptdownloads\windows10bloatware_user_specfic.ps1 -force > $null 2>&1
+Remove-Item c:\temp\downloads\windows10bloatware_user_specfic.ps1 -force > $null 2>&1
 exit
 }
 else { 
