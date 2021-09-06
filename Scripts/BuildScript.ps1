@@ -816,6 +816,7 @@ Write-Output ")Windows Updates. (Includes feature updates)"
 Write-Output ")Enable SystemRestore Point"
 Write-Output ")Dell Bloatware-Removal"
 Write-Output ")Set Default timezone to GMT/UK and UK Keyboard"
+Write-Output ")Update disk type to CS"
 Write-Output ''
 pause
 }
@@ -897,7 +898,7 @@ Write-Output ''
 Write-Output "Option MainMenu: Re-directs to main menu"
 Write-Output "Option Exit: Exits launcher from sub-menu."
 Write-Output ''
-do { $myInput = (Read-Host 'Choose from the above option').ToLower() } while ($myInput -notin @('0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','50','exit','mainmenu'))
+do { $myInput = (Read-Host 'Choose from the above option').ToLower() } while ($myInput -notin @('0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','50','exit','mainmenu'))
 if ($myinput -eq '0') {start-echofeatures}
 if ($myInput -eq '1') {start-softwareinstall}
 if ($myInput -eq '2') {start-vpninstall}
