@@ -4,8 +4,8 @@ if (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdenti
   Start-Process powershell -Verb runAs -ArgumentList $arguments
   Break
 }
-mkdir c:\temp\
-mkdir c:\temp\downloads\
+mkdir c:\temp\ > $null 2>&1
+mkdir c:\temp\downloads\ > $null 2>&1
 Clear-Host
 
 $AppList = "Microsoft.SkypeApp",          
