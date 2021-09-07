@@ -103,6 +103,7 @@ Write-Output "There are a couple prompts for manual uninstall, please uninstall 
 function start-main-menu {
 do { $myInput = (Read-Host 'Remove Dell bloatware?(Y/N)').ToLower() } while ($myInput -notin @('Y','N'))
 if ($myInput -eq 'y') {
+$ProgressPreference = 'SilentlyContinue'
 Install-PackageProvider -Name NuGet -Force -MinimumVersion 2.8.5.208 > $null 2>&1
 start-UWP-removal
 Write-Output ''
