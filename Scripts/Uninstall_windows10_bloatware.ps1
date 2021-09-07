@@ -187,6 +187,9 @@ function start-basic-bloatware-remover {
     }
     Set-ItemProperty $WebSearch DisableWebSearch -Value 1 
 ""
+Remove-Printer -Name "Microsoft XPS Document Writer"
+Remove-Printer -Name "OneNote (Desktop)"
+Remove-Printer -Name "Fax"
 Invoke-Command {reg delete "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}" /f}
 Invoke-Command {reg delete "HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}" /f}
 Invoke-Command {reg add HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Explorer\ /v DisableSearchBoxSuggestions /t reg_dword /d 1 /f}
