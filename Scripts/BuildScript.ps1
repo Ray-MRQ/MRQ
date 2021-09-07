@@ -923,7 +923,7 @@ if ($myinput -eq '20') {start-systemrestorepoint}
 if ($myinput -eq '21') {start-dellbloatwareremoval}
 if ($myinput -eq '22') {start-removewindows10updateassistant}
 if ($myinput -eq '23') {start-setdefault-timezone}
-if ($myinput -eq '24' {start-updatedisktypetocs})
+if ($myinput -eq '24') {start-updatedisktypetocs}
 
 if ($myinput -eq '50') {start-windows-update}
 if ($myinput -eq 'mainmenu') {start-main-menu}
