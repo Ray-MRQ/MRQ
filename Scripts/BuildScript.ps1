@@ -676,7 +676,6 @@ set-timezone -id "GMT Standard Time" -passthru
 #Get-Date -Format “dddd MM/dd/yyyy HH:mm K”
 Write-Output 'Applied default timzone to GMT and applied default UK keyboard. (Setting keyboard has been problematic and not work.)'
 Write-Output ''
-Get-Date
 pause
 }
 else {
