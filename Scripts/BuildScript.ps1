@@ -390,14 +390,15 @@ remove-item "C:\temp\RunAsAdminContextMenupowershell.reg"
 
 function start-bitlocker {
 Clear-Host
+Write-Output "Make sure this computer has centastage installed, the recovery password is directly backed up to centrastage, if it's not installed, install it."
 do { $myInput = (Read-Host 'Would you like to enable Bitlocker? (Y/N)').ToLower() } while ($myInput -notin @('Y','N'))
 if ($myinput -eq 'Y') {
 $localmachine = $env:computername
 Write-Output "Staring encryption..."
 Write-Output ''
-manage-bde -protectors -add C: -RecoveryPassword > C:\temp\$localmachine.RecoveryPassword.txt
-manage-bde -protectors -add C: -tpm > C:\temp\$localmachine.RecoveryPassword.txt
-manage-bde -protectors -get C: > C:\temp\$localmachine.RecoveryPassword.txt
+manage-bde -protectors -add C: -RecoveryPassword 
+manage-bde -protectors -add C: -tpm 
+manage-bde -protectors -get C: 
 manage-bde -on C:
 Write-Output ''
 $TPMStatusInfo = Get-WmiObject -Class Win32_TPM -EnableAllPrivileges -Namespace "root\CIMV2\Security\MicrosoftTpm"
