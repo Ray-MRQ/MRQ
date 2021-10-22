@@ -7,7 +7,7 @@ $OfficeXMLHomeUninstall = 'https://github.com/Ray-MRQ/MRQ/raw/master/Regkeys_xml
 $OfficeXMLBuisnessUninstall = 'https://github.com/Ray-MRQ/MRQ/raw/master/Regkeys_xmls/configuration_uninstall_buisness.xml'
 
 function start-officecheck {
-do { $myInput = (Read-Host 'Would you like to install Office365? (Please specify the type 64B/32/N)').ToLower() } while ($myInput -notin @('64','32','N'))
+do { $myInput = (Read-Host 'Would you like to install Office365? (Please specify the type 64/32/N)').ToLower() } while ($myInput -notin @('64','32','N'))
 if ($myInput -eq '64') {
 start-officeuninstall-pro
 start-officeuninstall-buisness
