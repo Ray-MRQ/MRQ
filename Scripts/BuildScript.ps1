@@ -102,28 +102,6 @@ pause
 Clear-Host
 }
 
-function start-mimecastinstall {
-Clear-Host
-do { $myInput = (Read-Host 'Would you like to install Mimecast for Outlook 32Bit?(Y/N)').ToLower() } while ($myInput -notin @('y','n'))
-if ($myInput -eq 'y') {
-Write-Output ''
-Write-Output "Downloading & installing Mimecast for Outlook..."
-$ProgressPreference = 'SilentlyContinue'
-Invoke-WebRequest $MimecastInstall -outfile c:\temp\downloads\mimecast32bit.msi
-$ProgressPreference = 'Continue'
-Start-Process msiexec.exe -Wait -ArgumentList '/i c:\temp\downloads\mimecast32bit.msi /qn /norestart allusers=2'
-Write-Output ''
-netsh advfirewall firewall add rule name="Mimecast.Services.Windows.Personal" dir=in action=allow program="C:\program files (x86)\mimecast\mimecast windows service\msddsk.exe" enable=yes
-Write-Output "Adding firewall rule..."
-Write-Output "Mimecast for Outlook should now be installed."
-Write-Output ''
-pause
-} else {
-Write-Output "Mimecast for Outlook32Bit will not be installed..."
-Write-Output "Please continue."
-Write-Output ''
-}}
-
 function start-vpninstall {
 Clear-Host
 do { $myInput = (Read-Host 'Would you like to install GlobalVPN or NeteXtender? Or none? (Global/Net/N)').ToLower() } while ($myInput -notin @('global','net','N'))
@@ -791,7 +769,7 @@ Clear-Host
 Write-Output ''
 Write-Output "The following options will be given during the script."
 Write-Output ''
-Write-Output ")Install 7zip, Chrome, Adobe reader, Java, , GlobalVPN/NeteXtender, Mimecast for Outlook, Office365 Apps."
+Write-Output ")Install 7zip, Chrome, Adobe reader, GlobalVPN/NeteXtender, Office365 Apps."
 Write-Output ")Sending key applications shortcuts to desktop."
 Write-Output ")Set default apps, Outlook & chrome."
 Write-Output ")Removing Windows 10 Store apps."
@@ -827,7 +805,6 @@ mkdir c:\temp\downloads > $null 2>&1
 start-addrunasps1
 start-updatedisktypetocs
 start-softwareinstall
-start-mimecastinstall
 start-vpninstall
 start-photoviewer 
 start-bloatwareremover
@@ -868,7 +845,7 @@ Write-Output ''
 Write-Output "Option 0: Display the options for the script."
 Write-Output "Option 1: Software install."
 Write-Output "Option 2: VPN Install (NeteXtender/GlobalVPN)."
-Write-Output "Option 3: Mimecast install for Outlook."
+Write-Output "Option 3: Update disk type to CS"
 Write-Output "Option 4: Windows10 Bloatware removal."
 Write-Output "Option 5: HP Bloatware removal."
 Write-Output "Option 6: Clear start menu and apply taskbar applications."
@@ -889,7 +866,6 @@ Write-Output "Option 20: Enable SystemRestore Point"
 Write-Output "Option 21: Dell Bloatware removal"
 Write-Output "Option 22: Remove Windows10 Update Assistant"
 Write-Output "Option 23: Set Default timezone to GMT/UK and UK Keyboard"
-Write-Output "OPtion 24: Update disk type to CS"
 
 #last options
 Write-Output "Option 50: Start windows updates (Includes feature update)"
@@ -897,11 +873,11 @@ Write-Output ''
 Write-Output "Option MainMenu: Re-directs to main menu"
 Write-Output "Option Exit: Exits launcher from sub-menu."
 Write-Output ''
-do { $myInput = (Read-Host 'Choose from the above option').ToLower() } while ($myInput -notin @('0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','50','exit','mainmenu'))
+do { $myInput = (Read-Host 'Choose from the above option').ToLower() } while ($myInput -notin @('0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','50','exit','mainmenu'))
 if ($myinput -eq '0') {start-echofeatures}
 if ($myInput -eq '1') {start-softwareinstall}
 if ($myInput -eq '2') {start-vpninstall}
-if ($myinput -eq '3') {start-mimecastinstall}
+if ($myinput -eq '3') {start-updatedisktypetocs}
 if ($myinput -eq '4') {start-bloatwareremover}
 if ($myinput -eq '5') {start-hpbloatwareremoval}
 if ($myinput -eq '6') {start-clearstartmenu}
@@ -922,7 +898,6 @@ if ($myinput -eq '20') {start-systemrestorepoint}
 if ($myinput -eq '21') {start-dellbloatwareremoval}
 if ($myinput -eq '22') {start-removewindows10updateassistant}
 if ($myinput -eq '23') {start-setdefault-timezone}
-if ($myinput -eq '24') {start-updatedisktypetocs}
 
 if ($myinput -eq '50') {start-windows-update}
 if ($myinput -eq 'mainmenu') {start-main-menu}
