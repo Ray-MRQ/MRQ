@@ -370,85 +370,37 @@ Clear-Host
 Write-Output "Make sure this computer has centastage installed, the recovery password is directly backed up to centrastage, if it's not installed, install it."
 do { $myInput = (Read-Host 'Would you like to enable Bitlocker? (Y/N)').ToLower() } while ($myInput -notin @('Y','N'))
 if ($myinput -eq 'Y') {
-$localmachine = $env:computername
-Write-Output "Staring encryption..."
-Write-Output ''
-manage-bde -protectors -add C: -RecoveryPassword 
-manage-bde -protectors -add C: -tpm 
-manage-bde -protectors -get C: 
-manage-bde -on C:
-Write-Output ''
-$TPMStatusInfo = Get-WmiObject -Class Win32_TPM -EnableAllPrivileges -Namespace "root\CIMV2\Security\MicrosoftTpm"
-$TPMActive=$false
-$TPMEnabled=$false
-$TPMVersion=$null
-
-$bitlockerrecovery = (get-bitlockervolume -mountpoint C).keyprotector | foreach {$_.recoverypassword} | where {$_ -ne ""}
-
-if (!$bitlockerrecovery){
-	write-host "C Drive not encrypted."
-    
-    #Check for TPM Status
-    if ($null -eq $TPMStatusInfo){
-        write-host "No TPM detected."
-        New-ItemProperty -Path HKLM:\SOFTWARE\CentraStage\ -Name "Custom21" -PropertyType String -Value "No TPM Detected."
+    write-host "Enabling the bitlocker recovery agent in case this has been disabled by OS upgrades"
+    reagentc /enable
+    write-host "Checking if Bitlocker is already enabled, and if so, documenting keys"
+    $Bitlockervolumes = Get-BitLockerVolume | where-object -Property mountpoint -eq $env:SystemDrive
+    write-host "We've found the following Bitlocker capable volumes:"
+    $Bitlockervolumes | Format-List
+    if ($Bitlockervolumes.volumeStatus -eq "FullyEncrypted") { 
+        write-host "Bitlocker is enabled. We're going to document the keys." 
     }
     else {
-        #Verify TPM is Enabled
-        if ((Get-WmiObject -Namespace ROOT\CIMV2\Security\MicrosoftTpm -Class Win32_Tpm).IsEnabled().isenabled -eq $true){
-            write-host "TPM is enabled."
-            $TPMEnabled=$true
-        }
-        else {
-            write-host "TPM is not enabled."
-        }
-    
-        #Verify TPM is activated
-        if ((Get-WmiObject -Namespace ROOT\CIMV2\Security\MicrosoftTpm -Class Win32_Tpm).IsActivated().isactivated -eq $true){
-            write-host "TPM is active."
-            $TPMActive=$true
-        }
-        else {
-            write-host "TPM is not active."
-        }
-        #Check TPM Version
-        if ($TPMStatusInfo.SpecVersion | select-string -Pattern '1.2') {
-            write-host "Found version 1.2 TPM."
-            $TPMVersion="1.2"
-        }
-        if ($TPMStatusInfo.SpecVersion | select-string -Pattern '2.0') {
-            write-host "Found version 2.0 TPM."
-            $TPMVersion="2.0"
-        }
-        if (($TPMEnabled -eq $true) -AND ($TPMActive -eq $true) -AND ($null -ne $TPMVersion)){
-            write-host "Ready for Bitlocker."
-            New-ItemProperty -Path HKLM:\SOFTWARE\CentraStage\ -Name Custom21 -PropertyType String -Value "Ready for Bitlocker."
-        }
-        else {
-            #This combination shouldn't be possible...
-            if (($TPMActive -eq $true) -AND ($null -eq $TPMVersion)){
-                write-host "Unknown TPM version detected."
-                New-ItemProperty -Path HKLM:\SOFTWARE\CentraStage\ -Name Custom21 -PropertyType String -Value "Unknown TPM version detected."
+        write-host "Bitlocker is not enabled. We're checking if Bitlocker can be enabled."
+        $TPMState = get-tpm
+        if ($TPMState.TPMReady -eq $true) {
+            try {
+                write-host "TPM is ready, we're going to try to encrypt the system volume."
+                Enable-Bitlocker -MountPoint c: -UsedSpaceOnly -SkipHardwareTest -TPMProtector -erroraction Stop
+                Add-BitLockerKeyProtector -RecoveryPasswordProtector -MountPoint $env:SystemDrive
             }
-            else {
-                if ($TPMActive -eq $false) {
-                    write-host "TPM not active."
-                    New-ItemProperty -Path HKLM:\SOFTWARE\CentraStage\ -Name Custom21 -PropertyType String -Value "TPM not active."
-                }
-                else {
-                    #If the script actually makes it here, log the status.  This will only happen if the script encounters some weird combination of values.
-                    write-host "Anomalous status. Check me."
-                    New-ItemProperty -Path HKLM:\SOFTWARE\CentraStage\ -Name Custom21 -PropertyType String -Value "Anomalous status. Check me."
-                }
+            catch {
+                write-host "Could not enable bitlocker $($_.Exception.Message)"
             }
         }
-    
+        else {
+            write-host "The device is not ready for bitlocker. The TPM is reporting that it is not ready for use. Reported TPM information:"
+            $TPMState
+            exit 1
+        }
     }
-}
-else {
-	write-host "Encrypted"
-        write-host "Bitlocker key is: $bitlockerrecovery"
-	New-ItemProperty -Path HKLM:\SOFTWARE\CentraStage\ -Name Custom21 -PropertyType String -Value "$bitlockerrecovery"
+    $BitlockerKey = ((Get-BitLockerVolume).keyprotector | where-object -property KeyProtectorType -eq "RecoveryPassword" | Select-Object -last 1).recoverypassword
+    write-host "We're documenting the bitlocker key: $BitlockerKey"
+    New-ItemProperty -Path HKLM:\SOFTWARE\CentraStage\ -Name Custom21 -PropertyType String -Value $BitlockerKey
 }
 Write-Output ''
 Write-Output "Stored recovery key in C:\temp\"
