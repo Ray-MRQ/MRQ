@@ -415,7 +415,7 @@ Write-Output "Bitlocker will not be setup..."
 Write-Output ''
 Write-Output "Please continue."
 Clear-Host
-}}
+}
 
 function start-bitlocker-updaterecovery {
 Clear-Host
