@@ -1,7 +1,7 @@
 Datto Variables used;
 
-$env:O365ApplicationSecret
-$env:O365RefreshToken
+$env:O365ApplicationSecret  <br/>
+$env:O365RefreshToken 
 $env:O365ApplicationID
 $env:O365ExchangeRefreshToken
 $env:O365ExchangeRefreshToken
