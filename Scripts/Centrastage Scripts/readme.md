@@ -1,15 +1,15 @@
 Datto Variables used;
 
 $env:O365ApplicationSecret  <br/>
-$env:O365RefreshToken 
-$env:O365ApplicationID
-$env:O365ExchangeRefreshToken
-$env:O365ExchangeRefreshToken
-$env:O365TenantID
-$env:smtpusername
-$env:smtpaddress
-$env:smtppass
-$env:sender
-$env:recipient
-$env:mfaskiplist
-$env:mfamonitorlist
+$env:O365RefreshToken <br/>
+$env:O365ApplicationID <br/>
+$env:O365ExchangeRefreshToken <br/>
+$env:O365ExchangeRefreshToken <br/>
+$env:O365TenantID <br/>
+$env:smtpusername <br/>
+$env:smtpaddress <br/>
+$env:smtppass <br/>
+$env:sender <br/>
+$env:recipient <br/>
+$env:mfaskiplist <br/>
+$env:mfamonitorlist <br/>
