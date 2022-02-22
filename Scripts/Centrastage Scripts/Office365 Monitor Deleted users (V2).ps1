@@ -18,6 +18,7 @@ $RefreshToken = $ENV:O365RefreshToken
 $ExchangeRefreshToken = $ENV:O365ExchangeRefreshToken
 $UPN = $ENV:O365UPN
 $Skiplist = $ENV:Skiplist -split ','
+$recipient = $ENV:recipient -split ','
 ######### Secrets #########
 
 $credential = New-Object System.Management.Automation.PSCredential($ApplicationId, $ApplicationSecret)
@@ -54,10 +55,8 @@ $Import
 ---------------------------------------------------------------------- </br>
 The following tenants has been excluded from this report: $SkipList
 "@
-    $From = "Centrastage - O365 Alert <O365Alert@onlinesupport.co.uk>" 
-    $To = "ITSupport@onlinesupport.co.uk","alerts@onlinesupport.co.uk"
     $Subject = "O365 Alert - Deleted users in the last 30d report"
-    Send-MailMessage -From $From -To $To -Subject $Subject -Body $Info -BodyAsHtml -SmtpServer <smtp server>-Port 25 -Credential (New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList "<smtp username>", (ConvertTo-SecureString -String "<smtp password>" -AsPlainText -Force))
+    Send-MailMessage -From $env:sender -To $recipient -Subject $Subject -Body $Info -BodyAsHtml -SmtpServer $env:smtpaddress -Port 25 -Credential (New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $env:smtpusername, (ConvertTo-SecureString -String "$env:smtppass" -AsPlainText -Force))
      
     Remove-Item c:\temp\deletedusersreport.csv -recurse -force > $null 2>&1
     exit 1
