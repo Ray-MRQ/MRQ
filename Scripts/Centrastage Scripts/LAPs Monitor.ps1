@@ -1,11 +1,11 @@
 #DATTO VARIABLES  ---------------------------------------------------------------------------
 
 $varLocalHost = Hostname
-$varAdminAccount = "<username>"
+$varAdminAccount = $env:username
 $MinPassLength = "12"
 $MaxPassLength = "16"
 $IncludeSymbol = "true"
-$UDFSelection = "<UDF>"
+$UDFSelection = $env:custom
 $RunOnServer = "true"
 
 #FUNCTIONS START ---------------------------------------------------------------------------
@@ -75,7 +75,6 @@ if ($varUserAccount.Name -eq $varAdminAccount) {
     net user $varAdminAccount /expires:never | Out-Null
     net user $varAdminAccount /fullname:$varAdminAccount | Out-Null
     net localgroup administrators $varAdminAccount /add | Out-Null
-    Set-ItemProperty -Path HKLM:\SOFTWARE\CentraStage -Name $UDFSelection -Type String -Value $varPassword -Force | Out-Null
     }
     else{
     net user $varAdminAccount $varPassword /add /Y | Out-Null
