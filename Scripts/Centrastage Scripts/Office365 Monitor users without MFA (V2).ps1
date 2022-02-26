@@ -49,7 +49,6 @@ if (!$DisabledUsers) {
 else {
     write-DRRMAlert "Unhealthy. Please check diagnostic data"
     write-DRMMDiag $DisabledUsers
-
     $attachment="C:\temp\mfareport.csv"
     $Subject = "O365 Alert - MFA Report"
     $Info = 
