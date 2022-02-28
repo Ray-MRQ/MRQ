@@ -78,12 +78,13 @@ if ($FileCheck) {
     $Import = Import-Csv -Path c:\temp\MailboxQuotaReport.csv | ConvertTo-Html -Fragment
 
 $Body = @"
-O365 Alert - Mailbox near quota report </br>
-----------------------------------------------------------------------
+O365 Alert - Mailbox near quota report. </br>
+---------------------------------------------------------------------- </br>
 $Import
+---------------------------------------------------------------------- </br>
 "@ 
 
-    $Subject = "O365 Alert - Mailbox near quota report"
+    $Subject = "O365 Alert - Mailbox near quota report."
     Send-MailMessage -From $env:sender -To $recipient -Subject $Subject -Body $body -BodyAsHtml -SmtpServer $env:smtpaddress -Port 25 -Credential (New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $env:smtpusername, (ConvertTo-SecureString -String "$env:smtppass" -AsPlainText -Force))
     Remove-Item c:\temp\MailboxQuotaReport.csv -recurse -force > $null 2>&1
     exit 1
