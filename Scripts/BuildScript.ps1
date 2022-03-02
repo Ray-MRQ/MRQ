@@ -776,7 +776,6 @@ start-disable-defrag
 start-systemrestorepoint
 start-setdefault-timezone
 start-windows-update # MAKE SURE THIS IS THE LAST ONE ON THE LSIT
-Clear-Host
 start-main-menu
 }
 
