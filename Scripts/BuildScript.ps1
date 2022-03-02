@@ -165,11 +165,6 @@ Clear-Host
 $ProgressPreference = "SilentlyContinue"
 #Windows10 Apps bloatware remover
 Write-Output ''
-Write-Output "Before going ahead, please make sure you choose the correct option."
-Write-Output "If you get any errors, (red lines) this may be due to multiple profiles."
-Write-Output "Use option user on that profile if that is the case."
-Write-Output "Otherwise option y should work fine."
-Write-Output ''
 do { $myInput = (Read-Host 'Please confirm with (Y/N) if you would like to remove Windows10Bloatware apps').ToLower() } while ($myInput -notin @('y','n'))
 if ($myInput -eq 'y') {
 Invoke-WebRequest $BloatwareRemoverWin10 -outfile c:\temp\downloads\bloatwareremover.ps1 
@@ -637,7 +632,6 @@ $Disklist += "Diskname: $($Disk.FriendlyName) MediaType: $($Disk.MediaType) Bust
 }
 New-ItemProperty "HKLM:\SOFTWARE\CentraStage" -Name "Custom22" -PropertyType string -value $Disklist -Force
 Write-Host "Updated disk type to CS."
-pause
 }
 
 #<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<If you want to add additonal features, start adding from above. Then add to start-manual-script and start-script.>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>

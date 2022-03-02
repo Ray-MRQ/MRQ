@@ -588,11 +588,14 @@ $ProgressPreference = 'SilentlyContinue'
 Install-PackageProvider -Name NuGet -Force -MinimumVersion 2.8.5.208 > $null 2>&1
 start-UWP-removal
 Write-Output ''
+Write-Output "Starting Part 2 of Bloatware removal"
 start-GAP-removal
 Write-Output ''
+Write-Output "Starting Part 3 of Bloatware removal"
 start-GUID-removal
 Clear-Host
-Write-Output "Completed bloatware removal. Please continue."
+Write-Output "Completed bloatware removal."
+Write-Output ''
 pause
 }
 if ($myinput -eq 'n') {

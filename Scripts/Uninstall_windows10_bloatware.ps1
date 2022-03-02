@@ -49,7 +49,7 @@ $AppList = "Microsoft.SkypeApp",
 	   "PricelinePartnerNetwork.Booking.comEMEABigsavingso",
 	   "Microsoft.BingTranslator",
 	   "MixedRealityLearning",
-	   "9E2F88E3.Twitter_wgeqdkkx372wm"
+	   "9E2F88E3.Twitter_wgeqdkkx372wm",
 	   "Microsoft.BingTranslator",
 	   "PricelinePartnerNetwork.Booking.comEMEABigsavingso",
 	   "Facebook.InstagramBeta"
