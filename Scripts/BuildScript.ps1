@@ -6,8 +6,8 @@
 }
 Clear-Host
 $createdby = Write-Output "Created By MQ 08/09/2020"
-$Version = Write-Output "Version 1.84"
-$lastupdatedby = Write-Output "Last Updated By MQ 20/09/2021"
+$Version = Write-Output "Version 1.93"
+$lastupdatedby = Write-Output "Last Updated By MQ 02/03/2022"
 
 $WindowsVerison = (Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion").CurrentBuild
 $LatestWindows = '19043' #Current Windows verison
