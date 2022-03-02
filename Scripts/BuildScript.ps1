@@ -639,14 +639,6 @@ Write-Host "Updated disk type to CS."
 function start-windows-update {
 Clear-Host
 Write-Output ''
-Write-Output "Run this last, if you have an old verison of windows and a feature update is applicable it will not move from the status checker until it restarts."
-Write-Output "If you enabled bitlocker and still haven't restart, do it now and then use manual select option 50 to come back here."
-Write-Output ''
-Write-Host "If there is true anywhere above a restart is required, restart before going ahead."
-Write-Output ''
-pause
-Clear-Host
-Write-Output ''
 do { $myInput = (Read-Host 'Start Windows updates? (If applicable it will also apply feature updates.) (Y/N)').ToLower() } while ($myInput -notin @('Y','N'))
 if ($myinput -eq 'Y') {
 Write-Output ''

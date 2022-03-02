@@ -90,7 +90,6 @@ function start-GUID-removal {
 ForEach ($App in $GUIDAppList) {
 Start-Process msiexec -Wait -ArgumentList '/X $App /qn /norestart'
 }
-C:\Program Files\McAfee\MSC\mcuihost.exe /body:misp://MSCJsRes.dll::uninstall.html /id:uninstall
 $ProgressPreference = 'Continue'            
 Clear-Host
 Write-Output "Removed apps using GUID."
