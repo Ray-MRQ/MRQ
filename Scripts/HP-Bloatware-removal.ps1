@@ -575,8 +575,7 @@ Start-Process "C:\Program Files (x86)\InstallShield Installation Information\{64
 C:\Program Files\McAfee\MSC\mcuihost.exe /body:misp://MSCJsRes.dll::uninstall.html /id:uninstall
 MsiExec.exe /X "{E5B9C3E5-889C-4F22-A959-F4B8465D8876}" /qn
 Clear-Host
-Write-Output "There are a couple prompts for manual uninstall, please uninstall them before continuing."
-pause
+Write-Output "Please check if there are any uninstalls prompts behind this, if not continue."
 }
 
 ############################################################################

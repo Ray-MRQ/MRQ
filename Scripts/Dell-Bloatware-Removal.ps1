@@ -94,7 +94,7 @@ C:\Program Files\McAfee\MSC\mcuihost.exe /body:misp://MSCJsRes.dll::uninstall.ht
 $ProgressPreference = 'Continue'            
 Clear-Host
 Write-Output "Removed apps using GUID."
-Write-Output "There are a couple prompts for manual uninstall, please uninstall them before continuing."
+Write-Output "Please check if there are any uninstalls prompts behind this, if not continue."
 }
 
 ############################################################################
