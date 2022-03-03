@@ -702,40 +702,6 @@ Write-Output ''
 pause
 }}
 
-function start-echofeatures {
-Clear-Host
-Write-Output ''
-Write-Output "The following options will be given during the script."
-Write-Output ''
-Write-Output ")Install 7zip, Chrome, Adobe reader, GlobalVPN/NeteXtender, Office365 Apps."
-Write-Output ")Sending key applications shortcuts to desktop."
-Write-Output ")Set default apps, Outlook & chrome."
-Write-Output ")Removing Windows 10 Store apps."
-Write-Output ")HP Bloatware remover." 
-Write-Output ")Removing pinned tiles from start menu (and creates a default for new/current users)." 
-Write-Output ")Pin & remove taskbar applications."
-Write-Output ")Removing web search from search bar."
-Write-Output ")Disabling cortana & removing taskview from taskbar."
-Write-Output ")Add run administrators on .ps1 context menu."
-Write-Output ")Installing photoviewer. (Not Microsoft Photos)." 
-Write-Output ")Disable or use Dimmed UAC." 
-Write-Output ")Enable bitlocker."
-Write-Output ")Update Bitlocker recovery key to AD."
-Write-Output ")Uninstall Office365 tool."
-Write-Output ")Disable Windows firewall on Domain network."
-Write-Output ")Join PC to Domain"
-Write-Output ")Rename PC"
-Write-Output ")Set power config (Laptop/Desktop)"
-Write-Output ")Disable defrag for SSDs"
-Write-Output ")Windows Updates. (Includes feature updates)"
-Write-Output ")Enable SystemRestore Point"
-Write-Output ")Dell Bloatware-Removal"
-Write-Output ")Set Default timezone to GMT/UK and UK Keyboard"
-Write-Output ")Update disk type to CS"
-Write-Output ''
-pause
-}
-
 function start-script {
 mkdir c:\temp > $null 2>&1
 Remove-Item c:\temp\downloads -recurse -force > $null 2>&1
@@ -779,7 +745,6 @@ Write-Output "Done."
 Write-Output ''
 Write-Output "Manual install has been selected, please choose what you would like to install selectively."
 Write-Output ''
-Write-Output "Option 0: Display the options for the script."
 Write-Output "Option 1: Software install."
 Write-Output "Option 2: VPN Install (NeteXtender/GlobalVPN)."
 Write-Output "Option 3: Update disk type to CS"
@@ -810,8 +775,7 @@ Write-Output ''
 Write-Output "Option MainMenu: Re-directs to main menu"
 Write-Output "Option Exit: Exits launcher from sub-menu."
 Write-Output ''
-do { $myInput = (Read-Host 'Choose from the above option').ToLower() } while ($myInput -notin @('0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','50','exit','mainmenu'))
-if ($myinput -eq '0') {start-echofeatures}
+do { $myInput = (Read-Host 'Choose from the above option').ToLower() } while ($myInput -notin @('1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','50','exit','mainmenu'))
 if ($myInput -eq '1') {start-softwareinstall}
 if ($myInput -eq '2') {start-vpninstall}
 if ($myinput -eq '3') {start-updatedisktypetocs}
