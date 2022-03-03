@@ -24,7 +24,7 @@ $CustomerLinks = foreach ($customer in $customers) {
         'Azure Active Directory' = "<a target=`"_blank`" href=`"https://aad.portal.azure.com/$($Customer.DefaultDomainName)`" >AAD Portal</a>"
         'MFA Portal'             = "<a target=`"_blank`" href=`"https://account.activedirectory.windowsazure.com/usermanagement/multifactorverification.aspx?tenantId=$($Customer.tenantid)&culture=en-us&requestInitiatedContext=users`" >MFA Portal</a>"
         'Teams Portal'           = "<a target=`"_blank`" href=`"https://admin.teams.microsoft.com/?delegatedOrg=$($Customer.DefaultDomainName)`">Teams Portal</a>"
-        #'Intune portal'         = "<a target=`"_blank`" href=`"https://endpoint.microsoft.com/#home/$($customer.DefaultDomainName)/#blade/Microsoft_Intune_DeviceSettings/ExtensionLandingBlade/overview`">Intune Portal</a>"
+        'Intune portal'          = "<a target=`"_blank`" href=`"https://endpoint.microsoft.com/$($customer.DefaultDomainName)`">Intune Portal</a>"
         'Domains'                = "Domains: $domains"
     }
 }
@@ -76,9 +76,7 @@ color:#6D7B8D;
 </style>
 "@
    
-$PreContent = @"
-<H1> Faster partner portal</H1> <br>
-    
+$PreContent = @"    
 <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search...">
 "@
    
