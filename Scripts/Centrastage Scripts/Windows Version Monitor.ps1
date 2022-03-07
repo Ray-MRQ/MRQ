@@ -6,14 +6,14 @@ function write-DRRMAlert ($message) {
 
 ######################################
 
-$LatestOS = $env:LatestBuild
+$LatestOS = $ENV:LatestBuild
 $WindowsVerison = (Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion").CurrentBuild
 $OS = (Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion").DisplayVersion
 
 if($LatestOS -le $WindowsVerison) {
     write-DRRMAlert "Healthy: $OS"
-    exit 1
+    exit 0
 } else {
     write-DRRMAlert "Unhealthy: $OS"
-    Exit 0
+    Exit 1
 }
