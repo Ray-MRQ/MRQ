@@ -260,6 +260,11 @@ do { $myInput = (Read-Host 'Choose an option, (Y/N)').ToLower() } while ($myInpu
 if ($myInput -eq 'y') {
 Write-Output "Modiying start menu & taskbar settings."
 Write-Output ''
+Copy-item "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\File Explorer.lnk" "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\System Tools\File Explorer.lnk"
+Invoke-Command {reg add HKLM\SOFTWARE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced /v TaskbarAl /t REG_DWORD /d 0 /f}
+Invoke-Command {reg add HKLM\SOFTWARE\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced /v TaskbarDa /t REG_DWORD /d 0 /f}
+Invoke-Command {reg add HKLM\SOFTWARE\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced /v SearchboxTaskbarMode /t REG_DWORD /d 0 /f}
+Invoke-Command {reg add HKLM\SOFTWARE\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced /v TaskbarMn /t REG_DWORD /d 0 /f}
 $START_MENU_LAYOUT = @"
 <LayoutModificationTemplate xmlns:defaultlayout="http://schemas.microsoft.com/Start/2014/FullDefaultLayout" xmlns:start="http://schemas.microsoft.com/Start/2014/StartLayout" Version="1" xmlns:taskbar="http://schemas.microsoft.com/Start/2014/TaskbarLayout" xmlns="http://schemas.microsoft.com/Start/2014/LayoutModification">
     <LayoutOptions StartTileGroupCellWidth="6" />
