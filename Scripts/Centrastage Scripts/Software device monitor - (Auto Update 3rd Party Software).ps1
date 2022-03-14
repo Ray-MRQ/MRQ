@@ -4,12 +4,6 @@ function write-DRMMDiag ($messages) {
     write-host '<-End Diagnostic->'
 } 
 
-function write-DRRMAlert ($message) {
-    write-host '<-Start Result->'
-    write-host "Alert=$message"
-    write-host '<-End Result->'
-}
-
 try {
 	[Net.ServicePointManager]::SecurityProtocol = [Enum]::ToObject([Net.SecurityProtocolType], 3072)
 } catch [system.exception] {
@@ -20,18 +14,18 @@ try {
 	exit 1
 }
 
-function InstallUpdateChoco {
-    Try {
+Try {
         iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))
-        choco.exe upgrade all -y
-        write-DRRMAlert "Healthy: All installed apps updated"
+        C:\ProgramData\chocolatey\choco.exe upgrade all -y
+        write-host '<-Start Result->'
+        Write-Host "STATUS=All installed apps updated."
+        write-host '<-End Result->'
         Exit 0 
         }
-    Catch {
+Catch {
         write-DRMMDiag $($_.Exception.Message)
-        write-DRRMAlert "Unhealthy: Check Diagonstic info."
+        write-host '<-Start Result->'
+        write-host "STATUS=Issue updating apps, check diagnostic."
+        write-host '<-End Result->'
         exit 1
-    }
 }
-
-InstallUpdateChoco
