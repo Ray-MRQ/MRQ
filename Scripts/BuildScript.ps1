@@ -6,8 +6,8 @@
 }
 Clear-Host
 $createdby = Write-Output "Created By MQ 08/09/2020"
-$Version = Write-Output "Version 1.93"
-$lastupdatedby = Write-Output "Last Updated By MQ 02/03/2022"
+$Version = Write-Output "Version 1.95"
+$lastupdatedby = Write-Output "Last Updated By MQ 18/03/2022"
 
 $WindowsVerison = (Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion").CurrentBuild
 $LatestWindows = '19043' #Current Windows verison
@@ -189,9 +189,7 @@ Write-Output "This may take a while..."
 Invoke-WebRequest $HPBloatwareRemover -outfile c:\temp\downloads\hpbloatwareremoval.ps1 
 powershell c:\temp\downloads\hpbloatwareremoval.ps1
 Write-Output ''
-Write-Output "HP Bloatware has been removed or at least attempted to remove most."
-Write-Output ''
-Write-Output "If you did come accross some HP crapware that wasn't removed let me know please? (MQ)"
+Write-Output "Completed."
 Write-Output ''
 pause
 } else {
@@ -209,9 +207,7 @@ Write-Output "This may take a while..."
 Invoke-WebRequest $DellBloatwareRemover -outfile c:\temp\downloads\dellbloatwareremoval.ps1 
 powershell c:\temp\downloads\dellbloatwareremoval.ps1
 Write-Output ''
-Write-Output "Dell Bloatware has been removed or at least attempted to remove most."
-Write-Output ''
-Write-Output "If you did come accross some Dell crapware that wasn't removed let me know please? (MQ)"
+Write-Output "Completed."
 Write-Output ''
 pause
 } else {
@@ -549,12 +545,6 @@ Clear-Host
 
 function start-disable-defrag {
 Clear-Host
-Write-Output "This is for disabiling disk defrag for SSD."
-Write-Output ''
-Write-Output "Providing output for current drives on the machine."
-Write-Output ''
-Get-PhysicalDisk | Format-Table -AutoSize
-Write-Output ''
 do { $myInput = (Read-Host 'Disable disk frag? (Y/N)').ToLower() } while ($myInput -notin @('Y','N'))
 if ($myinput -eq 'Y') {
 schtasks /Delete /TN "\Microsoft\Windows\Defrag\ScheduledDefrag"  /f
@@ -584,7 +574,6 @@ if ($null -eq $(Get-ComputerRestorePoint)) {
 Enable-ComputerRestore -Drive "C:\"
 Checkpoint-computer "System Restored enabled"
 Get-ComputerRestorePoint} else {Write-output "System Restore is enabled"} 
-
 Write-Output ''
 Write-Output "If you get an empty output, double check from settings."
 Write-Output ''
@@ -602,8 +591,7 @@ function start-setdefault-timezone {
 Clear-Host
 do { $myInput = (Read-Host 'Set Timezone to UK?(Y/N)').ToLower() } while ($myInput -notin @('Y','N'))
 if ($myinput -eq 'Y') {
-set-timezone -id "GMT Standard Time" -passthru
-#Get-Date -Format “dddd MM/dd/yyyy HH:mm K”
+set-timezone -id "GMT Standard Time"
 Write-Output 'Applied default timzone to GMT.'
 Write-Output ''
 pause
@@ -690,9 +678,6 @@ Install-Module -Name PSWindowsUpdate -Force > $null 2>&1
 Write-Output ''
 Write-Output "Checking windows update status..."
 Install-WindowsUpdate -AcceptAll -Install -MicrosoftUpdate -Verbose | Out-File "c:\temp\$(get-date -f dd-MM-yyyy-HH-mm)-WindowsUpdate.log" -force
-Write-Output ''
-Write-Output "Stored windows update log in c:\temp it goes from dd-MM-yyyy-HH-mm-windowsupdate.log"
-Write-Output "Restart the PC if it prompts, then try run the updates again to confirm it's completed."
 Write-Output ''
 Write-Output "Here is the current update history for this computer."
 get-wmiobject -class win32_quickfixengineering
@@ -822,7 +807,6 @@ Write-Output ''
 Remove-item c:\temp\downloads -recurse -force > $null 2>&1
 Write-Output "Done..."
 Write-Output ''
-pause
 exit
 }
 #####################################################################################################################
