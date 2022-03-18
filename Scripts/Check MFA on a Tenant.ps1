@@ -23,5 +23,5 @@ $Customer = Read-Host -Prompt 'Enter customerID'
 
 Get-MsolUser -all | Where-Object {$_.isLicensed -eq $true} | Select-Object UserPrincipalName,@{N="MFA Status"; E={ if( $_.StrongAuthenticationMethods.IsDefault -eq $true) {($_.StrongAuthenticationMethods | Where-Object IsDefault -eq $True).MethodType} else { "Disabled"}}} | ConvertTo-Html -Head $css -Body "<h1>$Customer MFA Report</h1>`n<h5>Generated on $(Get-Date)</h5>" | Out-File "c:\Users\env:username\desktop\$Customer-MFAReport.html"
 ""
-Write-Output "c:\Users\env:username\desktop\$Customer-MFAReport.html"
+Write-Output "c:\Users\$env:username\desktop\$Customer-MFAReport.html"
 pause

@@ -1,9 +1,3 @@
-function write-DRMMDiag ($messages) {
-    write-host  '<-Start Diagnostic->'
-    foreach ($Message in $Messages) { $Message }
-    write-host '<-End Diagnostic->'
-} 
-
 function write-DRRMAlert ($message) {
     write-host '<-Start Result->'
     write-host "Alert=$message"
@@ -21,7 +15,7 @@ $mailboxmonitor = $ENV:mailboxmonitor -split ','
 $recipient = $ENV:recipient -split ','
 ######### Secrets #########
 
-$Threshold = "90"
+$Threshold = $env:threshold
 
 $credential = New-Object System.Management.Automation.PSCredential($ApplicationId, $ApplicationSecret)
 $aadGraphToken = New-PartnerAccessToken -ApplicationId $ApplicationId -Credential $credential -RefreshToken $refreshToken -Scopes 'https://graph.windows.net/.default' -ServicePrincipal -Tenant $tenantID 
@@ -66,26 +60,27 @@ ForEach ($M in $Mbx) {
         ErrorText        = $ErrorText} 
    $Report.Add($ReportLine)
    
-}}}
+}}
 
 Remove-PSSession $session
 $Report | Sort Mailbox | Export-csv -NoTypeInformation c:\temp\MailboxQuotaReport.csv
-
-$FileCheck = test-path c:\temp\MailboxQuotaReport.csv
-
-if ($FileCheck) {
-    write-DRRMAlert "Unhealthy. Please check email report"
-    $Import = Import-Csv -Path c:\temp\MailboxQuotaReport.csv | ConvertTo-Html -Fragment
+$Import = Import-Csv -Path c:\temp\MailboxQuotaReport.csv | ConvertTo-Html -Fragment
 
 $Body = @"
-O365 Alert - Mailbox near quota report. </br>
+O365 Alert - Mailbox near quota report for $($Customer.name) </br>
 ---------------------------------------------------------------------- </br>
 $Import
 ---------------------------------------------------------------------- </br>
 "@ 
 
-    $Subject = "O365 Alert - Mailbox near quota report."
-    Send-MailMessage -From $env:sender -To $recipient -Subject $Subject -Body $body -BodyAsHtml -SmtpServer $env:smtpaddress -Port 25 -Credential (New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $env:smtpusername, (ConvertTo-SecureString -String "$env:smtppass" -AsPlainText -Force))
+$Subject = "O365 Alert - Mailbox near quota report for $($Customer.name)"
+Send-MailMessage -From $env:sender -To $recipient -Subject $Subject -Body $body -BodyAsHtml -SmtpServer $env:smtpaddress -Port 25 -Credential (New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $env:smtpusername, (ConvertTo-SecureString -String "$env:smtppass" -AsPlainText -Force))
+}
+
+$FileCheck = test-path c:\temp\MailboxQuotaReport.csv
+
+if ($FileCheck) {
+    write-DRRMAlert "Unhealthy. Please check email report"
     Remove-Item c:\temp\MailboxQuotaReport.csv -recurse -force > $null 2>&1
     exit 1
 }
