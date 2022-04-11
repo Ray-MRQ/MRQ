@@ -1,4 +1,3 @@
-#Related blog: https://www.cyberdrain.com/documenting-with-powershell-using-powershell-to-create-faster-partner-portal/
 ########################## Secure App Model Settings ############################
 $ApplicationId = $ENV:O365ApplicationID
 $ApplicationSecret = ConvertTo-SecureString $($ENV:O365ApplicationSecret) -Force -AsPlainText
@@ -20,7 +19,7 @@ $CustomerLinks = foreach ($customer in $customers) {
         'Client tenant domain'   = $customer.DefaultDomainName
         'O365 Admin Portal'      = "<a target=`"_blank`" href=`"https://portal.office.com/Partner/BeginClientSession.aspx?CTID=$($customer.TenantId)&CSDEST=o365admincenter`">O365 Portal</a>"
         'Exchange Admin Portal'  = "<a target=`"_blank`" href=`"https://outlook.office365.com/ecp/?rfr=Admin_o365&exsvurl=1&delegatedOrg=$($Customer.DefaultDomainName)`">Exchange Portal</a>"
-        'Azure Portal'           = "<a target=`"_blank`" href=`"https://portal.azure.com/$($customer.DefaultDomainName)`">Azure Portal</a>"
+        #'Azure Portal'           = "<a target=`"_blank`" href=`"https://portal.azure.com/$($customer.DefaultDomainName)`">Azure Portal</a>"
         'Azure Active Directory' = "<a target=`"_blank`" href=`"https://aad.portal.azure.com/$($Customer.DefaultDomainName)`" >AAD Portal</a>"
         'MFA Portal'             = "<a target=`"_blank`" href=`"https://account.activedirectory.windowsazure.com/usermanagement/multifactorverification.aspx?tenantId=$($Customer.tenantid)&culture=en-us&requestInitiatedContext=users`" >MFA Portal</a>"
         'Teams Portal'           = "<a target=`"_blank`" href=`"https://admin.teams.microsoft.com/?delegatedOrg=$($Customer.DefaultDomainName)`">Teams Portal</a>"
