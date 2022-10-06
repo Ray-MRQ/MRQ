@@ -7,7 +7,7 @@
 Clear-Host
 $createdby = Write-Output "Created By MQ 08/09/2020"
 $Version = Write-Output "Version 1.95"
-$lastupdatedby = Write-Output "Last Updated By MQ 18/03/2022"
+$lastupdatedby = Write-Output "Last Updated By MQ 06/10/2022"
 
 $WindowsVerison = (Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion").CurrentBuild
 $LatestWindows = '19043' #Current Windows verison
@@ -19,7 +19,7 @@ $OfficeUninstallTool = 'https://outlookdiagnostics.azureedge.net/sarasetup/Setup
 $Office365Install = 'https://github.com/Ray-MRQ/MRQ/raw/master/Scripts/Office_Install.ps1'
 $MimecastInstall = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/Mimecast%20for%20Outlook%207.9.0.79%20(32%20bit).msi'
 $GlobalVPNInstall = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/GVCInstall64.msi'
-$NeteXtenderInstall= 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/NetExtender-10.2.309.MSI'
+$NeteXtenderInstall= 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/NetExtender-x64-10.2.331.MSI'
 $PhotoviewerInstall = 'https://github.com/Ray-MRQ/MRQ/raw/master/Regkeys_xmls/Restore_Windows_Photo_Viewer_ALL_USERS.reg'
 $DefaultAppPre1909= 'https://github.com/Ray-MRQ/MRQ/raw/master/Regkeys_xmls/Pre1909DefaultAppAssociations.xml'
 $DefaultApp = 'https://github.com/Ray-MRQ/MRQ/raw/master/Regkeys_xmls/2004AppAssociations.xml'
