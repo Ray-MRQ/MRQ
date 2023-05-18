@@ -1,0 +1,27 @@
+<Configuration>
+<Display Level="None" AcceptEULA="True" />
+<Property Name="FORCEAPPSHUTDOWN" Value="True" />
+<Remove>
+    <Product ID="O365SmallBusPremRetail">
+      <Language ID="en-us" />
+	  <Language ID="de-de" />
+	  <Language ID="fr-fr" />
+	  <Language ID="it-it" />
+	  <Language ID="nl-nl" />
+    <Language ID="ar-sa" />
+    <Language ID="da-dk" />
+    <Language ID="de-de" />
+    <Language ID="es-es" />
+    <Language ID="fi-fi" />
+    <Language ID="it-it" />
+    <Language ID="nb-no" />
+    <Language ID="pl-pl" />
+    <Language ID="pt-pt" />
+    <Language ID="sv-se" />
+    <Language ID="th-th" />
+    <Language ID="zh-cn" />
+    <Language ID="zw-se" />
+    <Language ID="zh-tw" />
+    </Product>
+  </Remove>
+</Configuration>
