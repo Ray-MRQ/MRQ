@@ -273,8 +273,9 @@ $START_MENU_LAYOUT = @"
       <defaultlayout:TaskbarLayout>
         <taskbar:TaskbarPinList>
           <taskbar:DesktopApp DesktopApplicationLinkPath="C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Google Chrome.lnk" />
-		  <taskbar:DesktopApp DesktopApplicationLinkPath="C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Outlook.lnk" />
-		  <taskbar:DesktopApp DesktopApplicationLinkPath="%APPDATA%\Microsoft\Windows\Start Menu\Programs\System Tools\File Explorer.lnk" />
+          <taskbar:DesktopApp DesktopApplicationLinkPath="C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Outlook.lnk" />
+          <taskbar:DesktopApp DesktopApplicationLinkPath="%APPDATA%\Microsoft\Windows\Start Menu\Programs\System Tools\File Explorer.lnk" />
+          <taskbar:DesktopApp DesktopApplicationID="Microsoft.Windows.Explorer" />
         </taskbar:TaskbarPinList>
       </defaultlayout:TaskbarLayout>
     </CustomTaskbarLayoutCollection>
