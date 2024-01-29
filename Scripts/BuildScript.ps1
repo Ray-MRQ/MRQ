@@ -19,7 +19,7 @@ $OfficeUninstallTool = 'https://outlookdiagnostics.azureedge.net/sarasetup/Setup
 $Office365Install = 'https://github.com/Ray-MRQ/MRQ/raw/master/Scripts/Office_Install.ps1'
 $MimecastInstall = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/Mimecast%20for%20Outlook%207.9.0.79%20(32%20bit).msi'
 $GlobalVPNInstall = 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/GVCInstall64.msi'
-$NeteXtenderInstall= 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/NetExtender-x64-10.2.331.MSI'
+$NeteXtenderInstall= 'https://github.com/Ray-MRQ/MRQ/raw/master/Install%20files/NXSetupU-x64.exe'
 $PhotoviewerInstall = 'https://github.com/Ray-MRQ/MRQ/raw/master/Regkeys_xmls/Restore_Windows_Photo_Viewer_ALL_USERS.reg'
 $DefaultAppPre1909= 'https://github.com/Ray-MRQ/MRQ/raw/master/Regkeys_xmls/Pre1909DefaultAppAssociations.xml'
 $DefaultApp = 'https://github.com/Ray-MRQ/MRQ/raw/master/Regkeys_xmls/2004AppAssociations.xml'
@@ -124,9 +124,9 @@ if ($myinput -eq 'net') {
 Write-Output ''
 Write-Output "Downloading & installing NeteXtender..."
 $ProgressPreference = 'SilentlyContinue'
-Invoke-WebRequest $NeteXtenderInstall -outfile c:\temp\downloads\netextender.msi 
+Invoke-WebRequest $NeteXtenderInstall -outfile c:\temp\downloads\NXSetupU-x64.exe
 $ProgressPreference = 'Continue'
-Start-Process msiexec.exe -Wait -ArgumentList '/i c:\temp\downloads\netextender.msi /qn /norestart allusers=2'
+Start-Process c:\temp\downloads\NXSetupU-x64.exe -Wait -ArgumentList '/S'
 Write-Output ''
 Write-Output "NeteXtender should now be installed."
 Write-Output ''
