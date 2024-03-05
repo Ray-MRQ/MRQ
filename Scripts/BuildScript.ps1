@@ -1,4 +1,4 @@
-﻿if (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator"))  
+if (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator"))  
 {  
   $arguments = "& '" +$myinvocation.mycommand.definition + "'"
   Start-Process powershell -Verb runAs -ArgumentList $arguments
@@ -6,12 +6,8 @@
 }
 Clear-Host
 $createdby = Write-Output "Created By MQ 08/09/2020"
-$Version = Write-Output "Version 1.96"
-$lastupdatedby = Write-Output "Last Updated By MQ 29/01/2024"
-
-$WindowsVerison = (Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion").CurrentBuild
-$LatestWindows = '19043' #Current Windows verison
-$OldWindows = '19042' #Anything under this or equal to
+$Version = Write-Output "Version 2."
+$lastupdatedby = Write-Output "Last Updated By MQ 05/03/2024"
 
 #Download links.
 
@@ -163,9 +159,9 @@ Clear-Host
 function start-bloatwareremover {
 Clear-Host
 $ProgressPreference = "SilentlyContinue"
-#Windows10 Apps bloatware remover
+#Windows Apps bloatware remover
 Write-Output ''
-do { $myInput = (Read-Host 'Please confirm with (Y/N) if you would like to remove Windows10Bloatware apps').ToLower() } while ($myInput -notin @('y','n'))
+do { $myInput = (Read-Host 'Please confirm with (Y/N) if you would like to remove Windows Bloatware apps').ToLower() } while ($myInput -notin @('y','n'))
 if ($myInput -eq 'y') {
 Invoke-WebRequest $BloatwareRemoverWin10 -outfile c:\temp\downloads\bloatwareremover.ps1 
 powershell c:\temp\downloads\bloatwareremover.ps1
@@ -174,7 +170,7 @@ $ProgressPreference = 'Continue'
 Clear-Host
 }
 if ($myinput -eq 'n') {
-Write-Output "windows 10 Bloatware apps will not be removed..."
+Write-Output "windows Bloatware apps will not be removed..."
 Write-Output "Please continue."
 Clear-Host
 }
@@ -544,50 +540,6 @@ pause
 Clear-Host
 }}
 
-function start-disable-defrag {
-Clear-Host
-do { $myInput = (Read-Host 'Disable disk frag? (Y/N)').ToLower() } while ($myInput -notin @('Y','N'))
-if ($myinput -eq 'Y') {
-schtasks /Delete /TN "\Microsoft\Windows\Defrag\ScheduledDefrag"  /f
-Write-Output ''
-Write-Output "Please continue."
-Write-Output ''
-pause
-Clear-Host
-}
-else {
-Write-Output ''
-Write-Output "Not modifying Disk defrag."
-Write-Output ''
-pause
-Clear-Host
-}}
-
-function start-systemrestorepoint {
-Clear-Host
-do { $myInput = (Read-Host 'Enable System Restore point? (Y/N)').ToLower() } while ($myInput -notin @('Y','N'))
-if ($myinput -eq 'Y') {
-Write-Output ''
-Write-Output ''
-Enable-ComputerRestore -Drive "C:\"
-
-if ($null -eq $(Get-ComputerRestorePoint)) {
-Enable-ComputerRestore -Drive "C:\"
-Checkpoint-computer "System Restored enabled"
-Get-ComputerRestorePoint} else {Write-output "System Restore is enabled"} 
-Write-Output ''
-Write-Output "If you get an empty output, double check from settings."
-Write-Output ''
-pause
-Clear-Host
-}
-else {
-Write-Output ''
-Write-Output "Not modifying System Restore Point"
-Write-Output ''
-pause
-}}
-
 function start-setdefault-timezone {
 Clear-Host
 do { $myInput = (Read-Host 'Set Timezone to UK?(Y/N)').ToLower() } while ($myInput -notin @('Y','N'))
@@ -633,10 +585,12 @@ Write-Host "Updated disk type to CS."
 function start-windows-update {
 Clear-Host
 Write-Output ''
-do { $myInput = (Read-Host 'Start Windows updates? (If applicable it will also apply feature updates.) (Y/N)').ToLower() } while ($myInput -notin @('Y','N'))
+do { $myInput = (Read-Host 'Start Windows updates? (Y/N)').ToLower() } while ($myInput -notin @('Y','N'))
 if ($myinput -eq 'Y') {
 Write-Output ''
-if ($WindowsVerison -le $OldWindows) { 
+do { $myInput = (Read-Host 'Choose if you want to run Windows 11 or 10 feature updates, you need to verify yourself if it is already the latest or not.) N for no feautre updates and run regular updates instead. (W10/W11/N)').ToLower() } while ($myInput -notin @('W10','W11'))
+
+if ($myinput -eq 'W10') {
 #Removes the Upgrader app if it's installed.
 C:\Windows10Upgrade\Windows10UpgraderApp.exe /ForceUninstall > $null 2>&1
 Remove-Item C:\Windows10Upgrade\*.* -recurse -force > $null 2>&1
@@ -659,12 +613,34 @@ Write-Output ''
 Start-Sleep -Seconds 60
 exit
 }
-if ($LatestWindows -match $LatestWindows) {
+if ($myinput -eq 'W11') {
+#Removes the Upgrader app if it's installed.
+Clear-Host
+#
+Write-Output "Starting windows updates..."
+Write-Output "Please wait..."
+$dir = c:\temp\downloads
+$webClient = New-Object System.Net.WebClient
+$url = 'https://go.microsoft.com/fwlink/?linkid=2171764'
+$file = "$($dir)\Win11Upgrade.exe"
+$webClient.DownloadFile($url,$file)
+Start-Process -FilePath $file -ArgumentList '/skipeula /auto upgrade /copylogs $dir'
+Write-Output ''
+Write-Output "Please re-run the bloatware remover after restarting as doing a feature update may add new bloatware back in."
+Write-Output ''
+Write-Output "The script is setup to exit after hitting enter."
+Write-Output ''
+Start-Sleep -Seconds 60
+exit
+}
+if ($myinput -eq 'N') {
 Write-Output ''
 Write-Output "This is the latest Windows feature update."
 Write-Output "Starting normal windows update instead..."
 start-windows-update-nofeature
-}}}
+}}
+#Continue next
+}
 
 function start-windows-update-nofeature {
 Clear-Host
@@ -715,8 +691,6 @@ start-rename-computer
 start-joindomain
 start-bitlocker-updaterecovery
 start-power-config
-start-disable-defrag
-start-systemrestorepoint
 start-setdefault-timezone
 start-windows-update # MAKE SURE THIS IS THE LAST ONE ON THE LSIT
 start-main-menu
@@ -754,8 +728,8 @@ Write-Output "Option 15: Disable Windows Firewall on Domain network."
 Write-Output "Option 16: Join PC to domain"
 Write-Output "Option 17: Rename PC"
 Write-Output "Option 18: Set power config (Laptop/Desktop)"
-Write-Output "Option 19: Disable disk defrag (For SSD)."
-Write-Output "Option 20: Enable SystemRestore Point"
+Write-Output "Defunct option." #"Option 19: Disable disk defrag (For SSD)."
+Write-Output "Defunct option." #"Option 20: Enable SystemRestore Point"
 Write-Output "Option 21: Dell Bloatware removal"
 Write-Output "Option 22: Remove Windows10 Update Assistant"
 Write-Output "Option 23: Set Default timezone to GMT/UK and UK Keyboard"
@@ -785,8 +759,8 @@ if ($myinput -eq '15') {start-disablefirewall-domain}
 if ($myinput -eq '16') {start-joindomain}
 if ($myinput -eq '17') {start-rename-computer}
 if ($myinput -eq '18') {start-power-config}
-if ($myinput -eq '19') {start-disable-defrag}
-if ($myinput -eq '20') {start-systemrestorepoint}
+#if ($myinput -eq '19') {start-disable-defrag}
+#if ($myinput -eq '20') {start-systemrestorepoint}
 if ($myinput -eq '21') {start-dellbloatwareremoval}
 if ($myinput -eq '22') {start-removewindows10updateassistant}
 if ($myinput -eq '23') {start-setdefault-timezone}
