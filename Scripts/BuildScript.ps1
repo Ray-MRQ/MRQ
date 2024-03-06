@@ -722,8 +722,8 @@ Write-Output "Option 15: Disable Windows Firewall on Domain network."
 Write-Output "Option 16: Join PC to domain"
 Write-Output "Option 17: Rename PC"
 Write-Output "Option 18: Set power config (Laptop/Desktop)"
-Write-Output "Defunct option." #"Option 19: Disable disk defrag (For SSD)."
-Write-Output "Defunct option." #"Option 20: Enable SystemRestore Point"
+Write-Output "Defunct option." 
+Write-Output "Defunct option."
 Write-Output "Option 21: Dell Bloatware removal"
 Write-Output "Option 22: Remove Windows10 Update Assistant"
 Write-Output "Option 23: Set Default timezone to GMT/UK and UK Keyboard"
@@ -734,7 +734,7 @@ Write-Output ''
 Write-Output "Option MainMenu: Re-directs to main menu"
 Write-Output "Option Exit: Exits launcher from sub-menu."
 Write-Output ''
-do { $myInput = (Read-Host 'Choose from the above option').ToLower() } while ($myInput -notin @('1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','50','exit','mainmenu'))
+do { $myInput = (Read-Host 'Choose from the above option').ToLower() } while ($myInput -notin @('1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','21','22','23','50','exit','mainmenu'))
 if ($myInput -eq '1') {start-softwareinstall}
 if ($myInput -eq '2') {start-vpninstall}
 if ($myinput -eq '3') {start-updatedisktypetocs}
@@ -753,8 +753,6 @@ if ($myinput -eq '15') {start-disablefirewall-domain}
 if ($myinput -eq '16') {start-joindomain}
 if ($myinput -eq '17') {start-rename-computer}
 if ($myinput -eq '18') {start-power-config}
-#if ($myinput -eq '19') {start-disable-defrag}
-#if ($myinput -eq '20') {start-systemrestorepoint}
 if ($myinput -eq '21') {start-dellbloatwareremoval}
 if ($myinput -eq '22') {start-removewindows10updateassistant}
 if ($myinput -eq '23') {start-setdefault-timezone}
