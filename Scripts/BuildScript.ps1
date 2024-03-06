@@ -1,9 +1,3 @@
-if (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator"))  
-{  
-  $arguments = "& '" +$myinvocation.mycommand.definition + "'"
-  Start-Process powershell -Verb runAs -ArgumentList $arguments
-  Break
-}
 Clear-Host
 $createdby = Write-Output "Created By MQ 08/09/2020"
 $Version = Write-Output "Version 2."
