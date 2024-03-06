@@ -6,8 +6,8 @@
 }
 Clear-Host
 $createdby = Write-Output "Created By MQ 08/09/2020"
-$Version = Write-Output "Version 1.96"
-$lastupdatedby = Write-Output "Last Updated By MQ 29/01/2024"
+$Version = Write-Output "Version 2.0"
+$lastupdatedby = Write-Output "Last Updated By MQ 06/03/2024"
 
 #Download links.
 
