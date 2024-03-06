@@ -1,6 +1,6 @@
 Clear-Host
 $createdby = Write-Output "Created By MQ 08/09/2020"
-$Version = Write-Output "Version 2."
+$Version = Write-Output "Version 2.0"
 $lastupdatedby = Write-Output "Last Updated By MQ 05/03/2024"
 
 #Download links.
@@ -97,7 +97,7 @@ Clear-Host
 do { $myInput = (Read-Host 'Would you like to install GlobalVPN or NeteXtender? Or none? (Global/Net/N)').ToLower() } while ($myInput -notin @('global','net','N'))
 if ($myInput -eq 'global') {
 Write-Output ''
-Write-Output "Downloading & installing GlobalVPN..."
+Write-Output "Downloading and installing GlobalVPN..."
 $ProgressPreference = 'SilentlyContinue'
 Invoke-WebRequest $GlobalVPNInstall -outfile c:\temp\downloads\gvcinstall64.msi
 $ProgressPreference = 'Continue'
@@ -112,7 +112,7 @@ pause
 }
 if ($myinput -eq 'net') {
 Write-Output ''
-Write-Output "Downloading & installing NeteXtender..."
+Write-Output "Downloading and installing NeteXtender..."
 $ProgressPreference = 'SilentlyContinue'
 Invoke-WebRequest $NeteXtenderInstall -outfile c:\temp\downloads\NXSetupU-x64.exe
 $ProgressPreference = 'Continue'
@@ -207,12 +207,12 @@ Clear-Host
 }
 
 function start-shortcuts-default-apps {
-Write-Output "This part of the script is for changing default apps & shortcuts for Office."
+Write-Output "This part of the script is for changing default apps and shortcuts for Office."
 Write-Output ''
 Write-Output "Default apps only apply to new profiles. If the profile for the new user already exists,"
 Write-Output "Change default apps manaully from settings or re-create profile."
 Write-Output ''
-do { $myInput = (Read-Host 'Add shortcuts & default apps?(Y/N)').ToLower() } while ($myInput -notin @('y','n'))
+do { $myInput = (Read-Host 'Add shortcuts and default apps?(Y/N)').ToLower() } while ($myInput -notin @('y','n'))
 if ($myInput -eq 'y') {
 if ($WindowsVersion -le '1909') { 
 Invoke-WebRequest $DefaultAppPre1909 -outfile c:\temp\downloads\MyDefaultAppAssociations.xml 
@@ -244,7 +244,7 @@ Write-Output "This will become a default setting for new and current users"
 Write-Output ''
 do { $myInput = (Read-Host 'Choose an option, (Y/N)').ToLower() } while ($myInput -notin @('y','n'))
 if ($myInput -eq 'y') {
-Write-Output "Modiying start menu & taskbar settings."
+Write-Output "Modiying start menu and taskbar settings."
 Write-Output ''
 Copy-item "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\File Explorer.lnk" "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\System Tools\File Explorer.lnk"
 Invoke-Command {reg add HKLM\SOFTWARE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced /v TaskbarAl /t REG_DWORD /d 0 /f}
@@ -472,7 +472,7 @@ Write-Output ''
 Write-Output "The above may not be accurate. (Because a restart is required to update the information)."
 Write-Output ''
 Write-Output "Just to be sure..."
-Write-Output "Providing Hostname & Domain output..."
+Write-Output "Providing Hostname and Domain output..."
 Write-Output ''
 hostname
 systeminfo | findstr /B "Domain"
@@ -696,7 +696,7 @@ $createdby
 $Version
 $lastupdatedby
 Write-Output ''
-Write-Output "Removing & creating directory in C:\temp\scriptdownloads..."
+Write-Output "Removing and creating directory in C:\temp\scriptdownloads..."
 mkdir c:\temp > $null 2>&1
 Remove-Item c:\temp\downloads -recurse -force > $null 2>&1
 mkdir c:\temp\downloads > $null 2>&1
@@ -712,7 +712,7 @@ Write-Output "Option 5: HP Bloatware removal."
 Write-Output "Option 6: Clear start menu and apply taskbar applications."
 Write-Output "Option 7: Install Photoviewer."
 Write-Output "Option 8: Modify UAC."
-Write-Output "Option 9: Reapply shortcuts & default apps."
+Write-Output "Option 9: Reapply shortcuts and default apps."
 Write-Output "Option 10: Enable Bitlocker."
 Write-Output "Option 11: Update Bitlocker recovery password to AD."
 Write-Output "Option 12: Office uninstall tool. (Only use this if you can't use option 13)"
