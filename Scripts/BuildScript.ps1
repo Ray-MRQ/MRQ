@@ -1,7 +1,13 @@
+﻿if (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator"))  
+{  
+  $arguments = "& '" +$myinvocation.mycommand.definition + "'"
+  Start-Process powershell -Verb runAs -ArgumentList $arguments
+  Break
+}
 Clear-Host
 $createdby = Write-Output "Created By MQ 08/09/2020"
-$Version = Write-Output "Version 2.0"
-$lastupdatedby = Write-Output "Last Updated By MQ 05/03/2024"
+$Version = Write-Output "Version 1.96"
+$lastupdatedby = Write-Output "Last Updated By MQ 29/01/2024"
 
 #Download links.
 
@@ -97,7 +103,7 @@ Clear-Host
 do { $myInput = (Read-Host 'Would you like to install GlobalVPN or NeteXtender? Or none? (Global/Net/N)').ToLower() } while ($myInput -notin @('global','net','N'))
 if ($myInput -eq 'global') {
 Write-Output ''
-Write-Output "Downloading and installing GlobalVPN..."
+Write-Output "Downloading & installing GlobalVPN..."
 $ProgressPreference = 'SilentlyContinue'
 Invoke-WebRequest $GlobalVPNInstall -outfile c:\temp\downloads\gvcinstall64.msi
 $ProgressPreference = 'Continue'
@@ -112,7 +118,7 @@ pause
 }
 if ($myinput -eq 'net') {
 Write-Output ''
-Write-Output "Downloading and installing NeteXtender..."
+Write-Output "Downloading & installing NeteXtender..."
 $ProgressPreference = 'SilentlyContinue'
 Invoke-WebRequest $NeteXtenderInstall -outfile c:\temp\downloads\NXSetupU-x64.exe
 $ProgressPreference = 'Continue'
@@ -153,9 +159,9 @@ Clear-Host
 function start-bloatwareremover {
 Clear-Host
 $ProgressPreference = "SilentlyContinue"
-#Windows Apps bloatware remover
+#Windows10 Apps bloatware remover
 Write-Output ''
-do { $myInput = (Read-Host 'Please confirm with (Y/N) if you would like to remove Windows Bloatware apps').ToLower() } while ($myInput -notin @('y','n'))
+do { $myInput = (Read-Host 'Please confirm with (Y/N) if you would like to remove Windows10Bloatware apps').ToLower() } while ($myInput -notin @('y','n'))
 if ($myInput -eq 'y') {
 Invoke-WebRequest $BloatwareRemoverWin10 -outfile c:\temp\downloads\bloatwareremover.ps1 
 powershell c:\temp\downloads\bloatwareremover.ps1
@@ -164,7 +170,7 @@ $ProgressPreference = 'Continue'
 Clear-Host
 }
 if ($myinput -eq 'n') {
-Write-Output "windows Bloatware apps will not be removed..."
+Write-Output "windows 10 Bloatware apps will not be removed..."
 Write-Output "Please continue."
 Clear-Host
 }
@@ -207,12 +213,12 @@ Clear-Host
 }
 
 function start-shortcuts-default-apps {
-Write-Output "This part of the script is for changing default apps and shortcuts for Office."
+Write-Output "This part of the script is for changing default apps & shortcuts for Office."
 Write-Output ''
 Write-Output "Default apps only apply to new profiles. If the profile for the new user already exists,"
 Write-Output "Change default apps manaully from settings or re-create profile."
 Write-Output ''
-do { $myInput = (Read-Host 'Add shortcuts and default apps?(Y/N)').ToLower() } while ($myInput -notin @('y','n'))
+do { $myInput = (Read-Host 'Add shortcuts & default apps?(Y/N)').ToLower() } while ($myInput -notin @('y','n'))
 if ($myInput -eq 'y') {
 if ($WindowsVersion -le '1909') { 
 Invoke-WebRequest $DefaultAppPre1909 -outfile c:\temp\downloads\MyDefaultAppAssociations.xml 
@@ -244,7 +250,7 @@ Write-Output "This will become a default setting for new and current users"
 Write-Output ''
 do { $myInput = (Read-Host 'Choose an option, (Y/N)').ToLower() } while ($myInput -notin @('y','n'))
 if ($myInput -eq 'y') {
-Write-Output "Modiying start menu and taskbar settings."
+Write-Output "Modiying start menu & taskbar settings."
 Write-Output ''
 Copy-item "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\File Explorer.lnk" "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\System Tools\File Explorer.lnk"
 Invoke-Command {reg add HKLM\SOFTWARE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced /v TaskbarAl /t REG_DWORD /d 0 /f}
@@ -472,7 +478,7 @@ Write-Output ''
 Write-Output "The above may not be accurate. (Because a restart is required to update the information)."
 Write-Output ''
 Write-Output "Just to be sure..."
-Write-Output "Providing Hostname and Domain output..."
+Write-Output "Providing Hostname & Domain output..."
 Write-Output ''
 hostname
 systeminfo | findstr /B "Domain"
@@ -549,21 +555,6 @@ Write-Output ''
 pause
 }}
 
-function start-removewindows10updateassistant {
-Clear-Host
-do { $myInput = (Read-Host 'Remove Windows10 Upadte assistant? (Y/N)').ToLower() } while ($myInput -notin @('Y','N'))
-if ($myinput -eq 'Y') {
-Write-Output ''
-C:\Windows10Upgrade\Windows10UpgraderApp.exe /ForceUninstall
-Remove-Item C:\Windows10Upgrade\*.* -recurse -force > $null 2>&1
-Write-Output ''
-Write-Output "Removed Windows10 Update assistant..."
-}
-else {
-Write-Output ''
-Write-Output "Not removing Windows10 Update assistant..."
-}}
-
 function start-updatedisktypetocs {
 $DiskList = @()
 $Disks = Get-PhysicalDisk | Select-Object FriendlyName, MediaType,BusType
@@ -579,12 +570,10 @@ Write-Host "Updated disk type to CS."
 function start-windows-update {
 Clear-Host
 Write-Output ''
-do { $myInput = (Read-Host 'Start Windows updates? (Y/N)').ToLower() } while ($myInput -notin @('Y','N'))
+do { $myInput = (Read-Host 'Start Windows updates? (If applicable it will also apply feature updates.) (Y/N)').ToLower() } while ($myInput -notin @('Y','N'))
 if ($myinput -eq 'Y') {
 Write-Output ''
-do { $myInput = (Read-Host 'Choose if you want to run Windows 11 or 10 feature updates, you need to verify yourself if it is already the latest or not.) N for no feautre updates and run regular updates instead. (W10/W11/N)').ToLower() } while ($myInput -notin @('W10','W11'))
-
-if ($myinput -eq 'W10') {
+if ($WindowsVerison -le $OldWindows) { 
 #Removes the Upgrader app if it's installed.
 C:\Windows10Upgrade\Windows10UpgraderApp.exe /ForceUninstall > $null 2>&1
 Remove-Item C:\Windows10Upgrade\*.* -recurse -force > $null 2>&1
@@ -607,34 +596,12 @@ Write-Output ''
 Start-Sleep -Seconds 60
 exit
 }
-if ($myinput -eq 'W11') {
-#Removes the Upgrader app if it's installed.
-Clear-Host
-#
-Write-Output "Starting windows updates..."
-Write-Output "Please wait..."
-$dir = c:\temp\downloads
-$webClient = New-Object System.Net.WebClient
-$url = 'https://go.microsoft.com/fwlink/?linkid=2171764'
-$file = "$($dir)\Win11Upgrade.exe"
-$webClient.DownloadFile($url,$file)
-Start-Process -FilePath $file -ArgumentList '/skipeula /auto upgrade /copylogs $dir'
-Write-Output ''
-Write-Output "Please re-run the bloatware remover after restarting as doing a feature update may add new bloatware back in."
-Write-Output ''
-Write-Output "The script is setup to exit after hitting enter."
-Write-Output ''
-Start-Sleep -Seconds 60
-exit
-}
-if ($myinput -eq 'N') {
+if ($LatestWindows -match $LatestWindows) {
 Write-Output ''
 Write-Output "This is the latest Windows feature update."
 Write-Output "Starting normal windows update instead..."
 start-windows-update-nofeature
-}}
-#Continue next
-}
+}}}
 
 function start-windows-update-nofeature {
 Clear-Host
@@ -685,6 +652,8 @@ start-rename-computer
 start-joindomain
 start-bitlocker-updaterecovery
 start-power-config
+start-disable-defrag
+start-systemrestorepoint
 start-setdefault-timezone
 start-windows-update # MAKE SURE THIS IS THE LAST ONE ON THE LSIT
 start-main-menu
@@ -696,7 +665,7 @@ $createdby
 $Version
 $lastupdatedby
 Write-Output ''
-Write-Output "Removing and creating directory in C:\temp\scriptdownloads..."
+Write-Output "Removing & creating directory in C:\temp\scriptdownloads..."
 mkdir c:\temp > $null 2>&1
 Remove-Item c:\temp\downloads -recurse -force > $null 2>&1
 mkdir c:\temp\downloads > $null 2>&1
@@ -712,7 +681,7 @@ Write-Output "Option 5: HP Bloatware removal."
 Write-Output "Option 6: Clear start menu and apply taskbar applications."
 Write-Output "Option 7: Install Photoviewer."
 Write-Output "Option 8: Modify UAC."
-Write-Output "Option 9: Reapply shortcuts and default apps."
+Write-Output "Option 9: Reapply shortcuts & default apps."
 Write-Output "Option 10: Enable Bitlocker."
 Write-Output "Option 11: Update Bitlocker recovery password to AD."
 Write-Output "Option 12: Office uninstall tool. (Only use this if you can't use option 13)"
@@ -722,8 +691,6 @@ Write-Output "Option 15: Disable Windows Firewall on Domain network."
 Write-Output "Option 16: Join PC to domain"
 Write-Output "Option 17: Rename PC"
 Write-Output "Option 18: Set power config (Laptop/Desktop)"
-Write-Output "Defunct option." 
-Write-Output "Defunct option."
 Write-Output "Option 21: Dell Bloatware removal"
 Write-Output "Option 22: Remove Windows10 Update Assistant"
 Write-Output "Option 23: Set Default timezone to GMT/UK and UK Keyboard"
@@ -752,7 +719,7 @@ if ($myinput -eq '14') {start-addrunasps1}
 if ($myinput -eq '15') {start-disablefirewall-domain}
 if ($myinput -eq '16') {start-joindomain}
 if ($myinput -eq '17') {start-rename-computer}
-if ($myinput -eq '18') {start-power-config}
+if ($myinput -eq '20') {start-systemrestorepoint}
 if ($myinput -eq '21') {start-dellbloatwareremoval}
 if ($myinput -eq '22') {start-removewindows10updateassistant}
 if ($myinput -eq '23') {start-setdefault-timezone}
