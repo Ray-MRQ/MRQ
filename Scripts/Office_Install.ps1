@@ -66,7 +66,7 @@ Invoke-WebRequest $OfficeXMLInstall -outfile c:\temp\downloads\configuration.xml
 $ProgressPreference = 'Continue'
 c:\temp\downloads\office365setup.exe /configure c:\temp\downloads\configuration.xml
 Write-Output "Office365 is now installed."
-Copy-Item "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Outlook.lnk" -Destination "C:\Users\Public\Desktop\Outlook.lnk"
+Copy-Item "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Outlook (classic).lnk" -Destination "C:\Users\Public\Desktop\Outlook.lnk"
 Copy-Item "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Excel.lnk" -Destination "C:\Users\Public\Desktop\Excel.lnk"
 Copy-Item "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Powerpoint.lnk" -Destination "C:\Users\Public\Desktop\Powerpoint.lnk"
 Copy-Item "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Word.lnk" -Destination "C:\Users\Public\Desktop\Word.lnk"
@@ -83,7 +83,7 @@ Invoke-WebRequest $OfficeXML64BitInstall -outfile c:\temp\downloads\configuratio
 $ProgressPreference = 'Continue'
 c:\temp\downloads\office365setup.exe /configure c:\temp\downloads\configuration.xml
 Write-Output "Office365 is now installed."
-Copy-Item "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Outlook.lnk" -Destination "C:\Users\Public\Desktop\Outlook.lnk"
+Copy-Item "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Outlook (classic).lnk" -Destination "C:\Users\Public\Desktop\Outlook.lnk"
 Copy-Item "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Excel.lnk" -Destination "C:\Users\Public\Desktop\Excel.lnk"
 Copy-Item "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Powerpoint.lnk" -Destination "C:\Users\Public\Desktop\Powerpoint.lnk"
 Copy-Item "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Word.lnk" -Destination "C:\Users\Public\Desktop\Word.lnk"
