@@ -6,8 +6,8 @@
 }
 Clear-Host
 $createdby = Write-Output "Created By MQ 08/09/2020"
-$Version = Write-Output "Version 2.0"
-$lastupdatedby = Write-Output "Last Updated By MQ 06/03/2024"
+$Version = Write-Output "Version 2.1"
+$lastupdatedby = Write-Output "Last Updated By MQ 09/10/2024"
 
 #Download links.
 
@@ -228,7 +228,7 @@ Invoke-WebRequest $DefaultApp -outfile c:\temp\downloads\MyDefaultAppAssociation
 dism /online /Import-DefaultAppAssociations:"c:\temp\downloads\MyDefaultAppAssociations.xml" }
 Write-Output "Sending office shortcuts to desktop..."
 #Add any shortcuts needed for the above here. It just copies from Start menu to public desktop.
-Copy-Item "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Outlook.lnk" -Destination "C:\Users\Public\Desktop\Outlook.lnk"
+Copy-Item "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Outlook (classic).lnk" -Destination "C:\Users\Public\Desktop\Outlook.lnk"
 Copy-Item "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Excel.lnk" -Destination "C:\Users\Public\Desktop\Excel.lnk"
 Copy-Item "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Powerpoint.lnk" -Destination "C:\Users\Public\Desktop\Powerpoint.lnk"
 Copy-Item "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Word.lnk" -Destination "C:\Users\Public\Desktop\Word.lnk"
@@ -269,7 +269,7 @@ $START_MENU_LAYOUT = @"
       <defaultlayout:TaskbarLayout>
         <taskbar:TaskbarPinList>
           <taskbar:DesktopApp DesktopApplicationLinkPath="C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Google Chrome.lnk" />
-          <taskbar:DesktopApp DesktopApplicationLinkPath="C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Outlook.lnk" />
+          <taskbar:DesktopApp DesktopApplicationLinkPath="C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Outlook (classic).lnk" />
           <taskbar:DesktopApp DesktopApplicationLinkPath="%APPDATA%\Microsoft\Windows\Start Menu\Programs\System Tools\File Explorer.lnk" />
           <taskbar:DesktopApp DesktopApplicationID="Microsoft.Windows.Explorer" />
         </taskbar:TaskbarPinList>
