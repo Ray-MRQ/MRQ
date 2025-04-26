@@ -1,7 +1,0 @@
-<Configuration Product="ProPlus"> 
-
-<Display Level="none" CompletionNotice="no" SuppressModal="yes" AcceptEula="yes" /> 
-
-<Setting Id="SETUP_REBOOT" Value="Never" /> 
-
-</Configuration>
